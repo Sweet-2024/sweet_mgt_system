@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5345701-d785-4823-8231-5bf16cfd9bac" name="Changes" comment="Creating project with dependencies" />
+    <list default="true" id="c5345701-d785-4823-8231-5bf16cfd9bac" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,7 +54,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721474007124</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="adding login and admin_mgt features">
+      <created>1721493609699</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1721493609699</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -68,6 +77,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creating project with dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating project with dependencies" />
+    <MESSAGE value="adding login and admin_mgt features" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding login and admin_mgt features" />
   </component>
 </project>

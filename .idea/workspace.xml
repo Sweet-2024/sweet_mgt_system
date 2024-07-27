@@ -4,13 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5345701-d785-4823-8231-5bf16cfd9bac" name="Changes" comment="">
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="adding reporting and monitoring feature">
+      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/pkg/AcceptanceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/pkg/admin_reporting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/pkg/sign_up_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,10 +49,32 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="AcceptanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sweetMgtSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="acceptance.pkg.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="acceptance.pkg" />
+      <option name="MAIN_CLASS_NAME" value="acceptance.pkg.AcceptanceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AcceptanceTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c5345701-d785-4823-8231-5bf16cfd9bac" name="Changes" comment="" />
+      <changelist id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="adding reporting and monitoring feature" />
       <created>1721473502394</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

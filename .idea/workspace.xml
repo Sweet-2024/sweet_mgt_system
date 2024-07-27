@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="adding reporting and monitoring feature">
-      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/login_Test.java" afterDir="false" />
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/owners_communication_Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/use_cases/owners_communication.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/use_cases/product_mgt.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/AcceptanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/AcceptanceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721493609699</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Creating test cases for login and admin mgt features">
+      <created>1722074542897</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722074542897</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -113,6 +121,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creating project with dependencies" />
     <MESSAGE value="adding login and admin_mgt features" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding login and admin_mgt features" />
+    <MESSAGE value="Creating test cases for login and admin mgt features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating test cases for login and admin mgt features" />
   </component>
 </project>

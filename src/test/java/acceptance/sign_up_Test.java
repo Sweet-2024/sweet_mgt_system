@@ -1,4 +1,4 @@
-package acceptance.pkg;
+package acceptance;
 
 import io.cucumber.java.en.*;
 

@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="adding reporting and monitoring feature">
-      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/pkg/AcceptanceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/pkg/admin_reporting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/pkg/sign_up_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/pkg/AcceptanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/AcceptanceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/pkg/admin_reporting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_reporting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/pkg/sign_up_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/sign_up_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

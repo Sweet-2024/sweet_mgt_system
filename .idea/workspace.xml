@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="">
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="Creating test cases for login and admin mgt features">
       <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/owners_communication_Test.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/use_cases/owners_communication.feature" afterDir="false" />
@@ -25,7 +25,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

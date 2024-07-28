@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="Creating test cases for login and admin mgt features">
-      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/owners_communication_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/use_cases/owners_communication.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/use_cases/product_mgt.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_purchase_and_commu_Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/use_cases/user_purchase_and_commu.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/use_cases/account_mgt.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/use_cases/order_mgt.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="Creating account mgt and order mgt features with their test cases">
+      <change afterPath="$PROJECT_DIR$/src/test/java/acceptance/order_mgt_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722074542897</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Creating account mgt and order mgt features with their test cases">
+      <created>1722159501687</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722159501687</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,6 +125,7 @@
     <MESSAGE value="Creating project with dependencies" />
     <MESSAGE value="adding login and admin_mgt features" />
     <MESSAGE value="Creating test cases for login and admin mgt features" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating test cases for login and admin mgt features" />
+    <MESSAGE value="Creating account mgt and order mgt features with their test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating account mgt and order mgt features with their test cases" />
   </component>
 </project>

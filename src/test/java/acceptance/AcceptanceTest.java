@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         plugin = {"summary", "html:target/cucumber/report.html"},
         monochrome = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        glue = "acceptance.pkg"
+        glue = "acceptance"
 )
 public class AcceptanceTest {
 

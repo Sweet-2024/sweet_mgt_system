@@ -1,7 +1,5 @@
 package sweetSys;
 
 public class MyApp {
-
-    public boolean isLoggedIn;
-
+    public static boolean isLoggedIn;
 }

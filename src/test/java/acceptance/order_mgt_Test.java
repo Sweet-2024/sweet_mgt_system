@@ -1,9 +1,13 @@
 package acceptance;
 
+import Entities.Database;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import sweetSys.Checks;
 import sweetSys.MyApp;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class order_mgt_Test {
 
@@ -16,7 +20,14 @@ public class order_mgt_Test {
 
     @Given("logged in to the system as owner")
     public void loggedInToTheSystemAsOwner() {
-
+        int type = 2;
+        if (Checks.checkForType(type))
+        {
+            assertTrue(Checks.checkForType(type));
+            myApp.isLoggedIn = true;
+        }
+        else
+            myApp.isLoggedIn = false;
     }
 
     @When("choosing order management from the list")

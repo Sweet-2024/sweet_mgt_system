@@ -1,8 +1,7 @@
 package acceptance;
 
-import Entities.Database;
-import Entities.User;
 import io.cucumber.java.en.*;
+import sweetSys.Checks;
 import sweetSys.MyApp;
 
 import static org.junit.Assert.assertFalse;
@@ -27,9 +26,9 @@ public class login_Test {
         String email = "s12112506@stu.najah.edu";
         String pass = "12345";
 
-        if (Database.checkForUsers(email, pass))
+        if (Checks.checkIfUserInDatabase(email, pass))
         {
-            assertTrue(Database.checkForUsers(email, pass));
+            assertTrue(Checks.checkIfUserInDatabase(email, pass));
             myApp.isLoggedIn = true;
         }
         else
@@ -48,9 +47,9 @@ public class login_Test {
         String email = "s12112506@stu.najah.edu";
         String pass = "123456";
 
-        if (!Database.checkForUsers(email, pass))
+        if (!Checks.checkIfUserInDatabase(email, pass))
         {
-            assertFalse(Database.checkForUsers(email, pass));
+            assertFalse(Checks.checkIfUserInDatabase(email, pass));
             myApp.isLoggedIn = false;
         }
         else
@@ -62,9 +61,9 @@ public class login_Test {
         String email = "s121125@stu.najah.edu";
         String pass = "123456";
 
-        if (!Database.checkForUsers(email, pass))
+        if (!Checks.checkIfUserInDatabase(email, pass))
         {
-            assertFalse(Database.checkForUsers(email, pass));
+            assertFalse(Checks.checkIfUserInDatabase(email, pass));
             myApp.isLoggedIn = false;
         }
         else

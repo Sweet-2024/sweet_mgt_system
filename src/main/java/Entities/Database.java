@@ -6,11 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 public class Database {
     static Connection conn;
     static Statement stmt;
-    public static boolean checkForUsers(String email, String pass)
+    public static ResultSet connectionToSelectFromDB(String cmdString)
     {
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
@@ -18,21 +17,31 @@ public class Database {
             conn = DriverManager.getConnection(connInfo, "user1", "654321");
 
             stmt = conn.createStatement();
-            String qry = "select * from sweetSystem.users where users.user_email = '"+email+"' and users.user_password = '"+pass+"';";
+            String qry = cmdString;
 
             ResultSet rs = stmt.executeQuery(qry);
-
-            if(rs.next()){
-                return true;
-            }
-            else {
-                return false;
-            }
+            return rs;
         }
-        catch(Exception e)
+        catch(SQLException sqlException)
         {
-            System.out.println(e);
-            return false;
+            System.out.println(sqlException);
+            return null;
+        }
+    }
+
+    public static void connectionToInsertOrUpdateDB(String cmdString)
+    {
+        try {
+            DriverManager.registerDriver(new org.postgresql.Driver());
+            String connInfo = "jdbc:postgresql://localhost:5432/postgres";
+            conn = DriverManager.getConnection(connInfo, "user1", "654321");
+
+            stmt = conn.createStatement();
+            stmt.executeUpdate(cmdString);
+        }
+        catch(SQLException sqlException)
+        {
+            System.out.println(sqlException);
         }
     }
 }

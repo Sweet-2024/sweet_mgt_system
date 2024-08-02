@@ -6,5 +6,4 @@ public class MyApp {
 
 
     public boolean isLoggedIn;
-
 }

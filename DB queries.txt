@@ -17,3 +17,16 @@ ALTER TABLE IF EXISTS sweetsystem.users
 2. owner
 3. supplier
 4. regular user
+------------------------------------------------------------
+create table sweetsystem.recipe (
+	recipe_id serial not null primary key,
+	recipe_name varchar(30),
+	recipe_description text,
+	recipe_category varchar(30),
+	recipe_publisher_email varchar(50)
+);
+create sequence sweetsystem.recipe_id_seq;
+ALTER TABLE recipe ALTER COLUMN recipe_id SET DEFAULT nextval('sweetsystem.recipe_id_seq');
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA sweetsystem
+GRANT ALL ON TABLES TO user1;

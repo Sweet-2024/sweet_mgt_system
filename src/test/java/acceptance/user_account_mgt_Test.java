@@ -5,6 +5,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import sweetSys.MyApp;
 
+import static org.junit.Assert.assertTrue;
+
 public class user_account_mgt_Test {
 
     static MyApp myApp;

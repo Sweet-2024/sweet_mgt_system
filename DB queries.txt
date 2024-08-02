@@ -30,3 +30,29 @@ ALTER TABLE recipe ALTER COLUMN recipe_id SET DEFAULT nextval('sweetsystem.recip
 
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA sweetsystem
 GRANT ALL ON TABLES TO user1;
+-----------------------------------------------------------
+CREATE TABLE sweetsystem."Product"
+(
+    product_id serial NOT NULL,
+    product_name character varying(50),
+    price integer,
+    wholesale_price integer,
+    quantity integer,
+    saled_qty integer DEFAULT 0,
+    ex_date date,
+    owner_email character varying(50),
+    PRIMARY KEY (product_id)
+);
+CREATE SEQUENCE sweetsystem.product_id_seq
+    OWNED BY "Product".product_id;
+
+ALTER TABLE IF EXISTS sweetsystem."Product"
+    ALTER COLUMN product_id SET DEFAULT nextval('sweetsystem."product_id_seq"'::regclass);
+------------------------------------------------
+ALTER TABLE IF EXISTS sweetsystem."Product"
+    ADD CONSTRAINT product_owner_fk FOREIGN KEY (owner_email)
+    REFERENCES sweetsystem.users (user_email) MATCH SIMPLE
+    ON UPDATE SET NULL
+    ON DELETE SET NULL
+    NOT VALID;
+-----------------------------------------------------------------------

@@ -6,5 +6,7 @@ public class MyApp {
 
 
     public boolean isLoggedIn;
-    public int userType;
+    public static int userType;
+    public static String userEmail;
+    public static String userName;
 }

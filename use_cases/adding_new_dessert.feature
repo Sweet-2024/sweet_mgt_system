@@ -1,4 +1,4 @@
-Feature: managing accounts
+Feature: post new personal dessert
 
   Scenario: Post and share personal dessert creations
     Given logged in to the system as regular user

@@ -1,7 +1,10 @@
 package acceptance;
 
 import io.cucumber.java.en.*;
+import sweetSys.Listing;
 import sweetSys.MyApp;
+
+import static org.junit.Assert.assertTrue;
 
 public class product_mgt_Test {
     static MyApp myApp;
@@ -72,12 +75,16 @@ public class product_mgt_Test {
 
     @When("choosing Monitor sales and profits from the list")
     public void choosingMonitorSalesAndProfitsFromTheList() {
-
+        MyApp.userType = 2;
+        MyApp.userEmail = "s12112506@stu.najah.edu";
+        assertTrue(Listing.generateFinanialReports());
     }
 
     @Then("list of sales and profits will appear")
     public void listOfSalesAndProfitsWillAppear() {
-
+        MyApp.userType = 2;
+        MyApp.userEmail = "s12112506@stu.najah.edu";
+        assertTrue(Listing.listingBestSellingProduct());
     }
 
     @When("choosing Identify best-selling products from the list")

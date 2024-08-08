@@ -5,6 +5,8 @@ import Entities.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.DriverManager;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import static java.lang.Character.isAlphabetic;

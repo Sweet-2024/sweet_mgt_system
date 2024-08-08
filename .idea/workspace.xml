@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="write test cases for acccount mgt and admin mgt">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Entities/Product.java" afterDir="false" />
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/MyApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/MyApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/order_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/order_mgt_Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722548313421</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="write test cases for product mgt and make some updates">
+      <created>1723093553243</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1723093553243</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,7 +144,8 @@
     <MESSAGE value="adding login and admin_mgt features" />
     <MESSAGE value="Creating test cases for login and admin mgt features" />
     <MESSAGE value="write test cases for acccount mgt and admin mgt" />
-    <option name="LAST_COMMIT_MESSAGE" value="write test cases for acccount mgt and admin mgt" />
+    <MESSAGE value="write test cases for product mgt and make some updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="write test cases for product mgt and make some updates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

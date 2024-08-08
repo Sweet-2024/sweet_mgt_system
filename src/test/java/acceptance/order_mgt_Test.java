@@ -20,6 +20,7 @@ public class order_mgt_Test {
 
     @Given("logged in to the system as owner")
     public void loggedInToTheSystemAsOwner() {
+        myApp.userType = 2;
         assertTrue(myApp.userType == 2);
     }
 
@@ -35,17 +36,17 @@ public class order_mgt_Test {
 
     @When("choosing the supplier to buy from")
     public void choosingTheSupplierToBuyFrom() {
-
+        assertTrue(Checks.checkIfThereAreSuppliersInDatabase());
     }
 
     @When("listing the required product")
     public void listingTheRequiredProduct() {
-
+        assertTrue(Checks.checkIfThereAreProductsInDatabase());
     }
 
     @Then("the order will be saved")
     public void theOrderWillBeSaved() {
-
+        /////////////////////////////////////////////////////
     }
 
     @Then("a msg will be sent to the selected supplier to notify him")

@@ -10,7 +10,8 @@ public class Product {
     private String exDate;
     private String ownerEmail;
 
-    public Product( String product_name, int price, int wholesale_price, int quantity, int saled_qty, String ex_date, String owner_email) {
+    public Product(int productId, String product_name, int price, int wholesale_price, int quantity, int saled_qty, String ex_date, String owner_email) {
+        this.productId = productId;
         this.productName = product_name;
         this.price = price;
         this.wholesalePrice = wholesale_price;
@@ -18,6 +19,16 @@ public class Product {
         this.saledQty = saled_qty;
         this.exDate = ex_date;
         this.ownerEmail = owner_email;
+    }
+
+    public Product(String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {
+        this.productName = productName;
+        this.price = price;
+        this.wholesalePrice = wholesalePrice;
+        this.quantity = quantity;
+        this.saledQty = saledQty;
+        this.exDate = exDate;
+        this.ownerEmail = ownerEmail;
     }
 
     public int getProductId() {

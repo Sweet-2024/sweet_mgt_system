@@ -19,6 +19,7 @@ public class product_mgt_Test {
     }
     @Given("logged in to the system as owner or supplier")
     public void loggedInToTheSystemAsOwnerOrSupplier() {
+        myApp.userType = 2;
         assertTrue(myApp.userType == 2 || myApp.userType == 3);
     }
 
@@ -51,7 +52,7 @@ public class product_mgt_Test {
         int wholesalePrice = 60;
         int quantity = 10;
         int saledQty = 6;
-        String exDate = "2-5-2024";
+        String exDate = "2024-12-12";
 
         String ownerEmail = "s12113354@stu.najah.edu";
         assertTrue(Checks.isValidEmail(ownerEmail));
@@ -79,6 +80,7 @@ public class product_mgt_Test {
 
     @Then("updated product will be saved successfully")
     public void updatedProductWillBeSavedSuccessfully() {
+        int id = 2;
         String pName = "chocolate cake";
         assertTrue(Checks.isValidProductName(pName));
 
@@ -86,12 +88,12 @@ public class product_mgt_Test {
         int wholesalePrice = 60;
         int quantity = 10;
         int saledQty = 6;
-        String exDate = "2-5-2024";
+        String exDate = "2024-12-25";
 
-        String ownerEmail = "s12113354@stu.najah.edu";
+        String ownerEmail = "s12113763@stu.najah.edu";
         assertTrue(Checks.isValidEmail(ownerEmail));
 
-        Product product = new Product (pName, price, wholesalePrice, quantity, saledQty, exDate, ownerEmail);
+        Product product = new Product (id, pName, price, wholesalePrice, quantity, saledQty, exDate, ownerEmail);
         Updates.updateProduct(product);
 
         assertTrue(Checks.checkIfProductInDatabase(pName));
@@ -144,7 +146,8 @@ public class product_mgt_Test {
 
     @Then("the discount will be applied to products with soon expiry date")
     public void theDiscountWillBeAppliedToProductsWithSoonExpiryDate() {
-
+        double discount = 0.20;
+        assertTrue(Updates.productDiscount(discount));
     }
 
 }

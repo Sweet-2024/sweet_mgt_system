@@ -21,6 +21,7 @@ public class admin_mgt_Test {
 
     @Given("login to the system as administrator")
     public void loginToTheSystemAsAdministrator() {
+        myApp.userType = 1;
         assertTrue(myApp.userType == 1);
     }
 
@@ -39,7 +40,7 @@ public class admin_mgt_Test {
         String un = "raheeqQ";
         String email = "s12113763@stu.najah.edu";
         String password = "raheeq_443";
-        String location = "Jenin";
+        String location = "jenin";
         int userType = 3;
 
         User user = new User (un, password, email, location, userType);

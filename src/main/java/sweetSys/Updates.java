@@ -2,8 +2,9 @@ package sweetSys;
 
 import Entities.Database;
 import Entities.User;
+import Entities.Product;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+
 public class Updates {
     public static boolean updateBusinessInfo(String bName, String bLocation, int bId)
     {
@@ -52,6 +53,39 @@ public class Updates {
         int uType = user.getType();
 
         String qry = "update sweetsys.users set username= '"+un+"', user_password = '"+pass+"', user_location = '"+location+"', user_type = "+uType+" where user_email = '"+email+"';";
+        Database.connectionToInsertOrUpdateDB(qry);
+    }
+    public static void addNewProduct(Product product)
+    {
+        int id = product.getProductId();
+        String pName = product.getProductName();
+        int price = product.getPrice();
+        int wholesalePrice = product.getWholesalePrice();
+        int quantity = product.getQuantity();
+        int saledQty = product.getSaledQty();
+        String exDate = product.getExDate();
+        String ownerEmail = product.getOwnerEmail();
+
+        String qry = "insert into sweetsys.Product values ("+id+", '"+pName+"', "+price+", "+wholesalePrice+", "+quantity+", "+saledQty+", '"+exDate+"', '"+ownerEmail+"');";
+        Database.connectionToInsertOrUpdateDB(qry);
+    }
+    public static void deleteProduct(String productName)
+    {
+        String qry = "delete from sweetsys.Product where product_name = '"+productName+"';";
+        Database.connectionToInsertOrUpdateDB(qry);
+    }
+    public static void updateProduct(Product product)
+    {
+        int id = product.getProductId();
+        String pName = product.getProductName();
+        int price = product.getPrice();
+        int wholesalePrice = product.getWholesalePrice();
+        int quantity = product.getQuantity();
+        int saledQty = product.getSaledQty();
+        String exDate = product.getExDate();
+        String ownerEmail = product.getOwnerEmail();
+
+        String qry = "update sweetsys.Product set product_name= '"+pName+"', price = "+price+", wholesale_price = "+wholesalePrice+", quantity = "+quantity+", saled_qty = "+saledQty+", ex_date = '"+exDate+"', owner_email = '"+ownerEmail+"' where product_id = "+id+";";
         Database.connectionToInsertOrUpdateDB(qry);
     }
 }

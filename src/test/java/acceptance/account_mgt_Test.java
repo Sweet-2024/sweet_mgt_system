@@ -28,12 +28,6 @@ public class account_mgt_Test {
         String bName = "Sweety";
         String bLocation = "Nablus";
         int bId = 1;
-        if (Updates.updateBusinessInfo(bName, bLocation, bId))
-        {
-            assertTrue(Updates.updateBusinessInfo(bName, bLocation, bId));
-            myApp.isLoggedIn = true;
-        }
-        else
-            myApp.isLoggedIn = false;
+        assertTrue(Updates.updateBusinessInfo(bName, bLocation, bId));
     }
 }

@@ -20,14 +20,7 @@ public class order_mgt_Test {
 
     @Given("logged in to the system as owner")
     public void loggedInToTheSystemAsOwner() {
-        int type = 2;
-        if (Checks.checkForType(type))
-        {
-            assertTrue(Checks.checkForType(type));
-            myApp.isLoggedIn = true;
-        }
-        else
-            myApp.isLoggedIn = false;
+        assertTrue(myApp.userType == 2);
     }
 
     @When("choosing order management from the list")

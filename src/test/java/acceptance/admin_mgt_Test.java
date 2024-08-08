@@ -21,14 +21,7 @@ public class admin_mgt_Test {
 
     @Given("login to the system as administrator")
     public void loginToTheSystemAsAdministrator() {
-        int type = 1;
-        if (Checks.checkForType(type))
-        {
-            assertTrue(Checks.checkForType(type));
-            myApp.isLoggedIn = true;
-        }
-        else
-            myApp.isLoggedIn = false;
+        assertTrue(myApp.userType == 1);
     }
 
     @When("admin choose managing accounts from the list")

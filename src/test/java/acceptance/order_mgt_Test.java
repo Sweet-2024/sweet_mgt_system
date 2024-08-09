@@ -1,11 +1,16 @@
 package acceptance;
 
-import Entities.Database;
+import Entities.Order;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import sweetSys.Checks;
 import sweetSys.MyApp;
+import sweetSys.Updates;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -41,12 +46,20 @@ public class order_mgt_Test {
 
     @When("listing the required product")
     public void listingTheRequiredProduct() {
-        assertTrue(Checks.checkIfThereAreProductsInDatabase());
+        assertTrue(Checks.checkIfThereAreRowMaterialsInDatabase());
     }
 
     @Then("the order will be saved")
     public void theOrderWillBeSaved() {
-        /////////////////////////////////////////////////////
+        String seller = "s12112506@stu.najah.edu";
+        String buyer = "s12113763@stu.najah.edu";
+        LocalDateTime date = LocalDateTime.now();
+        String rowMaterialName = "Sugar";
+        ArrayList<String> items = new ArrayList<>();
+        items.add(rowMaterialName);
+
+        Order order = new Order(seller, buyer, date, items);
+        Updates.addNewOrder(order);
     }
 
     @Then("a msg will be sent to the selected supplier to notify him")

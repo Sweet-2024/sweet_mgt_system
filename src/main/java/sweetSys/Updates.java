@@ -1,10 +1,13 @@
 package sweetSys;
 
 import Entities.Database;
+import Entities.Order;
 import Entities.User;
 import Entities.Product;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Updates {
     public static boolean updateBusinessInfo(String bName, String bLocation, int bId)
@@ -161,5 +164,39 @@ public class Updates {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+    public static void addNewOrder(Order order)
+    {
+        String seller = order.getSellerEmail();
+        String buyer = order.getBuyerEmail();
+        LocalDateTime date = order.getDate();
+        ArrayList<String> items = order.getItemName();
+        int orderId= 0;
+
+        String qry1 = "SELECT order_id FROM sweetsystem.order order BY order_id DESC;";
+        ResultSet rs = Database.connectionToSelectFromDB(qry1);
+        try {
+            if (rs.next()){
+                orderId = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        orderId ++;
+        String qry = "INSERT INTO `order`(`order_id`, `seller_email`, `order_date`, `buyer_email`) VALUES ("+orderId+", '"+seller+"','"+buyer+"','"+date+"');";
+        Database.connectionToInsertOrUpdateDB(qry);
+
+        for(String itemName : items)
+        {
+            if(Checks.checkIfRowMaterialInDatabase(itemName))
+            {
+
+            }
+            else
+            {
+                //System.out.println("This product already exist, please try again with another product name!");
+            }
+        }
+
     }
 }

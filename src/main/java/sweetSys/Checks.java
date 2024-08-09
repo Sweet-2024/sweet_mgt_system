@@ -112,6 +112,23 @@ public class Checks {
             return false;
         }
     }
+    public static boolean checkIfThereAreRowMaterialsInDatabase()
+    {
+        String qry = "select * from sweetsystem.row_material;";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
     public static boolean checkIfThereAreRecipesInDatabase()
     {
         String qry = "select * from sweetsystem.recipe;";
@@ -239,4 +256,20 @@ public class Checks {
         return (userType >= 1 && userType <= 4);
     }
 
+    public static boolean checkIfRowMaterialInDatabase(String name) {
+        String qry = "select * from sweetsystem.row_material where row_material.rm_name = '"+name+"';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 }

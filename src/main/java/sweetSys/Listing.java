@@ -162,4 +162,37 @@ public class Listing {
             throw new RuntimeException(e);
         }
     }
+
+    public static boolean listAllUsersInTheSystem(int TypeToCommunicate) {
+        String qry = "select * from sweetsystem.users where user_type = " + TypeToCommunicate;
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        try {
+            if (TypeToCommunicate == 2)
+                System.out.println("\n* List of all owners in the system :");
+            else if (TypeToCommunicate == 3)
+                System.out.println("\n* List of all suppliers in the system :");
+            else if (TypeToCommunicate == 4)
+                System.out.println("\n* List of all users in the system :");
+
+            System.out.println("\t\tusername : \t\temail : ");
+            int numOfUsers = 0;
+            while(rs.next())
+            {
+                numOfUsers ++;
+                String username = rs.getString(1);
+                String email = rs.getString(3);
+                System.out.println("\t"+numOfUsers + ".\t" +username + "\t\t" + email );
+                }
+            if (numOfUsers > 0)
+                return true;
+            else
+            {
+                System.out.println("there are no users in the system");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
 }

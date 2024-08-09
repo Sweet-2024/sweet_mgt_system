@@ -1,28 +1,28 @@
 package sweetSys;
 
 import Entities.Database;
+import Entities.Messaging;
 import Entities.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static java.lang.Character.isAlphabetic;
 import static java.lang.Character.isDigit;
 
 public class Checks {
-    public static boolean checkIfUserInDatabase(String email, String pass)
-    {
-        String qry = "select * from sweetSystem.users where users.user_email = '"+email+"' and users.user_password = '"+pass+"';";
+    public static boolean checkIfUserInDatabase(String email, String pass) {
+        String qry = "select * from sweetSystem.users where users.user_email = '" + email + "' and users.user_password = '" + pass + "';";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if (rs.next()) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         } catch (SQLException e) {
@@ -30,16 +30,15 @@ public class Checks {
             return false;
         }
     }
-    public static boolean checkIfEmailAlreadyUsed(String email)
-    {
-        String qry = "select * from sweetSystem.users where users.user_email = '"+ email +"'";
+
+    public static boolean checkIfEmailAlreadyUsed(String email) {
+        String qry = "select * from sweetSystem.users where users.user_email = '" + email + "'";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if (rs.next()) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         } catch (SQLException e) {
@@ -47,40 +46,36 @@ public class Checks {
             return false;
         }
     }
-    public static boolean isValidEmail(String email)
-    {
+
+    public static boolean isValidEmail(String email) {
         if (email == null)
             return false;
-        else if(!email.contains("@"))
+        else if (!email.contains("@"))
             return false;
-        String domain = email.substring(email.indexOf("@")+1);
+        String domain = email.substring(email.indexOf("@") + 1);
 
-        if(!domain.contains("."))
+        if (!domain.contains("."))
             return false;
 
         return true;
     }
 
-    public static boolean isValidUsername(String username)
-    {
+    public static boolean isValidUsername(String username) {
         if (username == null) return false;
         return (username.length() <= 20);
     }
 
-    public static boolean isvalidPassword(String pass)
-    {
-        if(pass == null)
+    public static boolean isvalidPassword(String pass) {
+        if (pass == null)
             return false;
-        if(pass.length() < 8)
+        if (pass.length() < 8)
             return false;
-        else
-        {
+        else {
             boolean alphFlag = false;
             boolean digitFlag = false;
             boolean charFlag = false;
             Character currentChar;
-            for (int i = 0 ; i < pass.length()-1 ; i++)
-            {
+            for (int i = 0; i < pass.length() - 1; i++) {
                 currentChar = pass.charAt(i);
                 if (isAlphabetic(currentChar))
                     alphFlag = true;
@@ -93,11 +88,10 @@ public class Checks {
         }
     }
 
-    public static boolean isValidCity(String city)
-    {
+    public static boolean isValidCity(String city) {
         if (city == null)
             return false;
-        ArrayList <String> CitiesAL = new ArrayList<>();
+        ArrayList<String> CitiesAL = new ArrayList<>();
         CitiesAL.add("Nablus");
         CitiesAL.add("Ramallah");
         CitiesAL.add("Jenin");
@@ -105,7 +99,7 @@ public class Checks {
         CitiesAL.add("Bethlehem");
         CitiesAL.add("Hebron");
         String temp = city.toLowerCase();
-        for(String c: CitiesAL) {
+        for (String c : CitiesAL) {
             if (temp.trim().equals(c.toLowerCase())) {
                 return true;
             }
@@ -132,4 +126,24 @@ public class Checks {
     public static boolean isAcceptableRecipeDescription(String recipeDescription) {
         return (recipeDescription != null);
     }
-}
+
+    public static boolean isMsgInTheSystem(Messaging msg) {
+        String sender = msg.getSenderEmail();
+        String receiver = msg.getReceiverEmail();
+        String message = msg.getMsg();
+        LocalDateTime msgDate = LocalDateTime.now();
+        String qry = "select * from sweetsystem.message where sender = '" + sender + "' and receiver = '" + receiver + "' and msg = '" + message + "';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        try {
+            if (rs.next())
+            {
+                return true;
+            }
+            else
+                return false;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
+}//end of class

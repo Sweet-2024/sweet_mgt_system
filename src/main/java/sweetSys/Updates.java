@@ -1,8 +1,16 @@
 package sweetSys;
 
 import Entities.Database;
+import Entities.Messaging;
 import Entities.Recipe;
 import Entities.User;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Updates
 {
@@ -42,4 +50,21 @@ public class Updates
         else
             System.out.println("Error in recipe info! try Again ");
     }
-}
+
+    public static void addNewMsg(Messaging msg)
+    {
+        String sender = msg.getSenderEmail();
+        String receiver = msg.getReceiverEmail();
+        String message = msg.getMsg();
+        LocalDateTime msgDate = LocalDateTime.now();
+        if(Checks.isMsgInTheSystem(msg))
+        {
+            System.out.println("the msg already in the system");
+        }
+        else
+        {
+            String addMsgQry = "INSERT INTO `message` ( `sender`, `receiver`, `msg`, `date`) VALUES ('"+sender+"', '"+receiver+"', '"+message+"', '"+msgDate+"');";
+            Database.connectionToInsertOrUpdateDB(addMsgQry);
+        }
+    }
+}//end of class

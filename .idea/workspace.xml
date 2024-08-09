@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="completing admin reporting feature with all scenarios">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_28_2024_1_56_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_28_2024_1_56_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="update teh connection to database &amp; make reporting function common to both admin and owners">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Entities/Messaging.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/MyApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/MyApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/use_cases/adding_new_dessert.feature" beforeDir="false" afterPath="$PROJECT_DIR$/use_cases/adding_new_dessert.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/owners_communication_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/owners_communication_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +60,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="sweetSys" />
       <recent name="Entities" />
+      <recent name="sweetSys" />
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -187,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722635631968</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update teh connection to database &amp; make reporting function common to both admin and owners">
+      <created>1723146944617</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1723146944617</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,7 +212,8 @@
     <MESSAGE value="completing sign up feature with all scenarios" />
     <MESSAGE value="completing adding new recipe feature with all scenarios" />
     <MESSAGE value="completing admin reporting feature with all scenarios" />
-    <option name="LAST_COMMIT_MESSAGE" value="completing admin reporting feature with all scenarios" />
+    <MESSAGE value="update teh connection to database &amp; make reporting function common to both admin and owners" />
+    <option name="LAST_COMMIT_MESSAGE" value="update teh connection to database &amp; make reporting function common to both admin and owners" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sweet_mgt_system$AcceptanceTest.ic" NAME="AcceptanceTest Coverage Results" MODIFIED="1722437191751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

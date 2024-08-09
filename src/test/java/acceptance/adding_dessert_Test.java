@@ -27,7 +27,8 @@ public class adding_dessert_Test {
     }
 
     @When("entering acceptable dessert name")
-    public void enteringAcceptableDessertName() {
+    public void enteringAcceptableDessertName()
+    {
         String recipeName = "any name";
         assertTrue(Checks.isAcceptableRecipeName(recipeName));
     }

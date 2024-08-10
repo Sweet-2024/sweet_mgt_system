@@ -21,7 +21,7 @@ public class admin_reporting_Test {
 
     @Then("generate financial reports for both owners and suppliers")
     public void generateFinancialReportsForBothOwnersAndSuppliers() {
-        assertTrue(Listing.generateFinanialReports());
+        assertTrue(Listing.generateFinancialReports());
     }
 
     @Then("identify the best-selling product in each store")

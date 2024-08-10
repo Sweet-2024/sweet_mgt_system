@@ -38,7 +38,11 @@ public class Updates
         String rCate = recipe.getRecipeCate();
         String pubEmail = recipe.getPublisherEmail();
 
-        if (Checks.isAcceptableRecipeName(rname) && Checks.isAcceptableRecipeDescription(rDesc) && Checks.isAcceptableRecipeCategory(rCate) && Checks.checkIfEmailAlreadyUsed(pubEmail))
+        if (Checks.isAcceptableRecipeName(rname)
+                && Checks.isAcceptableRecipeDescription(rDesc)
+                && Checks.isAcceptableRecipeCategory(rCate)
+                && Checks.checkIfEmailAlreadyUsed(pubEmail)
+                && !Checks.isExistingRecipe(recipe))
         {
             rCate = rCate.trim();
             String qry = "INSERT INTO sweetsystem.recipe(recipe_name, recipe_description, recipe_category, recipe_publisher_email) VALUES ( '" + rname + "', '" + rDesc + "', '" + rCate + "', '" + pubEmail + "');";
@@ -46,7 +50,7 @@ public class Updates
             System.out.println("The recipe published successfully :) ");
         }
         else
-            System.out.println("Error in recipe info! try Again ");
+            System.err.println("Error in recipe info! try Again ");
     }
 
     public static void addNewMsg(Messaging msg)
@@ -99,7 +103,13 @@ public class Updates
                     if (rs2.next())
                     {
                         productId = rs2.getInt(1);
-                        qry2 = "select * from order_product where "
+                        qry2 = "select * from order_product where order_id = "+orderId+" and product_id = "+productId+" and qty = " + qty.get(i);
+                        ResultSet rs3 = Database.connectionToSelectFromDB(qry2);
+                        if (rs3.next())
+                        {
+                            System.out.println("Already ordered! ");
+                            continue;
+                        }
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);

@@ -15,11 +15,11 @@ public class adding_dessert_Test {
 
     static MyApp myApp;
 
-    public adding_dessert_Test(MyApp myApp) {
+    public adding_dessert_Test(MyApp myApp)
+    {
         super();
         this.myApp = myApp;
     }
-
 
     @When("choose adding new dessert creations from the list")
     public void chooseAddingNewDessertCreationsFromTheList() {
@@ -34,7 +34,8 @@ public class adding_dessert_Test {
     }
 
     @When("entering dessert data with incorrect format")
-    public void enteringDessertDataWithIncorrectFormat() {
+    public void enteringDessertDataWithIncorrectFormat()
+    {
         String recipeName = null;
         assertFalse(Checks.isAcceptableRecipeName(recipeName));
 
@@ -43,16 +44,18 @@ public class adding_dessert_Test {
     }
 
     @When("entering acceptable dessert category")
-    public void enteringAcceptableDessertCategory() {
+    public void enteringAcceptableDessertCategory()
+    {
         String recipeCate = " dietary needs";
         assertTrue(Checks.isAcceptableRecipeCategory(recipeCate));
 
-        recipeCate = "  food allergies ";
+        recipeCate = "  foOd Allergies ";
         assertTrue(Checks.isAcceptableRecipeCategory(recipeCate));
     }
 
     @Then("new recipe will be added to the system successfully")
-    public void newRecipeWillBeAddedToTheSystemSuccessfully() {
+    public void newRecipeWillBeAddedToTheSystemSuccessfully()
+    {
         String recipeName = "cupcake";
         assertTrue(Checks.isAcceptableRecipeName(recipeName));
 
@@ -66,11 +69,14 @@ public class adding_dessert_Test {
         assertTrue(Checks.checkIfEmailAlreadyUsed(publisherEmail));
 
         Recipe recipe = new Recipe(recipeName, recipeDescription, recipeCate, publisherEmail);
+
         Updates.addNewRecipe(recipe);
+        assertTrue(Checks.isExistingRecipe(recipe));
     }
 
     @Then("warning msg will be appeared")
-    public void warningMsgWillBeAppeared() {
+    public void warningMsgWillBeAppeared()
+    {
         String recipeName = null;
         String recipeCate = null;
         String recipeDescription = null;
@@ -79,8 +85,5 @@ public class adding_dessert_Test {
 
         Recipe recipe = new Recipe(recipeName, recipeDescription, recipeCate, publisherEmail);
         Updates.addNewRecipe(recipe);
-
     }
-
-
 }

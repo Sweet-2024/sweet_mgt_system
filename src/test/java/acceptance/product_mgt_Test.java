@@ -77,7 +77,7 @@ public class product_mgt_Test {
     public void choosingMonitorSalesAndProfitsFromTheList() {
         MyApp.userType = 2;
         MyApp.userEmail = "s12112506@stu.najah.edu";
-        assertTrue(Listing.generateFinanialReports());
+        assertTrue(Listing.generateFinancialReports());
     }
 
     @Then("list of sales and profits will appear")

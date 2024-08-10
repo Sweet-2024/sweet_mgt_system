@@ -2,6 +2,7 @@ package sweetSys;
 
 import Entities.Database;
 import Entities.Messaging;
+import Entities.Recipe;
 import Entities.User;
 
 import java.sql.ResultSet;
@@ -15,34 +16,40 @@ import static java.lang.Character.isAlphabetic;
 import static java.lang.Character.isDigit;
 
 public class Checks {
-    public static boolean checkIfUserInDatabase(String email, String pass) {
-        String qry = "select * from sweetSystem.users where users.user_email = '" + email + "' and users.user_password = '" + pass + "';";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
 
-        try {
-            if (rs.next()) {
+
+    public static boolean checkIfEmailAlreadyUsed(String email)
+    {
+        String qry = "select count(user_email) from sweetSystem.users where users.user_email = '" + email + "'";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        try
+        {
+            if (rs.next() && rs.getInt(1) > 0)
                 return true;
-            } else {
+            else
                 return false;
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
             return false;
         }
     }
 
-    public static boolean checkIfEmailAlreadyUsed(String email) {
-        String qry = "select * from sweetSystem.users where users.user_email = '" + email + "'";
+    public static boolean checkIfUserInDatabase(String email, String pass)
+    {
+        String qry = "select count(user_email) from sweetSystem.users where users.user_email = '" + email + "' and users.user_password = '" + pass + "';";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
-        try {
-            if (rs.next()) {
+        try
+        {
+            if (rs.next() && rs.getInt(1) > 0)
                 return true;
-            } else {
+            else
                 return false;
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
             return false;
         }
     }
@@ -111,21 +118,6 @@ public class Checks {
         return (userType >= 1 && userType <= 4);
     }
 
-    public static boolean isAcceptableRecipeCategory(String recipeCate) {
-        if (recipeCate == null)
-            return false;
-        String temp = recipeCate.toLowerCase();
-        return (temp.trim().equals("dietary needs") || temp.trim().equals("food allergies"));
-
-    }
-
-    public static boolean isAcceptableRecipeName(String recipeName) {
-        return (recipeName != null);
-    }
-
-    public static boolean isAcceptableRecipeDescription(String recipeDescription) {
-        return (recipeDescription != null);
-    }
 
     public static boolean isMsgInTheSystem(Messaging msg) {
         String sender = msg.getSenderEmail();
@@ -163,5 +155,47 @@ public class Checks {
             System.out.println(e);
             return false;
         }
+    }
+
+    //**********************************************************************************************************//
+    //checked functions:
+
+
+    public static boolean isExistingRecipe(Recipe recipe)
+    {
+        String rName = recipe.getRecipeName();
+        String rDescription = recipe.getRecipeDescription();
+        String rPublisher = recipe.getPublisherEmail();
+        String qry = "SELECT count(recipe_id) FROM `recipe` WHERE recipe_name = '"+rName+"' and recipe_description = '"+rDescription+"' and recipe_publisher_email = '"+rPublisher+"'";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next() && rs.getInt(1) > 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
+    public static boolean isAcceptableRecipeCategory(String recipeCate)
+    {
+        if (recipeCate == null)
+            return false;
+        String temp = recipeCate.toLowerCase().trim();
+        return (temp.equals("dietary needs") || temp.equals("food allergies"));
+    }
+
+    public static boolean isAcceptableRecipeName(String recipeName)
+    {
+        return (recipeName != null && recipeName.trim() != "");
+    }
+
+    public static boolean isAcceptableRecipeDescription(String recipeDescription)
+    {
+        return recipeDescription != null && recipeDescription.trim() != "";
     }
 }//end of class

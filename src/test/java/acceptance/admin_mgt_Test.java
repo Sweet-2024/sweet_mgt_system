@@ -1,7 +1,14 @@
 package acceptance;
 
+import Entities.Database;
+import Entities.User;
 import io.cucumber.java.en.*;
+import sweetSys.Checks;
 import sweetSys.MyApp;
+import sweetSys.Updates;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class admin_mgt_Test {
 
@@ -14,7 +21,8 @@ public class admin_mgt_Test {
 
     @Given("login to the system as administrator")
     public void loginToTheSystemAsAdministrator() {
-
+        myApp.userType = 1;
+        assertTrue(myApp.userType == 1);
     }
 
     @When("admin choose managing accounts from the list")
@@ -24,12 +32,45 @@ public class admin_mgt_Test {
 
     @Then("list of users, owners, and suppliers information will appear")
     public void listOfUsersOwnersAndSuppliersInformationWillAppear() {
+        assertTrue(Checks.checkIfThereAreUsersInDatabase());
+    }
+
+    @Then("admin can add accounts information")
+    public void adminCanAddAccountsInformation() {
+        String un = "raheeqQ";
+        String email = "s12113763@stu.najah.edu";
+        String password = "raheeq_443";
+        String location = "jenin";
+        int userType = 3;
+
+        User user = new User (un, password, email, location, userType);
+        Updates.addNewUser(user);
+
+        assertTrue(Checks.checkIfUserInDatabase(email, password));
 
     }
 
-    @Then("admin can edit, add, delete, and update information")
-    public void adminCanEditAddDeleteAndUpdateInformation() {
-
+    @Then("admin can delete accounts information")
+    public void adminCanDeleteAccountsInformation() {
+        String email = "s12113755@stu.najah.edu";
+        String password = "123";
+        Updates.deleteUser(email);
+        assertFalse(Checks.checkIfUserInDatabase(email, password));
     }
+
+    @Then("admin can edit accounts information")
+    public void adminCanEditAccountsInformation() {
+        String un = "Ali";
+        String email = "s12115055@stu.najah.edu";
+        String password = "ali_ali";
+        String location = "Gaza";
+        int userType = 4;
+
+        User user = new User (un, password, email, location, userType);
+        Updates.updateUser(user);
+
+        assertTrue(Checks.checkIfUserInDatabase(email, password));
+    }
+
 
 }

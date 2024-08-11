@@ -4,26 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="Creating communication, feedback and purchase feature with its test cases">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Entities/Database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sweetSys/MyApp.java" afterDir="false" />
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/AcceptanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/AcceptanceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/adding_dessert_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/adding_dessert_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/admin_reporting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_reporting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/login_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/login_Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/order_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/order_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/owners_communication_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/owners_communication_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/sign_up_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/sign_up_Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/user_purchase_and_commu_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_purchase_and_commu_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +27,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -56,30 +45,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_directory_selection": "C:/Users/USER-Q/Desktop/sweet_mgt_system/src/main/java",
-    "last_opened_file_path": "C:/Users/USER-Q/Desktop/sweet_mgt_system/src/test/resources",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.testRunning"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/JC/Desktop/software_1/sweet_mgt_system/src/main/java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="Entities" />
       <recent name="" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\USER-Q\Desktop\sweet_mgt_system\src\test\resources" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\USER-Q\Desktop\sweet_mgt_system\src\test\resources\use_cases" />
-    </key>
   </component>
-  <component name="RunManager" selected="JUnit.trialOne">
-    <configuration name="Acceptance" type="JUnit" factoryName="JUnit" temporary="true">
+  <component name="RunManager">
+    <configuration name="AcceptanceTest" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="sweetMgtSystem" />
       <extension name="coverage">
         <pattern>
@@ -97,23 +76,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="trialOne" type="JUnit" factoryName="JUnit">
-      <module name="sweetMgtSystem" />
-      <option name="PACKAGE_NAME" value="acceptance" />
-      <option name="MAIN_CLASS_NAME" value="acceptance.AcceptanceTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="JUnit.trialOne" />
-      <item itemvalue="JUnit.Acceptance" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Acceptance" />
+        <item itemvalue="JUnit.AcceptanceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -147,14 +112,35 @@
       <option name="project" value="LOCAL" />
       <updated>1722074542897</updated>
     </task>
-    <task id="LOCAL-00004" summary="Creating communication, feedback and purchase feature with its test cases">
-      <created>1722165204749</created>
+    <task id="LOCAL-00004" summary="write test cases for acccount mgt and admin mgt">
+      <created>1722548313421</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1722165204749</updated>
+      <updated>1722548313421</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="write test cases for product mgt and make some updates">
+      <created>1723093553243</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1723093553243</updated>
+    </task>
+    <task id="LOCAL-00006" summary="write test cases for user account mgt, exploration mgt and make some updates">
+      <created>1723138513539</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1723138513539</updated>
+    </task>
+    <task id="LOCAL-00007" summary="write test case for order mgt and make some updates">
+      <created>1723230925774</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1723230925774</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -172,12 +158,20 @@
     <MESSAGE value="Creating project with dependencies" />
     <MESSAGE value="adding login and admin_mgt features" />
     <MESSAGE value="Creating test cases for login and admin mgt features" />
-    <MESSAGE value="Creating communication, feedback and purchase feature with its test cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating communication, feedback and purchase feature with its test cases" />
+    <MESSAGE value="write test cases for acccount mgt and admin mgt" />
+    <MESSAGE value="write test cases for product mgt and make some updates" />
+    <MESSAGE value="write test cases for user account mgt, exploration mgt and make some updates" />
+    <MESSAGE value="write test case for order mgt and make some updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="write test case for order mgt and make some updates" />
   </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/sweet_mgt_system$AcceptanceTest.ic" NAME="AcceptanceTest Coverage Results" MODIFIED="1722437191751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>acceptance.pkg.*</FILTER>
-    </SUITE>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.AssertionError" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

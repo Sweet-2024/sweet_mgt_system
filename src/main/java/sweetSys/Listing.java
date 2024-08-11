@@ -8,12 +8,11 @@ import java.sql.SQLException;
 public class Listing {
 
     // financial reports :
-    private static void printingFinancialReportOfOwnersOrSuppliers(String email)
-    {
+    private static void printingFinancialReportOfOwnersOrSuppliers(String email) {
         int incomes = 0, outcomes = 0;
         String qry3 = "select price , wholesale_price , saled_qty from sweetsystem.product where owner_email = '" + email + "'";
         ResultSet ProductsOfOwnerList = Database.connectionToSelectFromDB(qry3);
-        try{
+        try {
             while (ProductsOfOwnerList.next()) {
                 int price = ProductsOfOwnerList.getInt("price");
                 int wholesale_price = ProductsOfOwnerList.getInt("wholesale_price");
@@ -26,138 +25,111 @@ public class Listing {
             System.out.println("\t\tOutcomes : " + outcomes);
             System.out.println("\t\tTotal profit : " + total);
             System.out.println();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     }
-    public static boolean generateFinancialReports()
-    {
+
+    public static boolean generateFinancialReports() {
         String ownerEmail;
         String qry1 = "select count(product_id) from sweetsystem.product";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
-        try
-        {
-            if(rs.next() && rs.getInt(1) > 0)
-            {
+        try {
+            if (rs.next() && rs.getInt(1) > 0) {
                 //if the user is owner or supplier then printing only his won report
-                if (MyApp.userType == 2 || MyApp.userType == 3)
-                {
+                if (MyApp.userType == 2 || MyApp.userType == 3) {
                     System.out.println("FINANCIAL REPORT OF YOUR STORE :");
                     ownerEmail = MyApp.userEmail;
                     printingFinancialReportOfOwnersOrSuppliers(ownerEmail);
                 }
                 //if the user is admin then printing reports for all owners and suppliers in the system
-                else if (MyApp.userType == 1)
-                {
+                else if (MyApp.userType == 1) {
                     System.out.println("FINANCIAL REPORT OF EACH STORE :");
-                    String qry2 = "select user_email from sweetsystem.users where user_type = 2 or user_type = 3";
+                    String qry2 = "select * from sweetsystem.users where user_type = 2 or user_type = 3";
                     ResultSet ownersAndSuppliersList = Database.connectionToSelectFromDB(qry2);
                     while (ownersAndSuppliersList.next()) {
                         System.out.println("\t* Product Owner Name : " + ownersAndSuppliersList.getString("username"));
                         ownerEmail = ownersAndSuppliersList.getString("user_email");
                         printingFinancialReportOfOwnersOrSuppliers(ownerEmail);
                     }//end of while to get all owners and suppliers in the system
-                }
-                else
+                } else
                     return false; //invalid userType
                 return true;
             }// if there are products in the db
-            else
-            {
+            else {
                 System.out.println("there is no product in the system!");
                 return false;
             }// no products in the database
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
             return false;
         }
     }
 
     //best-selling items
-    private static void printingBestSellingProduct(String email)
-    {
+    private static void printingBestSellingProduct(String email) {
         String qry3 = "select product_name from sweetsystem.product where owner_email = '" + email + "' order by saled_qty desc;";
         ResultSet bestSelling = Database.connectionToSelectFromDB(qry3);
-        try
-        {
+        try {
             if (bestSelling.next()) {
 
                 System.out.println("\t\tBest selling product : " + bestSelling.getString("product_name"));
                 System.out.println();
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     }
-    public static boolean listingBestSellingProduct()
-    {
+
+    public static boolean listingBestSellingProduct() {
         String qry1, qry2;
         qry1 = "select count(product_id) from sweetsystem.product";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
-            if (rs.next() && rs.getInt(1) > 0)
-            {
-                if(MyApp.userType == 2 || MyApp.userType == 3)
-                {
+            if (rs.next() && rs.getInt(1) > 0) {
+                if (MyApp.userType == 2 || MyApp.userType == 3) {
                     System.out.println("LIST OF BEST SELLING PRODUCTS IN YOUR STORE :");
                     printingBestSellingProduct(MyApp.userEmail);
                     return true;
-                }
-                else if (MyApp.userType == 1)
-                {
+                } else if (MyApp.userType == 1) {
                     System.out.println("LIST OF BEST SELLING PRODUCTS IN EACH STORE :");
-                    qry2 = "select user_email from sweetsystem.users where user_type = 2 or user_type = 3";
+                    qry2 = "select * from sweetsystem.users where user_type = 2 or user_type = 3";
                     ResultSet ownersAndSuppliersList = Database.connectionToSelectFromDB(qry2);
                     while (ownersAndSuppliersList.next()) {
                         String email = ownersAndSuppliersList.getString("user_email");
                         System.out.println("\t* Product owner name : " + ownersAndSuppliersList.getString("username"));
                         printingBestSellingProduct(email);
                     }
-                }
-                else
+                } else
                     return false;// invalid userType
                 return true;
             }// if there are products in the db
-            else
-            {
+            else {
                 System.out.println("there is no product in the system!");
                 return false;
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
             return false;
         }
     }
 
-    public static boolean statisticsOnUsersByCity()
-    {
+    public static boolean statisticsOnUsersByCity() {
         String qry = "select user_location, count(user_email) from sweetsystem.users where user_type = 4 group by user_location";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         try {
             boolean flag = false;
             System.out.println("STATISTICS ON USERS GATHERED BY CITY : ");
             System.out.println("City\t\tNumber of users");
-            while (rs.next())
-            {
-                System.out.println(rs.getString(1)+"\t\t"+rs.getInt(2));
+            while (rs.next()) {
+                System.out.println(rs.getString(1) + "\t\t" + rs.getInt(2));
                 flag = true;
             }
 
-            if (flag)
-            {
+            if (flag) {
                 System.out.println("---------------------------------------------------------------------------------");
                 return flag;
-            }
-            else
-            {
+            } else {
                 System.err.println("No enough data!");
                 return flag;
             }
@@ -166,6 +138,7 @@ public class Listing {
             return false;
         }
     }
+
     public static boolean listAllUsersInTheSystem(int TypeToCommunicate) {
         String qry = "select * from sweetsystem.users where user_type = " + TypeToCommunicate;
         ResultSet rs = Database.connectionToSelectFromDB(qry);
@@ -179,17 +152,15 @@ public class Listing {
 
             System.out.println("\t\tusername : \t\temail : ");
             int numOfUsers = 0;
-            while(rs.next())
-            {
-                numOfUsers ++;
+            while (rs.next()) {
+                numOfUsers++;
                 String username = rs.getString(1);
                 String email = rs.getString(3);
-                System.out.println("\t"+numOfUsers + ".\t" +username + "\t\t" + email );
-                }
+                System.out.println("\t" + numOfUsers + ".\t" + username + "\t\t" + email);
+            }
             if (numOfUsers > 0)
                 return true;
-            else
-            {
+            else {
                 System.out.println("there are no users in the system");
                 return false;
             }
@@ -198,4 +169,5 @@ public class Listing {
             return false;
         }
     }
+}
 

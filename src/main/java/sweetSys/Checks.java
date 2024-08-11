@@ -55,23 +55,6 @@ public class Checks {
             return false;
         }
     }
-    public static boolean checkIfEmailAlreadyUsed(String email)
-    {
-        String qry = "select * from sweetSystem.users where users.user_email = '"+ email +"'";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
-
-        try {
-            if(rs.next()){
-                return true;
-            }
-            else {
-                return false;
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-            return false;
-        }
-    }
     public static boolean checkIfThereAreUsersInDatabase()
     {
         String qry = "SELECT * FROM sweetsystem.users WHERE user_type = 2 OR user_type = 3 OR user_type = 4;";
@@ -310,22 +293,7 @@ public class Checks {
     }
 
 
-    public static boolean checkIfProductInDatabase(String name) {
-        String qry = "select * from sweetsystem.Product where Product.product_name = '"+name+"';";
-      ResultSet rs = Database.connectionToSelectFromDB(qry);
 
-        try {
-            if(rs.next()){
-                return true;
-            }
-            else {
-                return false;
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-            return false;
-        }
-    }
 
     public static boolean checkIfRowMaterialInDatabase(String name) {
         String qry = "select * from sweetsystem.row_material where row_material.rm_name = '"+name+"';";

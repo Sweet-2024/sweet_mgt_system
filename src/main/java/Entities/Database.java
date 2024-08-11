@@ -48,7 +48,7 @@ public class Database {
         catch(SQLException sqlException)
         {
             System.out.println(sqlException);
-        } catch (ClassNotFoundEception e) {
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

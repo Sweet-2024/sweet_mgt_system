@@ -12,13 +12,13 @@ public class Product {
 
     public Product(int productId, String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {
         this.productId = productId;
-        this.productName = product_name;
+        this.productName = productName;
         this.price = price;
-        this.wholesalePrice = wholesale_price;
+        this.wholesalePrice = wholesalePrice;
         this.quantity = quantity;
-        this.saledQty = saled_qty;
-        this.exDate = ex_date;
-        this.ownerEmail = owner_email;
+        this.saledQty = saledQty;
+        this.exDate = exDate;
+        this.ownerEmail = ownerEmail;
     }
 
     public Product(String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {

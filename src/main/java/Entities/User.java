@@ -63,14 +63,6 @@ public class User {
         this.email = email;
     }
 
-    public User( String uname, String pass,String email, String location, int userType) {
-        this.email = email;
-        this.password = pass;
-        this.uname = uname;
-        this.location = location;
-        this.type=userType;
-    }
-
     @Override
     public String toString() {
         return "User{" +

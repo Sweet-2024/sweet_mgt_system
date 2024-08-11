@@ -5,11 +5,13 @@ import Entities.Messaging;
 import Entities.Recipe;
 import Entities.User;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.time.LocalDateTime;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import java.util.ArrayList;
 
 import static java.lang.Character.isAlphabetic;
@@ -35,54 +37,220 @@ public class Checks {
         }
     }
 
+
     public static boolean checkIfUserInDatabase(String email, String pass)
     {
-        String qry = "select count(user_email) from sweetSystem.users where users.user_email = '" + email + "' and users.user_password = '" + pass + "';";
+        String qry = "select * from sweetsystem.users where users.user_email = '"+email+"' and users.user_password = '"+pass+"';";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
-        try
-        {
-            if (rs.next() && rs.getInt(1) > 0)
+        try {
+            if(rs.next()){
                 return true;
-            else
+            }
+            else {
                 return false;
-        }
-        catch (SQLException e)
-        {
-            System.err.println(e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
             return false;
         }
     }
+    public static boolean checkIfEmailAlreadyUsed(String email)
+    {
+        String qry = "select * from sweetSystem.users where users.user_email = '"+ email +"'";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
 
-    public static boolean isValidEmail(String email) {
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static boolean checkIfThereAreUsersInDatabase()
+    {
+        String qry = "SELECT * FROM sweetsystem.users WHERE user_type = 2 OR user_type = 3 OR user_type = 4;";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static boolean checkIfThereAreSuppliersInDatabase()
+    {
+        String qry = "SELECT * FROM sweetsystem.users WHERE user_type = 3;";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static boolean checkIfProductInDatabase(String name)
+    {
+        String qry = "select * from sweetsystem.Product where Product.product_name = '"+name+"';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static boolean checkIfThereAreProductsInDatabase()
+    {
+        String qry = "select * from sweetsystem.Product;";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static boolean checkIfThereAreRowMaterialsInDatabase()
+    {
+        String qry = "select * from sweetsystem.row_material;";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static boolean checkIfThereAreRecipesInDatabase()
+    {
+        String qry = "select * from sweetsystem.recipe;";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static boolean checkIfRecipeInDatabase(String name)
+    {
+        String qry = "select * from sweetsystem.recipe where recipe.recipe_name = '"+name+"';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static boolean checkIfRecipesInDbAccordingToCategory(String category)
+    {
+        String qry = "select * from sweetsystem.recipe where recipe.recipe_category = '"+category+"';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static boolean isValidProductName(String productName)
+    {
+        if (productName == null) return false;
+        return (productName.length() <= 50);
+    }
+      
+    public static boolean isValidEmail(String email)
+    {
         if (email == null)
             return false;
-        else if (!email.contains("@"))
+        else if(!email.contains("@"))
             return false;
-        String domain = email.substring(email.indexOf("@") + 1);
+        else if (email.length() > 50)
+            return false;
+        String domain = email.substring(email.indexOf("@")+1);
 
-        if (!domain.contains("."))
+        if(!domain.contains("."))
             return false;
 
         return true;
     }
 
-    public static boolean isValidUsername(String username) {
+    public static boolean isValidUsername(String username)
+    {
         if (username == null) return false;
         return (username.length() <= 20);
     }
 
-    public static boolean isvalidPassword(String pass) {
-        if (pass == null)
+
+    public static boolean isvalidPassword(String pass)
+    {
+        if(pass == null)
             return false;
-        if (pass.length() < 8)
+        if(pass.length() < 8)
             return false;
-        else {
+        else
+        {
             boolean alphFlag = false;
             boolean digitFlag = false;
             boolean charFlag = false;
             Character currentChar;
-            for (int i = 0; i < pass.length() - 1; i++) {
+            for (int i = 0 ; i < pass.length()-1 ; i++)
+            {
                 currentChar = pass.charAt(i);
                 if (isAlphabetic(currentChar))
                     alphFlag = true;
@@ -95,7 +263,8 @@ public class Checks {
         }
     }
 
-    public static boolean isValidCity(String city) {
+    public static boolean isValidCity(String city)
+    {
         if (city == null)
             return false;
         ArrayList<String> CitiesAL = new ArrayList<>();
@@ -106,7 +275,8 @@ public class Checks {
         CitiesAL.add("Bethlehem");
         CitiesAL.add("Hebron");
         String temp = city.toLowerCase();
-        for (String c : CitiesAL) {
+
+        for(String c: CitiesAL) {
             if (temp.trim().equals(c.toLowerCase())) {
                 return true;
             }
@@ -142,6 +312,24 @@ public class Checks {
 
     public static boolean checkIfProductInDatabase(String name) {
         String qry = "select * from sweetsystem.Product where Product.product_name = '"+name+"';";
+      ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public static boolean checkIfRowMaterialInDatabase(String name) {
+        String qry = "select * from sweetsystem.row_material where row_material.rm_name = '"+name+"';";
+
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
@@ -171,6 +359,23 @@ public class Checks {
 
         try {
             if(rs.next() && rs.getInt(1) > 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean checkIfThereAreOrdersInDatabase() {
+        String qry = "select * from sweetsystem.order;";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
                 return true;
             }
             else {

@@ -9,8 +9,19 @@ public class Product {
     private int saledQty;
     private String exDate;
     private String ownerEmail;
+
     public Product(int productId, String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {
         this.productId = productId;
+        this.productName = product_name;
+        this.price = price;
+        this.wholesalePrice = wholesale_price;
+        this.quantity = quantity;
+        this.saledQty = saled_qty;
+        this.exDate = ex_date;
+        this.ownerEmail = owner_email;
+    }
+
+    public Product(String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {
         this.productName = productName;
         this.price = price;
         this.wholesalePrice = wholesalePrice;
@@ -19,7 +30,6 @@ public class Product {
         this.exDate = exDate;
         this.ownerEmail = ownerEmail;
     }
-
 
     public int getProductId() {
         return productId;

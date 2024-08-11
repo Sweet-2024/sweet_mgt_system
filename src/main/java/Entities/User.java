@@ -10,7 +10,7 @@ public class User {
     private String password;
     private String email;
     private String location;
-    private Integer type;
+ 
     public User(String uname, String password, String email, String location, int userType) {
         this.uname = uname;
         this.password = password;
@@ -19,15 +19,12 @@ public class User {
         this.type = userType;
     }
 
-    public Integer getType()
-    {
-        return type;
-    }
+    private int type;
 
-    public void setUserType(Integer userType)
-    {
-        this.type = userType;
-    }
+    public int getType() {return type;}
+
+    public void setType(int type) {this.type = type;}
+
 
     public String getUname() {
         return uname;
@@ -61,9 +58,17 @@ public class User {
         this.location = location;
     }
 
-    public User(String email, String pass) {
+    public User(String password, String email) {
+        this.password = password;
+        this.email = email;
+    }
+
+    public User( String uname, String pass,String email, String location, int userType) {
         this.email = email;
         this.password = pass;
+        this.uname = uname;
+        this.location = location;
+        this.type=userType;
     }
 
     @Override
@@ -73,6 +78,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", location='" + location + '\'' +
+                ", type=" + type +
                 '}';
     }
 

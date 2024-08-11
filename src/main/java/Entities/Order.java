@@ -25,6 +25,13 @@ public class Order
         return sellerEmail;
     }
 
+    public ArrayList<Integer> getItemQty() {
+        return itemQty;
+    }
+
+    public void setItemQty(ArrayList<Integer> itemQty) {
+        this.itemQty = itemQty;
+    }
     public void setSellerEmail(String sellerEmail) {
         this.sellerEmail = sellerEmail;
     }
@@ -45,14 +52,7 @@ public class Order
         this.date = date;
     }
 
-    public ArrayList<Integer> getItemQty() {
-        return itemQty;
-    }
-
-    public void setItemQty(ArrayList<Integer> itemQty) {
-        this.itemQty = itemQty;
-    }
-
+  
     public ArrayList<String> getItemList() {
         return itemList;
     }
@@ -60,6 +60,5 @@ public class Order
     public void setItemList(ArrayList<String> itemList) {
         this.itemList = itemList;
     }
-
 
 }

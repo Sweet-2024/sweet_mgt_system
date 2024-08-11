@@ -1,16 +1,30 @@
 package Entities;
 
+import io.cucumber.java.sl.In;
+
+import java.util.ArrayList;
+
 public class User {
 
     private String uname;
     private String password;
     private String email;
     private String location;
+ 
+    public User(String uname, String password, String email, String location, int userType) {
+        this.uname = uname;
+        this.password = password;
+        this.email = email;
+        this.location = location;
+        this.type = userType;
+    }
+
     private int type;
 
     public int getType() {return type;}
 
     public void setType(int type) {this.type = type;}
+
 
     public String getUname() {
         return uname;
@@ -67,4 +81,5 @@ public class User {
                 ", type=" + type +
                 '}';
     }
+
 }

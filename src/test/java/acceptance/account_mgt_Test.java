@@ -17,7 +17,6 @@ public class account_mgt_Test {
         this.myApp = myApp;
     }
 
-
     @When("choosing business management from the list")
     public void choosingBusinessManagementFromTheList() {
 

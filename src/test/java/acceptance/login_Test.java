@@ -1,7 +1,5 @@
 package acceptance;
 
-import Entities.Database;
-import Entities.User;
 import io.cucumber.java.en.*;
 import sweetSys.Checks;
 import sweetSys.MyApp;
@@ -41,7 +39,6 @@ public class login_Test {
     public void userIsNowInTheSystem() {
         assertTrue(myApp.isLoggedIn);
     }
-
 
 
     @When("login with correct email and incorrect password")

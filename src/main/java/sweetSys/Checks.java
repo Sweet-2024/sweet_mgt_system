@@ -1,15 +1,43 @@
 package sweetSys;
 
 import Entities.Database;
+import Entities.Messaging;
+import Entities.Recipe;
+import Entities.User;
+
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.time.LocalDateTime;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 
 import static java.lang.Character.isAlphabetic;
 import static java.lang.Character.isDigit;
 
 public class Checks {
+
+
+    public static boolean checkIfEmailAlreadyUsed(String email)
+    {
+        String qry = "select count(user_email) from sweetSystem.users where users.user_email = '" + email + "'";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        try
+        {
+            if (rs.next() && rs.getInt(1) > 0)
+                return true;
+            else
+                return false;
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
+
+
     public static boolean checkIfUserInDatabase(String email, String pass)
     {
         String qry = "select * from sweetsystem.users where users.user_email = '"+email+"' and users.user_password = '"+pass+"';";
@@ -185,6 +213,7 @@ public class Checks {
         if (productName == null) return false;
         return (productName.length() <= 50);
     }
+      
     public static boolean isValidEmail(String email)
     {
         if (email == null)
@@ -200,11 +229,13 @@ public class Checks {
 
         return true;
     }
+
     public static boolean isValidUsername(String username)
     {
         if (username == null) return false;
         return (username.length() <= 20);
     }
+
 
     public static boolean isvalidPassword(String pass)
     {
@@ -244,6 +275,7 @@ public class Checks {
         CitiesAL.add("Bethlehem");
         CitiesAL.add("Hebron");
         String temp = city.toLowerCase();
+
         for(String c: CitiesAL) {
             if (temp.trim().equals(c.toLowerCase())) {
                 return true;
@@ -256,8 +288,48 @@ public class Checks {
         return (userType >= 1 && userType <= 4);
     }
 
+
+    public static boolean isMsgInTheSystem(Messaging msg) {
+        String sender = msg.getSenderEmail();
+        String receiver = msg.getReceiverEmail();
+        String message = msg.getMsg();
+        LocalDateTime msgDate = LocalDateTime.now();
+        String qry = "select * from sweetsystem.message where sender = '" + sender + "' and receiver = '" + receiver + "' and msg = '" + message + "';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        try {
+            if (rs.next())
+            {
+                return true;
+            }
+            else
+                return false;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
+
+
+    public static boolean checkIfProductInDatabase(String name) {
+        String qry = "select * from sweetsystem.Product where Product.product_name = '"+name+"';";
+      ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
     public static boolean checkIfRowMaterialInDatabase(String name) {
         String qry = "select * from sweetsystem.row_material where row_material.rm_name = '"+name+"';";
+
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
@@ -269,6 +341,31 @@ public class Checks {
             }
         } catch (SQLException e) {
             System.out.println(e);
+            return false;
+        }
+    }
+
+    //**********************************************************************************************************//
+    //checked functions:
+
+
+    public static boolean isExistingRecipe(Recipe recipe)
+    {
+        String rName = recipe.getRecipeName();
+        String rDescription = recipe.getRecipeDescription();
+        String rPublisher = recipe.getPublisherEmail();
+        String qry = "SELECT count(recipe_id) FROM `recipe` WHERE recipe_name = '"+rName+"' and recipe_description = '"+rDescription+"' and recipe_publisher_email = '"+rPublisher+"'";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next() && rs.getInt(1) > 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
             return false;
         }
     }
@@ -285,8 +382,25 @@ public class Checks {
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e.getMessage());
             return false;
         }
     }
-}
+    public static boolean isAcceptableRecipeCategory(String recipeCate)
+    {
+        if (recipeCate == null)
+            return false;
+        String temp = recipeCate.toLowerCase().trim();
+        return (temp.equals("dietary needs") || temp.equals("food allergies"));
+    }
+
+    public static boolean isAcceptableRecipeName(String recipeName)
+    {
+        return (recipeName != null && recipeName.trim() != "");
+    }
+
+    public static boolean isAcceptableRecipeDescription(String recipeDescription)
+    {
+        return recipeDescription != null && recipeDescription.trim() != "";
+    }
+}//end of class

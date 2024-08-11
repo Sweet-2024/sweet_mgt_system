@@ -3,18 +3,21 @@ package Entities;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Order {
+public class Order
+{
     private String sellerEmail;
     private String buyerEmail;
     private LocalDateTime date;
     ArrayList<String> itemList = new ArrayList<String>();
     ArrayList<Integer> itemQty = new ArrayList<Integer>();
 
-    public Order(String sellerEmail, String buyerEmail, LocalDateTime date, ArrayList<String> itemId, ArrayList<Integer> itemQty) {
+
+
+    public Order(String sellerEmail, String buyerEmail, LocalDateTime date, ArrayList<String> itemList, ArrayList<Integer> itemQty) {
         this.sellerEmail = sellerEmail;
         this.buyerEmail = buyerEmail;
         this.date = date;
-        this.itemList = itemId;
+        this.itemList = itemList;
         this.itemQty = itemQty;
     }
 
@@ -29,7 +32,6 @@ public class Order {
     public void setItemQty(ArrayList<Integer> itemQty) {
         this.itemQty = itemQty;
     }
-
     public void setSellerEmail(String sellerEmail) {
         this.sellerEmail = sellerEmail;
     }
@@ -50,6 +52,7 @@ public class Order {
         this.date = date;
     }
 
+  
     public ArrayList<String> getItemList() {
         return itemList;
     }
@@ -57,4 +60,5 @@ public class Order {
     public void setItemList(ArrayList<String> itemList) {
         this.itemList = itemList;
     }
+
 }

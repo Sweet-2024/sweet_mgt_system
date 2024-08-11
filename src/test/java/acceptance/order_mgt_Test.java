@@ -64,7 +64,7 @@ public class order_mgt_Test {
         qty.add(20);
         qty.add(25);
 
-        Updates.addNewOrder(new Order(seller, buyer, LocalDateTime.now(), items, qty));
+        Updates.addNewOrderForRowMaterials(new Order(seller, buyer, LocalDateTime.now(), items, qty));
     }
 
     @Then("a msg will be sent to the selected supplier to notify him")

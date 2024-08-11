@@ -7,17 +7,27 @@ public class Order {
     private String sellerEmail;
     private String buyerEmail;
     private LocalDateTime date;
-    ArrayList<String> itemName = new ArrayList<String>();
+    ArrayList<String> itemList = new ArrayList<String>();
+    ArrayList<Integer> itemQty = new ArrayList<Integer>();
 
-    public Order(String sellerEmail, String buyerEmail, LocalDateTime date, ArrayList<String> itemId) {
+    public Order(String sellerEmail, String buyerEmail, LocalDateTime date, ArrayList<String> itemId, ArrayList<Integer> itemQty) {
         this.sellerEmail = sellerEmail;
         this.buyerEmail = buyerEmail;
         this.date = date;
-        this.itemName = itemId;
+        this.itemList = itemId;
+        this.itemQty = itemQty;
     }
 
     public String getSellerEmail() {
         return sellerEmail;
+    }
+
+    public ArrayList<Integer> getItemQty() {
+        return itemQty;
+    }
+
+    public void setItemQty(ArrayList<Integer> itemQty) {
+        this.itemQty = itemQty;
     }
 
     public void setSellerEmail(String sellerEmail) {
@@ -40,11 +50,11 @@ public class Order {
         this.date = date;
     }
 
-    public ArrayList<String> getItemName() {
-        return itemName;
+    public ArrayList<String> getItemList() {
+        return itemList;
     }
 
-    public void setItemName(ArrayList<String> itemName) {
-        this.itemName = itemName;
+    public void setItemList(ArrayList<String> itemList) {
+        this.itemList = itemList;
     }
 }

@@ -272,4 +272,21 @@ public class Checks {
             return false;
         }
     }
+
+    public static boolean checkIfThereAreOrdersInDatabase() {
+        String qry = "select * from sweetsystem.order;";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 }

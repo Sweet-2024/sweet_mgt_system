@@ -44,7 +44,7 @@ public class user_account_mgt_Test {
         int userType = 4;
 
         User user = new User (un, password, email, location, userType);
-        Updates.updateUser(user);
+        Updates.updateYourOwnAccount(user);
 
         assertTrue(Checks.checkIfUserInDatabase(email, password));
     }

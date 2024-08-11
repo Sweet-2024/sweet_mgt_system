@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Updates {
-    public static boolean updateBusinessInfo(String bName, String bLocation, int bId)
+    public static boolean updateBusinessInfo(String bName, String bLocation, int bId, String ownerEmail)
     {
         try {
-            String qry1 = "update sweetsystem.business set business_name = '"+bName+"', business_location = '"+bLocation+"' where business_id = "+bId+" ;";
+            String qry1 = "update sweetsystem.business set business_name = '"+bName+"', business_location = '"+bLocation+"', business_owner_email ='"+ownerEmail+"' where business_id = "+bId+" ;";
             Database.connectionToInsertOrUpdateDB(qry1);
 
             String qry2 = "select * from sweetsystem.business where business.business_name = '"+bName+"' and business.business_location = '"+bLocation+"' ;";
@@ -79,7 +79,6 @@ public class Updates {
             String qry = "update sweetsystem.users set username= '"+un+"', user_password = '"+pass+"', user_location = '"+location+"', user_type = "+uType+" where user_email = '"+email+"';";
             Database.connectionToInsertOrUpdateDB(qry);
         }
-
     }
     public static void addNewProduct(Product product)
     {
@@ -170,7 +169,8 @@ public class Updates {
         String seller = order.getSellerEmail();
         String buyer = order.getBuyerEmail();
         LocalDateTime date = order.getDate();
-        ArrayList<String> items = order.getItemName();
+        ArrayList<String> items = order.getItemList();
+        ArrayList<Integer> qty = order.getItemQty();
         int orderId= 0;
 
         String qry1 = "SELECT order_id FROM sweetsystem.order order BY order_id DESC;";
@@ -183,20 +183,58 @@ public class Updates {
             throw new RuntimeException(e);
         }
         orderId ++;
-        String qry = "INSERT INTO `order`(`order_id`, `seller_email`, `order_date`, `buyer_email`) VALUES ("+orderId+", '"+seller+"','"+buyer+"','"+date+"');";
+        String qry = "INSERT INTO `order`(`order_id`, `seller_email`, `order_date`, `buyer_email`) VALUES ("+orderId+",'"+seller+"','"+date+"','"+buyer+"')";
         Database.connectionToInsertOrUpdateDB(qry);
 
-        for(String itemName : items)
+        for(int i = 0 ; i < items.size() ; i++)
         {
-            if(Checks.checkIfRowMaterialInDatabase(itemName))
+            if(Checks.checkIfProductInDatabase(items.get(i)))
             {
+                String qry2 = "SELECT `rm_id` FROM `row_material` WHERE rm_name = '"+items.get(i)+"' ";
+                ResultSet rs2 = Database.connectionToSelectFromDB(qry2);
+                int rowMaterialId = -1;
+                try {
+                    if (rs2.next())
+                    {
+                        rowMaterialId = rs2.getInt(1);
+                        qry2 = "select * from order_material where order_id = "+orderId+" and rm_id = "+rowMaterialId+" and qty = " + qty.get(i);
+                        ResultSet rs3 = Database.connectionToSelectFromDB(qry2);
+                        if (rs3.next())
+                        {
+                            System.out.println("Already ordered! ");
+                            continue;
+                        }
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
 
+                String qry3 = "INSERT INTO `order_material`(`order_id`, `rm_id`, `qty`) VALUES ("+orderId+","+rowMaterialId+", "+qty.get(i)+")";
+                Database.connectionToInsertOrUpdateDB(qry3);
             }
             else
             {
-                //System.out.println("This product already exist, please try again with another product name!");
+                System.out.println(items.get(i) + " is not in the system, please try again");
             }
         }
-
+    }
+    public static void updateYourOwnAccount(User user)
+    {
+        String un = user.getUname();
+        String pass = user.getPassword();
+        String email = user.getEmail();
+        String location = user.getLocation();
+        int uType = user.getType();
+        if (MyApp.userType == 4){
+            if(!Checks.checkIfEmailAlreadyUsed(email))
+            {
+                System.out.println("This email doesn't exist, please try again with another email address!");
+            }
+            else
+            {
+                String qry = "update sweetsystem.users set username= '"+un+"', user_password = '"+pass+"', user_location = '"+location+"', user_type = "+uType+" where user_email = '"+email+"';";
+                Database.connectionToInsertOrUpdateDB(qry);
+            }
+        }
     }
 }

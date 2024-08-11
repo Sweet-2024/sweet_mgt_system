@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Entities/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/MyApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/MyApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/order_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/order_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,13 +45,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_directory_selection": "C:/Users/JC/Desktop/software_1/sweet_mgt_system/src/main/java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/JC/Desktop/software_1/sweet_mgt_system/src/main/java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -132,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723138513539</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="write test case for order mgt and make some updates">
+      <created>1723230925774</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1723230925774</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,7 +161,8 @@
     <MESSAGE value="write test cases for acccount mgt and admin mgt" />
     <MESSAGE value="write test cases for product mgt and make some updates" />
     <MESSAGE value="write test cases for user account mgt, exploration mgt and make some updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="write test cases for user account mgt, exploration mgt and make some updates" />
+    <MESSAGE value="write test case for order mgt and make some updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="write test case for order mgt and make some updates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

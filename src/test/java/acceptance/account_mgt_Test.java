@@ -28,6 +28,7 @@ public class account_mgt_Test {
         String bName = "Sweety";
         String bLocation = "Nablus";
         int bId = 1;
-        assertTrue(Updates.updateBusinessInfo(bName, bLocation, bId));
+        String email = "s12112506@stu.najah.edu";
+        assertTrue(Updates.updateBusinessInfo(bName, bLocation, bId, email));
     }
 }

@@ -53,13 +53,18 @@ public class order_mgt_Test {
     public void theOrderWillBeSaved() {
         String seller = "s12112506@stu.najah.edu";
         String buyer = "s12113763@stu.najah.edu";
-        LocalDateTime date = LocalDateTime.now();
-        String rowMaterialName = "Sugar";
-        ArrayList<String> items = new ArrayList<>();
-        items.add(rowMaterialName);
+        assertTrue(Checks.checkIfEmailAlreadyUsed(buyer));
+        assertTrue(Checks.checkIfEmailAlreadyUsed(seller));
 
-        Order order = new Order(seller, buyer, date, items);
-        Updates.addNewOrder(order);
+        ArrayList<String> items = new ArrayList<>();
+        items.add("Sugar");
+        items.add("Flour");
+
+        ArrayList<Integer> qty = new ArrayList<>();
+        qty.add(20);
+        qty.add(25);
+
+        Updates.addNewOrder(new Order(seller, buyer, LocalDateTime.now(), items, qty));
     }
 
     @Then("a msg will be sent to the selected supplier to notify him")
@@ -74,7 +79,7 @@ public class order_mgt_Test {
 
     @Then("list of orders' status and info about each order will appear")
     public void listOfOrdersStatusAndInfoAboutEachOrderWillAppear() {
-
+        assertTrue(Checks.checkIfThereAreOrdersInDatabase());
     }
 
 }

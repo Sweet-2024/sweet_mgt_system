@@ -51,7 +51,7 @@ public class user_purchase_and_commu_Test {
         qty.add(3);
         qty.add(2);
 
-        Updates.addNewOrder(new Order(sellerEmail, buyerEmail, LocalDateTime.now(), items, qty));
+        Updates.addNewOrderForProduct(new Order(sellerEmail, buyerEmail, LocalDateTime.now(), items, qty));
 
     }
 

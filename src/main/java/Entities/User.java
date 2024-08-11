@@ -19,7 +19,7 @@ public class User {
         this.type = userType;
     }
 
-    public Integer getUserType()
+    public Integer getType()
     {
         return type;
     }

@@ -18,7 +18,7 @@ public class Updates
         String pass = user.getPassword();
         String email = user.getEmail();
         String location = user.getLocation();
-        int uType = user.getUserType();
+        int uType = user.getType();
 
         if(!Checks.checkIfEmailAlreadyUsed(email))
         {
@@ -70,7 +70,7 @@ public class Updates
         }
     }
 
-    public static void addNewOrder(Order order)
+    public static void addNewOrderForProduct(Order order)
     {
         String seller = order.getSellerEmail();
         String buyer = order.getBuyerEmail();

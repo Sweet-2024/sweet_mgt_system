@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="completing users purchase and communication feature">
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="some modifications to adding recipe and reporting functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/adding_dessert_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/adding_dessert_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/admin_reporting_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_reporting_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/login_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/login_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/user_purchase_and_commu_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_purchase_and_commu_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +53,9 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/USER-Q/Desktop/sweet_mgt_system/src/main/java&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/USER-Q/Desktop/sweet_mgt_system/src/test/resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.testRunning&quot;
   }
 }</component>
@@ -205,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723239905469</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="some modifications to adding recipe and reporting functions">
+      <created>1723324727964</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1723324727964</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,7 +237,8 @@
     <MESSAGE value="update teh connection to database &amp; make reporting function common to both admin and owners" />
     <MESSAGE value="completing owners and suppliers communication feature with all scenarios" />
     <MESSAGE value="completing users purchase and communication feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="completing users purchase and communication feature" />
+    <MESSAGE value="some modifications to adding recipe and reporting functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="some modifications to adding recipe and reporting functions" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sweet_mgt_system$AcceptanceTest.ic" NAME="AcceptanceTest Coverage Results" MODIFIED="1722437191751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

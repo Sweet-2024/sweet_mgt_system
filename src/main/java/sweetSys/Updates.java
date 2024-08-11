@@ -164,7 +164,7 @@ public class Updates {
             return false;
         }
     }
-    public static void addNewOrder(Order order)
+    public static void addNewOrderForRowMaterials(Order order)
     {
         String seller = order.getSellerEmail();
         String buyer = order.getBuyerEmail();
@@ -188,7 +188,7 @@ public class Updates {
 
         for(int i = 0 ; i < items.size() ; i++)
         {
-            if(Checks.checkIfProductInDatabase(items.get(i)))
+            if(Checks.checkIfRowMaterialInDatabase(items.get(i)))
             {
                 String qry2 = "SELECT `rm_id` FROM `row_material` WHERE rm_name = '"+items.get(i)+"' ";
                 ResultSet rs2 = Database.connectionToSelectFromDB(qry2);

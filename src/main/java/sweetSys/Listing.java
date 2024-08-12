@@ -114,6 +114,7 @@ public class Listing {
         }
     }
 
+    //statistics
     public static boolean statisticsOnUsersByCity() {
         String qry = "select user_location, count(user_email) from sweetsystem.users where user_type = 4 group by user_location";
         ResultSet rs = Database.connectionToSelectFromDB(qry);

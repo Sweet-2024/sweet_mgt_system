@@ -251,12 +251,14 @@ public class Checks {
         if (city == null)
             return false;
         ArrayList<String> CitiesAL = new ArrayList<>();
+        CitiesAL.add("Gaza");
         CitiesAL.add("Nablus");
         CitiesAL.add("Ramallah");
         CitiesAL.add("Jenin");
         CitiesAL.add("Tulkarem");
         CitiesAL.add("Bethlehem");
         CitiesAL.add("Hebron");
+
         String temp = city.toLowerCase();
 
         for(String c: CitiesAL) {

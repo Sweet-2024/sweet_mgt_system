@@ -335,4 +335,58 @@ public class Updates {
             }
         }
     }
+
+    public static void addNewRawMaterial(rawMaterial rawMaterial)
+    {
+        String rmName = rawMaterial.getRmName();
+        int price = rawMaterial.getPrice();
+        int wholesalePrice = rawMaterial.getWholesalePrice();
+        int quantity = rawMaterial.getQuantity();
+        int saledQty = rawMaterial.getSaledQty();
+        String exDate = rawMaterial.getExDate();
+        String supplierEmail = rawMaterial.getSupplierEmail();
+
+        if(!Checks.checkIfRowMaterialInDatabase(rmName))
+        {
+            String qry = "insert into `row_material`(`rm_name`, `rm_price`, `qty`, `wholesale_price`, `saled_qty`, `expiry_date`, `supplier_email`) values ('"+rmName+"', "+price+", "+quantity+", "+wholesalePrice+",  "+saledQty+", '"+exDate+"', '"+supplierEmail+"');";
+            Database.connectionToInsertOrUpdateDB(qry);
+        }
+        else
+        {
+            System.out.println("This raw material already exist, please try again with another raw material name!");
+        }
+    }
+
+    public static void updateRawMaterial(rawMaterial rawMaterial) {
+        int id = rawMaterial.getRmId();
+        String rmName = rawMaterial.getRmName();
+        int price = rawMaterial.getPrice();
+        int wholesalePrice = rawMaterial.getWholesalePrice();
+        int quantity = rawMaterial.getQuantity();
+        int saledQty = rawMaterial.getSaledQty();
+        String exDate = rawMaterial.getExDate();
+        String supplierEmail = rawMaterial.getSupplierEmail();
+
+        if(!Checks.checkIfRowMaterialInDatabase(rmName))
+        {
+            System.out.println("This raw material doesn't exist, please try again with another raw material name!");
+        }
+        else
+        {
+            String qry = "UPDATE `row_material` SET `rm_name`='"+rmName+"',`rm_price`="+price+",`qty`="+quantity+",`wholesale_price`="+wholesalePrice+",`saled_qty`="+saledQty+",`expiry_date`='"+exDate+"',`supplier_email`='"+supplierEmail+"' WHERE `rm_id`="+id+";";
+            Database.connectionToInsertOrUpdateDB(qry);
+        }
+    }
+
+    public static void deleteRawMaterial(String rmName) {
+        if(!Checks.checkIfRowMaterialInDatabase(rmName))
+        {
+            System.out.println("This raw material doesn't exist, please try again with another raw material name!");
+        }
+        else
+        {
+            String qry = "DELETE FROM `row_material` WHERE rm_name = '"+rmName+"';";
+            Database.connectionToInsertOrUpdateDB(qry);
+        }
+    }
 }

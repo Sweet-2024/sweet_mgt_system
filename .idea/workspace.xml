@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="modifications after merging">
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="finishing everything related with admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/sign_up_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/sign_up_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/user_purchase_and_commu_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_purchase_and_commu_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +32,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -173,12 +179,12 @@
       <option name="project" value="LOCAL" />
       <updated>1722612372691</updated>
     </task>
-    <task id="LOCAL-00009" summary="completing admin reporting feature with all scenarios">
-      <created>1722635631968</created>
+    <task id="LOCAL-00009" summary="finishing everything related with admin">
+      <created>1723544891971</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1722635631968</updated>
+      <updated>1723544891971</updated>
     </task>
     <task id="LOCAL-00010" summary="update teh connection to database &amp; make reporting function common to both admin and owners">
       <created>1723146944617</created>
@@ -208,7 +214,7 @@
       <option name="project" value="LOCAL" />
       <updated>1723324727964</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -263,7 +269,8 @@
     <MESSAGE value="write test cases for user account mgt, exploration mgt and make some updates" />
     <MESSAGE value="write test case for order mgt and make some updates" />
     <MESSAGE value="make some updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="make some updates" />
+    <MESSAGE value="finishing everything related with admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="finishing everything related with admin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -272,15 +279,6 @@
           <properties class="java.lang.AssertionError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/sweetSys/Listing.java</url>
-          <line>69</line>
-          <properties class="sweetSys.Listing" method="printingBestSellingProduct">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

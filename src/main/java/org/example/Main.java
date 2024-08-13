@@ -112,9 +112,10 @@ public class Main {
                 }
 
                 MyApp.user = new User(userEmail, password);
+                MyApp.userEmail = userEmail;
                 MyApp.userType = MyApp.user.userTypeByEmail(userEmail);
                 MyApp.isLoggedIn = true;
-            } //login if statement
+            } //end of login if statement
 
             if(userChoice.equals("2") || signupFlag)
             {
@@ -261,14 +262,15 @@ public class Main {
             {
                 while (true) {
                     System.out.println("Welcome Owner! choose what to do from the list:");
-                    System.out.println("1. Product Management:");
+                    System.out.println("1. Product Management");
                     System.out.println("2. Communication and Notification");
                     System.out.println("3. Accounts Management");
                     System.out.println("4. Order Management");
-                    System.out.println("5. exit");
+                    System.out.println("5. Exit");
                     userChoice = scanner.next();
                     userChoice.trim();
-                    if (userChoice.equals("1")) {
+                    if (userChoice.equals("1"))
+                    {
                         System.out.println("    a. Add new products.");
                         System.out.println("    b. update available products.");
                         System.out.println("    c. remove available products.");
@@ -276,7 +278,8 @@ public class Main {
                         System.out.println("    e. Best-selling products.");
                         System.out.println("    f. discount products.");
                         userChoice = scanner.next();
-                        if (userChoice.equals("a")) {
+                        if (userChoice.equals("a"))
+                        {
                             System.out.println("Enter product name:");
                             scanner.nextLine();
                             productName = scanner.nextLine();
@@ -300,7 +303,9 @@ public class Main {
                             MyApp.product = new Product(productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                             addNewProduct(MyApp.product);
                             System.out.println("_________________________Successfully added_________________________");
-                        } else if (userChoice.equals("b")) {
+                        }
+                        else if (userChoice.equals("b"))
+                        {
                             System.out.println("List of existing raw materials:");
                             Listing.listingOfProducts();
 
@@ -330,7 +335,9 @@ public class Main {
                             MyApp.product = new Product(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                             updateProduct(MyApp.product);
                             System.out.println("_________________________Successfully updated_________________________");
-                        } else if (userChoice.equals("c")) {
+                        }
+                        else if (userChoice.equals("c"))
+                        {
                             System.out.println("List of existing raw materials:");
                             Listing.listingOfProducts();
 
@@ -339,20 +346,29 @@ public class Main {
                             productName = scanner.nextLine();
                             deleteProduct(productName);
                             System.out.println("____________________Deletion completed successfully___________________");
-                        } else if (userChoice.equals("d")) {
+                        }
+                        else if (userChoice.equals("d"))
+                        {
                             Listing.generateFinancialReports();
                             System.out.println("__________________________________________________");
-                        } else if (userChoice.equals("e")) {
+                        }
+                        else if (userChoice.equals("e"))
+                        {
                             Listing.listingBestSellingProduct();
                             System.out.println("__________________________________________________");
-                        } else if (userChoice.equals("f")) {
+                        }
+                        else if (userChoice.equals("f"))
+                        {
                             System.out.println("Enter discount number (e.g: 0.20 for 20%):");
                             discount = scanner.nextDouble();
                             Updates.productDiscount(discount);
                             System.out.println("_________________The discount has been successfully applied_____________________");
                         }
 
-                    } else if (userChoice.equals("2")) {
+                    }//choosing product mgt from the list
+
+                    else if (userChoice.equals("2"))
+                    {
                         System.out.println("    a. Communicate with users");
                         System.out.println("    b. Communicate with suppliers");
                         System.out.println("    c. Communicate with owners");
@@ -403,7 +419,10 @@ public class Main {
                             Updates.addNewMsg(MyApp.Msg);
                             System.out.println("________________________Your message was sent successfully__________________________");
                         }
-                    } else if (userChoice.equals("3")) {
+                    } //choosing communication from the list
+
+                    else if (userChoice.equals("3"))
+                    {
                         System.out.println("    a. Update your account.");
                         System.out.println("    b. Business management.");
                         userChoice = scanner.next();
@@ -424,7 +443,10 @@ public class Main {
                             Updates.updateBusinessInfo(MyApp.business);
                             System.out.println("________________________Successfully updated__________________________");
                         }
-                    } else if (userChoice.equals("4")) {
+                    }//choosing account mgt from the list
+
+                    else if (userChoice.equals("4"))
+                    {
                         System.out.println("List of existing raw materials:");
                         Listing.listingOfRawMaterials();
 
@@ -460,8 +482,11 @@ public class Main {
                         MyApp.order = new Order(userEmail, supplierEmail, LocalDateTime.now(), items, qtyList);
                         Updates.addNewOrderForRowMaterials(MyApp.order);
                         System.out.println("________________________Order successfully added__________________________");
-                    } else if (userChoice.equals("5")) {
-                        return;
+                    }//choosing order mgt from the list
+
+                    else if (userChoice.equals("5"))
+                    {
+                        break;
                     }
                 }
             }//logged in as owner
@@ -485,9 +510,175 @@ public class Main {
 
             else if (MyApp.userType == 4)
             {
+                boolean isCorrectChoice = false;
                 while(true)
                 {
                     System.out.println("Welcome User! choose what to do from the list:");
+                    System.out.println("\t1. Account Management");
+                    System.out.println("\t2. Explore Recipes");
+                    System.out.println("\t3. Create An Order");
+                    System.out.println("\t4. Communication And Feedback");
+                    System.out.println("\t5. Exit");
+
+                    char uc = scanner.next().charAt(0);
+
+                    if(uc == '1')
+                    {
+                        while (true)
+                        {
+                            System.out.println("* Account Management : ");
+                            System.out.println("\ta. Update your personal information");
+                            System.out.println("\tb. Post a new personal dessert creation");
+                            System.out.println("\tc. Back");
+
+                            uc = scanner.next().charAt(0);
+                            if(uc == 'a')
+                            {
+                                User u = signUp(MyApp.userEmail, null,null, null, 0);
+                                Updates.updateUser(u);
+                                System.out.println("Updated Successfully!\n");
+                            }//update account
+                            else if (uc == 'b')
+                            {
+                                String recipeName = null;
+                                String recipeDescription = null;
+                                String recipeCate = null;
+
+                                while(!Checks.isAcceptableRecipeName(recipeName))
+                                {
+                                    System.out.println("Enter your new recipe name : ");
+                                    recipeName = scanner.nextLine();
+                                    if (!Checks.isAcceptableRecipeName(recipeName))
+                                    {
+                                        System.out.println("Unacceptable recipe name!");
+                                        System.out.println("\t1. Enter recipe name again");
+                                        System.out.println("\t2. back");
+
+                                        uc = scanner.next().charAt(0);
+                                        if(uc == '1')
+                                            continue;
+                                        else if(uc == '2')
+                                            break;
+                                        else
+                                            System.out.println("Invalid Choice!");
+                                    }
+                                }//reading recipe name loop
+
+                                while(!Checks.isAcceptableRecipeDescription(recipeDescription))
+                                {
+                                    System.out.println("Enter your new recipe description : ");
+                                    recipeDescription = scanner.nextLine();
+                                    if (!Checks.isAcceptableRecipeDescription(recipeDescription))
+                                    {
+                                        System.out.println("Unacceptable recipe description!");
+                                        System.out.println("\t1. Enter recipe description again");
+                                        System.out.println("\t2. back");
+
+                                        uc = scanner.next().charAt(0);
+                                        if(uc == '1')
+                                            continue;
+                                        else if(uc == '2')
+                                            break;
+                                        else
+                                            System.out.println("Invalid Choice!");
+                                    }
+                                }//reading recipe description loop
+
+                                while(!Checks.isAcceptableRecipeCategory(recipeCate))
+                                {
+                                    System.out.println("Enter your new recipe category : ");
+                                    recipeCate = scanner.nextLine();
+                                    if (!Checks.isAcceptableRecipeDescription(recipeCate))
+                                    {
+                                        System.out.println("Unacceptable recipe category!");
+                                        System.out.println("\t1. Enter recipe category again");
+                                        System.out.println("\t2. back");
+
+                                        uc = scanner.next().charAt(0);
+                                        if(uc == '1')
+                                            continue;
+                                        else if(uc == '2')
+                                            break;
+                                        else
+                                            System.out.println("Invalid Choice!");
+                                    }
+                                }//reading recipe category loop
+
+                                Recipe recipe = new Recipe(recipeName, recipeDescription, recipeCate, MyApp.userEmail);
+                                Updates.addNewRecipe(recipe);
+
+                                System.out.println("Added Successfully!");
+                            }//post new recipe
+                            else if (uc == 'c')
+                            {
+                                break;
+                            }//back
+                            else
+                                System.out.println("Invalid choice!");
+                        }//end of account mgt loop
+                    }//choosing account mgt from the list
+
+                    else if(uc == '2')
+                    {
+                        while (true)
+                        {
+                            System.out.println("* Explore Recipes : ");
+                            System.out.println("\ta. Explore recipes");
+                            System.out.println("\tb. Search for recipes");
+                            System.out.println("\tc. Recipes for dietary needs");
+                            System.out.println("\td. Recipes for food allergies");
+                            System.out.println("\te. Back");
+
+                            uc = scanner.next().charAt(0);
+                            if(uc == 'a')
+                            {
+                                System.out.println("List of all recipes in the system");
+                                Listing.ListRecipesInDb();
+                            }//explore recipes
+                            else if (uc == 'b')
+                            {
+                                String rName;
+                                System.out.println("Enter recipe Name you look for : ");
+                                rName = scanner.next();
+                                Listing.printingRecipeAccordingToRecipeName(rName);
+                            }//search for recipes
+                            else if (uc == 'c')
+                            {
+                                System.out.println("List of recipes for dietary needs");
+                                Listing.ListRecipesInDbAccordingToCategory("dietary needs");
+                            }//recipes for dietary needs
+                            else if (uc == 'd')
+                            {
+                                System.out.println("List of recipes for food allergies");
+                                Listing.ListRecipesInDbAccordingToCategory("food allergies");
+                            }//recipes for food allergies
+                            else if (uc == 'e')
+                            {
+                                break;
+                            }//back
+                            else
+                                System.out.println("Invalid choice!");
+                        }//end of account mgt loop
+                    }//choosing Explore recipe from the list
+
+                    else if(uc == '3')
+                    {
+
+                    }//choosing create an order from the list
+
+                    else if(uc == '4')
+                    {
+
+                    }//choosing communication and feedback from the list
+                    else if(uc == '5')
+                    {
+                        break;
+                    }//choosing exit from the list
+                    else
+                    {
+                        System.out.println("Invalid Choice!");
+                    }
+
                 }
             }//logged in as regular user
 
@@ -611,7 +802,7 @@ public class Main {
             }
         }//entering user type loop
 
-        User u = new User(username, password, userEmail, city, userType);
+        User u = new User(username, password, userEmail, city, userType+1);
         return u;
     }
 }

@@ -349,7 +349,8 @@ public class Updates {
         }
     }
 
-    public static void updateRawMaterial(rawMaterial rawMaterial) {
+    public static void updateRawMaterial(rawMaterial rawMaterial)
+    {
         int id = rawMaterial.getRmId();
         String rmName = rawMaterial.getRmName();
         int price = rawMaterial.getPrice();
@@ -370,7 +371,8 @@ public class Updates {
         }
     }
 
-    public static void deleteRawMaterial(String rmName) {
+    public static void deleteRawMaterial(String rmName)
+    {
         if(!Checks.checkIfRowMaterialInDatabase(rmName))
         {
             System.out.println("This raw material doesn't exist, please try again with another raw material name!");

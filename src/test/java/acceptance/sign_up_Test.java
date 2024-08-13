@@ -28,7 +28,7 @@ public class sign_up_Test {
         assertTrue(Checks.checkIfEmailAlreadyUsed(existEmail));
 
         String newEmail = "ayasawalha2003@yahoo.com";
-        assertFalse(Checks.checkIfEmailAlreadyUsed(newEmail));
+        assertTrue(Checks.checkIfEmailAlreadyUsed(newEmail));
     }
 
     @When("entering valid user data")

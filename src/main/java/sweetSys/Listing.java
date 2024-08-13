@@ -2,6 +2,7 @@ package sweetSys;
 
 import Entities.Database;
 
+import java.security.PublicKey;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -140,7 +141,8 @@ public class Listing {
         }
     }
 
-    public static boolean listAllUsersInTheSystem(int TypeToCommunicate) {
+    public static boolean listAllUsersInTheSystem(int TypeToCommunicate)
+    {
         String qry = "select * from sweetsystem.users where user_type = " + TypeToCommunicate;
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         try {
@@ -230,5 +232,67 @@ public class Listing {
         }
     }
 
+    public static void printingRecipeAccordingToRecipeName(String rName)
+    {
+        String recipeName = rName.trim();
+        String qry = "select * from sweetsystem.recipe where recipe_name = '"+recipeName+"';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        int numOfRecipes = 0;
+        try {
+            while (rs.next())
+            {
+                numOfRecipes++;
+                System.out.println("\tRecipe Name : " + rs.getString("recipe_name"));
+                System.out.println("\tRecipe Description : " + rs.getString("recipe_description"));
+                System.out.println("\tRecipe Category : " + rs.getString("recipe_category"));
+                System.out.println("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
+                System.out.println("------------------------------------------------------------------------------------");
+            }
+            if(numOfRecipes == 0)
+                System.out.println("There is no recipes in the system!");
+        }
+        catch (SQLException e)
+        {
+
+        }
+    }
+    public static void ListRecipesInDb()
+    {
+        String qry = "select * from sweetsystem.recipe;";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        int numOfRecipes = 0;
+        try {
+            while(rs.next())
+            {
+                numOfRecipes++;
+                System.out.println("\t" + numOfRecipes + ".");
+                printingRecipeAccordingToRecipeName(rs.getString("recipe_name"));
+            }
+            if(numOfRecipes == 0)
+                System.out.println("There is no recipes in the system!");
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+    }
+    public static void ListRecipesInDbAccordingToCategory(String category)
+    {
+        String qry = "select * from sweetsystem.recipe where recipe.recipe_category = '"+category+"';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        int numOfRecipes = 0;
+        try {
+            while(rs.next())
+            {
+                System.out.println("\tRecipe Name : " + rs.getString("recipe_name"));
+                System.out.println("\tRecipe Description : " + rs.getString("recipe_description"));
+                System.out.println("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
+                System.out.println("------------------------------------------------------------------------------------");
+                numOfRecipes++;
+            }
+            if(numOfRecipes == 0)
+                System.out.println("There is no recipes from this category!");
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+    }
 }
 

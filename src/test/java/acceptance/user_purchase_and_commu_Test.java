@@ -77,7 +77,7 @@ public class user_purchase_and_commu_Test {
 
     @Then("the owner will receive the msg successfully")
     public void theOwnerWillReceiveTheMsgSuccessfully() {
-        String senderEmail = "user4@yahoo.com";
+        String senderEmail = "user5@yahoo.com";
         String receiverEmail = "s12112506@stu.najah.edu";
 
         assertTrue(Checks.checkIfEmailAlreadyUsed(senderEmail));

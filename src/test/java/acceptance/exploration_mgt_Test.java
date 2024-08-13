@@ -2,13 +2,13 @@ package acceptance;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import sweetSys.MyApp;
+import sweetSys.*;
 import Entities.User;
-import sweetSys.Checks;
 import sweetSys.MyApp;
-import sweetSys.Updates;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static sweetSys.Listing.ListRecipesInDbAccordingToCategory;
 
 public class exploration_mgt_Test {
 
@@ -24,7 +24,9 @@ public class exploration_mgt_Test {
     }
 
     @Then("list of dessert recipes exist in the system")
-    public void listOfDessertRecipesExistInTheSystem() {
+    public void listOfDessertRecipesExistInTheSystem()
+    {
+        Listing.ListRecipesInDb();
         assertTrue(Checks.checkIfThereAreRecipesInDatabase());
     }
 
@@ -58,6 +60,7 @@ public class exploration_mgt_Test {
     @Then("list of dietary needs recipes will appear with description")
     public void listOfDietaryNeedsRecipesWillAppearWithDescription() {
         String recipeCategory = "dietary needs";
+        ListRecipesInDbAccordingToCategory("dietary needs");
         assertTrue(Checks.checkIfRecipesInDbAccordingToCategory(recipeCategory));
     }
 
@@ -69,6 +72,7 @@ public class exploration_mgt_Test {
     @Then("list of food allergies recipes will appear with description")
     public void listOfFoodAllergiesRecipesWillAppearWithDescription() {
         String recipeCategory = "food allergies";
+        ListRecipesInDbAccordingToCategory("food allergies");
         assertTrue(Checks.checkIfRecipesInDbAccordingToCategory(recipeCategory));
     }
 

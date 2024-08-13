@@ -105,12 +105,11 @@ public class raw_material_mgt_Test {
 
     @Then("the raw material will be removed successfully")
     public void theRawMaterialWillBeRemovedSuccessfully() {
-        String rmName = "Vanilla Extract";
-        assertTrue(Checks.isValidProductName(rmName));
+        int rmId = 10;
 
-        Updates.deleteRawMaterial(rmName);
+        Updates.deleteRawMaterial(rmId);
 
-        assertFalse(Checks.checkIfRowMaterialInDatabase(rmName));
+        assertFalse(Checks.checkIfProductInDbAccordingToId(rmId));
     }
 
 }

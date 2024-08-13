@@ -7,12 +7,16 @@ import Entities.User;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static java.lang.Character.isAlphabetic;
 import static java.lang.Character.isDigit;
@@ -377,6 +381,56 @@ public class Checks {
     {
         String qry = "select * from sweetsystem.business where business_id = '"+bId+"';";
 
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static boolean isValidDate(String dateStr) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try {
+            LocalDate.parse(dateStr, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+            return false;
+        }
+    }
+    public static boolean isValidDiscount(double discount) {
+        return discount >= 0.0 && discount <= 1.0;
+    }
+
+
+    public static boolean checkIfProductInDbAccordingToId(int id)
+    {
+        String qry = "select * from sweetsystem.Product where Product.product_id = '"+id+"';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public static boolean checkIfRowMaterialInDbAccordingToID(int rmId) {
+        String qry = "select * from sweetsystem.row_material where Product.rm_id = '"+rmId+"';";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {

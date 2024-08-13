@@ -18,4 +18,5 @@ public class MyApp {
     public static Messaging Msg;
     public static Business business;
     public static Order order;
+    public static rawMaterial rawMaterial;
 }

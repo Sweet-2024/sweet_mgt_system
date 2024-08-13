@@ -100,7 +100,7 @@ public class product_mgt_Test {
         Product product = new Product (id, pName, price, wholesalePrice, quantity, saledQty, exDate, ownerEmail);
         Updates.updateProduct(product);
 
-        assertTrue(Checks.checkIfProductInDatabase(pName));
+        assertTrue(Checks.checkIfProductInDbAccordingToId(id));
     }
 
     @When("choosing Remove product")
@@ -115,12 +115,11 @@ public class product_mgt_Test {
 
     @Then("the product will be removed successfully")
     public void theProductWillBeRemovedSuccessfully() {
-        String pName = "chocolate cake";
-        assertTrue(Checks.isValidProductName(pName));
+        int productId = 19;
 
-        Updates.deleteProduct(pName);
+        Updates.deleteProduct(productId);
 
-        assertFalse(Checks.checkIfProductInDatabase(pName));
+        assertFalse(Checks.checkIfProductInDbAccordingToId(productId));
     }
 
     @When("choosing Monitor sales and profits from the list")

@@ -177,13 +177,14 @@ public class Listing {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            System.out.printf("%-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
-                    "raw material Name", "Price", "Wholesale Price", "Quantity",
+            System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
+                    "raw material id", "raw material Name", "Price", "Wholesale Price", "Quantity",
                     "Saled Qty", "Expiration Date", "Supplier Email");
 
-            System.out.println("---------------------------------------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
 
             while (rs.next()) {
+                int rmId = rs.getInt("rm_id");
                 String rmName = rs.getString("rm_name");
                 int price = rs.getInt("rm_price");
                 int wholesalePrice = rs.getInt("wholesale_price");
@@ -192,11 +193,11 @@ public class Listing {
                 String exDate = rs.getString("expiry_date");
                 String supplierEmail = rs.getString("supplier_email");
 
-                System.out.printf("%-20s %-10d %-15d %-10d %-10d %-15s %-20s%n",
-                        rmName, price, wholesalePrice, quantity,
+                System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-20s%n",
+                        rmId, rmName, price, wholesalePrice, quantity,
                         saledQty, exDate, supplierEmail);
             }
-            System.out.println("---------------------------------------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -207,13 +208,14 @@ public class Listing {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            System.out.printf("%-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
-                    "Product Name", "Price", "Wholesale Price", "Quantity",
+            System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n",
+                    "Product id", "Product Name", "Price", "Wholesale Price", "Quantity",
                     "Saled Qty", "Expiration Date", "Owner Email");
 
-            System.out.println("---------------------------------------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
 
             while (rs.next()) {
+                int productId = rs.getInt("product_id");
                 String productName = rs.getString("product_name");
                 int price = rs.getInt("price");
                 int wholesalePrice = rs.getInt("wholesale_price");
@@ -222,11 +224,11 @@ public class Listing {
                 String exDate = rs.getString("ex_date");
                 String ownerEmail = rs.getString("owner_email");
 
-                System.out.printf("%-20s %-10d %-15d %-10d %-10d %-15s %-20s%n",
-                        productName, price, wholesalePrice, quantity,
+                System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n",
+                        productId, productName, price, wholesalePrice, quantity,
                         saledQty, exDate, ownerEmail);
             }
-            System.out.println("---------------------------------------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

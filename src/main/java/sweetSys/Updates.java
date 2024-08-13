@@ -189,15 +189,15 @@ public class Updates {
             System.out.println("This product already exist, please try again with another product name!");
         }
     }
-    public static void deleteProduct(String productName)
+    public static void deleteProduct(int productId)
     {
-        if(!Checks.checkIfProductInDatabase(productName))
+        if(!Checks.checkIfProductInDbAccordingToId(productId))
         {
             System.out.println("This product doesn't exist, please try again with another product name!");
         }
         else
         {
-            String qry = "delete from sweetsystem.product where product_name = '"+productName+"';";
+            String qry = "delete from sweetsystem.product where product_id = '"+productId+"';";
             Database.connectionToInsertOrUpdateDB(qry);
         }
     }
@@ -212,7 +212,7 @@ public class Updates {
         String exDate = product.getExDate();
         String ownerEmail = product.getOwnerEmail();
 
-        if(!Checks.checkIfProductInDatabase(pName))
+        if(!Checks.checkIfProductInDbAccordingToId(id))
         {
             System.out.println("This product doesn't exist, please try again with another product name!");
         }
@@ -224,7 +224,7 @@ public class Updates {
     }
     public static boolean productDiscount(double discount)
     {
-        int productId = 0; int price; int discountedPrice = 0;
+        int productId = 0; int price = 0; int discountedPrice = 0;
         String qry1 = "select * from sweetsystem.product";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
@@ -239,6 +239,7 @@ public class Updates {
                     discountedPrice = (int) (price * (1 - discount));
 
                 }
+                System.out.println("Discount the product id "+productId+" with price "+price+"₪ ("+discount+") to become "+discountedPrice+"₪");
                 String qry3 ="UPDATE sweetsystem.product SET price = "+discountedPrice+" WHERE product_id ="+productId+"";
                 Database.connectionToInsertOrUpdateDB(qry3);
                 return true;
@@ -349,8 +350,7 @@ public class Updates {
         }
     }
 
-    public static void updateRawMaterial(rawMaterial rawMaterial)
-    {
+    public static void updateRawMaterial(rawMaterial rawMaterial) {
         int id = rawMaterial.getRmId();
         String rmName = rawMaterial.getRmName();
         int price = rawMaterial.getPrice();
@@ -371,15 +371,14 @@ public class Updates {
         }
     }
 
-    public static void deleteRawMaterial(String rmName)
-    {
-        if(!Checks.checkIfRowMaterialInDatabase(rmName))
+    public static void deleteRawMaterial(int rmId) {
+        if(!Checks.checkIfRowMaterialInDbAccordingToID(rmId))
         {
             System.out.println("This raw material doesn't exist, please try again with another raw material name!");
         }
         else
         {
-            String qry = "DELETE FROM `row_material` WHERE rm_name = '"+rmName+"';";
+            String qry = "DELETE FROM `row_material` WHERE rm_id = '"+rmId+"';";
             Database.connectionToInsertOrUpdateDB(qry);
         }
     }

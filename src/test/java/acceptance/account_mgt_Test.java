@@ -1,7 +1,5 @@
 package acceptance;
 
-import Entities.Business;
-import Entities.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -30,10 +28,6 @@ public class account_mgt_Test {
         String bLocation = "Nablus";
         int bId = 1;
         String email = "s12112506@stu.najah.edu";
-        Business business = new Business (bId, bName, bLocation, email);
-        Updates.updateBusinessInfo(business);
-
-        //assertTrue(Checks.checkIfUserInDatabase(email, password));
-        //assertTrue(Updates.updateBusinessInfo(bName, bLocation, bId, email));
+        assertTrue(Updates.updateBusinessInfo(bName, bLocation, bId, email));
     }
 }

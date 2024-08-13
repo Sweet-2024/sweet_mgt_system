@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="User account mgt and explore recipes">
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="merging">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Entities/Feedback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -181,12 +184,12 @@
       <option name="project" value="LOCAL" />
       <updated>1723544891971</updated>
     </task>
-    <task id="LOCAL-00010" summary="update teh connection to database &amp; make reporting function common to both admin and owners">
-      <created>1723146944617</created>
+    <task id="LOCAL-00010" summary="merging">
+      <created>1723567656476</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1723146944617</updated>
+      <updated>1723567656476</updated>
     </task>
     <task id="LOCAL-00011" summary="completing owners and suppliers communication feature with all scenarios">
       <created>1723196393811</created>
@@ -209,7 +212,7 @@
       <option name="project" value="LOCAL" />
       <updated>1723324727964</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -265,7 +268,8 @@
     <MESSAGE value="write test case for order mgt and make some updates" />
     <MESSAGE value="make some updates" />
     <MESSAGE value="finishing everything related with admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="finishing everything related with admin" />
+    <MESSAGE value="merging" />
+    <option name="LAST_COMMIT_MESSAGE" value="merging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -274,6 +278,11 @@
           <properties class="java.lang.AssertionError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
+          <line>924</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

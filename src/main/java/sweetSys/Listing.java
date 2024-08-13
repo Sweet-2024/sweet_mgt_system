@@ -5,6 +5,7 @@ import Entities.Database;
 import java.security.PublicKey;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Listing {
 
@@ -295,6 +296,33 @@ public class Listing {
         } catch (SQLException e) {
             System.err.println(e);
         }
+    }
+
+    public static ArrayList<Integer> userFeedback(String userEmail)
+    {
+        ArrayList<Integer> ordersID = new ArrayList<>();
+        String qry = "select * from `order` where buyer_email = '"+userEmail+"';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        try {
+            int numOfOrders = 0;
+            while (rs.next())
+            {
+               System.out.println("OrderId : " + rs.getInt("order_id"));
+               System.out.println("Ordering Date : " + rs.getDate("order_date"));
+               System.out.println("Seller Email : " + rs.getString("seller_email"));
+               ordersID.add(rs.getInt("order_id"));
+               System.out.println();
+               numOfOrders++;
+            }
+            if (numOfOrders == 0)
+                System.out.println("You didn't make any order before!");
+            return ordersID;
+        }
+        catch (SQLException e)
+        {
+            e.getMessage();
+        }
+        return ordersID;
     }
 }
 

@@ -382,4 +382,12 @@ public class Updates {
             Database.connectionToInsertOrUpdateDB(qry);
         }
     }
+
+    public static void addNewFeedback(Feedback f)
+    {
+        int orderId = f.getOrderID();
+        int evaluation = f.getEvaluation();
+        String qry = "INSERT INTO `feedback`( `order_id`, `evaluation`) VALUES ("+orderId+","+evaluation+")";
+        Database.connectionToInsertOrUpdateDB(qry);
+    }
 }

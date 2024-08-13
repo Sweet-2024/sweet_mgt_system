@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import static java.lang.Character.isDigit;
 import static java.lang.System.exit;
+import static sweetSys.Listing.*;
 import static sweetSys.Updates.*;
 
 public class Main {
@@ -50,6 +51,8 @@ public class Main {
         MyApp.userType = 0;
         while (true)
         {
+            MyApp.userEmail = null;
+            MyApp.userType = 0;
             System.out.println("WELCOME TO OUR SWEET MANAGEMENT SYSTEM");
             System.out.println("1. Login");
             System.out.println("2. Sign up");
@@ -108,6 +111,7 @@ public class Main {
                 }
 
                 MyApp.user = new User(userEmail, password);
+                MyApp.userEmail = userEmail;
                 MyApp.userType = MyApp.user.userTypeByEmail(userEmail);
                 MyApp.isLoggedIn = true;
             } //login if statement
@@ -129,14 +133,17 @@ public class Main {
 
             if (MyApp.userType == 1)
             {
-                while(true) {
+                boolean isCorrectChoice = false;
+                while (true)
+                {
                     System.out.println("Welcome Admin! choose what to do from the list:");
                     System.out.println("1. Accounts Management");
                     System.out.println("2. Reporting And Monitoring");
                     System.out.println("3. Exit");
                     char uc = scanner.next().charAt(0);
 
-                    if (uc == '1') {
+                    if (uc == '1')
+                    {
                         System.out.println("* Accounts Managements : ");
                         System.out.println("Lists of all users in the system : ");
                         Listing.listAllUsersInTheSystem(2);
@@ -148,58 +155,105 @@ public class Main {
                         Listing.listAllUsersInTheSystem(4);
                         System.out.println();
 
-                        System.out.println("Choose what to do : ");
-                        System.out.println("1. Add new user");
-                        System.out.println("2. Update existing user information");
-                        System.out.println("3. Delete existing user");
+                        while (!isCorrectChoice) {
+                            System.out.println("Choose what to do : ");
+                            System.out.println("a. Add new user");
+                            System.out.println("b. Update existing user information");
+                            System.out.println("c. Delete existing user");
+                            System.out.println("d. Back");
 
-                        uc = scanner.next().charAt(0);
-                        if (uc == '1') {
-                            User u = signUp(null, null, null, null, 0);
-                            Updates.addNewUser(u);
-                        } else if (uc == '2') {
-                            System.out.println("Enter the email of user you want to update : ");
-                            String ue = null;
-                            while (!Checks.checkIfEmailAlreadyUsed(ue)) {
-                                ue = scanner.next();
-                                if (!Checks.checkIfEmailAlreadyUsed(ue)) {
-                                    System.out.println("User is not in the system ! Try again");
-                                    System.out.println("    a. Enter email again");
-                                    System.out.println("    b. Exit");
-                                    userChoice = scanner.next();
-                                    if (userChoice.equals("a"))
-                                        continue;
-                                    else if (userChoice.equals("b"))
-                                        exit(0);
+                            uc = scanner.next().charAt(0);
+                            if (uc == 'a') {
+                                User u = signUp(null, null, null, null, 0);
+                                Updates.addNewUser(u);
+                                System.out.println("Added Successfully");
+                                System.out.println();
+                                isCorrectChoice = true;
+                            } //add new user
+                            else if (uc == 'b') {
+                                System.out.println("Enter the email of user you want to update : ");
+                                String ue = null;
+                                while (!Checks.checkIfEmailAlreadyUsed(ue)) {
+                                    ue = scanner.next();
+                                    if (!Checks.checkIfEmailAlreadyUsed(ue)) {
+                                        System.out.println("User is not in the system ! Try again");
+                                        System.out.println("    a. Enter email again");
+                                        System.out.println("    b. Exit");
+                                        userChoice = scanner.next();
+                                        if (userChoice.equals("a"))
+                                            continue;
+                                        else if (userChoice.equals("b"))
+                                            break;
+                                    }
                                 }
-                            }
-                            User u = signUp(ue, null, null, null, 0);
-                            Updates.updateUser(u);
-                            System.out.println("Updated Successfully");
-                            System.out.println();
-                        } else if (uc == '3') {
-                            System.out.println("Enter the email of user you want to delete : ");
-                            String ue = null;
-                            while (!Checks.checkIfEmailAlreadyUsed(ue)) {
-                                ue = scanner.next();
-                                if (!Checks.checkIfEmailAlreadyUsed(ue)) {
-                                    System.out.println("User is not in the system ! Try again");
-                                    System.out.println("    a. Enter email again");
-                                    System.out.println("    b. Exit");
-                                    userChoice = scanner.next();
-                                    if (userChoice.equals("a"))
-                                        continue;
-                                    else if (userChoice.equals("b"))
-                                        exit(0);
+                                User u = signUp(ue, null, null, null, 0);
+                                Updates.updateUser(u);
+                                System.out.println("Updated Successfully");
+                                System.out.println();
+                                isCorrectChoice = true;
+                            } //update user info
+                            else if (uc == 'c') {
+                                System.out.println("Enter the email of user you want to delete : ");
+                                String ue = null;
+                                while (!Checks.checkIfEmailAlreadyUsed(ue)) {
+                                    ue = scanner.next();
+                                    if (!Checks.checkIfEmailAlreadyUsed(ue)) {
+                                        System.out.println("User is not in the system ! Try again");
+                                        System.out.println("    a. Enter email again");
+                                        System.out.println("    b. Exit");
+                                        userChoice = scanner.next();
+                                        if (userChoice.equals("a"))
+                                            continue;
+                                        else if (userChoice.equals("b"))
+                                            break;
+                                    }
                                 }
-                            }
-                            Updates.deleteUser(ue);
-                            System.out.println("Deleted Successfully");
-                            System.out.println();
-                        } else {
+                                Updates.deleteUser(ue);
+                                System.out.println("Deleted Successfully");
+                                System.out.println();
+                                isCorrectChoice = true;
+                            } // delete user
+                            else if (uc == 'd')
+                                break;
+                            else {
+                                System.out.println("Incorrect choice!");
+                            } //incorrect choice
+                        }//end of loop tp choose from admin mg list
+                    }//choosing Account mgt from the admin list
 
-                        }
-                    }
+                    else if (uc == '2')
+                    {
+                        while (!isCorrectChoice) {
+                            System.out.println("* Reporting And Monitoring : ");
+                            System.out.println("a. Monitor profits and generate financial reports");
+                            System.out.println("b. Identify best-selling products in each store");
+                            System.out.println("c. Gather and display statistics on registered users by City");
+                            System.out.println("d. Back");
+
+                            uc = scanner.next().charAt(0);
+
+                            if (uc == 'a') {
+                                isCorrectChoice = true;
+                                generateFinancialReports();
+                            } else if (uc == 'b') {
+                                isCorrectChoice = true;
+                                listingBestSellingProduct();
+                            } else if (uc == 'c') {
+                                isCorrectChoice = true;
+                                statisticsOnUsersByCity();
+                            } else if (uc == 'd') {
+                                break;
+                            } else {
+                                System.out.println("Incorrect choice!");
+                            }
+                        }//end of loop to choose from Reporting And Monitoring list
+                    }//choosing Reporting And Monitoring from the admin list
+
+                    else if (uc == '3')
+                        break; // to get out of admin area and return to the main list login, sign up, exit..
+                    else
+                        System.out.println("Invalid choice! Try Again");
+
                 }
             }//logged in as admin
 
@@ -214,7 +268,8 @@ public class Main {
                     System.out.println("5. exit");
                     userChoice = scanner.next();
                     userChoice.trim();
-                    if (userChoice.equals("1")) {
+                    if (userChoice.equals("1"))
+                    {
                         System.out.println("    a. Add new products.");
                         System.out.println("    b. update available products.");
                         System.out.println("    c. remove available products.");
@@ -388,10 +443,10 @@ public class Main {
                             deleteProduct(productId);
                             System.out.println("____________________Deletion completed successfully___________________");
                         } else if (userChoice.equals("d")) {
-                            Listing.generateFinancialReports();
+                            generateFinancialReports();
                             System.out.println("__________________________________________________");
                         } else if (userChoice.equals("e")) {
-                            Listing.listingBestSellingProduct();
+                            listingBestSellingProduct();
                             System.out.println("__________________________________________________");
                         } else if (userChoice.equals("f")) {
                             while (true) {
@@ -416,7 +471,9 @@ public class Main {
                             System.out.println("Invalid choice!");
                         }
 
-                    } else if (userChoice.equals("2")) {
+                    }
+                    else if (userChoice.equals("2"))
+                    {
                         System.out.println("    a. Communicate with users");
                         System.out.println("    b. Communicate with suppliers");
                         System.out.println("    c. Communicate with owners");
@@ -433,7 +490,9 @@ public class Main {
                         }else{
                             System.out.println("Invalid choice!");
                         }
-                    } else if (userChoice.equals("3")) {
+                    }
+                    else if (userChoice.equals("3"))
+                    {
                         System.out.println("    a. Update your account.");
                         System.out.println("    b. Business management.");
                         userChoice = scanner.next();
@@ -475,7 +534,9 @@ public class Main {
                         }else {
                             System.out.println("Invalid choice!");
                         }
-                    } else if (userChoice.equals("4")) {
+                    }
+                    else if (userChoice.equals("4"))
+                    {
                         System.out.println("List of existing raw materials:");
                         Listing.listingOfRawMaterials();
 
@@ -521,9 +582,13 @@ public class Main {
                         MyApp.order = new Order(userEmail, supplierEmail, LocalDateTime.now(), items, qtyList);
                         Updates.addNewOrderForRowMaterials(MyApp.order);
                         System.out.println("________________________Order successfully added__________________________");
-                    } else if (userChoice.equals("5")) {
+                    }
+                    else if (userChoice.equals("5"))
+                    {
                         break;
-                    }else{
+                    }
+                    else
+                    {
                         System.out.println("Invalid choice!");
                     }
                 }
@@ -748,8 +813,9 @@ public class Main {
                     System.out.println("\t1. Account Management");
                     System.out.println("\t2. Explore Recipes");
                     System.out.println("\t3. Create An Order");
-                    System.out.println("\t4. Communication And Feedback");
-                    System.out.println("\t5. Exit");
+                    System.out.println("\t4. Communication");
+                    System.out.println("\t5. Feedback");
+                    System.out.println("\t6. Exit");
 
                     char uc = scanner.next().charAt(0);
 
@@ -902,6 +968,53 @@ public class Main {
 
                     }//choosing communication and feedback from the list
                     else if(uc == '5')
+                    {
+                        String chosenOrder = "";
+                        char evaluation;
+                        System.out.println("Feedback : ");
+
+                        ArrayList<Integer> ordersId = Listing.userFeedback(MyApp.userEmail);
+
+                        if(!ordersId.isEmpty())
+                        {
+                            boolean exitFlag = true;
+                            while (exitFlag)
+                            {
+                                System.out.println("Choose the order ID to give feedback to : ");
+                                System.out.println("    To get back press *");
+                                chosenOrder = scanner.next();
+
+                                if (chosenOrder.equals("*"))
+                                    break;
+                                int orderID = Integer.parseInt(chosenOrder);
+
+                                if (ordersId.contains(orderID))
+                                {
+                                    while(true)
+                                    {
+                                        System.out.println("Your evaluation is : (please choose number from 1-bad- to 5-good)");
+                                        System.out.println("    To get back press *");
+                                        evaluation = scanner.next().charAt(0);
+                                        if (evaluation == '*')
+                                            break;
+                                        evaluation = (char) (evaluation - '0');
+                                        if (evaluation >= 1 && evaluation <= 5) {
+                                            Updates.addNewFeedback(new Feedback(orderID, evaluation));
+                                            System.out.println("Feedback added successfully! ");
+                                            System.out.println();
+                                            exitFlag = false;
+                                            break;
+                                        }
+                                        else
+                                            System.out.println("Invalid evaluation!");
+                                    }//send feedback
+
+                                } else
+                                    System.out.println("Please enter a valid order id!");
+                            }
+                        }
+                    }//choosing feedback from the list
+                    else if(uc == '6')
                     {
                         break;
                     }//choosing exit from the list

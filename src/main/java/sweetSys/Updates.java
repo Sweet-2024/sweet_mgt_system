@@ -11,25 +11,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Updates {
-    public static boolean updateBusinessInfo(String bName, String bLocation, int bId, String ownerEmail)
-    {
-        try {
-            String qry1 = "update sweetsystem.business set business_name = '"+bName+"', business_location = '"+bLocation+"', business_owner_email ='"+ownerEmail+"' where business_id = "+bId+" ;";
-            Database.connectionToInsertOrUpdateDB(qry1);
+    public static void updateBusinessInfo(Business business) {
+        int bId = business.getBusinessId();
+        String bName = business.getBusinessName();
+        String bLocation = business.getBusinessLocation();
+        String ownerEmail = business.getBusinessOwnerEmail();
 
-            String qry2 = "select * from sweetsystem.business where business.business_name = '"+bName+"' and business.business_location = '"+bLocation+"' ;";
-            ResultSet rs2 = Database.connectionToSelectFromDB(qry2);
-            if(rs2.next()){
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-            return false;
+        if (!Checks.checkIfBusinessIdAlreadyUsed(bId)) {
+            System.out.println("This business id doesn't exist, please try again with another business id!");
+        } else {
+            String qry1 = "update sweetsystem.business set business_name = '" + bName + "', business_location = '" + bLocation + "', business_owner_email ='" + ownerEmail + "' where business_id = " + bId + " ;";
+            Database.connectionToInsertOrUpdateDB(qry1);
         }
     }
 

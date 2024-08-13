@@ -1,5 +1,6 @@
 package acceptance;
 
+import Entities.Business;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -28,6 +29,8 @@ public class account_mgt_Test {
         String bLocation = "Nablus";
         int bId = 1;
         String email = "s12112506@stu.najah.edu";
-        assertTrue(Updates.updateBusinessInfo(bName, bLocation, bId, email));
+        Business business = new Business (bId, bName, bLocation, email);
+        Updates.updateBusinessInfo(business);
+        assertTrue(Checks.checkIfBusinessIdAlreadyUsed(bId));
     }
 }

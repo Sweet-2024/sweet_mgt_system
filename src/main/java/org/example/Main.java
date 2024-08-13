@@ -202,6 +202,7 @@ public class Main {
                     }
                 }
             }//logged in as admin
+
             else if (MyApp.userType == 2)
             {
                 while (true) {
@@ -526,7 +527,8 @@ public class Main {
                         System.out.println("Invalid choice!");
                     }
                 }
-            }
+            }//logged in as owner
+
             else if (MyApp.userType == 3)
             {
                 while (true) {
@@ -736,13 +738,182 @@ public class Main {
                         System.out.println("Invalid choice!");
                     }
                 }
-            }
+            }//logged in as supplier
+
             else if (MyApp.userType == 4)
             {
-                while(true) {
+                while(true)
+                {
                     System.out.println("Welcome User! choose what to do from the list:");
+                    System.out.println("\t1. Account Management");
+                    System.out.println("\t2. Explore Recipes");
+                    System.out.println("\t3. Create An Order");
+                    System.out.println("\t4. Communication And Feedback");
+                    System.out.println("\t5. Exit");
+
+                    char uc = scanner.next().charAt(0);
+
+                    if(uc == '1')
+                    {
+                        while (true)
+                        {
+                            System.out.println("* Account Management : ");
+                            System.out.println("\ta. Update your personal information");
+                            System.out.println("\tb. Post a new personal dessert creation");
+                            System.out.println("\tc. Back");
+
+                            uc = scanner.next().charAt(0);
+                            if(uc == 'a')
+                            {
+                                User u = signUp(MyApp.userEmail, null,null, null, 0);
+                                Updates.updateUser(u);
+                                System.out.println("Updated Successfully!\n");
+                            }//update account
+                            else if (uc == 'b')
+                            {
+                                String recipeName = null;
+                                String recipeDescription = null;
+                                String recipeCate = null;
+
+                                while(!Checks.isAcceptableRecipeName(recipeName))
+                                {
+                                    System.out.println("Enter your new recipe name : ");
+                                    recipeName = scanner.nextLine();
+                                    if (!Checks.isAcceptableRecipeName(recipeName))
+                                    {
+                                        System.out.println("Unacceptable recipe name!");
+                                        System.out.println("\t1. Enter recipe name again");
+                                        System.out.println("\t2. back");
+
+                                        uc = scanner.next().charAt(0);
+                                        if(uc == '1')
+                                            continue;
+                                        else if(uc == '2')
+                                            break;
+                                        else
+                                            System.out.println("Invalid Choice!");
+                                    }
+                                }//reading recipe name loop
+
+                                while(!Checks.isAcceptableRecipeDescription(recipeDescription))
+                                {
+                                    System.out.println("Enter your new recipe description : ");
+                                    recipeDescription = scanner.nextLine();
+                                    if (!Checks.isAcceptableRecipeDescription(recipeDescription))
+                                    {
+                                        System.out.println("Unacceptable recipe description!");
+                                        System.out.println("\t1. Enter recipe description again");
+                                        System.out.println("\t2. back");
+
+                                        uc = scanner.next().charAt(0);
+                                        if(uc == '1')
+                                            continue;
+                                        else if(uc == '2')
+                                            break;
+                                        else
+                                            System.out.println("Invalid Choice!");
+                                    }
+                                }//reading recipe description loop
+
+                                while(!Checks.isAcceptableRecipeCategory(recipeCate))
+                                {
+                                    System.out.println("Enter your new recipe category : ");
+                                    recipeCate = scanner.nextLine();
+                                    if (!Checks.isAcceptableRecipeDescription(recipeCate))
+                                    {
+                                        System.out.println("Unacceptable recipe category!");
+                                        System.out.println("\t1. Enter recipe category again");
+                                        System.out.println("\t2. back");
+
+                                        uc = scanner.next().charAt(0);
+                                        if(uc == '1')
+                                            continue;
+                                        else if(uc == '2')
+                                            break;
+                                        else
+                                            System.out.println("Invalid Choice!");
+                                    }
+                                }//reading recipe category loop
+
+                                Recipe recipe = new Recipe(recipeName, recipeDescription, recipeCate, MyApp.userEmail);
+                                Updates.addNewRecipe(recipe);
+
+                                System.out.println("Added Successfully!");
+                            }//post new recipe
+                            else if (uc == 'c')
+                            {
+                                break;
+                            }//back
+                            else
+                                System.out.println("Invalid choice!");
+                        }//end of account mgt loop
+                    }//choosing account mgt from the list
+
+                    else if(uc == '2')
+                    {
+                        while (true)
+                        {
+                            System.out.println("* Explore Recipes : ");
+                            System.out.println("\ta. Explore recipes");
+                            System.out.println("\tb. Search for recipes");
+                            System.out.println("\tc. Recipes for dietary needs");
+                            System.out.println("\td. Recipes for food allergies");
+                            System.out.println("\te. Back");
+
+                            uc = scanner.next().charAt(0);
+                            if(uc == 'a')
+                            {
+                                System.out.println("List of all recipes in the system");
+                                Listing.ListRecipesInDb();
+                            }//explore recipes
+                            else if (uc == 'b')
+                            {
+                                String rName;
+                                System.out.println("Enter recipe Name you look for : ");
+                                rName = scanner.next();
+                                Listing.printingRecipeAccordingToRecipeName(rName);
+                            }//search for recipes
+                            else if (uc == 'c')
+                            {
+                                System.out.println("List of recipes for dietary needs");
+                                Listing.ListRecipesInDbAccordingToCategory("dietary needs");
+                            }//recipes for dietary needs
+                            else if (uc == 'd')
+                            {
+                                System.out.println("List of recipes for food allergies");
+                                Listing.ListRecipesInDbAccordingToCategory("food allergies");
+                            }//recipes for food allergies
+                            else if (uc == 'e')
+                            {
+                                break;
+                            }//back
+                            else
+                                System.out.println("Invalid choice!");
+                        }//end of account mgt loop
+                    }//choosing Explore recipe from the list
+
+                    else if(uc == '3')
+                    {
+
+                    }//choosing create an order from the list
+
+                    else if(uc == '4')
+                    {
+
+                    }//choosing communication and feedback from the list
+                    else if(uc == '5')
+                    {
+                        break;
+                    }//choosing exit from the list
+                    else
+                    {
+                        System.out.println("Invalid Choice!");
+                    }
+
                 }
-            }
+            }//logged in as regular user
+
+
         }
 
     }

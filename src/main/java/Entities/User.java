@@ -2,6 +2,8 @@ package Entities;
 
 import io.cucumber.java.sl.In;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class User {
@@ -73,5 +75,17 @@ public class User {
                 ", type=" + type +
                 '}';
     }
-
+    public static int userTypeByEmail(String email){
+        int userType = 0;
+        String qry = "SELECT `user_type` FROM `users` WHERE user_email = '"+email+"';";
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        try {
+            if(rs.next()){
+                userType = rs.getInt("user_type");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return userType;
+    }
 }

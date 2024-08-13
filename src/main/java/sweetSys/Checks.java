@@ -272,7 +272,8 @@ public class Checks {
     }
 
 
-    public static boolean isMsgInTheSystem(Messaging msg) {
+    public static boolean isMsgInTheSystem(Messaging msg)
+    {
         String sender = msg.getSenderEmail();
         String receiver = msg.getReceiverEmail();
         String message = msg.getMsg();
@@ -295,7 +296,8 @@ public class Checks {
 
 
 
-    public static boolean checkIfRowMaterialInDatabase(String name) {
+    public static boolean checkIfRowMaterialInDatabase(String name)
+    {
         String qry = "select * from sweetsystem.row_material where row_material.rm_name = '"+name+"';";
 
         ResultSet rs = Database.connectionToSelectFromDB(qry);
@@ -338,7 +340,8 @@ public class Checks {
         }
     }
 
-    public static boolean checkIfThereAreOrdersInDatabase() {
+    public static boolean checkIfThereAreOrdersInDatabase()
+    {
         String qry = "select * from sweetsystem.order;";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
@@ -370,5 +373,24 @@ public class Checks {
     public static boolean isAcceptableRecipeDescription(String recipeDescription)
     {
         return recipeDescription != null && recipeDescription.trim() != "";
+    }
+
+    public static boolean checkIfBusinessIdAlreadyUsed(int bId)
+    {
+        String qry = "select * from sweetsystem.business where business_id = '"+bId+"';";
+
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
+        try {
+            if(rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
     }
 }//end of class

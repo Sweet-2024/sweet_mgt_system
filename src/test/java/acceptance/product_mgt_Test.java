@@ -109,7 +109,8 @@ public class product_mgt_Test {
     }
 
     @Then("the owner or supplier will remove product")
-    public void theOwnerOrSupplierWillRemoveProduct() {
+    public void theOwnerOrSupplierWillRemoveProduct()
+    {
 
     }
 

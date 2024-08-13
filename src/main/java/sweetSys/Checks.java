@@ -430,7 +430,7 @@ public class Checks {
     }
 
     public static boolean checkIfRowMaterialInDbAccordingToID(int rmId) {
-        String qry = "select * from sweetsystem.row_material where Product.rm_id = '"+rmId+"';";
+        String qry = "select * from sweetsystem.row_material where rm_id = "+rmId+";";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {

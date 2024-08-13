@@ -39,6 +39,7 @@ public class Main {
         String materialName;
         String supplierEmail;
         String rawMaterialName;
+        String ownerEmail;
         int price = 0;
         int wholesalePrice = 0;
         int quantity = 0;
@@ -51,8 +52,11 @@ public class Main {
         MyApp.userType = 0;
         while (true)
         {
-            MyApp.userEmail = null;
+            MyApp.userEmail = "";
             MyApp.userType = 0;
+            userEmail = "";
+            password = "";
+
             System.out.println("WELCOME TO OUR SWEET MANAGEMENT SYSTEM");
             System.out.println("1. Login");
             System.out.println("2. Sign up");
@@ -155,7 +159,7 @@ public class Main {
                         Listing.listAllUsersInTheSystem(4);
                         System.out.println();
 
-                        while (!isCorrectChoice) {
+                        while (true) {
                             System.out.println("Choose what to do : ");
                             System.out.println("a. Add new user");
                             System.out.println("b. Update existing user information");
@@ -163,17 +167,19 @@ public class Main {
                             System.out.println("d. Back");
 
                             uc = scanner.next().charAt(0);
-                            if (uc == 'a') {
+                            if (uc == 'a')
+                            {
                                 User u = signUp(null, null, null, null, 0);
                                 Updates.addNewUser(u);
                                 System.out.println("Added Successfully");
                                 System.out.println();
                                 isCorrectChoice = true;
                             } //add new user
-                            else if (uc == 'b') {
+                            else if (uc == 'b')
+                            {
                                 System.out.println("Enter the email of user you want to update : ");
                                 String ue = null;
-                                while (!Checks.checkIfEmailAlreadyUsed(ue)) {
+                                while (true) {
                                     ue = scanner.next();
                                     if (!Checks.checkIfEmailAlreadyUsed(ue)) {
                                         System.out.println("User is not in the system ! Try again");
@@ -190,9 +196,9 @@ public class Main {
                                 Updates.updateUser(u);
                                 System.out.println("Updated Successfully");
                                 System.out.println();
-                                isCorrectChoice = true;
                             } //update user info
-                            else if (uc == 'c') {
+                            else if (uc == 'c')
+                            {
                                 System.out.println("Enter the email of user you want to delete : ");
                                 String ue = null;
                                 while (!Checks.checkIfEmailAlreadyUsed(ue)) {
@@ -211,7 +217,6 @@ public class Main {
                                 Updates.deleteUser(ue);
                                 System.out.println("Deleted Successfully");
                                 System.out.println();
-                                isCorrectChoice = true;
                             } // delete user
                             else if (uc == 'd')
                                 break;
@@ -223,7 +228,7 @@ public class Main {
 
                     else if (uc == '2')
                     {
-                        while (!isCorrectChoice) {
+                        while (true) {
                             System.out.println("* Reporting And Monitoring : ");
                             System.out.println("a. Monitor profits and generate financial reports");
                             System.out.println("b. Identify best-selling products in each store");
@@ -233,14 +238,14 @@ public class Main {
                             uc = scanner.next().charAt(0);
 
                             if (uc == 'a') {
-                                isCorrectChoice = true;
                                 generateFinancialReports();
+                                break;
                             } else if (uc == 'b') {
-                                isCorrectChoice = true;
                                 listingBestSellingProduct();
+                                break;
                             } else if (uc == 'c') {
-                                isCorrectChoice = true;
                                 statisticsOnUsersByCity();
+                                break;
                             } else if (uc == 'd') {
                                 break;
                             } else {
@@ -250,16 +255,19 @@ public class Main {
                     }//choosing Reporting And Monitoring from the admin list
 
                     else if (uc == '3')
+                    {
+                        MyApp.userType = 0;
                         break; // to get out of admin area and return to the main list login, sign up, exit..
+                    }
                     else
                         System.out.println("Invalid choice! Try Again");
-
                 }
             }//logged in as admin
 
             else if (MyApp.userType == 2)
             {
-                while (true) {
+                while (true)
+                {
                     System.out.println("Welcome Owner! choose what to do from the list:");
                     System.out.println("1. Product Management:");
                     System.out.println("2. Communication and Notification");
@@ -280,6 +288,7 @@ public class Main {
                         userChoice = scanner.next();
                         if (userChoice.equals("a")) {
                             System.out.println("Enter product name:");
+                            scanner.nextLine();
                             productName = scanner.nextLine();
                             while (!Checks.isValidProductName(productName)) {
                                 System.out.println("Please enter a valid product name:");
@@ -596,14 +605,17 @@ public class Main {
 
             else if (MyApp.userType == 3)
             {
-                while (true) {
+                while (true)
+                {
                     System.out.println("Welcome Supplier! choose what to do from the list:");
-                    System.out.println("1. Raw material Management:");
+                    System.out.println("1. Raw material Management");
                     System.out.println("2. Communication and Notification");
-                    System.out.println("3. exit");
+                    System.out.println("3. Exit");
+
                     userChoice = scanner.next();
                     userChoice.trim();
-                    if (userChoice.equals("1")) {
+                    if (userChoice.equals("1"))
+                    {
                         System.out.println("    a. Add new raw material.");
                         System.out.println("    b. update available raw material.");
                         System.out.println("    c. remove raw material.");
@@ -621,7 +633,8 @@ public class Main {
                                 rawMaterialName = scanner.nextLine();
                             }
 
-                            while (true) {
+                            while (true)
+                            {
                                 System.out.println("Enter raw material price:");
                                 if (scanner.hasNextInt()) {
                                     price = scanner.nextInt();
@@ -784,7 +797,10 @@ public class Main {
                         }else{
                             System.out.println("Invalid choice!");
                         }
-                    }else if (userChoice.equals("2")) {
+                    }
+
+                    else if (userChoice.equals("2"))
+                    {
                         System.out.println("    a. Communicate with suppliers");
                         System.out.println("    b. Communicate with owners");
                         userChoice = scanner.next();
@@ -797,7 +813,8 @@ public class Main {
                         } else{
                             System.out.println("Invalid choice!");
                         }
-                    }else if (userChoice.equals("3")){
+                    }
+                    else if (userChoice.equals("3")){
                         break;
                     }else{
                         System.out.println("Invalid choice!");
@@ -844,6 +861,7 @@ public class Main {
                                 while(!Checks.isAcceptableRecipeName(recipeName))
                                 {
                                     System.out.println("Enter your new recipe name : ");
+                                    scanner.nextLine();
                                     recipeName = scanner.nextLine();
                                     if (!Checks.isAcceptableRecipeName(recipeName))
                                     {
@@ -957,15 +975,59 @@ public class Main {
                                 System.out.println("Invalid choice!");
                         }//end of account mgt loop
                     }//choosing Explore recipe from the list
-
                     else if(uc == '3')
                     {
+                        System.out.println("List of existing products:");
+                        Listing.listingOfProducts();
 
+                        System.out.println("Please enter the name of the Owner you wish to purchase from:");
+                        scanner.nextLine();
+                        ownerEmail = scanner.nextLine();
+                        while (!Checks.isValidEmail(ownerEmail) || !Checks.checkIfEmailAlreadyUsed(ownerEmail)){
+                            System.out.println("Please enter a valid email:");
+                            scanner.nextLine();
+                            ownerEmail = scanner.nextLine();
+                        }
+
+                        ArrayList<String> items = new ArrayList<>();
+                        ArrayList<Integer> qtyList = new ArrayList<>();
+
+                        while (true) {
+                            System.out.println("Enter the name of the product you want to order (or type 'done' to finish):");
+                            productName = scanner.nextLine();
+                            while (!Checks.isValidProductName(productName)){
+                                System.out.println("Please enter a valid raw product name:");
+                                scanner.nextLine();
+                                productName = scanner.nextLine();
+                            }
+
+                            if (productName.equalsIgnoreCase("done")) {
+                                break;
+                            }
+                            items.add(productName);
+
+                            System.out.println("Enter the quantity for " + productName + ":");
+                            while (true) {
+                                try {
+                                    quantity = scanner.nextInt();
+                                    scanner.nextLine();
+                                    qtyList.add(quantity);
+                                    break;
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Invalid input! Please enter a numeric value for the quantity.");
+                                    scanner.next();
+                                }
+                            }
+                        }
+                        MyApp.order = new Order(userEmail, ownerEmail, LocalDateTime.now(), items, qtyList);
+                        Updates.addNewOrderForProduct(MyApp.order);
+                        System.out.println("________________________Order successfully added__________________________");
                     }//choosing create an order from the list
 
                     else if(uc == '4')
                     {
-
+                        userTypeToCommunicate = 2;
+                        communicateWithUser(userEmail, userTypeToCommunicate);
                     }//choosing communication and feedback from the list
                     else if(uc == '5')
                     {
@@ -1016,6 +1078,7 @@ public class Main {
                     }//choosing feedback from the list
                     else if(uc == '6')
                     {
+
                         break;
                     }//choosing exit from the list
                     else
@@ -1025,10 +1088,7 @@ public class Main {
 
                 }
             }//logged in as regular user
-
-
         }
-
     }
 
     private static User signUp(String userEmail, String username, String password, String city, int userType)
@@ -1054,7 +1114,7 @@ public class Main {
             if(userChoice.equals("a"))
                 continue;
             else if (userChoice.equals("b")) {
-                exit(0);
+               break;
             }
             else
                 System.out.println("Invalid choice!");
@@ -1073,7 +1133,7 @@ public class Main {
                 if(userChoice.equals("a"))
                     continue;
                 else if (userChoice.equals("b")) {
-                    exit(0);
+                    break;
                 }
                 else
                     System.out.println("Invalid choice!");
@@ -1093,7 +1153,7 @@ public class Main {
                 if(userChoice.equals("a"))
                     continue;
                 else if (userChoice.equals("b")) {
-                    exit(0);
+                    break;
                 }
                 else
                     System.out.println("Invalid choice!");
@@ -1114,14 +1174,14 @@ public class Main {
                 if(userChoice.equals("a"))
                     continue;
                 else if (userChoice.equals("b")) {
-                    exit(0);
+                    break;
                 }
                 else
                     System.out.println("Invalid choice!");
             }
         }//entering city loop
 
-        while (!Checks.isValidUserType(MyApp.userType))
+        while (!Checks.isValidUserType(userType))
         {
             char ut;
             System.out.println("Choose your level");
@@ -1130,9 +1190,9 @@ public class Main {
             System.out.println("3. Regular User");
             ut = scanner.next().charAt(0);
             if(isDigit(ut))
-                MyApp.userType = ut - '0';
+                userType = ut - '0';
 
-            if (!Checks.isValidUserType(MyApp.userType))
+            if (!Checks.isValidUserType(userType))
             {
                 System.out.println("Invalid user level! Try again");
                 System.out.println("    a. Enter user level again");
@@ -1141,24 +1201,33 @@ public class Main {
                 if(userChoice.equals("a"))
                     continue;
                 else if (userChoice.equals("b")) {
-                    exit(0);
+                    break;
                 }
                 else
                     System.out.println("Invalid choice!");
             }
         }//entering user type loop
 
-        User u = new User(username, password, userEmail, city, MyApp.userType);
+        User u = new User(username, password, userEmail, city, userType+1);
         return u;
     }
     private static void communicateWithUser(String userEmail, int userTypeToCommunicate)
     {
+        String receiverEmail = null;
         Scanner scanner = new Scanner(System.in);
         Listing.listAllUsersInTheSystem(userTypeToCommunicate);
 
         System.out.println("Enter user email you want to communicate with:");
         //scanner.nextLine();
-        String receiverEmail = scanner.nextLine();
+        while(!Checks.checkIfEmailAlreadyUsed(receiverEmail))
+        {
+            receiverEmail = scanner.nextLine();
+            if(Checks.checkIfEmailAlreadyUsed(receiverEmail))
+                break;
+            else
+                System.out.println("Invalid email try again!");
+
+        }
 
         System.out.println("Write your message:");
         String msg = scanner.nextLine();

@@ -2,20 +2,20 @@ package Entities;
 
 public class Feedback
 {
-    int orderID;
+    int productID;
     int evaluation;
 
-    public Feedback(int orderID, int evaluation) {
-        this.orderID = orderID;
+    public Feedback(int productID, int evaluation) {
+        this.productID = productID;
         this.evaluation = evaluation;
     }
 
-    public int getOrderID() {
-        return orderID;
+    public int getProductID() {
+        return productID;
     }
 
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public int getEvaluation() {

@@ -33,7 +33,12 @@ public class Updates {
         String location = user.getLocation();
         int uType = user.getType();
 
-        if(!Checks.checkIfEmailAlreadyUsed(email))
+        if (Checks.isValidUsername(un)
+                && Checks.isvalidPassword(pass)
+                && Checks.isValidEmail(email)
+                && Checks.isValidCity(location)
+                && Checks.isValidUserType(uType)
+                && !Checks.checkIfEmailAlreadyUsed(email))
         {
             String qry = "insert into sweetsystem.users values ('" + un + "', '" + pass + "', '" + email + "', '" + location + "', " + uType + ");";
             Database.connectionToInsertOrUpdateDB(qry);
@@ -70,7 +75,7 @@ public class Updates {
     {
         String sender = msg.getSenderEmail();
         String receiver = msg.getReceiverEmail();
-        String message = msg.getMsg();
+        String message = msg.getMsg().replace('\'', ' ' );
         LocalDateTime msgDate = LocalDateTime.now();
         if(Checks.isMsgInTheSystem(msg))
         {
@@ -383,11 +388,19 @@ public class Updates {
         }
     }
 
-    public static void addNewFeedback(Feedback f)
+    public static void addNewFeedback(Feedback f, int productType)
     {
-        int orderId = f.getOrderID();
+        int productID = f.getProductID();
         int evaluation = f.getEvaluation();
-        String qry = "INSERT INTO `feedback`( `order_id`, `evaluation`) VALUES ("+orderId+","+evaluation+")";
-        Database.connectionToInsertOrUpdateDB(qry);
+        if(productType == 1)//feedback on a product of owner
+        {
+            String qry = "INSERT INTO feedback( product_id, evaluation) VALUES (" + productID + "," + evaluation + ")";
+            Database.connectionToInsertOrUpdateDB(qry);
+        }
+        else if(productType == 2)//feedback on a shared recipe
+        {
+            String qry = "INSERT INTO recipefeedback(recipe_id, evaluation) VALUES ("+productID+", "+evaluation+")";
+            Database.connectionToInsertOrUpdateDB(qry);
+        }
     }
 }

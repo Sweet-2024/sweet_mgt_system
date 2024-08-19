@@ -92,7 +92,7 @@ public class Main {
 
                 if(!signupFlag)
                 {
-                    while (!Checks.checkIfUserInDatabase(userEmail, password))
+                    while (true)
                     {
                         System.out.println("Enter your password");
                         password = scanner.next();
@@ -110,7 +110,9 @@ public class Main {
                             }
                             else
                                 System.out.println("Invalid choice!");
-                        }
+                        }//incorrect password
+                        else
+                            break;//correct password
                     }//entering password loop
                 }
 
@@ -138,6 +140,7 @@ public class Main {
             if (MyApp.userType == 1)
             {
                 boolean isCorrectChoice = false;
+
                 while (true)
                 {
                     System.out.println("Welcome Admin! choose what to do from the list:");
@@ -148,19 +151,8 @@ public class Main {
 
                     if (uc == '1')
                     {
-                        System.out.println("* Accounts Managements : ");
-                        System.out.println("Lists of all users in the system : ");
-                        Listing.listAllUsersInTheSystem(2);
-                        System.out.println();
-
-                        Listing.listAllUsersInTheSystem(3);
-                        System.out.println();
-
-                        Listing.listAllUsersInTheSystem(4);
-                        System.out.println();
-
                         while (true) {
-                            System.out.println("Choose what to do : ");
+                            System.out.println("* Accounts Managements : ");
                             System.out.println("a. Add new user");
                             System.out.println("b. Update existing user information");
                             System.out.println("c. Delete existing user");
@@ -169,14 +161,37 @@ public class Main {
                             uc = scanner.next().charAt(0);
                             if (uc == 'a')
                             {
-                                User u = signUp(null, null, null, null, 0);
-                                Updates.addNewUser(u);
-                                System.out.println("Added Successfully");
+                                Listing.listAllUsersInTheSystem(2);
                                 System.out.println();
-                                isCorrectChoice = true;
+
+                                Listing.listAllUsersInTheSystem(3);
+                                System.out.println();
+
+                                Listing.listAllUsersInTheSystem(4);
+                                System.out.println();
+
+                                User newUser = signUp(null, null, null, null, 0);
+
+                                if (newUser != null) {
+                                    Updates.addNewUser(newUser);
+                                    System.out.println("Added Successfully");
+                                    System.out.println();
+                                    isCorrectChoice = true;
+                                } else {
+                                    System.out.println("User sign-up was not successful.");
+                                }
                             } //add new user
                             else if (uc == 'b')
                             {
+                                Listing.listAllUsersInTheSystem(2);
+                                System.out.println();
+
+                                Listing.listAllUsersInTheSystem(3);
+                                System.out.println();
+
+                                Listing.listAllUsersInTheSystem(4);
+                                System.out.println();
+
                                 System.out.println("Enter the email of user you want to update : ");
                                 String ue = null;
                                 while (true) {
@@ -199,6 +214,15 @@ public class Main {
                             } //update user info
                             else if (uc == 'c')
                             {
+                                Listing.listAllUsersInTheSystem(2);
+                                System.out.println();
+
+                                Listing.listAllUsersInTheSystem(3);
+                                System.out.println();
+
+                                Listing.listAllUsersInTheSystem(4);
+                                System.out.println();
+
                                 System.out.println("Enter the email of user you want to delete : ");
                                 String ue = null;
                                 while (!Checks.checkIfEmailAlreadyUsed(ue)) {
@@ -266,10 +290,11 @@ public class Main {
 
             else if (MyApp.userType == 2)
             {
+                Boolean isCorrectChoice=false;
                 while (true)
                 {
                     System.out.println("Welcome Owner! choose what to do from the list:");
-                    System.out.println("1. Product Management:");
+                    System.out.println("1. Product Management");
                     System.out.println("2. Communication and Notification");
                     System.out.println("3. Accounts Management");
                     System.out.println("4. Order Management");
@@ -278,270 +303,316 @@ public class Main {
                     userChoice.trim();
                     if (userChoice.equals("1"))
                     {
-                        System.out.println("    a. Add new products.");
-                        System.out.println("    b. update available products.");
-                        System.out.println("    c. remove available products.");
-                        System.out.println("    d. Sales and profits.");
-                        System.out.println("    e. Best-selling products.");
-                        System.out.println("    f. discount products.");
-                        //System.out.println("    g. Back.");
-                        userChoice = scanner.next();
-                        if (userChoice.equals("a")) {
-                            System.out.println("Enter product name:");
-                            scanner.nextLine();
-                            productName = scanner.nextLine();
-                            while (!Checks.isValidProductName(productName)) {
-                                System.out.println("Please enter a valid product name:");
+                        while(true) {
+                            System.out.println("* Product Management:");
+                            System.out.println("    a. Add new products.");
+                            System.out.println("    b. update available products.");
+                            System.out.println("    c. remove available products.");
+                            System.out.println("    d. Sales and profits.");
+                            System.out.println("    e. Best-selling products.");
+                            System.out.println("    f. discount products.");
+                            System.out.println("    g. Back.");
+                            userChoice = scanner.next();
+                            if (userChoice.equals("a")) {
+                                System.out.println("List of existing products:");
+                                Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
+
+                                System.out.println("Enter product name:");
+                                scanner.nextLine();
                                 productName = scanner.nextLine();
-                            }
-
-                            while (true) {
-                                System.out.println("Enter product price:");
-                                if (scanner.hasNextInt()) {
-                                    price = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the price.");
-                                    scanner.next();
+                                while (!Checks.isValidProductName(productName)) {
+                                    System.out.println("Please enter a valid product name:");
+                                    productName = scanner.nextLine();
                                 }
-                            }
 
-                            while (true) {
-                                System.out.println("Enter wholesale price:");
-                                if (scanner.hasNextInt()) {
-                                    wholesalePrice = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the wholesale price.");
-                                    scanner.next();
-                                }
-                            }
-
-                            while (true) {
-                                System.out.println("Enter quantity:");
-                                if (scanner.hasNextInt()) {
-                                    quantity = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the quantity.");
-                                    scanner.next();
-                                }
-                            }
-
-                            while (true) {
-                                System.out.println("Enter saled quantity:");
-                                if (scanner.hasNextInt()) {
-                                    saledQty = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the saled quantity.");
-                                    scanner.next();
-                                }
-                            }
-
-                            System.out.println("Enter expiration date (YYYY-MM-DD):");
-                            exDate = scanner.nextLine();
-                            while (!Checks.isValidDate(exDate)) {
-                                System.out.println("Please enter a valid date in the format YYYY-MM-DD:");
-                                exDate = scanner.nextLine();
-                            }
-
-                            MyApp.product = new Product(productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
-                            addNewProduct(MyApp.product);
-                            System.out.println("_________________________Successfully added_________________________");
-                        } else if (userChoice.equals("b")) {
-                            System.out.println("List of existing products:");
-                            Listing.listingOfProducts();
-
-                            while (true) {
-                                System.out.println("Enter product id:");
-                                if (scanner.hasNextInt()) {
-                                    productId = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the price.");
-                                    scanner.next();
-                                }
-                            }
-
-                            System.out.println("Enter product name:");
-                            productName = scanner.nextLine();
-                            while (!Checks.isValidProductName(productName)) {
-                                System.out.println("Please enter a valid product name:");
-                                productName = scanner.nextLine();
-                            }
-
-                            while (true) {
-                                System.out.println("Enter product price:");
-                                if (scanner.hasNextInt()) {
-                                    price = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the price.");
-                                    scanner.next();
-                                }
-                            }
-
-                            while (true) {
-                                System.out.println("Enter wholesale price:");
-                                if (scanner.hasNextInt()) {
-                                    wholesalePrice = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the wholesale price.");
-                                    scanner.next();
-                                }
-                            }
-
-                            while (true) {
-                                System.out.println("Enter quantity:");
-                                if (scanner.hasNextInt()) {
-                                    quantity = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the quantity.");
-                                    scanner.next();
-                                }
-                            }
-
-                            while (true) {
-                                System.out.println("Enter saled quantity:");
-                                if (scanner.hasNextInt()) {
-                                    saledQty = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the saled quantity.");
-                                    scanner.next();
-                                }
-                            }
-
-                            System.out.println("Enter expiration date (YYYY-MM-DD):");
-                            exDate = scanner.nextLine();
-                            while (!Checks.isValidDate(exDate)) {
-                                System.out.println("Please enter a valid date in the format YYYY-MM-DD:");
-                                exDate = scanner.nextLine();
-                            }
-
-                            MyApp.product = new Product(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
-                            updateProduct(MyApp.product);
-                            System.out.println("_________________________Successfully updated_________________________");
-                        } else if (userChoice.equals("c")) {
-                            System.out.println("List of existing products:");
-                            Listing.listingOfProducts();
-
-                            while (true) {
-                                System.out.println("Enter product id:");
-                                if (scanner.hasNextInt()) {
-                                    productId = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the price.");
-                                    scanner.next();
-                                }
-                            }
-                            deleteProduct(productId);
-                            System.out.println("____________________Deletion completed successfully___________________");
-                        } else if (userChoice.equals("d")) {
-                            generateFinancialReports();
-                            System.out.println("__________________________________________________");
-                        } else if (userChoice.equals("e")) {
-                            listingBestSellingProduct();
-                            System.out.println("__________________________________________________");
-                        } else if (userChoice.equals("f")) {
-                            while (true) {
-                                System.out.println("Enter discount number (e.g: 0.20 for 20%):");
-                                if (scanner.hasNextDouble()) {
-                                    discount = scanner.nextDouble();
-                                    scanner.nextLine();
-
-                                    if (Checks.isValidDiscount(discount)) {
+                                while (true) {
+                                    System.out.println("Enter product price:");
+                                    if (scanner.hasNextInt()) {
+                                        price = scanner.nextInt();
+                                        scanner.nextLine();
                                         break;
                                     } else {
-                                        System.out.println("Invalid discount! Please enter a value between 0.0 and 1.0.");
+                                        System.out.println("Invalid input! Please enter a numeric value for the price.");
+                                        scanner.next();
                                     }
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value.");
-                                    scanner.next();
                                 }
+
+                                while (true) {
+                                    System.out.println("Enter wholesale price:");
+                                    if (scanner.hasNextInt()) {
+                                        wholesalePrice = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                while (true) {
+                                    System.out.println("Enter quantity:");
+                                    if (scanner.hasNextInt()) {
+                                        quantity = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the quantity.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                while (true) {
+                                    System.out.println("Enter saled quantity:");
+                                    if (scanner.hasNextInt()) {
+                                        saledQty = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                System.out.println("Enter expiration date (YYYY-MM-DD):");
+                                exDate = scanner.nextLine();
+                                while (!Checks.isValidDate(exDate)) {
+                                    System.out.println("Please enter a valid date in the format YYYY-MM-DD:");
+                                    exDate = scanner.nextLine();
+                                }
+
+                                MyApp.product = new Product(productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
+                                addNewProduct(MyApp.product);
+                                System.out.println("Successfully added");
+                            } else if (userChoice.equals("b")) {
+                                System.out.println("List of existing products:");
+                                Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
+
+                                while (true) {
+                                    System.out.println("Enter product id:");
+                                    if (scanner.hasNextInt()) {
+                                        productId = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the price.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                System.out.println("Enter product name:");
+                                productName = scanner.nextLine();
+                                while (!Checks.isValidProductName(productName)) {
+                                    System.out.println("Please enter a valid product name:");
+                                    productName = scanner.nextLine();
+                                }
+
+                                while (true) {
+                                    System.out.println("Enter product price:");
+                                    if (scanner.hasNextInt()) {
+                                        price = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the price.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                while (true) {
+                                    System.out.println("Enter wholesale price:");
+                                    if (scanner.hasNextInt()) {
+                                        wholesalePrice = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                while (true) {
+                                    System.out.println("Enter quantity:");
+                                    if (scanner.hasNextInt()) {
+                                        quantity = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the quantity.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                while (true) {
+                                    System.out.println("Enter saled quantity:");
+                                    if (scanner.hasNextInt()) {
+                                        saledQty = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                System.out.println("Enter expiration date (YYYY-MM-DD):");
+                                exDate = scanner.nextLine();
+                                while (!Checks.isValidDate(exDate)) {
+                                    System.out.println("Please enter a valid date in the format YYYY-MM-DD:");
+                                    exDate = scanner.nextLine();
+                                }
+
+                                MyApp.product = new Product(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
+                                updateProduct(MyApp.product);
+                                System.out.println("Successfully updated");
+                            } else if (userChoice.equals("c")) {
+                                System.out.println("List of existing products:");
+                                Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
+
+                                while (true) {
+                                    System.out.println("Enter product id:");
+                                    if (scanner.hasNextInt()) {
+                                        productId = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the price.");
+                                        scanner.next();
+                                    }
+                                }
+                                deleteProduct(productId);
+                                System.out.println("_Deletion completed successfully");
+                            } else if (userChoice.equals("d")) {
+                                generateFinancialReports();
+                                System.out.println("");
+                            } else if (userChoice.equals("e")) {
+                                listingBestSellingProduct();
+                                System.out.println("");
+                            } else if (userChoice.equals("f")) {
+                                while (true) {
+                                    System.out.println("Enter discount number (e.g: 0.20 for 20%):");
+                                    if (scanner.hasNextDouble()) {
+                                        discount = scanner.nextDouble();
+                                        scanner.nextLine();
+
+                                        if (Checks.isValidDiscount(discount)) {
+                                            break;
+                                        } else {
+                                            System.out.println("Invalid discount! Please enter a value between 0.0 and 1.0.");
+                                        }
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value.");
+                                        scanner.next();
+                                    }
+                                }
+                                Updates.productDiscount(discount);
+                                System.out.println("The discount has been successfully applied");
+                            }else if (userChoice.equals("g"))
+                            {
+                                break;
+                            }else {
+                                System.out.println("Invalid choice!");
                             }
-                            Updates.productDiscount(discount);
-                            System.out.println("_________________The discount has been successfully applied_____________________");
-                        }else{
-                            System.out.println("Invalid choice!");
                         }
 
                     }
                     else if (userChoice.equals("2"))
                     {
-                        System.out.println("    a. Communicate with users");
-                        System.out.println("    b. Communicate with suppliers");
-                        System.out.println("    c. Communicate with owners");
-                        userChoice = scanner.next();
-                        if (userChoice.equals("a")) {
-                            userTypeToCommunicate = 4;
-                            communicateWithUser(userEmail, userTypeToCommunicate);
-                        } else if (userChoice.equals("b")) {
-                            userTypeToCommunicate = 3;
-                            communicateWithUser(userEmail, userTypeToCommunicate);
-                        } else if (userChoice.equals("c")) {
-                            userTypeToCommunicate = 2;
-                            communicateWithUser(userEmail, userTypeToCommunicate);
-                        }else{
-                            System.out.println("Invalid choice!");
+                        while (true)
+                        {
+                            System.out.println("Choose from the following : ");
+                            System.out.println("\ta. communicate with others : ");
+                            System.out.println("\tb. See notification : ");
+                            System.out.println("\tc. Back : ");
+                            char uc = scanner.next().charAt(0);
+
+                            if(uc == 'a')
+                            {
+                                System.out.println("    a. Communicate with users");
+                                System.out.println("    b. Communicate with suppliers");
+                                System.out.println("    c. Communicate with owners");
+                                userChoice = scanner.next();
+                                if (userChoice.equals("a"))
+                                {
+                                    userTypeToCommunicate = 4;
+                                    communicateWithUser(userEmail, userTypeToCommunicate);
+                                }
+                                else if (userChoice.equals("b"))
+                                {
+                                    userTypeToCommunicate = 3;
+                                    communicateWithUser(userEmail, userTypeToCommunicate);
+                                }
+                                else if (userChoice.equals("c"))
+                                {
+                                    userTypeToCommunicate = 2;
+                                    communicateWithUser(userEmail, userTypeToCommunicate);
+                                }
+                                else
+                                    System.out.println("Invalid choice!");
+                            }//communications
+                            else if(uc == 'b')
+                            {
+                                Listing.listingAllMsgsSentToUser(userEmail);
+                            }//notifications
+                            else if(uc == 'c')
+                            {
+                                break;
+                            }//back
+                            else
+                                System.out.println("Invalid choice!");
                         }
-                    }
+
+                    }//communication and notifications
                     else if (userChoice.equals("3"))
                     {
-                        System.out.println("    a. Update your account.");
-                        System.out.println("    b. Business management.");
-                        userChoice = scanner.next();
-                        if (userChoice.equals("a")) {
-                            //****************************************************************//
-                        } else if (userChoice.equals("b")) {
-                            while (true) {
-                                System.out.println("Enter business id:");
-                                if (scanner.hasNextInt()) {
-                                    businessId = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the price.");
-                                    scanner.next();
+                        while (true) {
+                            System.out.println("* Accounts Management:");
+                            System.out.println("    a. Update your account.");
+                            System.out.println("    b. Business management.");
+                            System.out.println("    c. Back.");
+                            userChoice = scanner.next();
+                            if (userChoice.equals("a")) {
+                                Listing.listingYourOwnAccount(MyApp.userEmail);
+                                User u = signUp(MyApp.userEmail, null, null, null, 0);
+                                Updates.updateUser(u);
+                                System.out.println("UpdatedSuccessfully!\n");
+                            } else if (userChoice.equals("b")) {
+                                while (true) {
+                                    System.out.println("Enter business id:");
+                                    if (scanner.hasNextInt()) {
+                                        businessId = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the price.");
+                                        scanner.next();
+                                    }
                                 }
-                            }
 
-                            System.out.println("Enter business name:");
-                            scanner.nextLine();
-                            businessName = scanner.nextLine();
-                            while (!Checks.isValidProductName(businessName)) {
-                                System.out.println("Please enter a valid business name:");
+                                System.out.println("Enter business name:");
                                 scanner.nextLine();
                                 businessName = scanner.nextLine();
-                            }
+                                while (!Checks.isValidProductName(businessName)) {
+                                    System.out.println("Please enter a valid business name:");
+                                    scanner.nextLine();
+                                    businessName = scanner.nextLine();
+                                }
 
-                            System.out.println("Enter business location:");
-                            businessLocation = scanner.nextLine();
-                            while (!Checks.isValidCity(businessLocation)) {
-                                System.out.println("Please enter a valid business location:");
-                                scanner.nextLine();
+                                System.out.println("Enter business location:");
                                 businessLocation = scanner.nextLine();
-                            }
+                                while (!Checks.isValidCity(businessLocation)) {
+                                    System.out.println("Please enter a valid business location:");
+                                    scanner.nextLine();
+                                    businessLocation = scanner.nextLine();
+                                }
 
-                            MyApp.business = new Business(businessId, businessName, businessLocation, userEmail);
-                            Updates.updateBusinessInfo(MyApp.business);
-                            System.out.println("________________________Successfully updated__________________________");
-                        }else {
-                            System.out.println("Invalid choice!");
+                                MyApp.business = new Business(businessId, businessName, businessLocation, userEmail);
+                                Updates.updateBusinessInfo(MyApp.business);
+                                System.out.println("_Successfully updated_");
+                            }else if (userChoice.equals("c")){
+                                break;
+                            } else {
+                                System.out.println("Invalid choice!");
+                            }
                         }
                     }
                     else if (userChoice.equals("4"))
@@ -590,7 +661,7 @@ public class Main {
                         }
                         MyApp.order = new Order(userEmail, supplierEmail, LocalDateTime.now(), items, qtyList);
                         Updates.addNewOrderForRowMaterials(MyApp.order);
-                        System.out.println("________________________Order successfully added__________________________");
+                        System.out.println("_Order successfully added_");
                     }
                     else if (userChoice.equals("5"))
                     {
@@ -616,202 +687,213 @@ public class Main {
                     userChoice.trim();
                     if (userChoice.equals("1"))
                     {
-                        System.out.println("    a. Add new raw material.");
-                        System.out.println("    b. update available raw material.");
-                        System.out.println("    c. remove raw material.");
-                        userChoice = scanner.next();
-                        if (userChoice.equals("a")) {
-                            System.out.println("List of existing raw materials:");
-                            Listing.listingOfRawMaterials();
+                        while(true) {
+                            System.out.println("* Raw material Management");
+                            System.out.println("    a. Add new raw material.");
+                            System.out.println("    b. update available raw material.");
+                            System.out.println("    c. remove raw material.");
+                            System.out.println("    d. Back.");
+                            userChoice = scanner.next();
+                            if (userChoice.equals("a")) {
+                                System.out.println("List of existing raw materials:");
+                                Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
-                            System.out.println("Enter raw material name:");
-                            scanner.nextLine();
-                            rawMaterialName = scanner.nextLine();
-                            while (!Checks.isValidProductName(rawMaterialName)){
-                                System.out.println("Please enter a valid raw material name:");
+                                System.out.println("Enter raw material name:");
                                 scanner.nextLine();
                                 rawMaterialName = scanner.nextLine();
-                            }
-
-                            while (true)
-                            {
-                                System.out.println("Enter raw material price:");
-                                if (scanner.hasNextInt()) {
-                                    price = scanner.nextInt();
+                                while (!Checks.isValidProductName(rawMaterialName)) {
+                                    System.out.println("Please enter a valid raw material name:");
                                     scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the price.");
-                                    scanner.next();
+                                    rawMaterialName = scanner.nextLine();
                                 }
-                            }
 
-                            while (true) {
-                                System.out.println("Enter wholesale price:");
-                                if (scanner.hasNextInt()) {
-                                    wholesalePrice = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the wholesale price.");
-                                    scanner.next();
+                                while (true) {
+                                    System.out.println("Enter raw material price:");
+                                    if (scanner.hasNextInt()) {
+                                        price = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the price.");
+                                        scanner.next();
+                                    }
                                 }
-                            }
 
-                            while (true) {
-                                System.out.println("Enter quantity:");
-                                if (scanner.hasNextInt()) {
-                                    quantity = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the quantity.");
-                                    scanner.next();
+                                while (true) {
+                                    System.out.println("Enter wholesale price:");
+                                    if (scanner.hasNextInt()) {
+                                        wholesalePrice = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        scanner.next();
+                                    }
                                 }
-                            }
 
-                            while (true) {
-                                System.out.println("Enter saled quantity:");
-                                if (scanner.hasNextInt()) {
-                                    saledQty = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the saled quantity.");
-                                    scanner.next();
+                                while (true) {
+                                    System.out.println("Enter quantity:");
+                                    if (scanner.hasNextInt()) {
+                                        quantity = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the quantity.");
+                                        scanner.next();
+                                    }
                                 }
-                            }
 
-                            System.out.println("Enter expiration date (YYYY-MM-DD):");
-                            exDate = scanner.nextLine();
-                            while (!Checks.isValidDate(exDate)) {
-                                System.out.println("Please enter a valid date in the format YYYY-MM-DD:");
+                                while (true) {
+                                    System.out.println("Enter saled quantity:");
+                                    if (scanner.hasNextInt()) {
+                                        saledQty = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                System.out.println("Enter expiration date (YYYY-MM-DD):");
                                 exDate = scanner.nextLine();
-                            }
-
-                            MyApp.rawMaterial = new rawMaterial(rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
-                            addNewRawMaterial(MyApp.rawMaterial);
-                            System.out.println("_________________________Successfully added_________________________");
-                        } else if (userChoice.equals("b")) {
-                            System.out.println("List of existing raw materials:");
-                            Listing.listingOfRawMaterials();
-
-                            while (true) {
-                                System.out.println("Enter raw material id:");
-                                if (scanner.hasNextInt()) {
-                                    rawMaterialId = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the price.");
-                                    scanner.next();
+                                while (!Checks.isValidDate(exDate)) {
+                                    System.out.println("Please enter a valid date in the format YYYY-MM-DD:");
+                                    exDate = scanner.nextLine();
                                 }
-                            }
 
-                            System.out.println("Enter raw material name:");
-                            scanner.nextLine();
-                            rawMaterialName = scanner.nextLine();
-                            while (!Checks.isValidProductName(rawMaterialName)){
-                                System.out.println("Please enter a valid raw material name:");
+                                MyApp.rawMaterial = new rawMaterial(rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
+                                addNewRawMaterial(MyApp.rawMaterial);
+                                System.out.println("Successfully added");
+                            } else if (userChoice.equals("b")) {
+                                System.out.println("List of existing raw materials:");
+                                Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
+
+                                while (true) {
+                                    System.out.println("Enter raw material id:");
+                                    if (scanner.hasNextInt()) {
+                                        rawMaterialId = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the price.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                System.out.println("Enter raw material name:");
                                 scanner.nextLine();
                                 rawMaterialName = scanner.nextLine();
-                            }
-
-                            while (true) {
-                                System.out.println("Enter raw material price:");
-                                if (scanner.hasNextInt()) {
-                                    price = scanner.nextInt();
+                                while (!Checks.isValidProductName(rawMaterialName)) {
+                                    System.out.println("Please enter a valid raw material name:");
                                     scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the price.");
-                                    scanner.next();
+                                    rawMaterialName = scanner.nextLine();
                                 }
-                            }
 
-                            while (true) {
-                                System.out.println("Enter wholesale price:");
-                                if (scanner.hasNextInt()) {
-                                    wholesalePrice = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the wholesale price.");
-                                    scanner.next();
+                                while (true) {
+                                    System.out.println("Enter raw material price:");
+                                    if (scanner.hasNextInt()) {
+                                        price = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the price.");
+                                        scanner.next();
+                                    }
                                 }
-                            }
 
-                            while (true) {
-                                System.out.println("Enter quantity:");
-                                if (scanner.hasNextInt()) {
-                                    quantity = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the quantity.");
-                                    scanner.next();
+                                while (true) {
+                                    System.out.println("Enter wholesale price:");
+                                    if (scanner.hasNextInt()) {
+                                        wholesalePrice = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        scanner.next();
+                                    }
                                 }
-                            }
 
-                            while (true) {
-                                System.out.println("Enter saled quantity:");
-                                if (scanner.hasNextInt()) {
-                                    saledQty = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the saled quantity.");
-                                    scanner.next();
+                                while (true) {
+                                    System.out.println("Enter quantity:");
+                                    if (scanner.hasNextInt()) {
+                                        quantity = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the quantity.");
+                                        scanner.next();
+                                    }
                                 }
-                            }
 
-                            System.out.println("Enter expiration date (YYYY-MM-DD):");
-                            exDate = scanner.nextLine();
-                            while (!Checks.isValidDate(exDate)) {
-                                System.out.println("Please enter a valid date in the format YYYY-MM-DD:");
+                                while (true) {
+                                    System.out.println("Enter saled quantity:");
+                                    if (scanner.hasNextInt()) {
+                                        saledQty = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                System.out.println("Enter expiration date (YYYY-MM-DD):");
                                 exDate = scanner.nextLine();
-                            }
-
-
-                            MyApp.rawMaterial = new rawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
-                            updateRawMaterial(MyApp.rawMaterial);
-                            System.out.println("_________________________Successfully updated_________________________");
-                        } else if (userChoice.equals("c")) {
-                            System.out.println("List of existing raw materials:");
-                            Listing.listingOfRawMaterials();
-
-                            while (true) {
-                                System.out.println("Enter raw material id:");
-                                if (scanner.hasNextInt()) {
-                                    rawMaterialId = scanner.nextInt();
-                                    scanner.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Invalid input! Please enter a numeric value for the price.");
-                                    scanner.next();
+                                while (!Checks.isValidDate(exDate)) {
+                                    System.out.println("Please enter a valid date in the format YYYY-MM-DD:");
+                                    exDate = scanner.nextLine();
                                 }
-                            }
 
-                            deleteRawMaterial(rawMaterialId);
-                            System.out.println("____________________Deletion completed successfully___________________");
-                        }else{
-                            System.out.println("Invalid choice!");
+
+                                MyApp.rawMaterial = new rawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
+                                updateRawMaterial(MyApp.rawMaterial);
+                                System.out.println("Successfully updated");
+                            } else if (userChoice.equals("c")) {
+                                System.out.println("List of existing raw materials:");
+                                Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
+
+                                while (true) {
+                                    System.out.println("Enter raw material id:");
+                                    if (scanner.hasNextInt()) {
+                                        rawMaterialId = scanner.nextInt();
+                                        scanner.nextLine();
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a numeric value for the price.");
+                                        scanner.next();
+                                    }
+                                }
+
+                                deleteRawMaterial(rawMaterialId);
+                                System.out.println("_Deletion completed successfully");
+                            }else if (userChoice.equals("d")){
+                                break;
+                            } else {
+                                System.out.println("Invalid choice!");
+                            }
                         }
                     }
 
                     else if (userChoice.equals("2"))
                     {
-                        System.out.println("    a. Communicate with suppliers");
-                        System.out.println("    b. Communicate with owners");
-                        userChoice = scanner.next();
-                        if (userChoice.equals("a")) {
-                            userTypeToCommunicate = 4;
-                            communicateWithUser(userEmail, userTypeToCommunicate);
-                        } else if (userChoice.equals("b")) {
-                            userTypeToCommunicate = 3;
-                            communicateWithUser(userEmail, userTypeToCommunicate);
-                        } else{
-                            System.out.println("Invalid choice!");
+                        while(true) {
+                            System.out.println("* Communication and Notification:");
+                            System.out.println("    a. Communicate with suppliers.");
+                            System.out.println("    b. Communicate with owners.");
+                            System.out.println("    c. Back.");
+                            userChoice = scanner.next();
+                            if (userChoice.equals("a")) {
+                                userTypeToCommunicate = 3;
+                                communicateWithUser(userEmail, userTypeToCommunicate);
+                            } else if (userChoice.equals("b")) {
+                                userTypeToCommunicate = 2;
+                                communicateWithUser(userEmail, userTypeToCommunicate);
+                            }else if (userChoice.equals("b")){
+                                break;
+                            } else {
+                                System.out.println("Invalid choice!");
+                            }
                         }
                     }
                     else if (userChoice.equals("3")){
@@ -902,10 +984,11 @@ public class Main {
                                 while(!Checks.isAcceptableRecipeCategory(recipeCate))
                                 {
                                     System.out.println("Enter your new recipe category : ");
+                                    scanner.nextLine();
                                     recipeCate = scanner.nextLine();
-                                    if (!Checks.isAcceptableRecipeDescription(recipeCate))
+                                    if (!Checks.isAcceptableRecipeCategory(recipeCate))
                                     {
-                                        System.out.println("Unacceptable recipe category!");
+                                        System.out.println("Unacceptable recipe category! knowing that available categories are : dietary needs and food allergies");
                                         System.out.println("\t1. Enter recipe category again");
                                         System.out.println("\t2. back");
 
@@ -921,8 +1004,6 @@ public class Main {
 
                                 Recipe recipe = new Recipe(recipeName, recipeDescription, recipeCate, MyApp.userEmail);
                                 Updates.addNewRecipe(recipe);
-
-                                System.out.println("Added Successfully!");
                             }//post new recipe
                             else if (uc == 'c')
                             {
@@ -1021,7 +1102,7 @@ public class Main {
                         }
                         MyApp.order = new Order(userEmail, ownerEmail, LocalDateTime.now(), items, qtyList);
                         Updates.addNewOrderForProduct(MyApp.order);
-                        System.out.println("________________________Order successfully added__________________________");
+                        System.out.println("_Order successfully added_");
                     }//choosing create an order from the list
 
                     else if(uc == '4')
@@ -1031,28 +1112,112 @@ public class Main {
                     }//choosing communication and feedback from the list
                     else if(uc == '5')
                     {
-                        String chosenOrder = "";
-                        char evaluation;
-                        System.out.println("Feedback : ");
+                    int chosenOrder;
+                    int chosenProduct;
+                    char evaluation;
 
-                        ArrayList<Integer> ordersId = Listing.userFeedback(MyApp.userEmail);
+                    while(true)
+                    {
+                        System.out.println("Choose what to give feedback to : ");
+                        System.out.println("    a. Feedback on purchased products");
+                        System.out.println("    b. Feedback on shared recipes");
+                        System.out.println("    c. Back");
+                        uc = scanner.next().charAt(0);
 
-                        if(!ordersId.isEmpty())
+                        if (uc  == 'a')
                         {
-                            boolean exitFlag = true;
-                            while (exitFlag)
+                            System.out.println("Feedback on purchased products : ");
+                            ArrayList<Integer> ordersId = Listing.ordersMadeByThisUser(MyApp.userEmail);
+                            //array list of all orders made by this user
+                            if(!ordersId.isEmpty())
                             {
-                                System.out.println("Choose the order ID to give feedback to : ");
-                                System.out.println("    To get back press *");
-                                chosenOrder = scanner.next();
-
-                                if (chosenOrder.equals("*"))
-                                    break;
-                                int orderID = Integer.parseInt(chosenOrder);
-
-                                if (ordersId.contains(orderID))
+                                boolean exitFlag = true;
+                                while (exitFlag)
                                 {
-                                    while(true)
+                                    System.out.println("Choose the order ID : ");
+                                    while (true)
+                                    {
+                                        try {
+                                            chosenOrder = scanner.nextInt();
+                                            scanner.nextLine();
+                                            break;
+                                        } catch (InputMismatchException e) {
+                                            System.out.println("Invalid input! Please enter a numeric value for the order ID.");
+                                            scanner.next();
+                                        }
+                                    }//loop for order id reading
+
+                                    if (ordersId.contains(chosenOrder))
+                                    {
+                                        ArrayList <Integer> productsIdsInSelectedOrder = Listing.productsInTheOrder(chosenOrder);
+                                        System.out.println("\nChoose the product ID to give feedback to : ");
+                                        while (true)
+                                        {
+                                            try {
+                                                chosenProduct = scanner.nextInt();
+                                                scanner.nextLine();
+                                                break;
+                                            } catch (InputMismatchException e) {
+                                                System.out.println("Invalid input! Please enter a numeric value for the product ID.");
+                                                scanner.next();
+                                            }
+                                        }//loop for product id reading
+
+                                        if(productsIdsInSelectedOrder.contains(chosenProduct))
+                                        {
+                                            while (true)
+                                            {
+                                                System.out.println("Your evaluation is : (please choose number from 1-bad- to 5-good)");
+                                                System.out.println("    To get back press *");
+                                                evaluation = scanner.next().charAt(0);
+                                                if (evaluation == '*')
+                                                    break;
+                                                evaluation = (char) (evaluation - '0');
+                                                if (evaluation >= 1 && evaluation <= 5)
+                                                {
+                                                    Updates.addNewFeedback(new Feedback(chosenProduct, evaluation), 1);
+                                                    System.out.println("Feedback added successfully! ");
+                                                    System.out.println();
+                                                    exitFlag = false;
+                                                    break;
+                                                }//acceptable evaluation value
+                                                else
+                                                    System.out.println("Invalid evaluation!");
+                                            }//send feedback
+                                        }//if the selected product is in the selected order
+                                        else
+                                            System.out.println("This product is not in the order you chosen!");
+
+                                    }//if the user chooses correct order id
+                                    else
+                                        System.out.println("Please enter a valid order id!");
+                                }
+                            }
+                        }
+
+                        else if(uc == 'b')
+                        {
+                            int chosenRecipe;
+                            System.out.println("Feedback on shared recipes : ");
+                            ArrayList<Integer> recipesID = Listing.ListRecipesInDb();
+
+                            if(!recipesID.isEmpty())
+                            {
+                                System.out.println("Choose the recipe ID : ");
+                                while (true)
+                                {
+                                    try {
+                                        chosenRecipe = scanner.nextInt();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("Invalid input! Please enter a numeric value for the recipe ID.");
+                                        scanner.next();
+                                    }
+                                }//loop for order id reading
+
+                                if(recipesID.contains(chosenRecipe))
+                                {
+                                    while (true)
                                     {
                                         System.out.println("Your evaluation is : (please choose number from 1-bad- to 5-good)");
                                         System.out.println("    To get back press *");
@@ -1060,22 +1225,30 @@ public class Main {
                                         if (evaluation == '*')
                                             break;
                                         evaluation = (char) (evaluation - '0');
-                                        if (evaluation >= 1 && evaluation <= 5) {
-                                            Updates.addNewFeedback(new Feedback(orderID, evaluation));
+                                        if (evaluation >= 1 && evaluation <= 5)
+                                        {
+                                            Updates.addNewFeedback(new Feedback(chosenRecipe, evaluation),2);
                                             System.out.println("Feedback added successfully! ");
                                             System.out.println();
-                                            exitFlag = false;
                                             break;
-                                        }
+                                        }//acceptable evaluation value
                                         else
                                             System.out.println("Invalid evaluation!");
                                     }//send feedback
-
-                                } else
-                                    System.out.println("Please enter a valid order id!");
+                                }
                             }
-                        }
-                    }//choosing feedback from the list
+
+                        }//feedback on shared recipes
+
+                        else if(uc == 'c')
+                        {
+                            break;
+                        }//back
+                        else
+                            System.out.println("Invalid choice!");
+                    }
+
+                }//choosing feedback from the list//choosing feedback from the list
                     else if(uc == '6')
                     {
 
@@ -1091,126 +1264,224 @@ public class Main {
         }
     }
 
-    private static User signUp(String userEmail, String username, String password, String city, int userType)
+//    private static User signUp(String userEmail, String username, String password, String city, int userType) {
+//        Scanner scanner = new Scanner(System.in);
+//        String userChoice;
+//
+//        // Enter email loop
+//        while (!Checks.isValidEmail(userEmail)) {
+//            System.out.println("Enter your email:");
+//            userEmail = scanner.next();
+//            if (Checks.isValidEmail(userEmail) && !Checks.checkIfEmailAlreadyUsed(userEmail)) {
+//                break;
+//            } else if (!Checks.isValidEmail(userEmail)) {
+//                System.out.println("Invalid Email format! A valid email should contain @ and a correct domain name.");
+//            } else if (Checks.checkIfEmailAlreadyUsed(userEmail)) {
+//                System.out.println("Email already used! Try again.");
+//            }
+//            System.out.println("    a. Enter email again");
+//            System.out.println("    b. Exit");
+//            userChoice = scanner.next();
+//            if (userChoice.equals("a")) continue;
+//            else if (userChoice.equals("b")) return null;
+//            else System.out.println("Invalid choice!");
+//        }
+//
+//        // Enter username loop
+//        while (!Checks.isValidUsername(username)) {
+//            System.out.println("Enter your username:");
+//            username = scanner.next();
+//            if (Checks.isValidUsername(username)) break;
+//            else {
+//                System.out.println("Invalid username! Try again.");
+//                System.out.println("    a. Enter username again");
+//                System.out.println("    b. Exit");
+//                userChoice = scanner.next();
+//                if (userChoice.equals("a")) continue;
+//                else if (userChoice.equals("b")) return null;
+//                else System.out.println("Invalid choice!");
+//            }
+//        }
+//
+//        // Enter password loop
+//        while (!Checks.isvalidPassword(password)) {
+//            System.out.println("Enter your password:");
+//            password = scanner.next();
+//            if (Checks.isvalidPassword(password)) break;
+//            else {
+//                System.out.println("Invalid password! Try again.");
+//                System.out.println("    a. Enter password again");
+//                System.out.println("    b. Exit");
+//                userChoice = scanner.next();
+//                if (userChoice.equals("a")) continue;
+//                else if (userChoice.equals("b")) return null;
+//                else System.out.println("Invalid choice!");
+//            }
+//        }
+//
+//        // Enter city loop
+//        while (!Checks.isValidCity(city)) {
+//            System.out.println("Enter your location:");
+//            System.out.println("\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+//            city = scanner.next();
+//            if (Checks.isValidCity(city)) break;
+//            else {
+//                System.out.println("Invalid location! Try again.");
+//                System.out.println("    a. Enter location again");
+//                System.out.println("    b. Exit");
+//                userChoice = scanner.next();
+//                if (userChoice.equals("a")) continue;
+//                else if (userChoice.equals("b")) return null;
+//                else System.out.println("Invalid choice!");
+//            }
+//        }
+//
+//        // Enter user type loop
+//        while (!Checks.isValidUserType(userType)) {
+//            char ut;
+//            System.out.println("Choose your level:");
+//            System.out.println("1. Product owner");
+//            System.out.println("2. Raw material Supplier");
+//            System.out.println("3. Regular User");
+//            ut = scanner.next().charAt(0);
+//            if (Character.isDigit(ut)) userType = ut - '0';
+//
+//            if (Checks.isValidUserType(userType)) break;
+//            else {
+//                System.out.println("Invalid user level! Try again.");
+//                System.out.println("    a. Enter user level again");
+//                System.out.println("    b. Exit");
+//                userChoice = scanner.next();
+//                if (userChoice.equals("a")) continue;
+//                else if (userChoice.equals("b")) return null;
+//                else System.out.println("Invalid choice!");
+//            }
+//        }
+//
+//        // Create and return the new user object
+//        User newUser = new User(username, password, userEmail, city, userType);
+//        return newUser;
+//    }
+private static User signUp(String userEmail, String username, String password, String city, int userType)
+{
+    Scanner scanner = new Scanner(System.in);
+    String userChoice;
+    while (!Checks.isValidEmail(userEmail))
     {
-        Scanner scanner = new Scanner(System.in);
-        String userChoice;
-        while (!Checks.isValidEmail(userEmail))
+        System.out.println("Enter your email");
+        userEmail = scanner.next();
+        if (Checks.isValidEmail(userEmail) && !Checks.checkIfEmailAlreadyUsed(userEmail))
+            break;
+
+        else if (!Checks.isValidEmail(userEmail))
+            System.out.println("Invalid Email format! valid email should contains @ in addition to correct domain name");
+
+        else if (Checks.checkIfEmailAlreadyUsed(userEmail))
+            System.out.println("Email already used! Try again");
+
+        System.out.println("    a. Enter email again");
+        System.out.println("    b. Exit");
+        userChoice = scanner.next();
+        if(userChoice.equals("a"))
+            continue;
+        else if (userChoice.equals("b")) {
+            break;
+        }
+        else
+            System.out.println("Invalid choice!");
+    }//entering email loop
+
+    while (!Checks.isValidUsername(username))
+    {
+        System.out.println("Enter your username");
+        username = scanner.next();
+        if (!Checks.isValidUsername(username))
         {
-            System.out.println("Enter your email");
-            userEmail = scanner.next();
-            if (Checks.isValidEmail(userEmail) && !Checks.checkIfEmailAlreadyUsed(userEmail))
-                break;
-
-            else if (!Checks.isValidEmail(userEmail))
-                System.out.println("Invalid Email format! valid email should contains @ in addition to correct domain name");
-
-            else if (Checks.checkIfEmailAlreadyUsed(userEmail))
-                System.out.println("Email already used! Try again");
-
-            System.out.println("    a. Enter email again");
+            System.out.println("Invalid username! Try again");
+            System.out.println("    a. Enter username again");
             System.out.println("    b. Exit");
             userChoice = scanner.next();
             if(userChoice.equals("a"))
                 continue;
             else if (userChoice.equals("b")) {
-               break;
+                break;
             }
             else
                 System.out.println("Invalid choice!");
-        }//entering email loop
+        }
+    }//entering username loop
 
-        while (!Checks.isValidUsername(username))
+    while (!Checks.isvalidPassword(password))
+    {
+        System.out.println("Enter your password");
+        password = scanner.next();
+        if (!Checks.isvalidPassword(password))
         {
-            System.out.println("Enter your username");
-            username = scanner.next();
-            if (!Checks.isValidUsername(username))
-            {
-                System.out.println("Invalid username! Try again");
-                System.out.println("    a. Enter username again");
-                System.out.println("    b. Exit");
-                userChoice = scanner.next();
-                if(userChoice.equals("a"))
-                    continue;
-                else if (userChoice.equals("b")) {
-                    break;
-                }
-                else
-                    System.out.println("Invalid choice!");
+            System.out.println("Invalid password! Try again");
+            System.out.println("    a. Enter password again");
+            System.out.println("    b. Exit");
+            userChoice = scanner.next();
+            if(userChoice.equals("a"))
+                continue;
+            else if (userChoice.equals("b")) {
+                break;
             }
-        }//entering username loop
+            else
+                System.out.println("Invalid choice!");
+        }
+    }//entering password loop
 
-        while (!Checks.isvalidPassword(password))
+    while (!Checks.isValidCity(city))
+    {
+        System.out.println("Enter your location");
+        System.out.println("\tKnowing that available cities are : Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem and Hebron");
+        city = scanner.next();
+        if (!Checks.isValidCity(city))
         {
-            System.out.println("Enter your password");
-            password = scanner.next();
-            if (!Checks.isvalidPassword(password))
-            {
-                System.out.println("Invalid password! Try again");
-                System.out.println("    a. Enter password again");
-                System.out.println("    b. Exit");
-                userChoice = scanner.next();
-                if(userChoice.equals("a"))
-                    continue;
-                else if (userChoice.equals("b")) {
-                    break;
-                }
-                else
-                    System.out.println("Invalid choice!");
+            System.out.println("Invalid location! Try again");
+            System.out.println("    a. Enter location again");
+            System.out.println("    b. Exit");
+            userChoice = scanner.next();
+            if(userChoice.equals("a"))
+                continue;
+            else if (userChoice.equals("b")) {
+                break;
             }
-        }//entering password loop
+            else
+                System.out.println("Invalid choice!");
+        }
+    }//entering city loop
 
-        while (!Checks.isValidCity(city))
+    while (!Checks.isValidUserType(userType))
+    {
+        char ut;
+        System.out.println("Choose your level");
+        System.out.println("1. Product owner");
+        System.out.println("2. Row material Supplier");
+        System.out.println("3. Regular User");
+        ut = scanner.next().charAt(0);
+        if(isDigit(ut))
+            userType = ut - '0';
+
+        if (!Checks.isValidUserType(userType))
         {
-            System.out.println("Enter your location");
-            System.out.println("\tKnowing that available cities are : Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem and Hebron");
-            city = scanner.next();
-            if (!Checks.isValidCity(city))
-            {
-                System.out.println("Invalid location! Try again");
-                System.out.println("    a. Enter location again");
-                System.out.println("    b. Exit");
-                userChoice = scanner.next();
-                if(userChoice.equals("a"))
-                    continue;
-                else if (userChoice.equals("b")) {
-                    break;
-                }
-                else
-                    System.out.println("Invalid choice!");
+            System.out.println("Invalid user level! Try again");
+            System.out.println("    a. Enter user level again");
+            System.out.println("    b. Exit");
+            userChoice = scanner.next();
+            if(userChoice.equals("a"))
+                continue;
+            else if (userChoice.equals("b")) {
+                break;
             }
-        }//entering city loop
+            else
+                System.out.println("Invalid choice!");
+        }
+    }//entering user type loop
 
-        while (!Checks.isValidUserType(userType))
-        {
-            char ut;
-            System.out.println("Choose your level");
-            System.out.println("1. Product owner");
-            System.out.println("2. Row material Supplier");
-            System.out.println("3. Regular User");
-            ut = scanner.next().charAt(0);
-            if(isDigit(ut))
-                userType = ut - '0';
-
-            if (!Checks.isValidUserType(userType))
-            {
-                System.out.println("Invalid user level! Try again");
-                System.out.println("    a. Enter user level again");
-                System.out.println("    b. Exit");
-                userChoice = scanner.next();
-                if(userChoice.equals("a"))
-                    continue;
-                else if (userChoice.equals("b")) {
-                    break;
-                }
-                else
-                    System.out.println("Invalid choice!");
-            }
-        }//entering user type loop
-
-        User u = new User(username, password, userEmail, city, userType+1);
-        return u;
-    }
+    User u = new User(username, password, userEmail, city, userType+1);
+    return u;
+}
     private static void communicateWithUser(String userEmail, int userTypeToCommunicate)
     {
         String receiverEmail = null;
@@ -1234,6 +1505,6 @@ public class Main {
 
         MyApp.Msg = new Messaging(userEmail, receiverEmail, msg);
         Updates.addNewMsg(MyApp.Msg);
-        System.out.println("________________________Your message was sent successfully__________________________");
+        System.out.println("_Your message was sent successfully_");
     }
 }

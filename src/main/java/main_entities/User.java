@@ -60,11 +60,6 @@ public class User {
         this.password = password;
         this.email = email;
     }
-    static Database db;
-    public User()
-    {
-        db = new Database();
-    }
 
 
     @Override
@@ -80,13 +75,13 @@ public class User {
     public static int userTypeByEmail(String email){
         int userType = 0;
         String qry = "SELECT user_type FROM users WHERE user_email = '"+email+"';";
-        ResultSet rs = db.connectionToSelectFromDB(qry);
+        ResultSet rs = Database.connectionToSelectFromDB(qry);
         try {
             if(rs.next()){
                 userType = rs.getInt("user_type");
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
         return userType;
     }

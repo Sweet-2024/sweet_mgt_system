@@ -14,7 +14,7 @@ public class Order
 
 
 
-    public Order(String sellerEmail, String buyerEmail, LocalDateTime date, ArrayList<String> itemList, ArrayList<Integer> itemQty) {
+    public Order(String sellerEmail, String buyerEmail, LocalDateTime date, List<String> itemList, List<Integer> itemQty) {
         this.sellerEmail = sellerEmail;
         this.buyerEmail = buyerEmail;
         this.date = date;

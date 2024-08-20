@@ -47,7 +47,7 @@ public class Listing {
         String qry1 = "select count(product_id) from sweetsystem.product";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
-            if (rs.next() && rs.getInt(1) > 0) {
+            if (rs != null) {
                 //if the user is owner or supplier then printing only his won report
                 if (MyApp.userType == 2 || MyApp.userType == 3) {
                     System.out.println("FINANCIAL REPORT OF YOUR STORE :");
@@ -98,7 +98,7 @@ public class Listing {
         qry1 = "select count(product_id) from sweetsystem.product";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
-            if (rs.next() && rs.getInt(1) > 0) {
+            if (rs != null) {
                 if (MyApp.userType == 2 || MyApp.userType == 3) {
                     System.out.println("LIST OF BEST SELLING PRODUCTS IN YOUR STORE :");
                     printingBestSellingProduct(MyApp.userEmail, MyApp.userName);
@@ -135,9 +135,10 @@ public class Listing {
             boolean flag = false;
             System.out.println("STATISTICS ON USERS GATHERED BY CITY : ");
             System.out.println("City\t\tNumber of users");
-            while (rs.next()) {
+            while (rs != null) {
                 System.out.println(rs.getString(1) + "\t\t" + rs.getInt(2));
                 flag = true;
+                rs.next();
             }
 
             if (flag) {
@@ -172,7 +173,7 @@ public class Listing {
             System.out.println("--------------------------------------------------------------");
 
             int numOfUsers = 0;
-            while (rs.next()) {
+            while (rs != null) {
                 numOfUsers++;
                 String userName = rs.getString("username");
                 String userEmail = rs.getString("user_email");
@@ -180,6 +181,7 @@ public class Listing {
                 if (userEmail.equals(MyApp.userEmail))
                  continue;
                 System.out.printf("%-15s %-30s %-30s%n", userName, userEmail, userLocation);
+                rs.next();
             }
             System.out.println("--------------------------------------------------------------");
 
@@ -206,7 +208,7 @@ public class Listing {
 
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
 
-            while (rs.next()) {
+            while (rs != null) {
                 int rmId = rs.getInt("rm_id");
                 String rmName = rs.getString("rm_name");
                 int price = rs.getInt("rm_price");
@@ -219,6 +221,7 @@ public class Listing {
                 System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-20s%n",
                         rmId, rmName, price, wholesalePrice, quantity,
                         saledQty, exDate, supplierEmail);
+                rs.next();
             }
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
         } catch (SQLException e) {
@@ -237,7 +240,7 @@ public class Listing {
 
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
 
-            while (rs.next()) {
+            while (rs != null) {
                 int productId = rs.getInt("product_id");
                 String productName = rs.getString("product_name");
                 int price = rs.getInt("price");
@@ -250,6 +253,7 @@ public class Listing {
                 System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n",
                         productId, productName, price, wholesalePrice, quantity,
                         saledQty, exDate, ownerEmail);
+                rs.next();
             }
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
         } catch (SQLException e) {
@@ -267,7 +271,7 @@ public class Listing {
 
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
 
-            while (rs.next()) {
+            while (rs != null) {
                 int productId = rs.getInt("product_id");
                 String productName = rs.getString("product_name");
                 int price = rs.getInt("price");
@@ -280,6 +284,7 @@ public class Listing {
                 System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n",
                         productId, productName, price, wholesalePrice, quantity,
                         saledQty, exDate, ownerEmail);
+                rs.next();
             }
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
         } catch (SQLException e) {
@@ -294,7 +299,7 @@ public class Listing {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         int numOfRecipes = 0;
         try {
-            while (rs.next())
+            while (rs != null)
             {
                 numOfRecipes++;
                 System.out.println("\tRecipe ID : " + rs.getInt("recipe_id"));
@@ -303,6 +308,7 @@ public class Listing {
                 System.out.println("\tRecipe Category : " + rs.getString("recipe_category"));
                 System.out.println("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
                 System.out.println("------------------------------------------------------------------------------------");
+                rs.next();
             }
             if(numOfRecipes == 0)
                 System.out.println("There is no recipes in the system!");
@@ -320,11 +326,12 @@ public class Listing {
         int numOfRecipes = 0;
         try {
 
-            while(rs.next())
+            while(rs != null)
             {
                 numOfRecipes++;
                 printingRecipeAccordingToRecipeName(rs.getString("recipe_name"));
                 recipesID.add(rs.getInt("recipe_id"));
+                rs.next();
             }
             if(numOfRecipes == 0)
                 System.out.println("There is no recipes in the system!");
@@ -340,13 +347,14 @@ public class Listing {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         int numOfRecipes = 0;
         try {
-            while(rs.next())
+            while(rs != null)
             {
                 System.out.println("\tRecipe Name : " + rs.getString("recipe_name"));
                 System.out.println("\tRecipe Description : " + rs.getString("recipe_description"));
                 System.out.println("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
                 System.out.println("------------------------------------------------------------------------------------");
                 numOfRecipes++;
+                rs.next();
             }
             if(numOfRecipes == 0)
                 System.out.println("There is no recipes from this category!");
@@ -361,7 +369,7 @@ public class Listing {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         try {
             int numOfOrders = 0;
-            while (rs.next())
+            while (rs != null)
             {
                 System.out.println("OrderId : " + rs.getInt("order_id"));
                 System.out.println("Ordering Date : " + rs.getDate("order_date"));
@@ -369,6 +377,7 @@ public class Listing {
                 ordersID.add(rs.getInt("order_id"));
                 System.out.println();
                 numOfOrders++;
+                rs.next();
             }
             if (numOfOrders == 0)
                 System.out.println("You didn't make any order before!");
@@ -390,7 +399,7 @@ public class Listing {
         try {
             System.out.printf("%-20s %-20s", "Product id", "Product Name");
             System.out.println("\n-------------------------------------------------");
-            while (rs.next())
+            while (rs != null)
             {
                 System.out.printf("%-20s", rs.getInt("product_id"));
                 System.out.printf("%-20s", rs.getString("product_name"));
@@ -398,6 +407,7 @@ public class Listing {
                 productsId.add(rs.getInt("product_id"));
             }
             System.out.println("-------------------------------------------------");
+            rs.next();
         }
         catch (SQLException sqlException)
         {
@@ -415,7 +425,7 @@ public class Listing {
         try {
             System.out.printf("%-27s %-50s %-20s", "sender", "msg","date");
             System.out.println("\n-------------------------------------------------------------------------------------------------------");
-            while (rs.next())
+            while (rs != null)
             {
                 sender = rs.getString("sender");
                 msg = rs.getString("msg");
@@ -425,6 +435,7 @@ public class Listing {
                 System.out.printf("%-20s", date);
                 System.out.println();
                 numOfMsg ++;
+                rs.next();
             }
             System.out.println("\n-------------------------------------------------------------------------------------------------------");
             if(numOfMsg == 0)
@@ -441,7 +452,7 @@ public class Listing {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if (rs.next()) {
+            if (rs != null) {
                 System.out.println("Your Account Information:");
                 System.out.println(" Name: " + rs.getString("username"));
                 System.out.println(" Password: " + rs.getString("user_password"));
@@ -467,7 +478,7 @@ public class Listing {
 
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
 
-            while (rs.next()) {
+            while (rs != null) {
                 int rmId = rs.getInt("rm_id");
                 String rmName = rs.getString("rm_name");
                 int price = rs.getInt("rm_price");
@@ -480,6 +491,7 @@ public class Listing {
                 System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-20s%n",
                         rmId, rmName, price, wholesalePrice, quantity,
                         saledQty, exDate, supplierEmail);
+                rs.next();
             }
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
         } catch (SQLException e) {

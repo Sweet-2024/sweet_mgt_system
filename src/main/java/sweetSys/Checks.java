@@ -65,13 +65,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -82,13 +82,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -99,13 +99,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -116,13 +116,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -133,13 +133,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -150,13 +150,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -167,13 +167,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -184,13 +184,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -286,13 +286,13 @@ public class Checks {
         String qry = "select * from sweetsystem.message where sender = '" + sender + "' and receiver = '" + receiver + "' and msg = '" + message + "';";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         try {
-            if (rs.next())
+            if (rs != null)
             {
                 return true;
             }
             else
                 return false;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             return false;
         }
@@ -307,13 +307,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -332,13 +332,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next() && rs.getInt(1) > 0){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             return false;
         }
@@ -349,13 +349,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             return false;
         }
@@ -384,13 +384,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -417,13 +417,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
@@ -434,13 +434,13 @@ public class Checks {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
-            if(rs.next()){
+            if(rs != null){
                 return true;
             }
             else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }

@@ -100,7 +100,7 @@ public class Updates {
         String qry1 = "SELECT order_id FROM sweetsystem.order order BY order_id DESC;";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
-            if (rs.next()){
+            if (rs != null){
                 orderId = rs.getInt(1);
             }
         } catch (SQLException e) {
@@ -233,7 +233,7 @@ public class Updates {
         String qry1 = "select * from sweetsystem.product";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
-            if(rs.next())
+            if(rs != null)
             {
                 String qry2 = "SELECT product_id, price FROM product WHERE ex_date = (SELECT MIN(ex_date) FROM product);";
                 ResultSet ProductsWithSoonExpiryDate = Database.connectionToSelectFromDB(qry2);
@@ -271,7 +271,7 @@ public class Updates {
         String qry1 = "SELECT order_id FROM sweetsystem.order order BY order_id DESC;";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
-            if (rs.next()){
+            if (rs != null){
                 orderId = rs.getInt(1);
             }
         } catch (SQLException e) {

@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="consistency issues repairing">
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="solving last reliability problem">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AcceptanceTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="sweetMgtSystem" />
@@ -151,8 +151,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AcceptanceTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.AcceptanceTest" />
         <item itemvalue="JUnit.AccountMgtTest" />
         <item itemvalue="JUnit.admin_mgt_Test" />
         <item itemvalue="JUnit.account_mgt_Test" />
@@ -350,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724178863600</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="solving last reliability problem">
+      <created>1724180158552</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1724180158552</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -388,7 +395,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="completing adding new recipe feature with all scenarios" />
     <MESSAGE value="completing admin reporting feature with all scenarios" />
     <MESSAGE value="update teh connection to database &amp; make reporting function common to both admin and owners" />
     <MESSAGE value="completing owners and suppliers communication feature with all scenarios" />
@@ -413,7 +419,8 @@
     <MESSAGE value="consistency issue" />
     <MESSAGE value="renaming to match the convention" />
     <MESSAGE value="consistency issues repairing" />
-    <option name="LAST_COMMIT_MESSAGE" value="consistency issues repairing" />
+    <MESSAGE value="solving last reliability problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="solving last reliability problem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -422,6 +429,11 @@
           <properties class="java.lang.AssertionError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

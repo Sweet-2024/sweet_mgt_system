@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="changes on checks, listing and updates">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_13_2024_7_17_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_13_2024_7_17_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="modifications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/raw_material_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/raw_material_mgt_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724144955018</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="modifications">
+      <created>1724174430677</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1724174430677</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -367,7 +363,8 @@
     <MESSAGE value="changes on some test cases" />
     <MESSAGE value="changes on checks" />
     <MESSAGE value="changes on checks, listing and updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes on checks, listing and updates" />
+    <MESSAGE value="modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifications" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

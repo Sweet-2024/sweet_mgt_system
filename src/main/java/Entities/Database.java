@@ -11,12 +11,16 @@ public class Database{
     static Statement stmt;
 
 
+
+
     public static ResultSet connectionToSelectFromDB(String cmdString)
     {
         try
         {
             String connInfo = "jdbc:mysql://localhost:3306/sweetsystem";
-            conn = DriverManager.getConnection(connInfo, "root", "");
+            String username = "root";
+            String password = "";
+            conn = DriverManager.getConnection(connInfo, username, password);
             stmt = conn.createStatement();
             return stmt.executeQuery(cmdString);
         }
@@ -32,7 +36,9 @@ public class Database{
     {
         try {
             String connInfo = "jdbc:mysql://localhost:3306/sweetsystem";
-            conn = DriverManager.getConnection(connInfo, "root", "");
+            String username = "root";
+            String password = "";
+            conn = DriverManager.getConnection(connInfo, username, password);
             stmt = conn.createStatement();
             stmt.executeUpdate(cmdString);
         }

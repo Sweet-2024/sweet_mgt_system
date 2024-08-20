@@ -8,7 +8,7 @@ import main_entities.Product;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Updates {
 
@@ -95,8 +95,8 @@ public class Updates {
       String seller = order.getSellerEmail();
         String buyer = order.getBuyerEmail();
         LocalDateTime date = order.getDate();
-        ArrayList<String> items = order.getItemList();
-        ArrayList<Integer> qty = order.getItemQty();
+        List<String> items = order.getItemList();
+        List<Integer> qty = order.getItemQty();
         int orderId= 0;
 
         String qry1 = "SELECT order_id FROM sweetsystem.order order BY order_id DESC;";
@@ -267,8 +267,8 @@ public class Updates {
         String seller = order.getSellerEmail();
         String buyer = order.getBuyerEmail();
         LocalDateTime date = order.getDate();
-        ArrayList<String> items = order.getItemList();
-        ArrayList<Integer> qty = order.getItemQty();
+        List<String> items = order.getItemList();
+        List<Integer> qty = order.getItemQty();
         int orderId= 0;
 
         String qry1 = "SELECT order_id FROM sweetsystem.order order BY order_id DESC;";

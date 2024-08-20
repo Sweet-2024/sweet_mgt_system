@@ -2,14 +2,15 @@ package main_entities;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Order
 {
     private String sellerEmail;
     private String buyerEmail;
     private LocalDateTime date;
-    ArrayList<String> itemList = new ArrayList<String>();
-    ArrayList<Integer> itemQty = new ArrayList<Integer>();
+    List<String> itemList = new ArrayList<>();
+    List<Integer> itemQty = new ArrayList<>();
 
 
 
@@ -25,7 +26,7 @@ public class Order
         return sellerEmail;
     }
 
-    public ArrayList<Integer> getItemQty() {
+    public List<Integer> getItemQty() {
         return itemQty;
     }
 
@@ -53,7 +54,7 @@ public class Order
     }
 
   
-    public ArrayList<String> getItemList() {
+    public List<String> getItemList() {
         return itemList;
     }
 

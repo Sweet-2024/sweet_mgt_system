@@ -1102,7 +1102,7 @@ public class Main {
 
                                 while(!Checks.isAcceptableRecipeCategory(recipeCate))
                                 {
-                                    System.out.println("Enter your new recipe category : ");
+                                    System.out.println("Enter your new recipe category (dietary needs or food allergies) : ");
                                     scanner.nextLine();
                                     recipeCate = scanner.nextLine();
                                     if (!Checks.isAcceptableRecipeCategory(recipeCate))

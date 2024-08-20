@@ -1,7 +1,6 @@
 package acceptance;
 
-import Entities.Product;
-import Entities.rawMaterial;
+import main_entities.rawMaterial;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import sweetSys.Checks;

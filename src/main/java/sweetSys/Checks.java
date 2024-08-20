@@ -1,19 +1,15 @@
 package sweetSys;
 
-import Entities.*;
+import main_entities.*;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import static java.lang.Character.isAlphabetic;
 import static java.lang.Character.isDigit;

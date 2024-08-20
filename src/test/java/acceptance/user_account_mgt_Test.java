@@ -1,6 +1,6 @@
 package acceptance;
 
-import Entities.User;
+import main_entities.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,7 +12,6 @@ import sweetSys.Updates;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import static org.junit.Assert.assertTrue;
 
 public class user_account_mgt_Test {
 

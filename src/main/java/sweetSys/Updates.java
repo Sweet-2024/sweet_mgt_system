@@ -1,10 +1,10 @@
 package sweetSys;
 
-import Entities.*;
+import main_entities.*;
 
-import Entities.Order;
-import Entities.User;
-import Entities.Product;
+import main_entities.Order;
+import main_entities.User;
+import main_entities.Product;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;

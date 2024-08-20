@@ -1,6 +1,6 @@
 package sweetSys;
 
-import Entities.Database;
+import main_entities.Database;
 
 import java.sql.Date;
 import java.sql.ResultSet;

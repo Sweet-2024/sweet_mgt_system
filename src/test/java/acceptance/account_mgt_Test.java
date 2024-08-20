@@ -1,7 +1,6 @@
 package acceptance;
 
-import Entities.Business;
-import io.cucumber.java.en.Given;
+import main_entities.Business;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import sweetSys.Checks;

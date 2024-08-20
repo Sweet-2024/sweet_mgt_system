@@ -1,6 +1,6 @@
 package acceptance;
 
-import Entities.User;
+import main_entities.User;
 import io.cucumber.java.en.*;
 import sweetSys.Checks;
 import sweetSys.MyApp;

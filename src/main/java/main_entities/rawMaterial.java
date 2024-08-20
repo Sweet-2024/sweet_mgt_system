@@ -1,4 +1,4 @@
-package Entities;
+package main_entities;
 
 public class rawMaterial {
     private int rmId;

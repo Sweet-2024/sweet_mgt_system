@@ -3,7 +3,6 @@ package acceptance;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import sweetSys.*;
-import Entities.User;
 import sweetSys.MyApp;
 
 import static org.junit.Assert.assertFalse;

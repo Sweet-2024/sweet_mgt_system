@@ -1,7 +1,6 @@
 package acceptance;
 
-import Entities.Messaging;
-import com.google.protobuf.Message;
+import main_entities.Messaging;
 import io.cucumber.java.en.*;
 import sweetSys.Checks;
 import sweetSys.Listing;

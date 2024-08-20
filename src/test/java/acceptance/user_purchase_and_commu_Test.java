@@ -1,7 +1,7 @@
 package acceptance;
 
-import Entities.Messaging;
-import Entities.Order;
+import main_entities.Messaging;
+import main_entities.Order;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import sweetSys.Checks;

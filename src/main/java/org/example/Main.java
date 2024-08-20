@@ -1,6 +1,6 @@
 package org.example;
 
-import Entities.*;
+import main_entities.*;
 import sweetSys.Checks;
 import sweetSys.Listing;
 import sweetSys.MyApp;

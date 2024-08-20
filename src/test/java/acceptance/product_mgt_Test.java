@@ -1,7 +1,6 @@
 package acceptance;
 
-import Entities.User;
-import Entities.Product;
+import main_entities.Product;
 import io.cucumber.java.en.*;
 import sweetSys.Listing;
 import sweetSys.Checks;

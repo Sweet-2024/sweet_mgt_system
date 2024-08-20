@@ -1,10 +1,7 @@
-package Entities;
-
-import io.cucumber.java.sl.In;
+package main_entities;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class User {
 

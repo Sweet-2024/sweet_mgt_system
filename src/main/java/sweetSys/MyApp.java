@@ -1,8 +1,6 @@
 package sweetSys;
 
-import Entities.*;
-
-import java.util.ArrayList;
+import main_entities.*;
 
 public class MyApp {
 

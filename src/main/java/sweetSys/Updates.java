@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Updates {
-    public static void updateBusinessInfo(Business business) {
+
+    public static void updateBusinessInfo(Business business)
+    {
         int bId = business.getBusinessId();
         String bName = business.getBusinessName();
         String bLocation = business.getBusinessLocation();
@@ -101,6 +103,7 @@ public class Updates {
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
             if (rs != null){
+                rs.next();
                 orderId = rs.getInt(1);
             }
         } catch (SQLException e) {
@@ -272,6 +275,7 @@ public class Updates {
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
             if (rs != null){
+                rs.next();
                 orderId = rs.getInt(1);
             }
         } catch (SQLException e) {

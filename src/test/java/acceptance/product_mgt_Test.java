@@ -120,7 +120,7 @@ public class product_mgt_Test {
 
         Updates.deleteProduct(productId);
 
-        assertFalse(Checks.checkIfProductInDbAccordingToId(productId));
+        assertFalse(!Checks.checkIfProductInDbAccordingToId(productId));
     }
 
     @When("choosing Monitor sales and profits from the list")

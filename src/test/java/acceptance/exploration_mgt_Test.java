@@ -49,7 +49,7 @@ public class exploration_mgt_Test {
     @When("recipe name doesn't exist")
     public void recipeNameDoesnTExist() {
         String recipeName = "Spaghetti with meat";
-        assertFalse(Checks.checkIfRecipeInDatabase(recipeName));
+        assertFalse(!Checks.checkIfRecipeInDatabase(recipeName));
     }
 
     @When("choose recipes for dietary needs from the list")

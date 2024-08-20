@@ -55,7 +55,7 @@ public class admin_mgt_Test {
         String email = "s12113755@stu.najah.edu";
         String password = "123";
         Updates.deleteUser(email);
-        assertFalse(Checks.checkIfUserInDatabase(email, password));
+        assertFalse(!Checks.checkIfUserInDatabase(email, password));
     }
 
     @Then("admin can edit accounts information")

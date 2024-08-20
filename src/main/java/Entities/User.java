@@ -20,7 +20,6 @@ public class User {
         this.location = location;
         this.type = userType;
     }
-
     private int type;
 
     public int getType() {return type;}
@@ -64,6 +63,12 @@ public class User {
         this.password = password;
         this.email = email;
     }
+    static Database db;
+    public User()
+    {
+        db = new Database();
+    }
+
 
     @Override
     public String toString() {
@@ -78,7 +83,7 @@ public class User {
     public static int userTypeByEmail(String email){
         int userType = 0;
         String qry = "SELECT user_type FROM users WHERE user_email = '"+email+"';";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        ResultSet rs = db.connectionToSelectFromDB(qry);
         try {
             if(rs.next()){
                 userType = rs.getInt("user_type");

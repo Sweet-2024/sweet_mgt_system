@@ -212,12 +212,12 @@ public class Checks {
 
     public static boolean isAcceptableRecipeName(String recipeName)
     {
-        return (recipeName != null && recipeName.trim() != "");
+        return (recipeName != null && !recipeName.trim().equals(""));
     }
 
     public static boolean isAcceptableRecipeDescription(String recipeDescription)
     {
-        return recipeDescription != null && recipeDescription.trim() != "";
+        return recipeDescription != null && !recipeDescription.trim().equals("");
     }
     public static boolean checkIfBusinessIdAlreadyUsed(int bId)
     {

@@ -886,12 +886,18 @@ public class Main {
                             if (userChoice.equals("a")) {
                                 userTypeToCommunicate = 3;
                                 communicateWithUser(userEmail, userTypeToCommunicate);
-                            } else if (userChoice.equals("b")) {
+                            }
+                            else if (userChoice.equals("b"))
+                            {
                                 userTypeToCommunicate = 2;
                                 communicateWithUser(userEmail, userTypeToCommunicate);
-                            }else if (userChoice.equals("b")){
+                            }
+                            else if (userChoice.equals("c"))
+                            {
                                 break;
-                            } else {
+                            }
+                            else
+                            {
                                 System.out.println("Invalid choice!");
                             }
                         }

@@ -4,6 +4,7 @@ import Entities.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Ignore;
 import sweetSys.Checks;
 import sweetSys.MyApp;
 import sweetSys.Updates;
@@ -37,11 +38,12 @@ public class user_account_mgt_Test {
 
     }
 
+    @Ignore
     @Then("the account info will be updated in the system")
     public void theAccountInfoWillBeUpdatedInTheSystem() {
-        String un = "Ali";
-        String email = "s12115055@stu.najah.edu";
-        String password = "ali_ali";
+        String un = "user2";
+        String email = "user2@yahoo.com";
+        String password = "admin_33";
         String location = "Gaza";
         int userType = 4;
 

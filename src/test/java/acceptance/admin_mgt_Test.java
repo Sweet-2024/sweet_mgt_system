@@ -60,8 +60,8 @@ public class admin_mgt_Test {
 
     @Then("admin can edit accounts information")
     public void adminCanEditAccountsInformation() {
-        String un = "Ali";
-        String email = "s12115055@stu.najah.edu";
+        String un = "user2";
+        String email = "user2@yahoo.com";
         String password = "ali_ali";
         String location = "Gaza";
         int userType = 4;

@@ -1,4 +1,4 @@
-package sweetSys;
+package sweet_system;
 
 import main_entities.*;
 
@@ -143,18 +143,18 @@ public class Checks {
     {
         if (city == null)
             return false;
-        ArrayList<String> CitiesAL = new ArrayList<>();
-        CitiesAL.add("Gaza");
-        CitiesAL.add("Nablus");
-        CitiesAL.add("Ramallah");
-        CitiesAL.add("Jenin");
-        CitiesAL.add("Tulkarem");
-        CitiesAL.add("Bethlehem");
-        CitiesAL.add("Hebron");
+        ArrayList<String> citiesArrayList = new ArrayList<>();
+        citiesArrayList.add("Gaza");
+        citiesArrayList.add("Nablus");
+        citiesArrayList.add("Ramallah");
+        citiesArrayList.add("Jenin");
+        citiesArrayList.add("Tulkarem");
+        citiesArrayList.add("Bethlehem");
+        citiesArrayList.add("Hebron");
 
         String temp = city.toLowerCase();
 
-        for(String c: CitiesAL) {
+        for(String c: citiesArrayList) {
             if (temp.trim().equals(c.toLowerCase())) {
                 return true;
             }

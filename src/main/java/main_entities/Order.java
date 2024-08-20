@@ -30,7 +30,7 @@ public class Order
         return itemQty;
     }
 
-    public void setItemQty(ArrayList<Integer> itemQty) {
+    public void setItemQty(List<Integer> itemQty) {
         this.itemQty = itemQty;
     }
     public void setSellerEmail(String sellerEmail) {
@@ -58,7 +58,7 @@ public class Order
         return itemList;
     }
 
-    public void setItemList(ArrayList<String> itemList) {
+    public void setItemList(List<String> itemList) {
         this.itemList = itemList;
     }
 

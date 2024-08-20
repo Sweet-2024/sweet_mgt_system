@@ -6,6 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="consistency issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/rawMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/RawMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Checks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweet_system/Checks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Listing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweet_system/Listing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/MyApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweet_system/MyApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweetSys/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweet_system/Updates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/account_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/adding_dessert_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/adding_dessert_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/admin_reporting_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_reporting_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/login_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/login_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/order_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/order_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/owners_communication_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/owners_communication_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/raw_material_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/raw_material_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/sign_up_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/sign_up_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/user_purchase_and_commu_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_purchase_and_commu_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -328,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724176726255</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="consistency issue">
+      <created>1724177589236</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1724177589236</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

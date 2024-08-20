@@ -1,4 +1,4 @@
-package sweetSys;
+package sweet_system;
 
 import main_entities.Database;
 
@@ -12,17 +12,18 @@ public class Listing {
 
     // financial reports :
     private static void printingFinancialReportOfOwnersOrSuppliers(String email,String username) {
-        int incomes = 0, outcomes = 0;
+        int incomes = 0;
+        int outcomes = 0;
         int numOfProducts = 0;
         String qry3 = "select price , wholesale_price , saled_qty from sweetsystem.product where owner_email = '" + email + "'";
-        ResultSet ProductsOfOwnerList = Database.connectionToSelectFromDB(qry3);
+        ResultSet productsOfOwnerList = Database.connectionToSelectFromDB(qry3);
         try {
-            while (ProductsOfOwnerList.next()) {
-                int price = ProductsOfOwnerList.getInt("price");
-                int wholesale_price = ProductsOfOwnerList.getInt("wholesale_price");
-                int saledQty = ProductsOfOwnerList.getInt("saled_qty");
+            while (productsOfOwnerList.next()) {
+                int price = productsOfOwnerList.getInt("price");
+                int wholesalePrice = productsOfOwnerList.getInt("wholesale_price");
+                int saledQty = productsOfOwnerList.getInt("saled_qty");
                 incomes += price * saledQty;
-                outcomes += wholesale_price * saledQty;
+                outcomes += wholesalePrice * saledQty;
                 numOfProducts++;
             }
             if (numOfProducts > 0)
@@ -92,7 +93,8 @@ public class Listing {
     }
 
     public static boolean listingBestSellingProduct() {
-        String qry1, qry2;
+        String qry1;
+        String qry2;
         qry1 = "select count(product_id) from sweetsystem.product";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
@@ -152,15 +154,15 @@ public class Listing {
         }
     }
 
-    public static boolean listAllUsersInTheSystem(int TypeToCommunicate) {
-        String qry = "select * from sweetsystem.users where user_type = " + TypeToCommunicate + ";";
+    public static boolean listAllUsersInTheSystem(int typeToCommunicate) {
+        String qry = "select * from sweetsystem.users where user_type = " + typeToCommunicate + ";";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         try {
-            if (TypeToCommunicate == 2)
+            if (typeToCommunicate == 2)
                 System.out.println("\n* List of all owners in the system :");
-            else if (TypeToCommunicate == 3)
+            else if (typeToCommunicate == 3)
                 System.out.println("\n* List of all suppliers in the system :");
-            else if (TypeToCommunicate == 4)
+            else if (typeToCommunicate == 4)
                 System.out.println("\n* List of all users in the system :");
             else{
                 System.out.println("\n* Invalid user type specified.");
@@ -312,7 +314,7 @@ public class Listing {
 
         }
     }
-    public static ArrayList<Integer> ListRecipesInDb()
+    public static ArrayList<Integer> listRecipesInDb()
     {
         String qry = "select * from sweetsystem.recipe;";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
@@ -334,7 +336,7 @@ public class Listing {
         return recipesID;
     }
 
-    public static void ListRecipesInDbAccordingToCategory(String category)
+    public static void listRecipesInDbAccordingToCategory(String category)
     {
         String qry = "select * from sweetsystem.recipe where recipe.recipe_category = '"+category+"';";
         ResultSet rs = Database.connectionToSelectFromDB(qry);

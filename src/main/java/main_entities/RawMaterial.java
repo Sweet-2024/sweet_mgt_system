@@ -1,6 +1,6 @@
 package main_entities;
 
-public class rawMaterial {
+public class RawMaterial {
     private int rmId;
     private String rmName;
     private int price;
@@ -10,7 +10,7 @@ public class rawMaterial {
     private String exDate;
     private String supplierEmail;
 
-    public rawMaterial(String rmName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String supplierEmail) {
+    public RawMaterial(String rmName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String supplierEmail) {
         this.rmName = rmName;
         this.price = price;
         this.wholesalePrice = wholesalePrice;
@@ -19,7 +19,7 @@ public class rawMaterial {
         this.exDate = exDate;
         this.supplierEmail = supplierEmail;
     }
-    public rawMaterial(int rmId, String rmName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String supplierEmail) {
+    public RawMaterial(int rmId, String rmName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String supplierEmail) {
         this.rmId = rmId;
         this.rmName = rmName;
         this.price = price;

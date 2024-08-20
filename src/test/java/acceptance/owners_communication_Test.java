@@ -2,10 +2,10 @@ package acceptance;
 
 import main_entities.Messaging;
 import io.cucumber.java.en.*;
-import sweetSys.Checks;
-import sweetSys.Listing;
-import sweetSys.MyApp;
-import sweetSys.Updates;
+import sweet_system.Checks;
+import sweet_system.Listing;
+import sweet_system.MyApp;
+import sweet_system.Updates;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

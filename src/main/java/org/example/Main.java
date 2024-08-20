@@ -1,10 +1,10 @@
 package org.example;
 
 import main_entities.*;
-import sweetSys.Checks;
-import sweetSys.Listing;
-import sweetSys.MyApp;
-import sweetSys.Updates;
+import sweet_system.Checks;
+import sweet_system.Listing;
+import sweet_system.MyApp;
+import sweet_system.Updates;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 import static java.lang.Character.isDigit;
 import static java.lang.System.exit;
-import static sweetSys.Listing.*;
-import static sweetSys.Updates.*;
+import static sweet_system.Listing.*;
+import static sweet_system.Updates.*;
 
 public class Main {
     private static boolean signupFlag;
@@ -762,7 +762,7 @@ public class Main {
                                     exDate = scanner.nextLine();
                                 }
 
-                                MyApp.rawMaterial = new rawMaterial(rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
+                                MyApp.rawMaterial = new RawMaterial(rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 addNewRawMaterial(MyApp.rawMaterial);
                                 System.out.println("Successfully added");
                             } else if (userChoice.equals("b")) {
@@ -846,7 +846,7 @@ public class Main {
                                 }
 
 
-                                MyApp.rawMaterial = new rawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
+                                MyApp.rawMaterial = new RawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 updateRawMaterial(MyApp.rawMaterial);
                                 System.out.println("Successfully updated");
                             } else if (userChoice.equals("c")) {
@@ -1029,7 +1029,7 @@ public class Main {
                             if(uc == 'a')
                             {
                                 System.out.println("List of all recipes in the system");
-                                Listing.ListRecipesInDb();
+                                Listing.listRecipesInDb();
                             }//explore recipes
                             else if (uc == 'b')
                             {
@@ -1041,12 +1041,12 @@ public class Main {
                             else if (uc == 'c')
                             {
                                 System.out.println("List of recipes for dietary needs");
-                                Listing.ListRecipesInDbAccordingToCategory("dietary needs");
+                                Listing.listRecipesInDbAccordingToCategory("dietary needs");
                             }//recipes for dietary needs
                             else if (uc == 'd')
                             {
                                 System.out.println("List of recipes for food allergies");
-                                Listing.ListRecipesInDbAccordingToCategory("food allergies");
+                                Listing.listRecipesInDbAccordingToCategory("food allergies");
                             }//recipes for food allergies
                             else if (uc == 'e')
                             {
@@ -1199,7 +1199,7 @@ public class Main {
                         {
                             int chosenRecipe;
                             System.out.println("Feedback on shared recipes : ");
-                            ArrayList<Integer> recipesID = Listing.ListRecipesInDb();
+                            ArrayList<Integer> recipesID = Listing.listRecipesInDb();
 
                             if(!recipesID.isEmpty())
                             {

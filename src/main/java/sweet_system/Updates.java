@@ -1,4 +1,4 @@
-package sweetSys;
+package sweet_system;
 
 import main_entities.*;
 
@@ -338,7 +338,7 @@ public class Updates {
         }
     }
 
-    public static void addNewRawMaterial(rawMaterial rawMaterial)
+    public static void addNewRawMaterial(RawMaterial rawMaterial)
     {
         String rmName = rawMaterial.getRmName();
         int price = rawMaterial.getPrice();
@@ -359,7 +359,7 @@ public class Updates {
         }
     }
 
-    public static void updateRawMaterial(rawMaterial rawMaterial) {
+    public static void updateRawMaterial(RawMaterial rawMaterial) {
         int id = rawMaterial.getRmId();
         String rmName = rawMaterial.getRmName();
         int price = rawMaterial.getPrice();

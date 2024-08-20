@@ -1,8 +1,8 @@
 package acceptance;
 
 import io.cucumber.java.en.*;
-import sweetSys.Checks;
-import sweetSys.MyApp;
+import sweet_system.Checks;
+import sweet_system.MyApp;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

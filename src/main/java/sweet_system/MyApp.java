@@ -1,4 +1,4 @@
-package sweetSys;
+package sweet_system;
 
 import main_entities.*;
 
@@ -16,5 +16,5 @@ public class MyApp {
     public static Messaging Msg;
     public static Business business;
     public static Order order;
-    public static rawMaterial rawMaterial;
+    public static RawMaterial rawMaterial;
 }

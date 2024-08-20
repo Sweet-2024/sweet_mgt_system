@@ -1,11 +1,11 @@
 package acceptance;
 
-import main_entities.rawMaterial;
+import main_entities.RawMaterial;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import sweetSys.Checks;
-import sweetSys.MyApp;
-import sweetSys.Updates;
+import sweet_system.Checks;
+import sweet_system.MyApp;
+import sweet_system.Updates;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -50,7 +50,7 @@ public class raw_material_mgt_Test {
         String supplierEmail = "s12113763@stu.najah.edu";
         assertTrue(Checks.isValidEmail(supplierEmail));
 
-        rawMaterial rawMaterial = new rawMaterial (rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
+        RawMaterial rawMaterial = new RawMaterial(rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
         Updates.addNewRawMaterial(rawMaterial);
 
         assertTrue(Checks.checkIfRowMaterialInDatabase(rmName));
@@ -86,7 +86,7 @@ public class raw_material_mgt_Test {
         String supplierEmail = "s12113763@stu.najah.edu";
         assertTrue(Checks.isValidEmail(supplierEmail));
 
-        rawMaterial rawMaterial = new rawMaterial (id, rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
+        RawMaterial rawMaterial = new RawMaterial(id, rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
         Updates.updateRawMaterial(rawMaterial);
 
         assertTrue(Checks.checkIfRowMaterialInDatabase(rmName));

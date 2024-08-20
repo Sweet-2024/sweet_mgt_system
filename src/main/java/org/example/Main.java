@@ -40,6 +40,7 @@ public class Main {
         String supplierEmail;
         String rawMaterialName;
         String ownerEmail;
+        int userType = 0;
         int price = 0;
         int wholesalePrice = 0;
         int quantity = 0;
@@ -159,8 +160,7 @@ public class Main {
                             System.out.println("d. Back");
 
                             uc = scanner.next().charAt(0);
-                            if (uc == 'a')
-                            {
+                            if (uc == 'a') {
                                 Listing.listAllUsersInTheSystem(2);
                                 System.out.println();
 
@@ -170,48 +170,167 @@ public class Main {
                                 Listing.listAllUsersInTheSystem(4);
                                 System.out.println();
 
-                                User newUser = signUp(null, null, null, null, 0);
-
-                                if (newUser != null) {
-                                    Updates.addNewUser(newUser);
-                                    System.out.println("Added Successfully");
-                                    System.out.println();
-                                    isCorrectChoice = true;
-                                } else {
-                                    System.out.println("User sign-up was not successful.");
+                                System.out.println("Enter user email:");
+                                scanner.nextLine();
+                                userEmail = scanner.nextLine();
+                                while (!Checks.isValidEmail(userEmail) || Checks.checkIfEmailAlreadyUsed(userEmail)) {
+                                    System.out.println("Invalid email or email already in use. Please enter a valid user email:");
+                                    userEmail = scanner.nextLine();
                                 }
-                            } //add new user
-                            else if (uc == 'b')
-                            {
-                                Listing.listAllUsersInTheSystem(2);
-                                System.out.println();
 
-                                Listing.listAllUsersInTheSystem(3);
-                                System.out.println();
+                                System.out.println("Enter user name:");
+                                username = scanner.nextLine();
+                                while (!Checks.isValidUsername(username)) {
+                                    System.out.println("Invalid username. Please enter a valid user name:");
+                                    username = scanner.nextLine();
+                                }
 
-                                Listing.listAllUsersInTheSystem(4);
-                                System.out.println();
+                                System.out.println("Enter user password:");
+                                password = scanner.nextLine();
+                                while (!Checks.isvalidPassword(password)) {
+                                    System.out.println("Invalid password. Please enter a valid user password:");
+                                    password = scanner.nextLine();
+                                }
 
-                                System.out.println("Enter the email of user you want to update : ");
-                                String ue = null;
-                                while (true) {
-                                    ue = scanner.next();
-                                    if (!Checks.checkIfEmailAlreadyUsed(ue)) {
-                                        System.out.println("User is not in the system ! Try again");
-                                        System.out.println("    a. Enter email again");
-                                        System.out.println("    b. Exit");
-                                        userChoice = scanner.next();
-                                        if (userChoice.equals("a"))
-                                            continue;
-                                        else if (userChoice.equals("b"))
-                                            break;
+                                System.out.println("Enter user city:");
+                                System.out.println("\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                city = scanner.nextLine();
+                                while (!Checks.isValidCity(city)) {
+                                    System.out.println("Invalid city. Please enter a valid user city:");
+                                    System.out.println("\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                    city = scanner.nextLine();
+                                }
+
+                                boolean isValidUserType = false;
+                                while (!isValidUserType) {
+                                    System.out.println("Choose your level:");
+                                    System.out.println("1. Product owner");
+                                    System.out.println("2. Raw material Supplier");
+                                    System.out.println("3. Regular User");
+                                    char ut = scanner.next().charAt(0);
+
+                                    if (Character.isDigit(ut)) {
+                                        userType = ut - '0';
+                                        if (Checks.isValidUserType(userType)) {
+                                            isValidUserType = true;
+                                        } else {
+                                            System.out.println("Invalid user level! Try again.");
+                                            System.out.println("a. Enter user level again");
+                                            System.out.println("b. Exit");
+                                            userChoice = scanner.next();
+                                            scanner.nextLine(); // Consume newline left-over
+
+                                            if (userChoice.equals("b")) {
+                                                break;
+                                            } else if (!userChoice.equals("a")) {
+                                                System.out.println("Invalid choice!");
+                                            }
+                                        }
+                                    } else {
+                                        System.out.println("Invalid input. Please enter a digit.");
                                     }
                                 }
-                                User u = signUp(ue, null, null, null, 0);
-                                Updates.updateUser(u);
-                                System.out.println("Updated Successfully");
+
+                                if (isValidUserType) {
+                                    MyApp.user = new User(username, password, userEmail, city, userType + 1);
+                                    Updates.addNewUser(MyApp.user);
+                                    System.out.println("User added successfully.");
+                                    System.out.println();
+                                }
+                            } //add new user
+                            else if (uc == 'b') {
+                                Listing.listAllUsersInTheSystem(2);
                                 System.out.println();
-                            } //update user info
+
+                                Listing.listAllUsersInTheSystem(3);
+                                System.out.println();
+
+                                Listing.listAllUsersInTheSystem(4);
+                                System.out.println();
+
+                                String ue = null;
+                                boolean userFound = false;
+                                while (!userFound) {
+                                    System.out.println("Enter the email of the user you want to update: ");
+                                    scanner.nextLine();
+                                    ue = scanner.nextLine();
+                                    if (Checks.checkIfEmailAlreadyUsed(ue)) {
+                                        userFound = true;
+                                    } else {
+                                        System.out.println("User is not in the system! Try again.");
+                                        System.out.println("    a. Enter email again");
+                                        System.out.println("    b. Exit");
+                                        userChoice = scanner.nextLine();
+                                        if (userChoice.equals("b")) {
+                                            break;
+                                        } else if (!userChoice.equals("a")) {
+                                            System.out.println("Invalid choice!");
+                                        }
+                                    }
+                                }
+
+                                if (userFound) {
+                                    System.out.println("Enter user name:");
+                                    username = scanner.nextLine();
+                                    while (!Checks.isValidUsername(username)) {
+                                        System.out.println("Invalid username. Please enter a valid user name:");
+                                        username = scanner.nextLine();
+                                    }
+
+                                    System.out.println("Enter user password:");
+                                    password = scanner.nextLine();
+                                    while (!Checks.isvalidPassword(password)) {
+                                        System.out.println("Invalid password. Please enter a valid user password:");
+                                        password = scanner.nextLine();
+                                    }
+
+                                    System.out.println("Enter user city:");
+                                    System.out.println("\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                    city = scanner.nextLine();
+                                    while (!Checks.isValidCity(city)) {
+                                        System.out.println("Invalid city. Please enter a valid user city:");
+                                        System.out.println("\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                        city = scanner.nextLine();
+                                    }
+
+                                    boolean isValidUserType = false;
+                                    while (!isValidUserType) {
+                                        System.out.println("Choose your level:");
+                                        System.out.println("1. Product owner");
+                                        System.out.println("2. Raw material Supplier");
+                                        System.out.println("3. Regular User");
+                                        char ut = scanner.next().charAt(0);
+
+                                        if (Character.isDigit(ut)) {
+                                            userType = ut - '0';
+                                            if (Checks.isValidUserType(userType)) {
+                                                isValidUserType = true;
+                                            } else {
+                                                System.out.println("Invalid user level! Try again.");
+                                                System.out.println("    a. Enter user level again");
+                                                System.out.println("    b. Exit");
+                                                userChoice = scanner.nextLine();
+
+                                                if (userChoice.equals("b")) {
+                                                    break;
+                                                } else if (!userChoice.equals("a")) {
+                                                    System.out.println("Invalid choice!");
+                                                }
+                                            }
+                                        } else {
+                                            System.out.println("Invalid input. Please enter a digit.");
+                                        }
+                                    }
+
+                                    if (isValidUserType) {
+                                        MyApp.user = new User(username, password, ue, city, userType + 1);
+                                        Updates.updateUser(MyApp.user);
+                                        System.out.println("User updated successfully.");
+                                        System.out.println();
+                                    }
+                                }
+                            }
+
                             else if (uc == 'c')
                             {
                                 Listing.listAllUsersInTheSystem(2);
@@ -1263,105 +1382,7 @@ public class Main {
             }//logged in as regular user
         }
     }
-
-//    private static User signUp(String userEmail, String username, String password, String city, int userType) {
-//        Scanner scanner = new Scanner(System.in);
-//        String userChoice;
-//
-//        // Enter email loop
-//        while (!Checks.isValidEmail(userEmail)) {
-//            System.out.println("Enter your email:");
-//            userEmail = scanner.next();
-//            if (Checks.isValidEmail(userEmail) && !Checks.checkIfEmailAlreadyUsed(userEmail)) {
-//                break;
-//            } else if (!Checks.isValidEmail(userEmail)) {
-//                System.out.println("Invalid Email format! A valid email should contain @ and a correct domain name.");
-//            } else if (Checks.checkIfEmailAlreadyUsed(userEmail)) {
-//                System.out.println("Email already used! Try again.");
-//            }
-//            System.out.println("    a. Enter email again");
-//            System.out.println("    b. Exit");
-//            userChoice = scanner.next();
-//            if (userChoice.equals("a")) continue;
-//            else if (userChoice.equals("b")) return null;
-//            else System.out.println("Invalid choice!");
-//        }
-//
-//        // Enter username loop
-//        while (!Checks.isValidUsername(username)) {
-//            System.out.println("Enter your username:");
-//            username = scanner.next();
-//            if (Checks.isValidUsername(username)) break;
-//            else {
-//                System.out.println("Invalid username! Try again.");
-//                System.out.println("    a. Enter username again");
-//                System.out.println("    b. Exit");
-//                userChoice = scanner.next();
-//                if (userChoice.equals("a")) continue;
-//                else if (userChoice.equals("b")) return null;
-//                else System.out.println("Invalid choice!");
-//            }
-//        }
-//
-//        // Enter password loop
-//        while (!Checks.isvalidPassword(password)) {
-//            System.out.println("Enter your password:");
-//            password = scanner.next();
-//            if (Checks.isvalidPassword(password)) break;
-//            else {
-//                System.out.println("Invalid password! Try again.");
-//                System.out.println("    a. Enter password again");
-//                System.out.println("    b. Exit");
-//                userChoice = scanner.next();
-//                if (userChoice.equals("a")) continue;
-//                else if (userChoice.equals("b")) return null;
-//                else System.out.println("Invalid choice!");
-//            }
-//        }
-//
-//        // Enter city loop
-//        while (!Checks.isValidCity(city)) {
-//            System.out.println("Enter your location:");
-//            System.out.println("\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
-//            city = scanner.next();
-//            if (Checks.isValidCity(city)) break;
-//            else {
-//                System.out.println("Invalid location! Try again.");
-//                System.out.println("    a. Enter location again");
-//                System.out.println("    b. Exit");
-//                userChoice = scanner.next();
-//                if (userChoice.equals("a")) continue;
-//                else if (userChoice.equals("b")) return null;
-//                else System.out.println("Invalid choice!");
-//            }
-//        }
-//
-//        // Enter user type loop
-//        while (!Checks.isValidUserType(userType)) {
-//            char ut;
-//            System.out.println("Choose your level:");
-//            System.out.println("1. Product owner");
-//            System.out.println("2. Raw material Supplier");
-//            System.out.println("3. Regular User");
-//            ut = scanner.next().charAt(0);
-//            if (Character.isDigit(ut)) userType = ut - '0';
-//
-//            if (Checks.isValidUserType(userType)) break;
-//            else {
-//                System.out.println("Invalid user level! Try again.");
-//                System.out.println("    a. Enter user level again");
-//                System.out.println("    b. Exit");
-//                userChoice = scanner.next();
-//                if (userChoice.equals("a")) continue;
-//                else if (userChoice.equals("b")) return null;
-//                else System.out.println("Invalid choice!");
-//            }
-//        }
-//
-//        // Create and return the new user object
-//        User newUser = new User(username, password, userEmail, city, userType);
-//        return newUser;
-//    }
+    
 private static User signUp(String userEmail, String username, String password, String city, int userType)
 {
     Scanner scanner = new Scanner(System.in);

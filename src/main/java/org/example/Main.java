@@ -63,7 +63,7 @@ public class Main {
             System.out.println("3. Exit");
 
             userChoice = scanner.next();
-            userChoice.trim();
+            userChoice = userChoice.trim();
 
 
             if(userChoice.equals("1"))
@@ -300,7 +300,7 @@ public class Main {
                     System.out.println("4. Order Management");
                     System.out.println("5. exit");
                     userChoice = scanner.next();
-                    userChoice.trim();
+                    userChoice = userChoice.trim();
                     if (userChoice.equals("1"))
                     {
                         while(true) {
@@ -684,7 +684,7 @@ public class Main {
                     System.out.println("3. Exit");
 
                     userChoice = scanner.next();
-                    userChoice.trim();
+                    userChoice = userChoice.trim();
                     if (userChoice.equals("1"))
                     {
                         while(true) {

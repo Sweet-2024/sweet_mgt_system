@@ -434,7 +434,7 @@ public class Main {
                     logger.info("5. exit");
                     userChoice = scanner.next();
 
-                    userChoice.trim();
+                    userChoice = userChoice.trim();
                     if (userChoice.equals("1")) {
                         while (true) {
                             logger.info("* Product Management:");
@@ -798,7 +798,7 @@ public class Main {
                     logger.info(EXIT_OPTION);
 
                     userChoice = scanner.next();
-                    userChoice.trim();
+                    userChoice = userChoice.trim();
                     if (userChoice.equals("1")) {
                         while (true) {
                             logger.info("* Raw material Management");
@@ -1002,9 +1002,7 @@ public class Main {
                             {
                                 userTypeToCommunicate = 2;
                                 communicateWithUser(userEmail, userTypeToCommunicate);
-                            } else if (userChoice.equals("b")) {
-                                break;
-                            }
+                            } 
                             else if (userChoice.equals("c"))
                             {
                                 break;

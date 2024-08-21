@@ -411,7 +411,8 @@ public class Listing {
     {
         String qry = "select * from message where receiver = '"+receiverEmail+"' order by date DESC";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
-        String sender, msg;
+        String sender;
+        String msg;
         Date date;
         int numOfMsg = 0;
         try {

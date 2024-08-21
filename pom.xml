@@ -12,10 +12,6 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.host.url>http://localhost:9000</sonar.host.url>
-        <sonar.projectKey>sweet_mgt_system</sonar.projectKey>
-        <sonar.projectName>sweet_mgt_system</sonar.projectName>
-        <sonar.login>sqp_36d5c94968833daf06c7ad1aa3a2cd7b6144c264</sonar.login>
     </properties>
     <build>
         <plugins>

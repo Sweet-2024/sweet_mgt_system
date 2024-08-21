@@ -12,6 +12,9 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class Database{
+    private Database() {
+        throw new UnsupportedOperationException("This class cannot be instantiated");
+    }
     static Connection conn;
     static Statement stmt;
 

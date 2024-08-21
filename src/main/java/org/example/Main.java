@@ -22,6 +22,22 @@ import java.util.logging.Level;
 public class Main {
     private static boolean signupFlag;
     private static final Logger logger = Logger.getLogger(Main.class.getName());
+    private static final String EXIT_OPTION = "3. Exit";
+    private static final String EX2_OPTION = "b. Exit";
+    private static final String INVALID_OPTION = "Invalid choice!";
+    private static final String CHOOSE_OPTION = "Choose your level:";
+    private static final String OWNER_OPTION = "1. Product owner";
+    private static final String USER_OPTION = "3. Regular User";
+    private static final String INVALID_LEVEL_OPTION = "Invalid user level! Try again.";
+    private static final String LIST_OPTION = "List of existing products:";
+    private static final String INVALID_INPUT_OPTION = "Invalid input! Please enter a numeric value.";
+    private static final String PRICE_OPTION = "Enter wholesale price:";
+    private static final String QTY_OPTION = "Enter quantity:";
+    private static final String SALED_QTY_OPTION = "Enter saled quantity:";
+    private static final String DATE_OPTION = "Enter expiration date (YYYY-MM-DD):";
+    private static final String INVALID_DATE_OPTION = "Please enter a valid date in the format YYYY-MM-DD:";
+    private static final String UPDATED_OPTION = "Successfully updated";
+    private static final String CITY_OPTION = "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.";
     MyApp myApp;
     Main(MyApp myApp)
     {
@@ -65,7 +81,7 @@ public class Main {
             logger.info("WELCOME TO OUR SWEET MANAGEMENT SYSTEM");
             logger.info("1. Login");
             logger.info("2. Sign up");
-            logger.info( "3. Exit");
+            logger.info( EXIT_OPTION);
 
             userChoice = scanner.next();
             userChoice = userChoice.trim();
@@ -91,7 +107,7 @@ public class Main {
                             break;
                         }
                         else
-                            logger.info("Invalid choice!");
+                            logger.info(INVALID_OPTION);
                     }
                 }//entering email loop
 
@@ -114,7 +130,7 @@ public class Main {
                                 break;
                             }
                             else
-                                logger.info( "Invalid choice!");
+                                logger.info( INVALID_OPTION);
                         }//incorrect password
                         else
                             break;//correct password
@@ -138,7 +154,7 @@ public class Main {
                 exit(0);
             else if(!MyApp.isLoggedIn)
             {
-                logger.warning("Invalid choice!");
+                logger.warning(INVALID_OPTION);
                 continue;
             }
 
@@ -149,7 +165,7 @@ public class Main {
                     logger.info("Welcome Admin! Choose what to do from the list:");
                     logger.info( "1. Accounts Management");
                     logger.info(  "2. Reporting And Monitoring");
-                    logger.info( "3. Exit");
+                    logger.info( EXIT_OPTION);
                     char uc = scanner.next().charAt(0);
 
                     if (uc == '1') {
@@ -194,20 +210,20 @@ public class Main {
                                 }
 
                                 logger.info("Enter user city:");
-                                logger.info("\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                logger.info(CITY_OPTION);
                                 city = scanner.nextLine();
                                 while (!Checks.isValidCity(city)) {
                                     logger.log(Level.WARNING, "Invalid city. Please enter a valid user city:");
-                                    logger.log(Level.INFO, "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                    logger.log(Level.INFO, CITY_OPTION);
                                     city = scanner.nextLine();
                                 }
 
                                 boolean isValidUserType = false;
                                 while (!isValidUserType) {
-                                    logger.log(Level.INFO, "Choose your level:");
-                                    logger.log(Level.INFO, "1. Product owner");
+                                    logger.log(Level.INFO, CHOOSE_OPTION);
+                                    logger.log(Level.INFO, OWNER_OPTION);
                                     logger.log(Level.INFO, "2. Raw material Supplier");
-                                    logger.log(Level.INFO, "3. Regular User");
+                                    logger.log(Level.INFO, USER_OPTION);
                                     char ut = scanner.next().charAt(0);
 
                                     if (Character.isDigit(ut)) {
@@ -215,16 +231,16 @@ public class Main {
                                         if (Checks.isValidUserType(userType)) {
                                             isValidUserType = true;
                                         } else {
-                                            logger.log(Level.WARNING, "Invalid user level! Try again.");
+                                            logger.log(Level.WARNING, INVALID_LEVEL_OPTION);
                                             logger.log(Level.INFO, "a. Enter user level again");
-                                            logger.log(Level.INFO, "b. Exit");
+                                            logger.log(Level.INFO, EX2_OPTION);
                                             userChoice = scanner.next();
                                             scanner.nextLine(); // Consume newline left-over
 
                                             if (userChoice.equals("b")) {
                                                 break;
                                             } else if (!userChoice.equals("a")) {
-                                                logger.log(Level.SEVERE, "Invalid choice!");
+                                                logger.log(Level.SEVERE, INVALID_OPTION);
                                             }
                                         }
                                     } else {
@@ -260,12 +276,12 @@ public class Main {
                                     } else {
                                         logger.log(Level.WARNING, "User is not in the system! Try again.");
                                         logger.log(Level.INFO, "a. Enter email again");
-                                        logger.log(Level.INFO, "b. Exit");
+                                        logger.log(Level.INFO, EX2_OPTION);
                                         userChoice = scanner.nextLine();
                                         if (userChoice.equals("b")) {
                                             break;
                                         } else if (!userChoice.equals("a")) {
-                                            logger.log(Level.SEVERE, "Invalid choice!");
+                                            logger.log(Level.SEVERE, INVALID_OPTION);
                                         }
                                     }
                                 }
@@ -286,20 +302,20 @@ public class Main {
                                     }
 
                                     logger.log(Level.INFO, "Enter user city:");
-                                    logger.log(Level.INFO, "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                    logger.log(Level.INFO, CITY_OPTION);
                                     city = scanner.nextLine();
                                     while (!Checks.isValidCity(city)) {
                                         logger.log(Level.WARNING, "Invalid city. Please enter a valid user city:");
-                                        logger.log(Level.INFO, "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                        logger.log(Level.INFO, CITY_OPTION);
                                         city = scanner.nextLine();
                                     }
 
                                     boolean isValidUserType = false;
                                     while (!isValidUserType) {
-                                        logger.log(Level.INFO, "Choose your level:");
-                                        logger.log(Level.INFO, "1. Product owner");
+                                        logger.log(Level.INFO, CHOOSE_OPTION);
+                                        logger.log(Level.INFO, OWNER_OPTION);
                                         logger.log(Level.INFO, "2. Raw material Supplier");
-                                        logger.log(Level.INFO, "3. Regular User");
+                                        logger.log(Level.INFO, USER_OPTION);
                                         char ut = scanner.next().charAt(0);
 
                                         if (Character.isDigit(ut)) {
@@ -307,15 +323,15 @@ public class Main {
                                             if (Checks.isValidUserType(userType)) {
                                                 isValidUserType = true;
                                             } else {
-                                                logger.log(Level.WARNING, "Invalid user level! Try again.");
+                                                logger.log(Level.WARNING, INVALID_LEVEL_OPTION);
                                                 logger.log(Level.INFO, "a. Enter user level again");
-                                                logger.log(Level.INFO, "b. Exit");
+                                                logger.log(Level.INFO, EX2_OPTION);
                                                 userChoice = scanner.nextLine();
 
                                                 if (userChoice.equals("b")) {
                                                     break;
                                                 } else if (!userChoice.equals("a")) {
-                                                    logger.log(Level.SEVERE, "Invalid choice!");
+                                                    logger.log(Level.SEVERE, INVALID_OPTION);
                                                 }
                                             }
                                         } else {
@@ -349,7 +365,7 @@ public class Main {
                                     if (!Checks.checkIfEmailAlreadyUsed(ue)) {
                                         logger.log(Level.WARNING, "User is not in the system! Try again.");
                                         logger.log(Level.INFO, "a. Enter email again");
-                                        logger.log(Level.INFO, "b. Exit");
+                                        logger.log(Level.INFO, EX2_OPTION);
                                         userChoice = scanner.next();
                                         if (userChoice.equals("a"))
                                             continue;
@@ -430,7 +446,7 @@ public class Main {
 
                             userChoice = scanner.next();
                             if (userChoice.equals("a")) {
-                                logger.info("List of existing products:");
+                                logger.info(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
                                 logger.info("Enter product name:");
@@ -448,51 +464,51 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter wholesale price:");
+                                    logger.info(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter quantity:");
+                                    logger.info(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter saled quantity:");
+                                    logger.info(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
-                                logger.info("Enter expiration date (YYYY-MM-DD):");
+                                logger.info(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
-                                    logger.warning("Please enter a valid date in the format YYYY-MM-DD:");
+                                    logger.warning(INVALID_DATE_OPTION);
                                     exDate = scanner.nextLine();
                                 }
 
@@ -500,7 +516,7 @@ public class Main {
                                 addNewProduct(MyApp.product);
                                 logger.info("Successfully added");
                             } else if (userChoice.equals("b")) {
-                                logger.info("List of existing products:");
+                                logger.info(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
                                 while (true) {
@@ -510,7 +526,7 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -529,59 +545,59 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter wholesale price:");
+                                    logger.info(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter quantity:");
+                                    logger.info(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter saled quantity:");
+                                    logger.info(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
-                                logger.info("Enter expiration date (YYYY-MM-DD):");
+                                logger.info(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
-                                    logger.warning("Please enter a valid date in the format YYYY-MM-DD:");
+                                    logger.warning(INVALID_DATE_OPTION);
                                     exDate = scanner.nextLine();
                                 }
 
                                 MyApp.product = new Product(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 updateProduct(MyApp.product);
-                                logger.info("Successfully updated");
+                                logger.info(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
-                                logger.info("List of existing products:");
+                                logger.info(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
                                 while (true) {
@@ -591,7 +607,7 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -625,7 +641,7 @@ public class Main {
                             } else if (userChoice.equals("g")) {
                                 break;
                             } else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
                         }
 
@@ -652,7 +668,7 @@ public class Main {
                                     userTypeToCommunicate = 2;
                                     communicateWithUser(userEmail, userTypeToCommunicate);
                                 } else
-                                    logger.warning("Invalid choice!");
+                                    logger.warning(INVALID_OPTION);
                             }//communications
                             else if (uc == 'b') {
                                 Listing.listingAllMsgsSentToUser(userEmail);
@@ -661,7 +677,7 @@ public class Main {
                                 break;
                             }//back
                             else
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                         }
 
                     }//communication and notifications
@@ -688,7 +704,7 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -712,11 +728,11 @@ public class Main {
 
                                 MyApp.business = new Business(businessId, businessName, businessLocation, userEmail);
                                 Updates.updateBusinessInfo(MyApp.business);
-                                logger.info("Successfully updated");
+                                logger.info(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
                                 break;
                             } else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
                         }
                     } else if (userChoice.equals("4")) {
@@ -757,7 +773,7 @@ public class Main {
                                     qtyList.add(quantity);
                                     break;
                                 } catch (InputMismatchException e) {
-                                    logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                    logger.warning(INVALID_INPUT_OPTION);
                                     scanner.next();
                                 }
                             }
@@ -768,7 +784,7 @@ public class Main {
                     } else if (userChoice.equals("5")) {
                         break;
                     } else {
-                        logger.warning("Invalid choice!");
+                        logger.warning(INVALID_OPTION);
                     }
                 }
             }
@@ -777,7 +793,7 @@ public class Main {
                     logger.info("Welcome Supplier! Choose what to do from the list:");
                     logger.info("1. Raw material Management");
                     logger.info("2. Communication and Notification");
-                    logger.info("3. Exit");
+                    logger.info(EXIT_OPTION);
 
                     userChoice = scanner.next();
                     userChoice.trim();
@@ -810,51 +826,51 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter wholesale price:");
+                                    logger.info(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter quantity:");
+                                    logger.info(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter saled quantity:");
+                                    logger.info(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
-                                logger.info("Enter expiration date (YYYY-MM-DD):");
+                                logger.info(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
-                                    logger.warning("Please enter a valid date in the format YYYY-MM-DD:");
+                                    logger.warning(INVALID_DATE_OPTION);
                                     exDate = scanner.nextLine();
                                 }
 
@@ -872,7 +888,7 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -893,58 +909,58 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter wholesale price:");
+                                    logger.info(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter quantity:");
+                                    logger.info(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter saled quantity:");
+                                    logger.info(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
-                                logger.info("Enter expiration date (YYYY-MM-DD):");
+                                logger.info(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
-                                    logger.warning("Please enter a valid date in the format YYYY-MM-DD:");
+                                    logger.warning(INVALID_DATE_OPTION);
                                     exDate = scanner.nextLine();
                                 }
 
                                 MyApp.rawMaterial = new RawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                               
                                 updateRawMaterial(MyApp.rawMaterial);
-                                logger.info("Successfully updated");
+                                logger.info(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
                                 logger.info("List of existing raw materials:");
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
@@ -956,7 +972,7 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -966,7 +982,7 @@ public class Main {
                             } else if (userChoice.equals("d")) {
                                 break;
                             } else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
                         }
                     } else if (userChoice.equals("2")) {
@@ -990,17 +1006,17 @@ public class Main {
                             else if (userChoice.equals("c"))
                             {
                                 break;
+                            }else {
+                                logger.warning(INVALID_OPTION);
                             }
-                            else {
-                                logger.warning("Invalid choice!");
-                            }
+
 
                         
                         }
                     } else if (userChoice.equals("3")) {
                         break;
                     } else {
-                        logger.warning("Invalid choice!");
+                        logger.warning(INVALID_OPTION);
                     }
                 }
             }// logged in as supplier
@@ -1049,7 +1065,7 @@ public class Main {
                                         else if (uc == '2')
                                             break;
                                         else
-                                            logger.warning("Invalid Choice!");
+                                            logger.warning(INVALID_OPTION);
                                     }
                                 }
 
@@ -1067,7 +1083,7 @@ public class Main {
                                         else if (uc == '2')
                                             break;
                                         else
-                                            logger.warning("Invalid Choice!");
+                                            logger.warning(INVALID_OPTION);
                                     }
                                 }
 
@@ -1086,7 +1102,7 @@ public class Main {
                                         else if (uc == '2')
                                             break;
                                         else
-                                            logger.warning("Invalid Choice!");
+                                            logger.warning(INVALID_OPTION);
                                     }
                                 }
 
@@ -1095,7 +1111,7 @@ public class Main {
                             } else if (uc == 'c') {
                                 break;
                             } else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
                         }
                     } else if (uc == '2') {
@@ -1135,11 +1151,11 @@ public class Main {
                             {
                                 break;
                             } else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
                         }
                     } else if (uc == '3') {
-                        logger.info("List of existing products:");
+                        logger.info(LIST_OPTION);
                         Listing.listingOfProducts();
 
                         logger.info("Please enter the name of the Owner you wish to purchase from:");
@@ -1176,7 +1192,7 @@ public class Main {
                                     qtyList.add(quantity);
                                     break;
                                 } catch (InputMismatchException e) {
-                                    logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                    logger.warning(INVALID_INPUT_OPTION);
                                     scanner.next();
                                 }
                             }
@@ -1292,12 +1308,12 @@ public class Main {
                             } else if (uc == 'c') {
                                 break;
                             } else
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                         }
                     } else if (uc == '6') {
                         break;
                     } else {
-                        logger.warning("Invalid Choice!");
+                        logger.warning(INVALID_OPTION);
                     }
                 }
             }
@@ -1327,7 +1343,7 @@ public class Main {
             else if (userChoice.equals("b")) {
                 break;
             } else
-                logger.warning("Invalid choice!");
+                logger.warning(INVALID_OPTION);
         } // entering email loop
 
         while (!Checks.isValidUsername(username)) {
@@ -1343,7 +1359,7 @@ public class Main {
                 else if (userChoice.equals("b")) {
                     break;
                 } else
-                    logger.warning("Invalid choice!");
+                    logger.warning(INVALID_OPTION);
             }
         } // entering username loop
 
@@ -1360,7 +1376,7 @@ public class Main {
                 else if (userChoice.equals("b")) {
                     break;
                 } else
-                    logger.warning("Invalid choice!");
+                    logger.warning(INVALID_OPTION);
             }
         } // entering password loop
 
@@ -1378,22 +1394,22 @@ public class Main {
                 else if (userChoice.equals("b")) {
                     break;
                 } else
-                    logger.warning("Invalid choice!");
+                    logger.warning(INVALID_OPTION);
             }
         } // entering city loop
 
         while (!Checks.isValidUserType(userType)) {
             char ut;
-            logger.info("Choose your level:");
-            logger.info("1. Product owner");
+            logger.info(CHOOSE_OPTION);
+            logger.info(OWNER_OPTION);
             logger.info("2. Row material Supplier");
-            logger.info("3. Regular User");
+            logger.info(USER_OPTION);
             ut = scanner.next().charAt(0);
             if (Character.isDigit(ut))
                 userType = ut - '0';
 
             if (!Checks.isValidUserType(userType)) {
-                logger.warning("Invalid user level! Try again.");
+                logger.warning(INVALID_LEVEL_OPTION);
                 logger.info("    a. Enter user level again");
                 logger.info("    b. Exit");
                 userChoice = scanner.next();
@@ -1402,7 +1418,7 @@ public class Main {
                 else if (userChoice.equals("b")) {
                     break;
                 } else
-                    logger.warning("Invalid choice!");
+                    logger.warning(INVALID_OPTION);
             }
         } // entering user type loop
 

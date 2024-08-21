@@ -1,10 +1,7 @@
-package Entities;
-
-import io.cucumber.java.sl.In;
+package main_entities;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class User {
 
@@ -20,7 +17,6 @@ public class User {
         this.location = location;
         this.type = userType;
     }
-
     private int type;
 
     public int getType() {return type;}
@@ -65,6 +61,7 @@ public class User {
         this.email = email;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -84,7 +81,7 @@ public class User {
                 userType = rs.getInt("user_type");
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
         return userType;
     }

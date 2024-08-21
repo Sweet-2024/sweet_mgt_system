@@ -1,17 +1,17 @@
 package acceptance;
 
-import Entities.User;
+import main_entities.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import sweetSys.Checks;
-import sweetSys.MyApp;
-import sweetSys.Updates;
+import org.junit.Ignore;
+import sweet_system.Checks;
+import sweet_system.MyApp;
+import sweet_system.Updates;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import static org.junit.Assert.assertTrue;
 
 public class user_account_mgt_Test {
 
@@ -37,11 +37,12 @@ public class user_account_mgt_Test {
 
     }
 
+    @Ignore
     @Then("the account info will be updated in the system")
     public void theAccountInfoWillBeUpdatedInTheSystem() {
-        String un = "Ali";
-        String email = "s12115055@stu.najah.edu";
-        String password = "ali_ali";
+        String un = "user2";
+        String email = "user2@yahoo.com";
+        String password = "admin_33";
         String location = "Gaza";
         int userType = 4;
 

@@ -1,10 +1,10 @@
 package org.example;
 
-import Entities.*;
-import sweetSys.Checks;
-import sweetSys.Listing;
-import sweetSys.MyApp;
-import sweetSys.Updates;
+import main_entities.*;
+import sweet_system.Checks;
+import sweet_system.Listing;
+import sweet_system.MyApp;
+import sweet_system.Updates;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 import static java.lang.Character.isDigit;
 import static java.lang.System.exit;
-import static sweetSys.Listing.*;
-import static sweetSys.Updates.*;
+import static sweet_system.Listing.*;
+import static sweet_system.Updates.*;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -68,12 +68,12 @@ public class Main {
             logger.info( "3. Exit");
 
             userChoice = scanner.next();
-            userChoice.trim();
+            userChoice = userChoice.trim();
 
 
             if(userChoice.equals("1"))
             {
-                while (!Checks.checkIfEmailAlreadyUsed(userEmail))
+                while (Checks.checkIfEmailAlreadyUsed(userEmail))
                 {
                     logger.info("Enter your email");
                     userEmail = scanner.next();
@@ -415,6 +415,7 @@ public class Main {
                     logger.info("4. Order Management");
                     logger.info("5. exit");
                     userChoice = scanner.next();
+
                     userChoice.trim();
                     if (userChoice.equals("1")) {
                         while (true) {
@@ -426,6 +427,7 @@ public class Main {
                             logger.info("    e. Best-selling products.");
                             logger.info("    f. discount products.");
                             logger.info("    g. Back.");
+
                             userChoice = scanner.next();
                             if (userChoice.equals("a")) {
                                 logger.info("List of existing products:");
@@ -786,6 +788,7 @@ public class Main {
                             logger.info("    b. Update available raw material.");
                             logger.info("    c. Remove raw material.");
                             logger.info("    d. Back.");
+
                             userChoice = scanner.next();
                             if (userChoice.equals("a")) {
                                 logger.info("List of existing raw materials:");
@@ -855,7 +858,7 @@ public class Main {
                                     exDate = scanner.nextLine();
                                 }
 
-                                MyApp.rawMaterial = new rawMaterial(rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
+                                MyApp.rawMaterial = new RawMaterial(rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 addNewRawMaterial(MyApp.rawMaterial);
                                 logger.info("Successfully added");
                             } else if (userChoice.equals("b")) {
@@ -938,7 +941,8 @@ public class Main {
                                     exDate = scanner.nextLine();
                                 }
 
-                                MyApp.rawMaterial = new rawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
+                                MyApp.rawMaterial = new RawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
+                              
                                 updateRawMaterial(MyApp.rawMaterial);
                                 logger.info("Successfully updated");
                             } else if (userChoice.equals("c")) {
@@ -975,7 +979,9 @@ public class Main {
                             if (userChoice.equals("a")) {
                                 userTypeToCommunicate = 3;
                                 communicateWithUser(userEmail, userTypeToCommunicate);
-                            } else if (userChoice.equals("b")) {
+                            }
+                            else if (userChoice.equals("b"))
+                            {
                                 userTypeToCommunicate = 2;
                                 communicateWithUser(userEmail, userTypeToCommunicate);
                             } else if (userChoice.equals("b")) {
@@ -983,6 +989,11 @@ public class Main {
                             } else {
                                 logger.warning("Invalid choice!");
                             }
+                            else if (userChoice.equals("c"))
+                            {
+                                break;
+                            }
+                        
                         }
                     } else if (userChoice.equals("3")) {
                         break;
@@ -1095,21 +1106,31 @@ public class Main {
                             logger.info("\te. Back");
 
                             uc = scanner.next().charAt(0);
+
                             if (uc == 'a') {
                                 logger.info("List of all recipes in the system");
-                                Listing.ListRecipesInDb();
-                            } else if (uc == 'b') {
+                                Listing.listRecipesInDb();
+                            }//explore recipes
+                            else if (uc == 'b')
+                            {
+
                                 String rName;
                                 logger.info("Enter recipe Name you look for : ");
                                 rName = scanner.next();
                                 Listing.printingRecipeAccordingToRecipeName(rName);
-                            } else if (uc == 'c') {
+                            }//search for recipes
+                            else if (uc == 'c')
+                            {
                                 logger.info("List of recipes for dietary needs");
-                                Listing.ListRecipesInDbAccordingToCategory("dietary needs");
-                            } else if (uc == 'd') {
+                                Listing.listRecipesInDbAccordingToCategory("dietary needs");
+                            }//recipes for dietary needs
+                            else if (uc == 'd')
+                            {
                                 logger.info("List of recipes for food allergies");
-                                Listing.ListRecipesInDbAccordingToCategory("food allergies");
-                            } else if (uc == 'e') {
+                                Listing.listRecipesInDbAccordingToCategory("food allergies");
+                            }//recipes for food allergies
+                            else if (uc == 'e')
+                            {
                                 break;
                             } else {
                                 logger.warning("Invalid choice!");

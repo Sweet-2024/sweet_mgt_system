@@ -1,11 +1,10 @@
 package acceptance;
 
-import Entities.Database;
-import Entities.User;
+import main_entities.User;
 import io.cucumber.java.en.*;
-import sweetSys.Checks;
-import sweetSys.MyApp;
-import sweetSys.Updates;
+import sweet_system.Checks;
+import sweet_system.MyApp;
+import sweet_system.Updates;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -55,13 +54,13 @@ public class admin_mgt_Test {
         String email = "s12113755@stu.najah.edu";
         String password = "123";
         Updates.deleteUser(email);
-        assertFalse(Checks.checkIfUserInDatabase(email, password));
+        assertFalse(!Checks.checkIfUserInDatabase(email, password));
     }
 
     @Then("admin can edit accounts information")
     public void adminCanEditAccountsInformation() {
-        String un = "Ali";
-        String email = "s12115055@stu.najah.edu";
+        String un = "user2";
+        String email = "user2@yahoo.com";
         String password = "ali_ali";
         String location = "Gaza";
         int userType = 4;

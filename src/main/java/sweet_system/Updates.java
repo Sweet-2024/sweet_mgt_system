@@ -1,17 +1,19 @@
-package sweetSys;
+package sweet_system;
 
-import Entities.*;
+import main_entities.*;
 
-import Entities.Order;
-import Entities.User;
-import Entities.Product;
+import main_entities.Order;
+import main_entities.User;
+import main_entities.Product;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Updates {
-    public static void updateBusinessInfo(Business business) {
+
+    public static void updateBusinessInfo(Business business)
+    {
         int bId = business.getBusinessId();
         String bName = business.getBusinessName();
         String bLocation = business.getBusinessLocation();
@@ -93,14 +95,15 @@ public class Updates {
       String seller = order.getSellerEmail();
         String buyer = order.getBuyerEmail();
         LocalDateTime date = order.getDate();
-        ArrayList<String> items = order.getItemList();
-        ArrayList<Integer> qty = order.getItemQty();
+        List<String> items = order.getItemList();
+        List<Integer> qty = order.getItemQty();
         int orderId= 0;
 
         String qry1 = "SELECT order_id FROM sweetsystem.order order BY order_id DESC;";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
-            if (rs.next()){
+            if (rs != null){
+                rs.next();
                 orderId = rs.getInt(1);
             }
         } catch (SQLException e) {
@@ -233,7 +236,7 @@ public class Updates {
         String qry1 = "select * from sweetsystem.product";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
-            if(rs.next())
+            if(rs != null)
             {
                 String qry2 = "SELECT product_id, price FROM product WHERE ex_date = (SELECT MIN(ex_date) FROM product);";
                 ResultSet ProductsWithSoonExpiryDate = Database.connectionToSelectFromDB(qry2);
@@ -264,14 +267,15 @@ public class Updates {
         String seller = order.getSellerEmail();
         String buyer = order.getBuyerEmail();
         LocalDateTime date = order.getDate();
-        ArrayList<String> items = order.getItemList();
-        ArrayList<Integer> qty = order.getItemQty();
+        List<String> items = order.getItemList();
+        List<Integer> qty = order.getItemQty();
         int orderId= 0;
 
         String qry1 = "SELECT order_id FROM sweetsystem.order order BY order_id DESC;";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
-            if (rs.next()){
+            if (rs != null){
+                rs.next();
                 orderId = rs.getInt(1);
             }
         } catch (SQLException e) {
@@ -334,7 +338,7 @@ public class Updates {
         }
     }
 
-    public static void addNewRawMaterial(rawMaterial rawMaterial)
+    public static void addNewRawMaterial(RawMaterial rawMaterial)
     {
         String rmName = rawMaterial.getRmName();
         int price = rawMaterial.getPrice();
@@ -355,7 +359,7 @@ public class Updates {
         }
     }
 
-    public static void updateRawMaterial(rawMaterial rawMaterial) {
+    public static void updateRawMaterial(RawMaterial rawMaterial) {
         int id = rawMaterial.getRmId();
         String rmName = rawMaterial.getRmName();
         int price = rawMaterial.getPrice();

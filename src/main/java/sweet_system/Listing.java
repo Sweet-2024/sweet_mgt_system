@@ -5,6 +5,7 @@ import main_entities.Database;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Listing {
@@ -12,6 +13,11 @@ public class Listing {
     private static final String SALED_QTY = "saled_qty";
     private static final String WHOLESALE_PRICE = "wholesale_price";
     private static final String PRICE = "price";
+    private static final String QTY_OPTION = "Quantity";
+    private static final String WHOLESALE_PRICE_OPTION = "Wholesale Price";
+    private static final String PRICE_OPTION = "Price";
+    private static final String SALED_QTY_OPTION = "Saled Qty";
+    private static final String EX_DATE_OPTION = "Expiration Date";
     private static final String USERNAME = "username";
     private static final String USER_EMAIL = "user_email";
     private static final String PRODUCT_ID = "product_id";
@@ -211,8 +217,8 @@ public class Listing {
 
         try {
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
-                    "raw material id", "raw material Name", "Price", "Wholesale Price", "Quantity",
-                    "Saled Qty", "Expiration Date", "Supplier Email");
+                    "raw material id", "raw material Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
+                    SALED_QTY_OPTION, EX_DATE_OPTION, "Supplier Email");
 
             System.out.println(LINE);
 
@@ -242,8 +248,8 @@ public class Listing {
 
         try {
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n",
-                    "Product id", "Product Name", "Price", "Wholesale Price", "Quantity",
-                    "Saled Qty", "Expiration Date", "Owner Email");
+                    "Product id", "Product Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
+                    SALED_QTY_OPTION, EX_DATE_OPTION, "Owner Email");
 
             System.out.println(LINE);
             while (rs.next()) {
@@ -271,8 +277,8 @@ public class Listing {
 
         try {
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n",
-                    "Product id", "Product Name", "Price", "Wholesale Price", "Quantity",
-                    "Saled Qty", "Expiration Date", "Owner Email");
+                    "Product id", "Product Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
+                    SALED_QTY_OPTION, EX_DATE_OPTION, "Owner Email");
 
             System.out.println(LINE);
             while (rs.next()) {
@@ -324,7 +330,7 @@ public class Listing {
     {
         String qry = "select * from sweetsystem.recipe;";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
-        List<Integer> recipesID = new List<>();
+        List<Integer> recipesID = new ArrayList<>();
         int numOfRecipes = 0;
         try {
 
@@ -364,7 +370,7 @@ public class Listing {
     }
     public static List<Integer> ordersMadeByThisUser(String userEmail)
     {
-        List<Integer> ordersID = new List<>();
+        List<Integer> ordersID = new ArrayList<>();
         String qry = "select * from `order` where buyer_email = '"+userEmail+"';";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         try {
@@ -391,7 +397,7 @@ public class Listing {
 
     public static List<Integer> productsInTheOrder(int orderID)
     {
-        List<Integer> productsId = new List<>();
+        List<Integer> productsId = new ArrayList<>();
         String qry = "SELECT * from `product`,`order_product` WHERE `order_product`.`product_id` = `product`.`product_id` and `order_product`.`order_id` = " + orderID;
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 
@@ -471,8 +477,8 @@ public class Listing {
 
         try {
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
-                    "raw material id", "raw material Name", "Price", "Wholesale Price", "Quantity",
-                    "Saled Qty", "Expiration Date", "Supplier Email");
+                    "raw material id", "raw material Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
+                    SALED_QTY_OPTION, EX_DATE_OPTION, "Supplier Email");
 
             System.out.println(LINE);
             while (rs.next()) {

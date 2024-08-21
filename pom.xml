@@ -12,7 +12,30 @@
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.projectKey>sweet_mgt_system</sonar.projectKey>
+        <sonar.projectName>sweet_mgt_system</sonar.projectName>
+        <sonar.login>sqp_36d5c94968833daf06c7ad1aa3a2cd7b6144c264</sonar.login>
     </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                 <groupId>org.sonarsource.scanner.maven</groupId>
+                 <artifactId>sonar-maven-plugin</artifactId>
+                 <version>4.0.0.4121</version>
+            </plugin>
+        </plugins>
+        </build>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
@@ -49,5 +72,10 @@
             <version>8.3.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>4.0.0.4121</version>
+        </dependency>
     </dependencies>
 </project>

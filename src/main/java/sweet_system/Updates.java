@@ -232,14 +232,16 @@ public class Updates {
     }
     public static boolean productDiscount(double discount)
     {
-        int productId = 0; int price = 0; int discountedPrice = 0;
+        int productId = 0;
+        int price = 0;
+        int discountedPrice = 0;
         String qry1 = "select * from sweetsystem.product";
         ResultSet rs = Database.connectionToSelectFromDB(qry1);
         try {
             if(rs != null)
             {
                 String qry2 = "SELECT product_id, price FROM product WHERE ex_date = (SELECT MIN(ex_date) FROM product);";
-                ResultSet ProductsWithSoonExpiryDate = Database.connectionToSelectFromDB(qry2);
+                ResultSet productsWithSoonExpiryDate = Database.connectionToSelectFromDB(qry2);
                 while(ProductsWithSoonExpiryDate.next())
                 {
                     productId = ProductsWithSoonExpiryDate.getInt("product_id");

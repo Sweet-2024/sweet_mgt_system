@@ -84,9 +84,9 @@ public class user_purchase_and_commu_Test {
         assertTrue(Checks.checkIfEmailAlreadyUsed(receiverEmail));
 
         String msg = "I want to communicate with you";
-        Messaging Msg = new Messaging(senderEmail, receiverEmail, msg);
+        Messaging messaging = new Messaging(senderEmail, receiverEmail, msg);
 
-        Updates.addNewMsg(Msg);
-        assertTrue(Checks.isMsgInTheSystem(Msg));
+        Updates.addNewMsg(messaging);
+        assertTrue(Checks.isMsgInTheSystem(messaging));
     }
 }

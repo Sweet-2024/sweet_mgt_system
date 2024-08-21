@@ -9,6 +9,7 @@ import sweet_system.Updates;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Character.isDigit;
@@ -1216,7 +1217,7 @@ public class Main {
 
                             if (uc == 'a') {
                                 logger.info("Feedback on purchased products : ");
-                                ArrayList<Integer> ordersId = Listing.ordersMadeByThisUser(userEmail);
+                                List<Integer> ordersId = Listing.ordersMadeByThisUser(userEmail);
                                 if (!ordersId.isEmpty()) {
                                     boolean exitFlag = true;
                                     while (exitFlag) {
@@ -1233,7 +1234,7 @@ public class Main {
                                         }
 
                                         if (ordersId.contains(chosenOrder)) {
-                                            ArrayList<Integer> productsIdsInSelectedOrder = Listing.productsInTheOrder(chosenOrder);
+                                            List<Integer> productsIdsInSelectedOrder = Listing.productsInTheOrder(chosenOrder);
                                             logger.info("\nChoose the product ID to give feedback to : ");
                                             while (true) {
                                                 try {
@@ -1272,7 +1273,7 @@ public class Main {
                             } else if (uc == 'b') {
                                 int chosenRecipe;
                                 logger.info("Feedback on shared recipes : ");
-                                ArrayList<Integer> recipesID = Listing.listRecipesInDb();
+                                List<Integer> recipesID = Listing.listRecipesInDb();
 
                                 if (!recipesID.isEmpty()) {
                                     logger.info("Choose the recipe ID : ");
@@ -1442,8 +1443,8 @@ public class Main {
         logger.info("Write your message:");
         String msg = scanner.nextLine();
 
-        MyApp.Msg = new Messaging(userEmail, receiverEmail, msg);
-        Updates.addNewMsg(MyApp.Msg);
+        MyApp.msg = new Messaging(userEmail, receiverEmail, msg);
+        Updates.addNewMsg(MyApp.msg);
         logger.info("_Your message was sent successfully_");
     }
 

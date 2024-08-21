@@ -193,8 +193,8 @@ public class Main {
                                     password = scanner.nextLine();
                                 }
 
-                                logger.log(Level.INFO, "Enter user city:");
-                                logger.log(Level.INFO, "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                logger.info("Enter user city:");
+                                logger.info("\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
                                 city = scanner.nextLine();
                                 while (!Checks.isValidCity(city)) {
                                     logger.log(Level.WARNING, "Invalid city. Please enter a valid user city:");

@@ -986,13 +986,14 @@ public class Main {
                                 communicateWithUser(userEmail, userTypeToCommunicate);
                             } else if (userChoice.equals("b")) {
                                 break;
-                            } else {
-                                logger.warning("Invalid choice!");
                             }
                             else if (userChoice.equals("c"))
                             {
                                 break;
+                            }else {
+                                logger.warning("Invalid choice!");
                             }
+
                         
                         }
                     } else if (userChoice.equals("3")) {
@@ -1255,7 +1256,7 @@ public class Main {
                             } else if (uc == 'b') {
                                 int chosenRecipe;
                                 logger.info("Feedback on shared recipes : ");
-                                ArrayList<Integer> recipesID = Listing.ListRecipesInDb();
+                                ArrayList<Integer> recipesID = Listing.listRecipesInDb();
 
                                 if (!recipesID.isEmpty()) {
                                     logger.info("Choose the recipe ID : ");

@@ -1,13 +1,12 @@
 package acceptance;
 
-import Entities.User;
-import Entities.Product;
+import main_entities.Product;
 import io.cucumber.java.en.*;
-import sweetSys.Listing;
-import sweetSys.Checks;
+import sweet_system.Listing;
+import sweet_system.Checks;
 
-import sweetSys.MyApp;
-import sweetSys.Updates;
+import sweet_system.MyApp;
+import sweet_system.Updates;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -120,7 +119,7 @@ public class product_mgt_Test {
 
         Updates.deleteProduct(productId);
 
-        assertFalse(Checks.checkIfProductInDbAccordingToId(productId));
+        assertFalse(!Checks.checkIfProductInDbAccordingToId(productId));
     }
 
     @When("choosing Monitor sales and profits from the list")

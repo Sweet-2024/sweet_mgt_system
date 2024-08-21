@@ -1,12 +1,12 @@
 package acceptance;
 
-import Entities.Messaging;
-import Entities.Order;
+import main_entities.Messaging;
+import main_entities.Order;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
-import sweetSys.Checks;
-import sweetSys.MyApp;
-import sweetSys.Updates;
+import sweet_system.Checks;
+import sweet_system.MyApp;
+import sweet_system.Updates;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

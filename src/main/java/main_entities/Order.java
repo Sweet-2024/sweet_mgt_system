@@ -1,19 +1,20 @@
-package Entities;
+package main_entities;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Order
 {
     private String sellerEmail;
     private String buyerEmail;
     private LocalDateTime date;
-    ArrayList<String> itemList = new ArrayList<String>();
-    ArrayList<Integer> itemQty = new ArrayList<Integer>();
+    List<String> itemList = new ArrayList<>();
+    List<Integer> itemQty = new ArrayList<>();
 
 
 
-    public Order(String sellerEmail, String buyerEmail, LocalDateTime date, ArrayList<String> itemList, ArrayList<Integer> itemQty) {
+    public Order(String sellerEmail, String buyerEmail, LocalDateTime date, List<String> itemList, List<Integer> itemQty) {
         this.sellerEmail = sellerEmail;
         this.buyerEmail = buyerEmail;
         this.date = date;
@@ -25,11 +26,11 @@ public class Order
         return sellerEmail;
     }
 
-    public ArrayList<Integer> getItemQty() {
+    public List<Integer> getItemQty() {
         return itemQty;
     }
 
-    public void setItemQty(ArrayList<Integer> itemQty) {
+    public void setItemQty(List<Integer> itemQty) {
         this.itemQty = itemQty;
     }
     public void setSellerEmail(String sellerEmail) {
@@ -53,11 +54,11 @@ public class Order
     }
 
   
-    public ArrayList<String> getItemList() {
+    public List<String> getItemList() {
         return itemList;
     }
 
-    public void setItemList(ArrayList<String> itemList) {
+    public void setItemList(List<String> itemList) {
         this.itemList = itemList;
     }
 

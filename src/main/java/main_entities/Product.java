@@ -1,6 +1,4 @@
-package Entities;
-
-import java.util.Scanner;
+package main_entities;
 
 public class Product {
     private int productId;

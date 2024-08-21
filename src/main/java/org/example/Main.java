@@ -32,6 +32,11 @@ public class Main {
     private static final String LIST_OPTION = "List of existing products:";
     private static final String INVALID_INPUT_OPTION = "Invalid input! Please enter a numeric value.";
     private static final String PRICE_OPTION = "Enter wholesale price:";
+    private static final String QTY_OPTION = "Enter quantity:";
+    private static final String SALED_QTY_OPTION = "Enter saled quantity:";
+    private static final String DATE_OPTION = "Enter expiration date (YYYY-MM-DD):";
+    private static final String INVALID_DATE_OPTION = "Please enter a valid date in the format YYYY-MM-DD:";
+    private static final String UPDATED_OPTION = "Successfully updated";
     private static final String CITY_OPTION = "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.";
     MyApp myApp;
     Main(MyApp myApp)
@@ -477,33 +482,33 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info("Enter quantity:");
+                                    logger.info(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter saled quantity:");
+                                    logger.info(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
-                                logger.info("Enter expiration date (YYYY-MM-DD):");
+                                logger.info(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
-                                    logger.warning("Please enter a valid date in the format YYYY-MM-DD:");
+                                    logger.warning(INVALID_DATE_OPTION);
                                     exDate = scanner.nextLine();
                                 }
 
@@ -558,39 +563,39 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info("Enter quantity:");
+                                    logger.info(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter saled quantity:");
+                                    logger.info(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
-                                logger.info("Enter expiration date (YYYY-MM-DD):");
+                                logger.info(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
-                                    logger.warning("Please enter a valid date in the format YYYY-MM-DD:");
+                                    logger.warning(INVALID_DATE_OPTION);
                                     exDate = scanner.nextLine();
                                 }
 
                                 MyApp.product = new Product(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 updateProduct(MyApp.product);
-                                logger.info("Successfully updated");
+                                logger.info(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
                                 logger.info(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
@@ -723,7 +728,7 @@ public class Main {
 
                                 MyApp.business = new Business(businessId, businessName, businessLocation, userEmail);
                                 Updates.updateBusinessInfo(MyApp.business);
-                                logger.info("Successfully updated");
+                                logger.info(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
                                 break;
                             } else {
@@ -768,7 +773,7 @@ public class Main {
                                     qtyList.add(quantity);
                                     break;
                                 } catch (InputMismatchException e) {
-                                    logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                    logger.warning(INVALID_INPUT_OPTION);
                                     scanner.next();
                                 }
                             }
@@ -839,33 +844,33 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info("Enter quantity:");
+                                    logger.info(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter saled quantity:");
+                                    logger.info(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
-                                logger.info("Enter expiration date (YYYY-MM-DD):");
+                                logger.info(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
-                                    logger.warning("Please enter a valid date in the format YYYY-MM-DD:");
+                                    logger.warning(INVALID_DATE_OPTION);
                                     exDate = scanner.nextLine();
                                 }
 
@@ -922,40 +927,40 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info("Enter quantity:");
+                                    logger.info(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter saled quantity:");
+                                    logger.info(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the saled quantity.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
-                                logger.info("Enter expiration date (YYYY-MM-DD):");
+                                logger.info(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
-                                    logger.warning("Please enter a valid date in the format YYYY-MM-DD:");
+                                    logger.warning(INVALID_DATE_OPTION);
                                     exDate = scanner.nextLine();
                                 }
 
                                 MyApp.rawMaterial = new RawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                               
                                 updateRawMaterial(MyApp.rawMaterial);
-                                logger.info("Successfully updated");
+                                logger.info(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
                                 logger.info("List of existing raw materials:");
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
@@ -1186,7 +1191,7 @@ public class Main {
                                     qtyList.add(quantity);
                                     break;
                                 } catch (InputMismatchException e) {
-                                    logger.warning("Invalid input! Please enter a numeric value for the quantity.");
+                                    logger.warning(INVALID_INPUT_OPTION);
                                     scanner.next();
                                 }
                             }

@@ -23,7 +23,16 @@ public class Main {
     private static boolean signupFlag;
     private static final Logger logger = Logger.getLogger(Main.class.getName());
     private static final String EXIT_OPTION = "3. Exit";
+    private static final String EX2_OPTION = "b. Exit";
     private static final String INVALID_OPTION = "Invalid choice!";
+    private static final String CHOOSE_OPTION = "Choose your level:";
+    private static final String OWNER_OPTION = "1. Product owner";
+    private static final String USER_OPTION = "3. Regular User";
+    private static final String INVALID_LEVEL_OPTION = "Invalid user level! Try again.";
+    private static final String LIST_OPTION = "List of existing products:";
+    private static final String INVALID_INPUT_OPTION = "Invalid input! Please enter a numeric value.";
+    private static final String PRICE_OPTION = "Enter wholesale price:";
+    private static final String CITY_OPTION = "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.";
     MyApp myApp;
     Main(MyApp myApp)
     {
@@ -196,20 +205,20 @@ public class Main {
                                 }
 
                                 logger.info("Enter user city:");
-                                logger.info("\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                logger.info(CITY_OPTION);
                                 city = scanner.nextLine();
                                 while (!Checks.isValidCity(city)) {
                                     logger.log(Level.WARNING, "Invalid city. Please enter a valid user city:");
-                                    logger.log(Level.INFO, "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                    logger.log(Level.INFO, CITY_OPTION);
                                     city = scanner.nextLine();
                                 }
 
                                 boolean isValidUserType = false;
                                 while (!isValidUserType) {
-                                    logger.log(Level.INFO, "Choose your level:");
-                                    logger.log(Level.INFO, "1. Product owner");
+                                    logger.log(Level.INFO, CHOOSE_OPTION);
+                                    logger.log(Level.INFO, OWNER_OPTION);
                                     logger.log(Level.INFO, "2. Raw material Supplier");
-                                    logger.log(Level.INFO, "3. Regular User");
+                                    logger.log(Level.INFO, USER_OPTION);
                                     char ut = scanner.next().charAt(0);
 
                                     if (Character.isDigit(ut)) {
@@ -217,9 +226,9 @@ public class Main {
                                         if (Checks.isValidUserType(userType)) {
                                             isValidUserType = true;
                                         } else {
-                                            logger.log(Level.WARNING, "Invalid user level! Try again.");
+                                            logger.log(Level.WARNING, INVALID_LEVEL_OPTION);
                                             logger.log(Level.INFO, "a. Enter user level again");
-                                            logger.log(Level.INFO, "b. Exit");
+                                            logger.log(Level.INFO, EX2_OPTION);
                                             userChoice = scanner.next();
                                             scanner.nextLine(); // Consume newline left-over
 
@@ -262,7 +271,7 @@ public class Main {
                                     } else {
                                         logger.log(Level.WARNING, "User is not in the system! Try again.");
                                         logger.log(Level.INFO, "a. Enter email again");
-                                        logger.log(Level.INFO, "b. Exit");
+                                        logger.log(Level.INFO, EX2_OPTION);
                                         userChoice = scanner.nextLine();
                                         if (userChoice.equals("b")) {
                                             break;
@@ -288,20 +297,20 @@ public class Main {
                                     }
 
                                     logger.log(Level.INFO, "Enter user city:");
-                                    logger.log(Level.INFO, "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                    logger.log(Level.INFO, CITY_OPTION);
                                     city = scanner.nextLine();
                                     while (!Checks.isValidCity(city)) {
                                         logger.log(Level.WARNING, "Invalid city. Please enter a valid user city:");
-                                        logger.log(Level.INFO, "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.");
+                                        logger.log(Level.INFO, CITY_OPTION);
                                         city = scanner.nextLine();
                                     }
 
                                     boolean isValidUserType = false;
                                     while (!isValidUserType) {
-                                        logger.log(Level.INFO, "Choose your level:");
-                                        logger.log(Level.INFO, "1. Product owner");
+                                        logger.log(Level.INFO, CHOOSE_OPTION);
+                                        logger.log(Level.INFO, OWNER_OPTION);
                                         logger.log(Level.INFO, "2. Raw material Supplier");
-                                        logger.log(Level.INFO, "3. Regular User");
+                                        logger.log(Level.INFO, USER_OPTION);
                                         char ut = scanner.next().charAt(0);
 
                                         if (Character.isDigit(ut)) {
@@ -309,9 +318,9 @@ public class Main {
                                             if (Checks.isValidUserType(userType)) {
                                                 isValidUserType = true;
                                             } else {
-                                                logger.log(Level.WARNING, "Invalid user level! Try again.");
+                                                logger.log(Level.WARNING, INVALID_LEVEL_OPTION);
                                                 logger.log(Level.INFO, "a. Enter user level again");
-                                                logger.log(Level.INFO, "b. Exit");
+                                                logger.log(Level.INFO, EX2_OPTION);
                                                 userChoice = scanner.nextLine();
 
                                                 if (userChoice.equals("b")) {
@@ -351,7 +360,7 @@ public class Main {
                                     if (!Checks.checkIfEmailAlreadyUsed(ue)) {
                                         logger.log(Level.WARNING, "User is not in the system! Try again.");
                                         logger.log(Level.INFO, "a. Enter email again");
-                                        logger.log(Level.INFO, "b. Exit");
+                                        logger.log(Level.INFO, EX2_OPTION);
                                         userChoice = scanner.next();
                                         if (userChoice.equals("a"))
                                             continue;
@@ -432,7 +441,7 @@ public class Main {
 
                             userChoice = scanner.next();
                             if (userChoice.equals("a")) {
-                                logger.info("List of existing products:");
+                                logger.info(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
                                 logger.info("Enter product name:");
@@ -450,19 +459,19 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter wholesale price:");
+                                    logger.info(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -502,7 +511,7 @@ public class Main {
                                 addNewProduct(MyApp.product);
                                 logger.info("Successfully added");
                             } else if (userChoice.equals("b")) {
-                                logger.info("List of existing products:");
+                                logger.info(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
                                 while (true) {
@@ -512,7 +521,7 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -531,19 +540,19 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter wholesale price:");
+                                    logger.info(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -583,7 +592,7 @@ public class Main {
                                 updateProduct(MyApp.product);
                                 logger.info("Successfully updated");
                             } else if (userChoice.equals("c")) {
-                                logger.info("List of existing products:");
+                                logger.info(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
                                 while (true) {
@@ -593,7 +602,7 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -690,7 +699,7 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -812,19 +821,19 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter wholesale price:");
+                                    logger.info(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -874,7 +883,7 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -895,19 +904,19 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
 
                                 while (true) {
-                                    logger.info("Enter wholesale price:");
+                                    logger.info(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the wholesale price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -958,7 +967,7 @@ public class Main {
                                         scanner.nextLine();
                                         break;
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value for the price.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }
@@ -1140,7 +1149,7 @@ public class Main {
                             }
                         }
                     } else if (uc == '3') {
-                        logger.info("List of existing products:");
+                        logger.info(LIST_OPTION);
                         Listing.listingOfProducts();
 
                         logger.info("Please enter the name of the Owner you wish to purchase from:");
@@ -1385,16 +1394,16 @@ public class Main {
 
         while (!Checks.isValidUserType(userType)) {
             char ut;
-            logger.info("Choose your level:");
-            logger.info("1. Product owner");
+            logger.info(CHOOSE_OPTION);
+            logger.info(OWNER_OPTION);
             logger.info("2. Row material Supplier");
-            logger.info("3. Regular User");
+            logger.info(USER_OPTION);
             ut = scanner.next().charAt(0);
             if (Character.isDigit(ut))
                 userType = ut - '0';
 
             if (!Checks.isValidUserType(userType)) {
-                logger.warning("Invalid user level! Try again.");
+                logger.warning(INVALID_LEVEL_OPTION);
                 logger.info("    a. Enter user level again");
                 logger.info("    b. Exit");
                 userChoice = scanner.next();

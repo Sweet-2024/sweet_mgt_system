@@ -22,6 +22,7 @@ import java.util.logging.Level;
 public class Main {
     private static boolean signupFlag;
     private static final Logger logger = Logger.getLogger(Main.class.getName());
+    private static final String EXIT_OPTION = "3. Exit";
     MyApp myApp;
     Main(MyApp myApp)
     {
@@ -65,7 +66,7 @@ public class Main {
             logger.info("WELCOME TO OUR SWEET MANAGEMENT SYSTEM");
             logger.info("1. Login");
             logger.info("2. Sign up");
-            logger.info( "3. Exit");
+            logger.info( EXIT_OPTION);
 
             userChoice = scanner.next();
             userChoice = userChoice.trim();
@@ -149,7 +150,7 @@ public class Main {
                     logger.info("Welcome Admin! Choose what to do from the list:");
                     logger.info( "1. Accounts Management");
                     logger.info(  "2. Reporting And Monitoring");
-                    logger.info( "3. Exit");
+                    logger.info( EXIT_OPTION);
                     char uc = scanner.next().charAt(0);
 
                     if (uc == '1') {
@@ -777,7 +778,7 @@ public class Main {
                     logger.info("Welcome Supplier! Choose what to do from the list:");
                     logger.info("1. Raw material Management");
                     logger.info("2. Communication and Notification");
-                    logger.info("3. Exit");
+                    logger.info(EXIT_OPTION);
 
                     userChoice = scanner.next();
                     userChoice.trim();

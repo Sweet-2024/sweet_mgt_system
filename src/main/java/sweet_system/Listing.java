@@ -9,7 +9,15 @@ import java.util.List;
 
 public class Listing {
 
-
+    private static final String SALED_QTY = "saled_qty";
+    private static final String WHOLESALE_PRICE = "wholesale_price";
+    private static final String PRICE = "price";
+    private static final String USERNAME = "username";
+    private static final String USER_EMAIL = "user_email";
+    private static final String PRODUCT_ID = "product_id";
+    private static final String PRODUCT_NAME = "product_name";
+    private static final String RECIPE_NAME = "recipe_name";
+    private static final String LINE = "----------------------------------------------------------------------------------------------------------------------------------";
     // financial reports :
     private static void printingFinancialReportOfOwnersOrSuppliers(String email,String username) {
         int incomes = 0;
@@ -19,9 +27,9 @@ public class Listing {
         ResultSet productsOfOwnerList = Database.connectionToSelectFromDB(qry3);
         try {
             while (productsOfOwnerList.next()) {
-                int price = productsOfOwnerList.getInt("price");
-                int wholesalePrice = productsOfOwnerList.getInt("wholesale_price");
-                int saledQty = productsOfOwnerList.getInt("saled_qty");
+                int price = productsOfOwnerList.getInt(PRICE);
+                int wholesalePrice = productsOfOwnerList.getInt(WHOLESALE_PRICE);
+                int saledQty = productsOfOwnerList.getInt(SALED_QTY);
                 incomes += price * saledQty;
                 outcomes += wholesalePrice * saledQty;
                 numOfProducts++;
@@ -59,8 +67,8 @@ public class Listing {
                     String qry2 = "select * from sweetsystem.users where user_type = 2 or user_type = 3";
                     ResultSet ownersAndSuppliersList = Database.connectionToSelectFromDB(qry2);
                     while (ownersAndSuppliersList.next()) {
-                        String username = ownersAndSuppliersList.getString("username");
-                        ownerEmail = ownersAndSuppliersList.getString("user_email");
+                        String username = ownersAndSuppliersList.getString(USERNAME);
+                        ownerEmail = ownersAndSuppliersList.getString(USER_EMAIL);
                         printingFinancialReportOfOwnersOrSuppliers(ownerEmail,username);
                     }//end of while to get all owners and suppliers in the system
                 } else
@@ -84,7 +92,7 @@ public class Listing {
         try {
             if (bestSelling.next()) {
                 System.out.println("\t* Product owner email : " + email);
-                System.out.println("\t\tBest selling product : " + bestSelling.getString("product_name"));
+                System.out.println("\t\tBest selling product : " + bestSelling.getString(PRODUCT_NAME));
                 System.out.println();
             }
         } catch (SQLException e) {
@@ -108,8 +116,8 @@ public class Listing {
                     qry2 = "select * from sweetsystem.users where user_type = 2 or user_type = 3";
                     ResultSet ownersAndSuppliersList = Database.connectionToSelectFromDB(qry2);
                     while (ownersAndSuppliersList.next()) {
-                        String email = ownersAndSuppliersList.getString("user_email");
-                        String username = ownersAndSuppliersList.getString("username");
+                        String email = ownersAndSuppliersList.getString(USER_EMAIL);
+                        String username = ownersAndSuppliersList.getString(USERNAME);
 
                         printingBestSellingProduct(email, username);
                     }
@@ -175,8 +183,8 @@ public class Listing {
             int numOfUsers = 0;
             while (rs.next()) {
                 numOfUsers++;
-                String userName = rs.getString("username");
-                String userEmail = rs.getString("user_email");
+                String userName = rs.getString(USERNAME);
+                String userEmail = rs.getString(USER_EMAIL);
                 String userLocation = rs.getString("user_location");
                 if (userEmail.equals(MyApp.userEmail))
                  continue;
@@ -206,15 +214,15 @@ public class Listing {
                     "raw material id", "raw material Name", "Price", "Wholesale Price", "Quantity",
                     "Saled Qty", "Expiration Date", "Supplier Email");
 
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(LINE);
 
             while (rs.next()) {
                 int rmId = rs.getInt("rm_id");
                 String rmName = rs.getString("rm_name");
                 int price = rs.getInt("rm_price");
-                int wholesalePrice = rs.getInt("wholesale_price");
+                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);
                 int quantity = rs.getInt("qty");
-                int saledQty = rs.getInt("saled_qty");
+                int saledQty = rs.getInt(SALED_QTY);
                 String exDate = rs.getString("expiry_date");
                 String supplierEmail = rs.getString("supplier_email");
 
@@ -222,7 +230,7 @@ public class Listing {
                         rmId, rmName, price, wholesalePrice, quantity,
                         saledQty, exDate, supplierEmail);
             }
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(LINE);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -237,15 +245,14 @@ public class Listing {
                     "Product id", "Product Name", "Price", "Wholesale Price", "Quantity",
                     "Saled Qty", "Expiration Date", "Owner Email");
 
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
-
+            System.out.println(LINE);
             while (rs.next()) {
-                int productId = rs.getInt("product_id");
-                String productName = rs.getString("product_name");
-                int price = rs.getInt("price");
-                int wholesalePrice = rs.getInt("wholesale_price");
+                int productId = rs.getInt(PRODUCT_ID);
+                String productName = rs.getString(PRODUCT_NAME);
+                int price = rs.getInt(PRICE);
+                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);
                 int quantity = rs.getInt("quantity");
-                int saledQty = rs.getInt("saled_qty");
+                int saledQty = rs.getInt(SALED_QTY);
                 String exDate = rs.getString("ex_date");
                 String ownerEmail = rs.getString("owner_email");
 
@@ -253,7 +260,7 @@ public class Listing {
                         productId, productName, price, wholesalePrice, quantity,
                         saledQty, exDate, ownerEmail);
             }
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(LINE);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -267,15 +274,14 @@ public class Listing {
                     "Product id", "Product Name", "Price", "Wholesale Price", "Quantity",
                     "Saled Qty", "Expiration Date", "Owner Email");
 
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
-
+            System.out.println(LINE);
             while (rs.next()) {
-                int productId = rs.getInt("product_id");
-                String productName = rs.getString("product_name");
-                int price = rs.getInt("price");
-                int wholesalePrice = rs.getInt("wholesale_price");
+                int productId = rs.getInt(PRODUCT_ID);
+                String productName = rs.getString(PRODUCT_NAME);
+                int price = rs.getInt(PRICE);
+                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);
                 int quantity = rs.getInt("quantity");
-                int saledQty = rs.getInt("saled_qty");
+                int saledQty = rs.getInt(SALED_QTY);
                 String exDate = rs.getString("ex_date");
                 String ownerEmail = rs.getString("owner_email");
 
@@ -283,7 +289,7 @@ public class Listing {
                         productId, productName, price, wholesalePrice, quantity,
                         saledQty, exDate, ownerEmail);
             }
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(LINE);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -300,7 +306,7 @@ public class Listing {
             {
                 numOfRecipes++;
                 System.out.println("\tRecipe ID : " + rs.getInt("recipe_id"));
-                System.out.println("\tRecipe Name : " + rs.getString("recipe_name"));
+                System.out.println("\tRecipe Name : " + rs.getString(RECIPE_NAME));
                 System.out.println("\tRecipe Description : " + rs.getString("recipe_description"));
                 System.out.println("\tRecipe Category : " + rs.getString("recipe_category"));
                 System.out.println("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
@@ -325,7 +331,7 @@ public class Listing {
             while(rs.next())
             {
                 numOfRecipes++;
-                printingRecipeAccordingToRecipeName(rs.getString("recipe_name"));
+                printingRecipeAccordingToRecipeName(rs.getString(RECIPE_NAME));
                 recipesID.add(rs.getInt("recipe_id"));
             }
             if(numOfRecipes == 0)
@@ -344,7 +350,7 @@ public class Listing {
         try {
             while(rs.next())
             {
-                System.out.println("\tRecipe Name : " + rs.getString("recipe_name"));
+                System.out.println("\tRecipe Name : " + rs.getString(RECIPE_NAME));
                 System.out.println("\tRecipe Description : " + rs.getString("recipe_description"));
                 System.out.println("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
                 System.out.println("------------------------------------------------------------------------------------");
@@ -394,10 +400,10 @@ public class Listing {
             System.out.println("\n-------------------------------------------------");
             while (rs.next())
             {
-                System.out.printf("%-20s", rs.getInt("product_id"));
-                System.out.printf("%-20s", rs.getString("product_name"));
+                System.out.printf("%-20s", rs.getInt(PRODUCT_ID));
+                System.out.printf("%-20s", rs.getString(PRODUCT_NAME));
                 System.out.println();
-                productsId.add(rs.getInt("product_id"));
+                productsId.add(rs.getInt(PRODUCT_ID));
             }
             System.out.println("-------------------------------------------------");
         }
@@ -446,9 +452,9 @@ public class Listing {
         try {
             if (rs != null) {
                 System.out.println("Your Account Information:");
-                System.out.println(" Name: " + rs.getString("username"));
+                System.out.println(" Name: " + rs.getString(USERNAME));
                 System.out.println(" Password: " + rs.getString("user_password"));
-                System.out.println(" Email: " + rs.getString("user_email"));
+                System.out.println(" Email: " + rs.getString(USER_EMAIL));
                 System.out.println(" Location: " + rs.getString("user_location"));
                 System.out.println(" Type: " + rs.getString("user_type"));
             } else {
@@ -468,15 +474,14 @@ public class Listing {
                     "raw material id", "raw material Name", "Price", "Wholesale Price", "Quantity",
                     "Saled Qty", "Expiration Date", "Supplier Email");
 
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
-
+            System.out.println(LINE);
             while (rs.next()) {
                 int rmId = rs.getInt("rm_id");
                 String rmName = rs.getString("rm_name");
                 int price = rs.getInt("rm_price");
-                int wholesalePrice = rs.getInt("wholesale_price");
+                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);
                 int quantity = rs.getInt("qty");
-                int saledQty = rs.getInt("saled_qty");
+                int saledQty = rs.getInt(SALED_QTY);
                 String exDate = rs.getString("expiry_date");
                 String supplierEmail = rs.getString("supplier_email");
 
@@ -484,7 +489,7 @@ public class Listing {
                         rmId, rmName, price, wholesalePrice, quantity,
                         saledQty, exDate, supplierEmail);
             }
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(LINE);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

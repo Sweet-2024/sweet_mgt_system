@@ -37,9 +37,11 @@ public class Main {
     private static final String SALED_QTY_OPTION = "Enter saled quantity:";
     private static final String DATE_OPTION = "Enter expiration date (YYYY-MM-DD):";
     private static final String INVALID_DATE_OPTION = "Please enter a valid date in the format YYYY-MM-DD:";
+    private static final String INVALID_ROW_MATERIAL_OPTION = "Please enter a valid raw material name:";
     private static final String UPDATED_OPTION = "Successfully updated";
     private static final String CITY_OPTION = "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.";
     private static final String BACK = "\t2. back";
+    private static final String EXIT = "    b. Exit";
     private static final String LIST_OF_ROW_MATERAILS = "List of existing raw materials:";
     MyApp myApp;
     Main(MyApp myApp)
@@ -758,7 +760,7 @@ public class Main {
                             logger.info("Enter the name of the raw material you want to order (or type 'done' to finish):");
                             materialName = scanner.nextLine();
                             while (!Checks.isValidProductName(materialName)) {
-                                logger.warning("Please enter a valid raw material name:");
+                                logger.warning(INVALID_ROW_MATERIAL_OPTION);
                                 scanner.nextLine();
                                 materialName = scanner.nextLine();
                             }
@@ -817,7 +819,7 @@ public class Main {
                                 scanner.nextLine();
                                 rawMaterialName = scanner.nextLine();
                                 while (!Checks.isValidProductName(rawMaterialName)) {
-                                    logger.warning("Please enter a valid raw material name:");
+                                    logger.warning(INVALID_ROW_MATERIAL_OPTION);
                                     scanner.nextLine();
                                     rawMaterialName = scanner.nextLine();
                                 }
@@ -900,7 +902,7 @@ public class Main {
                                 scanner.nextLine();
                                 rawMaterialName = scanner.nextLine();
                                 while (!Checks.isValidProductName(rawMaterialName)) {
-                                    logger.warning("Please enter a valid raw material name:");
+                                    logger.warning(INVALID_ROW_MATERIAL_OPTION);
                                     scanner.nextLine();
                                     rawMaterialName = scanner.nextLine();
                                 }
@@ -1336,7 +1338,7 @@ public class Main {
             }
 
             logger.info("    a. Enter email again");
-            logger.info("    b. Exit");
+            logger.info(EXIT);
             userChoice = scanner.next();
             if (userChoice.equals("a"))
                 continue;
@@ -1352,7 +1354,7 @@ public class Main {
             if (!Checks.isValidUsername(username)) {
                 logger.warning("Invalid username! Try again.");
                 logger.info("    a. Enter username again");
-                logger.info("    b. Exit");
+                logger.info(EXIT);
                 userChoice = scanner.next();
                 if (userChoice.equals("a"))
                     continue;
@@ -1369,7 +1371,7 @@ public class Main {
             if (!Checks.isvalidPassword(password)) {
                 logger.warning("Invalid password! Try again.");
                 logger.info("    a. Enter password again");
-                logger.info("    b. Exit");
+                logger.info(EXIT);
                 userChoice = scanner.next();
                 if (userChoice.equals("a"))
                     continue;
@@ -1387,7 +1389,7 @@ public class Main {
             if (!Checks.isValidCity(city)) {
                 logger.warning("Invalid location! Try again.");
                 logger.info("    a. Enter location again");
-                logger.info("    b. Exit");
+                logger.info(EXIT);
                 userChoice = scanner.next();
                 if (userChoice.equals("a"))
                     continue;
@@ -1411,7 +1413,7 @@ public class Main {
             if (!Checks.isValidUserType(userType)) {
                 logger.warning(INVALID_LEVEL_OPTION);
                 logger.info("    a. Enter user level again");
-                logger.info("    b. Exit");
+                logger.info(EXIT);
                 userChoice = scanner.next();
                 if (userChoice.equals("a"))
                     continue;

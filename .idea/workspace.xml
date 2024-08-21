@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="removing postgres dependency">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="8d16ec86-6a07-4614-a232-533e0c5ef29e" name="Changes" comment="upgrading junit version" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -403,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724222645906</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="upgrading junit version">
+      <created>1724248355449</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1724248355449</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -441,7 +444,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="completing users purchase and communication feature" />
     <MESSAGE value="some modifications to adding recipe and reporting functions" />
     <MESSAGE value="write test cases for acccount mgt and admin mgt" />
     <MESSAGE value="write test cases for product mgt and make some updates" />
@@ -466,7 +468,8 @@
     <MESSAGE value="security improving" />
     <MESSAGE value="jacoco plugin" />
     <MESSAGE value="removing postgres dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="removing postgres dependency" />
+    <MESSAGE value="upgrading junit version" />
+    <option name="LAST_COMMIT_MESSAGE" value="upgrading junit version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

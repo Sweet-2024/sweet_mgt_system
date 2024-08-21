@@ -23,17 +23,17 @@ public class user_purchase_and_commu_Test {
     }
     @When("choose purchase desserts from the list")
     public void choosePurchaseDessertsFromTheList() {
-
+        //gui related
     }
 
     @When("choosing owner name to buy from the list")
     public void choosingOwnerNameToBuyFromTheList() {
-
+        //gui related
     }
 
     @When("choosing product name to buy from the selected owner")
     public void choosingProductNameToBuyFromTheSelectedOwner() {
-
+        //gui related
     }
 
     @Then("the order will be created successfully")

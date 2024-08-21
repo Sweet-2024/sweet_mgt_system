@@ -9,6 +9,7 @@ import sweet_system.Updates;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Character.isDigit;
@@ -36,8 +37,12 @@ public class Main {
     private static final String SALED_QTY_OPTION = "Enter saled quantity:";
     private static final String DATE_OPTION = "Enter expiration date (YYYY-MM-DD):";
     private static final String INVALID_DATE_OPTION = "Please enter a valid date in the format YYYY-MM-DD:";
+    private static final String INVALID_ROW_MATERIAL_OPTION = "Please enter a valid raw material name:";
     private static final String UPDATED_OPTION = "Successfully updated";
     private static final String CITY_OPTION = "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.";
+    private static final String BACK = "\t2. back";
+    private static final String EXIT = "    b. Exit";
+    private static final String LIST_OF_ROW_MATERAILS = "List of existing raw materials:";
     MyApp myApp;
     Main(MyApp myApp)
     {
@@ -432,7 +437,7 @@ public class Main {
                     logger.info("5. exit");
                     userChoice = scanner.next();
 
-                    userChoice.trim();
+                    userChoice = userChoice.trim();
                     if (userChoice.equals("1")) {
                         while (true) {
                             logger.info("* Product Management:");
@@ -632,7 +637,7 @@ public class Main {
                                             logger.warning("Invalid discount! Please enter a value between 0.0 and 1.0.");
                                         }
                                     } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
+                                        logger.warning(INVALID_INPUT_OPTION );
                                         scanner.next();
                                     }
                                 }
@@ -736,7 +741,7 @@ public class Main {
                             }
                         }
                     } else if (userChoice.equals("4")) {
-                        logger.info("List of existing raw materials:");
+                        logger.info(LIST_OF_ROW_MATERAILS);
                         Listing.listingOfRawMaterials();
 
                         logger.info("Please enter the name of the supplier you wish to purchase from:");
@@ -755,7 +760,7 @@ public class Main {
                             logger.info("Enter the name of the raw material you want to order (or type 'done' to finish):");
                             materialName = scanner.nextLine();
                             while (!Checks.isValidProductName(materialName)) {
-                                logger.warning("Please enter a valid raw material name:");
+                                logger.warning(INVALID_ROW_MATERIAL_OPTION);
                                 scanner.nextLine();
                                 materialName = scanner.nextLine();
                             }
@@ -796,7 +801,7 @@ public class Main {
                     logger.info(EXIT_OPTION);
 
                     userChoice = scanner.next();
-                    userChoice.trim();
+                    userChoice = userChoice.trim();
                     if (userChoice.equals("1")) {
                         while (true) {
                             logger.info("* Raw material Management");
@@ -807,14 +812,14 @@ public class Main {
 
                             userChoice = scanner.next();
                             if (userChoice.equals("a")) {
-                                logger.info("List of existing raw materials:");
+                                logger.info(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
                                 logger.info("Enter raw material name:");
                                 scanner.nextLine();
                                 rawMaterialName = scanner.nextLine();
                                 while (!Checks.isValidProductName(rawMaterialName)) {
-                                    logger.warning("Please enter a valid raw material name:");
+                                    logger.warning(INVALID_ROW_MATERIAL_OPTION);
                                     scanner.nextLine();
                                     rawMaterialName = scanner.nextLine();
                                 }
@@ -878,7 +883,7 @@ public class Main {
                                 addNewRawMaterial(MyApp.rawMaterial);
                                 logger.info("Successfully added");
                             } else if (userChoice.equals("b")) {
-                                logger.info("List of existing raw materials:");
+                                logger.info(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
                                 while (true) {
@@ -897,7 +902,7 @@ public class Main {
                                 scanner.nextLine();
                                 rawMaterialName = scanner.nextLine();
                                 while (!Checks.isValidProductName(rawMaterialName)) {
-                                    logger.warning("Please enter a valid raw material name:");
+                                    logger.warning(INVALID_ROW_MATERIAL_OPTION);
                                     scanner.nextLine();
                                     rawMaterialName = scanner.nextLine();
                                 }
@@ -962,7 +967,7 @@ public class Main {
                                 updateRawMaterial(MyApp.rawMaterial);
                                 logger.info(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
-                                logger.info("List of existing raw materials:");
+                                logger.info(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
                                 while (true) {
@@ -1000,9 +1005,7 @@ public class Main {
                             {
                                 userTypeToCommunicate = 2;
                                 communicateWithUser(userEmail, userTypeToCommunicate);
-                            } else if (userChoice.equals("b")) {
-                                break;
-                            }
+                            } 
                             else if (userChoice.equals("c"))
                             {
                                 break;
@@ -1056,7 +1059,7 @@ public class Main {
                                     if (!Checks.isAcceptableRecipeName(recipeName)) {
                                         logger.warning("Unacceptable recipe name!");
                                         logger.info("\t1. Enter recipe name again");
-                                        logger.info("\t2. back");
+                                        logger.info(BACK);
 
                                         uc = scanner.next().charAt(0);
                                         if (uc == '1')
@@ -1074,7 +1077,7 @@ public class Main {
                                     if (!Checks.isAcceptableRecipeDescription(recipeDescription)) {
                                         logger.warning("Unacceptable recipe description!");
                                         logger.info("\t1. Enter recipe description again");
-                                        logger.info("\t2. back");
+                                        logger.info(BACK);
 
                                         uc = scanner.next().charAt(0);
                                         if (uc == '1')
@@ -1093,7 +1096,7 @@ public class Main {
                                     if (!Checks.isAcceptableRecipeCategory(recipeCate)) {
                                         logger.warning("Unacceptable recipe category! knowing that available categories are : dietary needs and food allergies");
                                         logger.info("\t1. Enter recipe category again");
-                                        logger.info("\t2. back");
+                                        logger.info(BACK);
 
                                         uc = scanner.next().charAt(0);
                                         if (uc == '1')
@@ -1216,7 +1219,7 @@ public class Main {
 
                             if (uc == 'a') {
                                 logger.info("Feedback on purchased products : ");
-                                ArrayList<Integer> ordersId = Listing.ordersMadeByThisUser(userEmail);
+                                List<Integer> ordersId = Listing.ordersMadeByThisUser(userEmail);
                                 if (!ordersId.isEmpty()) {
                                     boolean exitFlag = true;
                                     while (exitFlag) {
@@ -1233,7 +1236,7 @@ public class Main {
                                         }
 
                                         if (ordersId.contains(chosenOrder)) {
-                                            ArrayList<Integer> productsIdsInSelectedOrder = Listing.productsInTheOrder(chosenOrder);
+                                            List<Integer> productsIdsInSelectedOrder = Listing.productsInTheOrder(chosenOrder);
                                             logger.info("\nChoose the product ID to give feedback to : ");
                                             while (true) {
                                                 try {
@@ -1272,7 +1275,7 @@ public class Main {
                             } else if (uc == 'b') {
                                 int chosenRecipe;
                                 logger.info("Feedback on shared recipes : ");
-                                ArrayList<Integer> recipesID = Listing.listRecipesInDb();
+                                List<Integer> recipesID = Listing.listRecipesInDb();
 
                                 if (!recipesID.isEmpty()) {
                                     logger.info("Choose the recipe ID : ");
@@ -1335,7 +1338,7 @@ public class Main {
             }
 
             logger.info("    a. Enter email again");
-            logger.info("    b. Exit");
+            logger.info(EXIT);
             userChoice = scanner.next();
             if (userChoice.equals("a"))
                 continue;
@@ -1351,7 +1354,7 @@ public class Main {
             if (!Checks.isValidUsername(username)) {
                 logger.warning("Invalid username! Try again.");
                 logger.info("    a. Enter username again");
-                logger.info("    b. Exit");
+                logger.info(EXIT);
                 userChoice = scanner.next();
                 if (userChoice.equals("a"))
                     continue;
@@ -1368,7 +1371,7 @@ public class Main {
             if (!Checks.isvalidPassword(password)) {
                 logger.warning("Invalid password! Try again.");
                 logger.info("    a. Enter password again");
-                logger.info("    b. Exit");
+                logger.info(EXIT);
                 userChoice = scanner.next();
                 if (userChoice.equals("a"))
                     continue;
@@ -1386,7 +1389,7 @@ public class Main {
             if (!Checks.isValidCity(city)) {
                 logger.warning("Invalid location! Try again.");
                 logger.info("    a. Enter location again");
-                logger.info("    b. Exit");
+                logger.info(EXIT);
                 userChoice = scanner.next();
                 if (userChoice.equals("a"))
                     continue;
@@ -1410,7 +1413,7 @@ public class Main {
             if (!Checks.isValidUserType(userType)) {
                 logger.warning(INVALID_LEVEL_OPTION);
                 logger.info("    a. Enter user level again");
-                logger.info("    b. Exit");
+                logger.info(EXIT);
                 userChoice = scanner.next();
                 if (userChoice.equals("a"))
                     continue;
@@ -1442,8 +1445,8 @@ public class Main {
         logger.info("Write your message:");
         String msg = scanner.nextLine();
 
-        MyApp.Msg = new Messaging(userEmail, receiverEmail, msg);
-        Updates.addNewMsg(MyApp.Msg);
+        MyApp.msg = new Messaging(userEmail, receiverEmail, msg);
+        Updates.addNewMsg(MyApp.msg);
         logger.info("_Your message was sent successfully_");
     }
 

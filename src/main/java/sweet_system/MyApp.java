@@ -13,7 +13,7 @@ public class MyApp {
 
     public static User user;
     public static Product product;
-    public static Messaging Msg;
+    public static Messaging msg;
     public static Business business;
     public static Order order;
     public static RawMaterial rawMaterial;

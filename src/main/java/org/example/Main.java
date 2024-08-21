@@ -38,6 +38,8 @@ public class Main {
     private static final String INVALID_DATE_OPTION = "Please enter a valid date in the format YYYY-MM-DD:";
     private static final String UPDATED_OPTION = "Successfully updated";
     private static final String CITY_OPTION = "\tAvailable cities: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem, Hebron.";
+    private static final String BACK = "\t2. back";
+    private static final String LIST_OF_ROW_MATERAILS = "List of existing raw materials:";
     MyApp myApp;
     Main(MyApp myApp)
     {
@@ -632,7 +634,7 @@ public class Main {
                                             logger.warning("Invalid discount! Please enter a value between 0.0 and 1.0.");
                                         }
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value.");
+                                        logger.warning(INVALID_INPUT_OPTION );
                                         scanner.next();
                                     }
                                 }
@@ -736,7 +738,7 @@ public class Main {
                             }
                         }
                     } else if (userChoice.equals("4")) {
-                        logger.info("List of existing raw materials:");
+                        logger.info(LIST_OF_ROW_MATERAILS);
                         Listing.listingOfRawMaterials();
 
                         logger.info("Please enter the name of the supplier you wish to purchase from:");
@@ -807,7 +809,7 @@ public class Main {
 
                             userChoice = scanner.next();
                             if (userChoice.equals("a")) {
-                                logger.info("List of existing raw materials:");
+                                logger.info(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
                                 logger.info("Enter raw material name:");
@@ -878,7 +880,7 @@ public class Main {
                                 addNewRawMaterial(MyApp.rawMaterial);
                                 logger.info("Successfully added");
                             } else if (userChoice.equals("b")) {
-                                logger.info("List of existing raw materials:");
+                                logger.info(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
                                 while (true) {
@@ -962,7 +964,7 @@ public class Main {
                                 updateRawMaterial(MyApp.rawMaterial);
                                 logger.info(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
-                                logger.info("List of existing raw materials:");
+                                logger.info(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
                                 while (true) {
@@ -1056,7 +1058,7 @@ public class Main {
                                     if (!Checks.isAcceptableRecipeName(recipeName)) {
                                         logger.warning("Unacceptable recipe name!");
                                         logger.info("\t1. Enter recipe name again");
-                                        logger.info("\t2. back");
+                                        logger.info(BACK);
 
                                         uc = scanner.next().charAt(0);
                                         if (uc == '1')
@@ -1074,7 +1076,7 @@ public class Main {
                                     if (!Checks.isAcceptableRecipeDescription(recipeDescription)) {
                                         logger.warning("Unacceptable recipe description!");
                                         logger.info("\t1. Enter recipe description again");
-                                        logger.info("\t2. back");
+                                        logger.info(BACK);
 
                                         uc = scanner.next().charAt(0);
                                         if (uc == '1')
@@ -1093,7 +1095,7 @@ public class Main {
                                     if (!Checks.isAcceptableRecipeCategory(recipeCate)) {
                                         logger.warning("Unacceptable recipe category! knowing that available categories are : dietary needs and food allergies");
                                         logger.info("\t1. Enter recipe category again");
-                                        logger.info("\t2. back");
+                                        logger.info(BACK);
 
                                         uc = scanner.next().charAt(0);
                                         if (uc == '1')

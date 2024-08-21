@@ -146,19 +146,19 @@ public class Main {
                 boolean isCorrectChoice = false;
 
                 while (true) {
-                    logger.log(Level.INFO, "Welcome Admin! Choose what to do from the list:");
-                    logger.log(Level.INFO, "1. Accounts Management");
-                    logger.log(Level.INFO, "2. Reporting And Monitoring");
-                    logger.log(Level.INFO, "3. Exit");
+                    logger.info("Welcome Admin! Choose what to do from the list:");
+                    logger.info( "1. Accounts Management");
+                    logger.info(  "2. Reporting And Monitoring");
+                    logger.info( "3. Exit");
                     char uc = scanner.next().charAt(0);
 
                     if (uc == '1') {
                         while (true) {
-                            logger.log(Level.INFO, "* Accounts Management:");
-                            logger.log(Level.INFO, "a. Add new user");
-                            logger.log(Level.INFO, "b. Update existing user information");
-                            logger.log(Level.INFO, "c. Delete existing user");
-                            logger.log(Level.INFO, "d. Back");
+                            logger.info( "* Accounts Management:");
+                            logger.info( "a. Add new user");
+                            logger.info( "b. Update existing user information");
+                            logger.info( "c. Delete existing user");
+                            logger.info(  "d. Back");
 
                             uc = scanner.next().charAt(0);
                             if (uc == 'a') {

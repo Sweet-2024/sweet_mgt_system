@@ -23,6 +23,7 @@ public class Main {
     private static boolean signupFlag;
     private static final Logger logger = Logger.getLogger(Main.class.getName());
     private static final String EXIT_OPTION = "3. Exit";
+    private static final String INVALID_OPTION = "Invalid choice!";
     MyApp myApp;
     Main(MyApp myApp)
     {
@@ -92,7 +93,7 @@ public class Main {
                             break;
                         }
                         else
-                            logger.info("Invalid choice!");
+                            logger.info(INVALID_OPTION);
                     }
                 }//entering email loop
 
@@ -115,7 +116,7 @@ public class Main {
                                 break;
                             }
                             else
-                                logger.info( "Invalid choice!");
+                                logger.info( INVALID_OPTION);
                         }//incorrect password
                         else
                             break;//correct password
@@ -139,7 +140,7 @@ public class Main {
                 exit(0);
             else if(!MyApp.isLoggedIn)
             {
-                logger.warning("Invalid choice!");
+                logger.warning(INVALID_OPTION);
                 continue;
             }
 
@@ -225,7 +226,7 @@ public class Main {
                                             if (userChoice.equals("b")) {
                                                 break;
                                             } else if (!userChoice.equals("a")) {
-                                                logger.log(Level.SEVERE, "Invalid choice!");
+                                                logger.log(Level.SEVERE, INVALID_OPTION);
                                             }
                                         }
                                     } else {
@@ -266,7 +267,7 @@ public class Main {
                                         if (userChoice.equals("b")) {
                                             break;
                                         } else if (!userChoice.equals("a")) {
-                                            logger.log(Level.SEVERE, "Invalid choice!");
+                                            logger.log(Level.SEVERE, INVALID_OPTION);
                                         }
                                     }
                                 }
@@ -316,7 +317,7 @@ public class Main {
                                                 if (userChoice.equals("b")) {
                                                     break;
                                                 } else if (!userChoice.equals("a")) {
-                                                    logger.log(Level.SEVERE, "Invalid choice!");
+                                                    logger.log(Level.SEVERE, INVALID_OPTION);
                                                 }
                                             }
                                         } else {
@@ -626,7 +627,7 @@ public class Main {
                             } else if (userChoice.equals("g")) {
                                 break;
                             } else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
                         }
 
@@ -653,7 +654,7 @@ public class Main {
                                     userTypeToCommunicate = 2;
                                     communicateWithUser(userEmail, userTypeToCommunicate);
                                 } else
-                                    logger.warning("Invalid choice!");
+                                    logger.warning(INVALID_OPTION);
                             }//communications
                             else if (uc == 'b') {
                                 Listing.listingAllMsgsSentToUser(userEmail);
@@ -662,7 +663,7 @@ public class Main {
                                 break;
                             }//back
                             else
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                         }
 
                     }//communication and notifications
@@ -717,7 +718,7 @@ public class Main {
                             } else if (userChoice.equals("c")) {
                                 break;
                             } else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
                         }
                     } else if (userChoice.equals("4")) {
@@ -769,7 +770,7 @@ public class Main {
                     } else if (userChoice.equals("5")) {
                         break;
                     } else {
-                        logger.warning("Invalid choice!");
+                        logger.warning(INVALID_OPTION);
                     }
                 }
             }
@@ -967,7 +968,7 @@ public class Main {
                             } else if (userChoice.equals("d")) {
                                 break;
                             } else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
                         }
                     } else if (userChoice.equals("2")) {
@@ -992,7 +993,7 @@ public class Main {
                             {
                                 break;
                             }else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
 
                         
@@ -1000,7 +1001,7 @@ public class Main {
                     } else if (userChoice.equals("3")) {
                         break;
                     } else {
-                        logger.warning("Invalid choice!");
+                        logger.warning(INVALID_OPTION);
                     }
                 }
             }// logged in as supplier
@@ -1049,7 +1050,7 @@ public class Main {
                                         else if (uc == '2')
                                             break;
                                         else
-                                            logger.warning("Invalid Choice!");
+                                            logger.warning(INVALID_OPTION);
                                     }
                                 }
 
@@ -1067,7 +1068,7 @@ public class Main {
                                         else if (uc == '2')
                                             break;
                                         else
-                                            logger.warning("Invalid Choice!");
+                                            logger.warning(INVALID_OPTION);
                                     }
                                 }
 
@@ -1086,7 +1087,7 @@ public class Main {
                                         else if (uc == '2')
                                             break;
                                         else
-                                            logger.warning("Invalid Choice!");
+                                            logger.warning(INVALID_OPTION);
                                     }
                                 }
 
@@ -1095,7 +1096,7 @@ public class Main {
                             } else if (uc == 'c') {
                                 break;
                             } else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
                         }
                     } else if (uc == '2') {
@@ -1135,7 +1136,7 @@ public class Main {
                             {
                                 break;
                             } else {
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                             }
                         }
                     } else if (uc == '3') {
@@ -1292,12 +1293,12 @@ public class Main {
                             } else if (uc == 'c') {
                                 break;
                             } else
-                                logger.warning("Invalid choice!");
+                                logger.warning(INVALID_OPTION);
                         }
                     } else if (uc == '6') {
                         break;
                     } else {
-                        logger.warning("Invalid Choice!");
+                        logger.warning(INVALID_OPTION);
                     }
                 }
             }
@@ -1327,7 +1328,7 @@ public class Main {
             else if (userChoice.equals("b")) {
                 break;
             } else
-                logger.warning("Invalid choice!");
+                logger.warning(INVALID_OPTION);
         } // entering email loop
 
         while (!Checks.isValidUsername(username)) {
@@ -1343,7 +1344,7 @@ public class Main {
                 else if (userChoice.equals("b")) {
                     break;
                 } else
-                    logger.warning("Invalid choice!");
+                    logger.warning(INVALID_OPTION);
             }
         } // entering username loop
 
@@ -1360,7 +1361,7 @@ public class Main {
                 else if (userChoice.equals("b")) {
                     break;
                 } else
-                    logger.warning("Invalid choice!");
+                    logger.warning(INVALID_OPTION);
             }
         } // entering password loop
 
@@ -1378,7 +1379,7 @@ public class Main {
                 else if (userChoice.equals("b")) {
                     break;
                 } else
-                    logger.warning("Invalid choice!");
+                    logger.warning(INVALID_OPTION);
             }
         } // entering city loop
 
@@ -1402,7 +1403,7 @@ public class Main {
                 else if (userChoice.equals("b")) {
                     break;
                 } else
-                    logger.warning("Invalid choice!");
+                    logger.warning(INVALID_OPTION);
             }
         } // entering user type loop
 

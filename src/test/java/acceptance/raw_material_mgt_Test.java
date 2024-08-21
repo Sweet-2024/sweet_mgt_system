@@ -18,12 +18,12 @@ public class raw_material_mgt_Test {
     }
     @When("choosing raw material management from the list")
     public void choosingRawMaterialManagementFromTheList() {
-
+        //gui related
     }
 
     @When("choosing Add new raw material")
     public void choosingAddNewRawMaterial() {
-
+        //gui related
     }
 
     @When("the owner should add valid raw material information")
@@ -58,7 +58,7 @@ public class raw_material_mgt_Test {
 
     @When("choosing update raw material")
     public void choosingUpdateRawMaterial() {
-
+        //gui related
     }
 
     @When("list of available raw materials will appear")
@@ -68,7 +68,7 @@ public class raw_material_mgt_Test {
 
     @Then("the supplier will update raw material")
     public void theSupplierWillUpdateRawMaterial() {
-
+        //gui related
     }
 
     @Then("updated raw material will be saved successfully")
@@ -94,12 +94,12 @@ public class raw_material_mgt_Test {
 
     @When("choosing Remove raw material")
     public void choosingRemoveRawMaterial() {
-
+        //gui related
     }
 
     @Then("the supplier will remove raw material")
     public void theSupplierWillRemoveRawMaterial() {
-
+        //gui related
     }
 
     @Then("the raw material will be removed successfully")

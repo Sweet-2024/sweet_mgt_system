@@ -138,17 +138,17 @@ public class product_mgt_Test {
 
     @When("choosing Identify best-selling products from the list")
     public void choosingIdentifyBestSellingProductsFromTheList() {
-
+        //gui related
     }
 
     @Then("list of best-selling products will appear")
     public void listOfBestSellingProductsWillAppear() {
-
+        //gui related
     }
 
     @When("the owner or supplier enters discount percentage")
     public void theOwnerOrSupplierEntersDiscountPercentage() {
-
+        //gui related
     }
 
     @Then("the discount will be applied to products with soon expiry date")

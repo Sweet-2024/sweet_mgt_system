@@ -19,7 +19,7 @@ public class account_mgt_Test {
 
     @When("choosing business management from the list")
     public void choosingBusinessManagementFromTheList() {
-
+        //gui related
     }
 
     @Then("the business info will be updated in the system")

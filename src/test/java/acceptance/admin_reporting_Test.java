@@ -16,7 +16,7 @@ public class admin_reporting_Test {
 
     @When("choose monitoring and reporting from the list")
     public void chooseMonitoringAndReportingFromTheList() {
-
+        //gui related
     }
 
     @Then("generate financial reports for both owners and suppliers")

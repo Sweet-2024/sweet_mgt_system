@@ -71,21 +71,21 @@ public class login_Test {
 
     @Then("given user is not in the system msg will appear")
     public void givenUserIsNotInTheSystemMsgWillAppear() {
-
+        //gui related
     }
 
     @Then("given wrong password msg will appear")
     public void givenWrongPasswordMsgWillAppear() {
-
+        //gui related
     }
 
     @Then("given a welcome msg will appear")
     public void givenAWelcomeMsgWillAppear() {
-
+        //gui related
     }
 
     @Then("go to corresponding page according to user type")
     public void goToCorrespondingPageAccordingToUserType() {
-
+        //gui related
     }
 }

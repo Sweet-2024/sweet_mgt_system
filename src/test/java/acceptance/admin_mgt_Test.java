@@ -26,7 +26,7 @@ public class admin_mgt_Test {
 
     @When("admin choose managing accounts from the list")
     public void adminChooseManagingAccountsFromTheList() {
-
+        //gui related
     }
 
     @Then("list of users, owners, and suppliers information will appear")

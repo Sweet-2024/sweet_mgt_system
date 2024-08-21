@@ -22,12 +22,12 @@ public class owners_communication_Test {
 
     @When("choosing Communication and Notification from the list")
     public void choosingCommunicationAndNotificationFromTheList() {
-
+        //gui related
     }
 
     @When("choosing communication with users")
     public void choosingCommunicationWithUsers() {
-
+        //gui related
     }
 
     @When("list of users will appear")
@@ -53,7 +53,7 @@ public class owners_communication_Test {
 
     @When("choosing communication with suppliers")
     public void choosingCommunicationWithSuppliers() {
-
+        //gui related
     }
 
     @When("list of suppliers will appear")
@@ -64,7 +64,7 @@ public class owners_communication_Test {
 
     @Then("the owner will communicate with selected supplier")
     public void theOwnerWillCommunicateWithSelectedSupplier() {
-
+        //gui related
     }
 
     @Given("logged in to the system as supplier")
@@ -75,7 +75,7 @@ public class owners_communication_Test {
 
     @When("choosing communication with owners")
     public void choosingCommunicationWithOwners() {
-
+        //gui related
     }
 
     @When("list of owners will appear")
@@ -86,7 +86,7 @@ public class owners_communication_Test {
 
     @Then("the supplier will communicate with selected owner")
     public void theSupplierWillCommunicateWithSelectedOwner() {
-
+        //gui related
     }
 
 }

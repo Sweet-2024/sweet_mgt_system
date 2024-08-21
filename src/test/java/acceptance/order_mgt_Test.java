@@ -31,12 +31,12 @@ public class order_mgt_Test {
 
     @When("choosing order management from the list")
     public void choosingOrderManagementFromTheList() {
-
+        //gui related
     }
 
     @When("choosing create an order from suppliers from the list")
     public void choosingCreateAnOrderFromSuppliersFromTheList() {
-
+        //gui related
     }
 
     @When("choosing the supplier to buy from")
@@ -69,12 +69,12 @@ public class order_mgt_Test {
 
     @Then("a msg will be sent to the selected supplier to notify him")
     public void aMsgWillBeSentToTheSelectedSupplierToNotifyHim() {
-
+        //gui related
     }
 
     @When("choosing order messages from the list")
     public void choosingOrderMessagesFromTheList() {
-
+        //gui related
     }
 
     @Then("list of orders' status and info about each order will appear")

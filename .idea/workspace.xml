@@ -4,17 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -37,14 +40,25 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="2kxUPvN3q0Em1BZ2gaCMb3254GK" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
+
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2jVY2BAwyTLCmwKKTLgT7dXFtOr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
@@ -57,7 +71,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
-  }
+
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -66,7 +80,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.AcceptanceTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="sweetMgtSystem" />
@@ -85,6 +99,14 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="acceptance.pkg.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="main_entities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="sweet_system.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -152,8 +174,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.AcceptanceTest" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.AccountMgtTest" />
         <item itemvalue="JUnit.admin_mgt_Test" />
         <item itemvalue="JUnit.account_mgt_Test" />
@@ -162,19 +184,110 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="add logger instead of println">
-      <created>1724224611438</created>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aeddec23-830b-4584-a456-ec3a97861102" name="Changes" comment="jacoco plugin" />
+      <created>1721473502394</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1721473502394</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Creating project with dependencies">
+      <created>1721474007124</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1724224611438</updated>
+      <updated>1721474007124</updated>
     </task>
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="" />
-      <created>1724224701964</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1724224701964</updated>
+    <task id="LOCAL-00002" summary="adding login and admin_mgt features">
+      <created>1721493609699</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1721493609699</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Creating test cases for login and admin mgt features">
+      <created>1722074542897</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722074542897</updated>
+    </task>
+    <task id="LOCAL-00004" summary="write test cases for acccount mgt and admin mgt">
+      <created>1722548313421</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722548313421</updated>
+    </task>
+    <task id="LOCAL-00005" summary="completing login in feature with all scenarios">
+      <created>1722453908625</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722453908625</updated>
+    </task>
+    <task id="LOCAL-00006" summary="completing sign up feature with all scenarios">
+      <created>1722523793866</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1722523793867</updated>
+    </task>
+    <task id="LOCAL-00007" summary="completing sign up feature with all scenarios">
+      <created>1722523943526</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1722523943526</updated>
+    </task>
+    <task id="LOCAL-00008" summary="completing adding new recipe feature with all scenarios">
+      <created>1722612372691</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1722612372691</updated>
+    </task>
+    <task id="LOCAL-00009" summary="finishing everything related with admin">
+      <created>1723544891971</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1723544891971</updated>
+    </task>
+    <task id="LOCAL-00010" summary="merging">
+      <created>1723567656476</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1723567656476</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feedback">
+      <created>1723573435071</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1723573435071</updated>
+    </task>
+    <task id="LOCAL-00012" summary="some updates in main and listing">
+      <created>1724098471891</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1724098471891</updated>
+    </task>
+    <task id="LOCAL-00013" summary="some updates in main and listing">
+      <created>1724098720024</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1724098720024</updated>
+    </task>
+    <task id="LOCAL-00014" summary="some updates in main and listing">
+      <created>1724099002740</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1724099002740</updated>
     </task>
     <task id="LOCAL-00015" summary="some updates in main and listing">
       <created>1724099196511</created>
@@ -295,21 +408,52 @@
       <option name="project" value="LOCAL" />
       <updated>1724222645906</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="upgrading junit version">
+      <created>1724248355449</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1724248355449</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="completing users purchase and communication feature" />
     <MESSAGE value="some modifications to adding recipe and reporting functions" />
@@ -336,7 +480,8 @@
     <MESSAGE value="security improving" />
     <MESSAGE value="jacoco plugin" />
     <MESSAGE value="removing postgres dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="removing postgres dependency" />
+    <MESSAGE value="upgrading junit version" />
+    <option name="LAST_COMMIT_MESSAGE" value="upgrading junit version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -347,13 +492,21 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
-          <line>68</line>
+          <line>73</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Main_java$Main.ic" NAME="Main Coverage Results" MODIFIED="1724227982162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.example.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Main_java$AcceptanceTest.ic" NAME="AcceptanceTest Coverage Results" MODIFIED="1724228365628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>acceptance.pkg.*</FILTER>
+      <FILTER>main_entities.*</FILTER>
+      <FILTER>sweet_system.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/sweet_mgt_system$AcceptanceTest.ic" NAME="AcceptanceTest Coverage Results" MODIFIED="1722437191751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>acceptance.pkg.*</FILTER>
     </SUITE>

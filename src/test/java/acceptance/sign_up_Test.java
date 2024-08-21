@@ -126,11 +126,11 @@ public class sign_up_Test {
 
     @Then("give a successful sign up msg and go to login")
     public void giveASuccessfulSignUpMsgAndGoToLogin() {
-
+        //gui related
     }
 
     @Then("give a try again msg")
     public void giveATryAgainMsg() {
-
+        //gui related
     }
 }

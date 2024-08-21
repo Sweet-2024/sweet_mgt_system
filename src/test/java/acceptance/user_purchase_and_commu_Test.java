@@ -23,17 +23,17 @@ public class user_purchase_and_commu_Test {
     }
     @When("choose purchase desserts from the list")
     public void choosePurchaseDessertsFromTheList() {
-
+        //gui related
     }
 
     @When("choosing owner name to buy from the list")
     public void choosingOwnerNameToBuyFromTheList() {
-
+        //gui related
     }
 
     @When("choosing product name to buy from the selected owner")
     public void choosingProductNameToBuyFromTheSelectedOwner() {
-
+        //gui related
     }
 
     @Then("the order will be created successfully")
@@ -57,22 +57,22 @@ public class user_purchase_and_commu_Test {
 
     @Then("a msg will be sent to the owner to notify him")
     public void aMsgWillBeSentToTheOwnerToNotifyHim() {
-
+        //gui related
     }
 
     @When("choose communication and feedback from the list")
     public void chooseCommunicationAndFeedbackFromTheList() {
-
+        //gui related
     }
 
     @When("writing msg to the owner")
     public void writingMsgToTheOwner() {
-
+        //gui related
     }
 
     @When("sending the msg")
     public void sendingTheMsg() {
-
+        //gui related
     }
 
     @Then("the owner will receive the msg successfully")

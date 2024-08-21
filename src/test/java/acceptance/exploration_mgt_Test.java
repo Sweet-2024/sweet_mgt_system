@@ -19,7 +19,7 @@ public class exploration_mgt_Test {
     }
     @When("choose Explore recipes from the list")
     public void chooseExploreRecipesFromTheList() {
-
+        //gui related
     }
 
     @Then("list of dessert recipes exist in the system")
@@ -31,12 +31,12 @@ public class exploration_mgt_Test {
 
     @When("choose search for recipes from the list")
     public void chooseSearchForRecipesFromTheList() {
-
+        //gui related
     }
 
     @When("enter recipe name to search for")
     public void enterRecipeNameToSearchFor() {
-
+        //gui related
     }
 
     @Then("recipe will appear")
@@ -53,7 +53,7 @@ public class exploration_mgt_Test {
 
     @When("choose recipes for dietary needs from the list")
     public void chooseRecipesForDietaryNeedsFromTheList() {
-
+        //gui related
     }
 
     @Then("list of dietary needs recipes will appear with description")
@@ -65,7 +65,7 @@ public class exploration_mgt_Test {
 
     @When("choose recipes for food allergies from the list")
     public void chooseRecipesForFoodAllergiesFromTheList() {
-
+        //gui related
     }
 
     @Then("list of food allergies recipes will appear with description")

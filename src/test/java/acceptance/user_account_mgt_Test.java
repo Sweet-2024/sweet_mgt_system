@@ -29,15 +29,15 @@ public class user_account_mgt_Test {
     }
     @When("choosing account management from the list")
     public void choosingAccountManagementFromTheList() {
-
+        //gui related
     }
 
     @When("entering data to be updated in selected format")
     public void enteringDataToBeUpdatedInSelectedFormat() {
-
+        //gui related
     }
 
-    @Ignore
+
     @Then("the account info will be updated in the system")
     public void theAccountInfoWillBeUpdatedInTheSystem() {
         String un = "user2";
@@ -54,7 +54,7 @@ public class user_account_mgt_Test {
 
     @When("entering data with incorrect format")
     public void enteringDataWithIncorrectFormat() {
-
+        //gui related
     }
 
     @Then("updating account will be canceled")

@@ -22,7 +22,7 @@ public class adding_dessert_Test {
 
     @When("choose adding new dessert creations from the list")
     public void chooseAddingNewDessertCreationsFromTheList() {
-
+        //gui related
     }
 
     @When("entering acceptable dessert name")

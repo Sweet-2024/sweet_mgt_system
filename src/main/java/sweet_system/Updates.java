@@ -12,6 +12,18 @@ import java.util.List;
 
 public class Updates {
 
+    private static ResultSet executeSelectStmts(String qry)
+    {
+        try {
+            return Database.connectionToSelectFromDB(qry);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     public static void updateBusinessInfo(Business business)
     {
         int bId = business.getBusinessId();
@@ -100,7 +112,7 @@ public class Updates {
         int orderId= 0;
 
         String qry1 = "SELECT order_id FROM sweetsystem.order order BY order_id DESC;";
-        ResultSet rs = Database.connectionToSelectFromDB(qry1);
+        ResultSet rs = executeSelectStmts(qry1);
         try {
             if (rs != null){
                 rs.next();
@@ -118,7 +130,7 @@ public class Updates {
             if(Checks.checkIfProductInDatabase(items.get(i)))
             {
                 String qry2 = "SELECT `product_id` FROM `product` WHERE product_name = '"+items.get(i)+"' ";
-                ResultSet rs2 = Database.connectionToSelectFromDB(qry2);
+                ResultSet rs2 = executeSelectStmts(qry2);
                 int productId = -1;
                 try {
                     if (rs2.next())
@@ -236,16 +248,16 @@ public class Updates {
         int price = 0;
         int discountedPrice = 0;
         String qry1 = "select * from sweetsystem.product";
-        ResultSet rs = Database.connectionToSelectFromDB(qry1);
+        ResultSet rs = executeSelectStmts(qry1);
         try {
             if(rs != null)
             {
                 String qry2 = "SELECT product_id, price FROM product WHERE ex_date = (SELECT MIN(ex_date) FROM product);";
-                ResultSet productsWithSoonExpiryDate = Database.connectionToSelectFromDB(qry2);
-                while(ProductsWithSoonExpiryDate.next())
+                ResultSet productsWithSoonExpiryDate = executeSelectStmts(qry2);
+                while(productsWithSoonExpiryDate.next())
                 {
-                    productId = ProductsWithSoonExpiryDate.getInt("product_id");
-                    price = ProductsWithSoonExpiryDate.getInt("price");
+                    productId = productsWithSoonExpiryDate.getInt("product_id");
+                    price = productsWithSoonExpiryDate.getInt("price");
                     discountedPrice = (int) (price * (1 - discount));
 
                 }
@@ -274,7 +286,7 @@ public class Updates {
         int orderId= 0;
 
         String qry1 = "SELECT order_id FROM sweetsystem.order order BY order_id DESC;";
-        ResultSet rs = Database.connectionToSelectFromDB(qry1);
+        ResultSet rs = executeSelectStmts(qry1);
         try {
             if (rs != null){
                 rs.next();
@@ -292,14 +304,14 @@ public class Updates {
           if(Checks.checkIfRowMaterialInDatabase(items.get(i)))
             {
                 String qry2 = "SELECT rm_id FROM row_material WHERE rm_name = '"+items.get(i)+"' ";
-                ResultSet rs2 = Database.connectionToSelectFromDB(qry2);
+                ResultSet rs2 = executeSelectStmts(qry2);
                 int rowMaterialId = -1;
                 try {
                     if (rs2.next())
                     {
                         rowMaterialId = rs2.getInt(1);
                         qry2 = "select * from order_material where order_id = "+orderId+" and rm_id = "+rowMaterialId+" and qty = " + qty.get(i);
-                        ResultSet rs3 = Database.connectionToSelectFromDB(qry2);
+                        ResultSet rs3 = executeSelectStmts(qry2);
                         if (rs3.next())
                         {
                             System.out.println("Already ordered! ");

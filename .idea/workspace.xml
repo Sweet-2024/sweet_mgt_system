@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="solving consistency problems">
+    <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="define constants instead of literals">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sweet_system/Listing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweet_system/Listing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweet_system/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweet_system/Updates.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,7 +304,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724256935714</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="define constants instead of literals">
+      <created>1724259194972</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1724259194972</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -320,7 +327,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="some modifications to adding recipe and reporting functions" />
     <MESSAGE value="write test cases for acccount mgt and admin mgt" />
     <MESSAGE value="write test cases for product mgt and make some updates" />
     <MESSAGE value="write test cases for user account mgt, exploration mgt and make some updates" />
@@ -345,7 +351,8 @@
     <MESSAGE value="jacoco plugin" />
     <MESSAGE value="removing postgres dependency" />
     <MESSAGE value="solving consistency problems" />
-    <option name="LAST_COMMIT_MESSAGE" value="solving consistency problems" />
+    <MESSAGE value="define constants instead of literals" />
+    <option name="LAST_COMMIT_MESSAGE" value="define constants instead of literals" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

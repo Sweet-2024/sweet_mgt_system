@@ -632,7 +632,7 @@ public class Main {
                                             logger.warning("Invalid discount! Please enter a value between 0.0 and 1.0.");
                                         }
                                     } else {
-                                        logger.warning("Invalid input! Please enter a numeric value.");
+                                        logger.warning(INVALID_INPUT_OPTION);
                                         scanner.next();
                                     }
                                 }

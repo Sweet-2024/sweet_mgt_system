@@ -8,8 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Listing {
-
-
+    private static final String WHOLESALE_PRICE_OPTION = "Wholesale Price";
+    private static final String PRICE_OPTION = "Price";
+    private static final String QTY_OPTION = "Quantity";
     // financial reports :
     private static void printingFinancialReportOfOwnersOrSuppliers(String email,String username) {
         int incomes = 0;
@@ -203,7 +204,7 @@ public class Listing {
 
         try {
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
-                    "raw material id", "raw material Name", "Price", "Wholesale Price", "Quantity",
+                    "raw material id", "raw material Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
                     "Saled Qty", "Expiration Date", "Supplier Email");
 
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
@@ -234,7 +235,7 @@ public class Listing {
 
         try {
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n",
-                    "Product id", "Product Name", "Price", "Wholesale Price", "Quantity",
+                    "Product id", "Product Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
                     "Saled Qty", "Expiration Date", "Owner Email");
 
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
@@ -264,7 +265,7 @@ public class Listing {
 
         try {
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n",
-                    "Product id", "Product Name", "Price", "Wholesale Price", "Quantity",
+                    "Product id", "Product Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
                     "Saled Qty", "Expiration Date", "Owner Email");
 
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
@@ -464,7 +465,7 @@ public class Listing {
 
         try {
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
-                    "raw material id", "raw material Name", "Price", "Wholesale Price", "Quantity",
+                    "raw material id", "raw material Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
                     "Saled Qty", "Expiration Date", "Supplier Email");
 
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------");

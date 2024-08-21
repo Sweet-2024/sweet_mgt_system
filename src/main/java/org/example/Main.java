@@ -68,7 +68,7 @@ public class Main {
 
             if(userChoice.equals("1"))
             {
-                while (!Checks.checkIfEmailAlreadyUsed(userEmail))
+                while (Checks.checkIfEmailAlreadyUsed(userEmail))
                 {
                     System.out.println("Enter your email");
                     userEmail = scanner.next();

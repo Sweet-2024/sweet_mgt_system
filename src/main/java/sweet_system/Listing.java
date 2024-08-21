@@ -5,7 +5,7 @@ import main_entities.Database;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Listing {
 
@@ -314,11 +314,11 @@ public class Listing {
 
         }
     }
-    public static ArrayList<Integer> listRecipesInDb()
+    public static List<Integer> listRecipesInDb()
     {
         String qry = "select * from sweetsystem.recipe;";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
-        ArrayList<Integer> recipesID = new ArrayList<>();
+        List<Integer> recipesID = new List<>();
         int numOfRecipes = 0;
         try {
 
@@ -356,9 +356,9 @@ public class Listing {
             System.err.println(e);
         }
     }
-    public static ArrayList<Integer> ordersMadeByThisUser(String userEmail)
+    public static List<Integer> ordersMadeByThisUser(String userEmail)
     {
-        ArrayList<Integer> ordersID = new ArrayList<>();
+        List<Integer> ordersID = new List<>();
         String qry = "select * from `order` where buyer_email = '"+userEmail+"';";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         try {
@@ -383,9 +383,9 @@ public class Listing {
         return ordersID;
     }
 
-    public static ArrayList<Integer> productsInTheOrder(int orderID)
+    public static List<Integer> productsInTheOrder(int orderID)
     {
-        ArrayList<Integer> productsId = new ArrayList<>();
+        List<Integer> productsId = new List<>();
         String qry = "SELECT * from `product`,`order_product` WHERE `order_product`.`product_id` = `product`.`product_id` and `order_product`.`order_id` = " + orderID;
         ResultSet rs = Database.connectionToSelectFromDB(qry);
 

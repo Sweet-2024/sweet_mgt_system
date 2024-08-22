@@ -297,7 +297,8 @@ public class Listing {
                         saledQty, exDate, ownerEmail);
             }
             System.out.println(LINE);
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -318,11 +319,9 @@ public class Listing {
                 System.out.println("\tRecipe Category : " + rs.getString("recipe_category"));
                 System.out.println("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
                 System.out.println("------------------------------------------------------------------------------------");
-            }
-            if(numOfRecipes == 0)
+            }if(numOfRecipes == 0)
                 System.out.println("There is no recipes in the system!");
-        }
-        catch (SQLException e)
+        } catch (SQLException e)
         {
 
         }
@@ -343,7 +342,8 @@ public class Listing {
             }
             if(numOfRecipes == 0)
                 System.out.println("There is no recipes in the system!");
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.err.println(e);
         }
         return recipesID;
@@ -365,7 +365,8 @@ public class Listing {
             }
             if(numOfRecipes == 0)
                 System.out.println("There is no recipes from this category!");
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.err.println(e);
         }
     }

@@ -4,6 +4,7 @@ import main_entities.RawMaterial;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import sweet_system.Checks;
+import sweet_system.Listing;
 import sweet_system.MyApp;
 import sweet_system.Updates;
 
@@ -52,6 +53,7 @@ public class raw_material_mgt_Test {
         RawMaterial rawMaterial = new RawMaterial(rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
         Updates.addNewRawMaterial(rawMaterial);
 
+        Listing.listingOfRawMaterialsForSpecificSupplier(supplierEmail);
         assertTrue(Checks.checkIfRowMaterialInDatabase(rmName));
 
     }
@@ -115,7 +117,7 @@ public class raw_material_mgt_Test {
         rmId = 100;
         Updates.deleteRawMaterial(rmId);
 
-        assertFalse(!Checks.checkIfProductInDbAccordingToId(rmId));
+        assertFalse(Checks.checkIfProductInDbAccordingToId(rmId));
     }
 
 }

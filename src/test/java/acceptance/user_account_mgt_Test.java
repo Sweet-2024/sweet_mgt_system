@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Ignore;
 import sweet_system.Checks;
+import sweet_system.Listing;
 import sweet_system.MyApp;
 import sweet_system.Updates;
 
@@ -49,6 +50,7 @@ public class user_account_mgt_Test {
         User user = new User (un, password, email, location, userType);
         Updates.updateYourOwnAccount(user);
 
+        Listing.listingYourOwnAccount(email);
         assertTrue(Checks.checkIfUserInDatabase(email, password));
     }
 

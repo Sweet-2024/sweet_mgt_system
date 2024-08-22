@@ -3,6 +3,7 @@ package acceptance;
 import main_entities.User;
 import io.cucumber.java.en.*;
 import sweet_system.Checks;
+import sweet_system.Listing;
 import sweet_system.MyApp;
 import sweet_system.Updates;
 
@@ -47,7 +48,7 @@ public class admin_mgt_Test {
         Updates.addNewUser(user);
 
         assertTrue(Checks.checkIfUserInDatabase(email, password));
-
+        Listing.listAllUsersInTheSystem(userType);
     }
 
     @Then("admin can delete accounts information")
@@ -55,7 +56,7 @@ public class admin_mgt_Test {
         String email = "s12113755@stu.najah.edu";
         String password = "123";
         Updates.deleteUser(email);
-        assertFalse(!Checks.checkIfUserInDatabase(email, password));
+        assertFalse(Checks.checkIfUserInDatabase(email, password));
     }
 
     @Then("admin can edit accounts information")
@@ -70,6 +71,7 @@ public class admin_mgt_Test {
         Updates.updateUser(user);
 
         assertTrue(Checks.checkIfUserInDatabase(email, password));
+        Listing.listAllUsersInTheSystem(userType);
     }
 
 

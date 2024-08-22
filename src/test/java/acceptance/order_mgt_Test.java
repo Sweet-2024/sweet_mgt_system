@@ -67,6 +67,7 @@ public class order_mgt_Test {
         qty.add(20);
         qty.add(25);
 
+        Listing.listingOfRawMaterials();
         Updates.addNewOrderForRowMaterials(new Order(seller, buyer, LocalDateTime.now(), items, qty));
     }
 

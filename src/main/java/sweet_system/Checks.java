@@ -23,8 +23,8 @@ public class Checks {
         String inQRY = qry;
         try
         {
-            ResultSet rs = Database.connectionToSelectFromDB(qry);
-            if (rs != null)
+            ResultSet rs = Database.connectionToSelectFromDB(inQRY);
+            if (rs.next())
                 return true;
             else
                 return false;

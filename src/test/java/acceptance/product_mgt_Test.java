@@ -56,6 +56,7 @@ public class product_mgt_Test {
         int quantity = 10;
         int saledQty = 6;
         String exDate = "2024-12-12";
+        Checks.isValidDate(exDate);
 
         String ownerEmail = "s12113354@stu.najah.edu";
         assertTrue(Checks.isValidEmail(ownerEmail));
@@ -63,6 +64,7 @@ public class product_mgt_Test {
         Product product = new Product (pName, price, wholesalePrice, quantity, saledQty, exDate, ownerEmail);
         Updates.addNewProduct(product);
 
+        Listing.listingOfProductsForSpecificOwner(ownerEmail);
         assertTrue(Checks.checkIfProductInDatabase(pName));
     }
 
@@ -120,7 +122,7 @@ public class product_mgt_Test {
 
         Updates.deleteProduct(productId);
 
-        assertFalse(!Checks.checkIfProductInDbAccordingToId(productId));
+        assertFalse(Checks.checkIfProductInDbAccordingToId(productId));
     }
 
     @When("choosing Monitor sales and profits from the list")
@@ -155,6 +157,7 @@ public class product_mgt_Test {
     @Then("the discount will be applied to products with soon expiry date")
     public void theDiscountWillBeAppliedToProductsWithSoonExpiryDate() {
         double discount = 0.20;
+        Checks.isValidDiscount(discount);
         assertTrue(Updates.productDiscount(discount));
     }
 

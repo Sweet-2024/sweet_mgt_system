@@ -4,6 +4,7 @@ import main_entities.Recipe;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import sweet_system.Checks;
+import sweet_system.Listing;
 import sweet_system.MyApp;
 import sweet_system.Updates;
 
@@ -47,9 +48,11 @@ public class adding_dessert_Test {
     {
         String recipeCate = " dietary needs";
         assertTrue(Checks.isAcceptableRecipeCategory(recipeCate));
+        Listing.listRecipesInDbAccordingToCategory(recipeCate);
 
-        recipeCate = "  foOd Allergies ";
+        recipeCate = "  food Allergies ";
         assertTrue(Checks.isAcceptableRecipeCategory(recipeCate));
+        Listing.listRecipesInDbAccordingToCategory(recipeCate);
     }
 
     @Then("new recipe will be added to the system successfully")
@@ -71,6 +74,7 @@ public class adding_dessert_Test {
 
         Updates.addNewRecipe(recipe);
         assertTrue(Checks.isExistingRecipe(recipe));
+        Listing.listRecipesInDb();
     }
 
     @Then("warning msg will be appeared")

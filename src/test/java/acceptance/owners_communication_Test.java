@@ -52,6 +52,7 @@ public class owners_communication_Test {
 
         Updates.addNewMsg(messaging);
         assertTrue(Checks.isMsgInTheSystem(messaging));
+        Listing.listingAllMsgsSentToUser(receiverEmail);
     }
 
     @When("choosing communication with suppliers")

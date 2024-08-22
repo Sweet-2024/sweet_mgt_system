@@ -6,11 +6,13 @@ import main_entities.Order;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import sweet_system.Checks;
+import sweet_system.Listing;
 import sweet_system.MyApp;
 import sweet_system.Updates;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -44,6 +46,7 @@ public class user_purchase_and_commu_Test {
         assertTrue(Checks.checkIfEmailAlreadyUsed(buyerEmail));
         assertTrue(Checks.checkIfEmailAlreadyUsed(sellerEmail));
 
+
         ArrayList<String> items = new ArrayList<>();
         items.add("donats");
         items.add("cupcake");
@@ -52,8 +55,8 @@ public class user_purchase_and_commu_Test {
         qty.add(3);
         qty.add(2);
 
+        Listing.listingOfProducts();
         Updates.addNewOrderForProduct(new Order(sellerEmail, buyerEmail, LocalDateTime.now(), items, qty));
-
     }
 
     @Then("a msg will be sent to the owner to notify him")

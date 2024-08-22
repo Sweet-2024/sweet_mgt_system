@@ -64,18 +64,4 @@ public class RawMaterial {
         return supplierEmail;
     }
 
-
-    @Override
-    public String toString() {
-        return "rawMaterial{" +
-                "rmId=" + rmId +
-                ", rmName='" + rmName + '\'' +
-                ", price=" + price +
-                ", wholesalePrice=" + wholesalePrice +
-                ", quantity=" + quantity +
-                ", saledQty=" + saledQty +
-                ", exDate='" + exDate + '\'' +
-                ", supplierEmail='" + supplierEmail + '\'' +
-                '}';
-    }
 }

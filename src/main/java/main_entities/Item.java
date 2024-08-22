@@ -59,18 +59,4 @@ public class Item
         return email;
     }
 
-
-    @Override
-    public String toString() {
-        return "rawMaterial{" +
-                "rmId=" + itemId +
-                ", rmName='" +  + '\'' +
-                ", price=" + price +
-                ", wholesalePrice=" + wholesalePrice +
-                ", quantity=" + quantity +
-                ", saledQty=" + saledQty +
-                ", exDate='" + exDate + '\'' +
-                ", supplierEmail='" + email + '\'' +
-                '}';
-    }
 }

@@ -1,7 +1,12 @@
 package main_entities;
 
+import org.example.Main;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class User {
 
@@ -9,7 +14,7 @@ public class User {
     private String password;
     private String email;
     private String location;
- 
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
     public User(String uname, String password, String email, String location, int userType) {
         this.uname = uname;
         this.password = password;
@@ -56,9 +61,9 @@ public class User {
                 userType = rs.getInt("user_type");
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.log(Level.SEVERE, "An error occurred: " + e.getMessage(), e);
         } catch (DatabaseOperationException e) {
-            System.err.println("Error fetching user type: " + e.getMessage());
+            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
         }
 
         return userType;

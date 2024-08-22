@@ -1,5 +1,7 @@
 package main_entities;
 
+import org.example.Main;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,10 +12,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class Database{
     static Connection conn;
     static Statement stmt;
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static ResultSet connectionToSelectFromDB(String cmdString) throws DatabaseOperationException
     {
@@ -32,18 +37,15 @@ public class Database{
 
             ResultSet rs = stmt.executeQuery(qry);
             return rs;
-        }
-        catch(SQLException sqlException)
-        {
-            System.out.println(sqlException);
+        } catch(SQLException sqlException) {
+            logger.log(Level.INFO, sqlException.getMessage(), sqlException);
             return null;
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         catch (IOException | ClassNotFoundException e)
         {
-            System.out.println(e);
+            logger.log(Level.SEVERE, "An error occurred: " + e.getMessage(), e);
             return null;
         }
     }
@@ -61,17 +63,20 @@ public class Database{
             conn = DriverManager.getConnection(connInfo, username, password);
             stmt = conn.createStatement();
             stmt.executeUpdate(cmdString);
+
+            conn.close();
+            stmt.close();
         }
         catch(SQLException sqlException)
         {
-            System.out.println(sqlException);
+            logger.log(Level.INFO, sqlException.getMessage(), sqlException);
         }
         catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         catch (IOException e)
         {
-            System.out.println(e);
+            logger.log(Level.SEVERE, "An error occurred: " + e.getMessage(), e);
         }
     }
 }

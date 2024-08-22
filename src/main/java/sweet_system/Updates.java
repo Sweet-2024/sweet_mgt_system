@@ -191,13 +191,13 @@ public class Updates {
     }
     public static void addNewProduct(Product product)
     {
-        String pName = product.getProductName();
+        String pName = product.getName();
         int price = product.getPrice();
         int wholesalePrice = product.getWholesalePrice();
         int quantity = product.getQuantity();
         int saledQty = product.getSaledQty();
         String exDate = product.getExDate();
-        String ownerEmail = product.getOwnerEmail();
+        String ownerEmail = product.getEmail();
 
         if(!Checks.checkIfProductInDatabase(pName))
         {
@@ -223,14 +223,14 @@ public class Updates {
     }
     public static void updateProduct(Product product)
     {
-        int id = product.getProductId();
-        String pName = product.getProductName();
+        int id = product.getId();
+        String pName = product.getName();
         int price = product.getPrice();
         int wholesalePrice = product.getWholesalePrice();
         int quantity = product.getQuantity();
         int saledQty = product.getSaledQty();
         String exDate = product.getExDate();
-        String ownerEmail = product.getOwnerEmail();
+        String ownerEmail = product.getEmail();
 
         if(!Checks.checkIfProductInDbAccordingToId(id))
         {
@@ -354,13 +354,13 @@ public class Updates {
 
     public static void addNewRawMaterial(RawMaterial rawMaterial)
     {
-        String rmName = rawMaterial.getRmName();
+        String rmName = rawMaterial.getName();
         int price = rawMaterial.getPrice();
         int wholesalePrice = rawMaterial.getWholesalePrice();
         int quantity = rawMaterial.getQuantity();
         int saledQty = rawMaterial.getSaledQty();
         String exDate = rawMaterial.getExDate();
-        String supplierEmail = rawMaterial.getSupplierEmail();
+        String supplierEmail = rawMaterial.getEmail();
 
         if(!Checks.checkIfRowMaterialInDatabase(rmName))
         {
@@ -374,14 +374,14 @@ public class Updates {
     }
 
     public static void updateRawMaterial(RawMaterial rawMaterial) {
-        int id = rawMaterial.getRmId();
-        String rmName = rawMaterial.getRmName();
+        int id = rawMaterial.getId();
+        String rmName = rawMaterial.getName();
         int price = rawMaterial.getPrice();
         int wholesalePrice = rawMaterial.getWholesalePrice();
         int quantity = rawMaterial.getQuantity();
         int saledQty = rawMaterial.getSaledQty();
         String exDate = rawMaterial.getExDate();
-        String supplierEmail = rawMaterial.getSupplierEmail();
+        String supplierEmail = rawMaterial.getEmail();
 
         if(!Checks.checkIfRowMaterialInDatabase(rmName))
         {

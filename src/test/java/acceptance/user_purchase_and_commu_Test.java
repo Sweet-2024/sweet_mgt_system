@@ -85,14 +85,14 @@ public class user_purchase_and_commu_Test {
         String senderEmail = "user5@yahoo.com";
         String receiverEmail = "s12112506@stu.najah.edu";
 
-        //assertTrue(Checks.checkIfEmailAlreadyUsed(senderEmail));
-        //assertTrue(Checks.checkIfEmailAlreadyUsed(receiverEmail));
+        assertTrue(Checks.checkIfEmailAlreadyUsed(senderEmail));
+        assertTrue(Checks.checkIfEmailAlreadyUsed(receiverEmail));
 
         String msg = "I want to communicate with you";
         Messaging messaging = new Messaging(senderEmail, receiverEmail, msg);
 
         Updates.addNewMsg(messaging);
-        //assertTrue(Checks.isMsgInTheSystem(messaging));
+        assertTrue(Checks.isMsgInTheSystem(messaging));
     }
 
     @When("choosing order and product id")

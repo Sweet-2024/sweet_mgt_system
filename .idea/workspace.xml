@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="spliting sign up function into multiple functions">
+    <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="simple changes on testcases">
+      <change afterPath="$PROJECT_DIR$/src/main/java/main_entities/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/RawMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/RawMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweet_system/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweet_system/Updates.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -358,7 +360,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724340042663</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="simple changes on testcases">
+      <created>1724340395476</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1724340395476</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -374,7 +383,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="finishing everything related with admin" />
     <MESSAGE value="merging" />
     <MESSAGE value="feedback" />
     <MESSAGE value="some updates in main and listing" />
@@ -399,7 +407,8 @@
     <MESSAGE value="remove unused setters to increase coverage" />
     <MESSAGE value="improving the coverage" />
     <MESSAGE value="spliting sign up function into multiple functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="spliting sign up function into multiple functions" />
+    <MESSAGE value="simple changes on testcases" />
+    <option name="LAST_COMMIT_MESSAGE" value="simple changes on testcases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

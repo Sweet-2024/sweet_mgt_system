@@ -23,7 +23,6 @@ public class Database{
 
     public static ResultSet connectionToSelectFromDB(String cmdString)
     {
-
         try
         {
             Properties p = new Properties();

@@ -30,36 +30,16 @@ public class Order
         return itemQty;
     }
 
-    public void setItemQty(List<Integer> itemQty) {
-        this.itemQty = itemQty;
-    }
-    public void setSellerEmail(String sellerEmail) {
-        this.sellerEmail = sellerEmail;
-    }
-
     public String getBuyerEmail() {
         return buyerEmail;
-    }
-
-    public void setBuyerEmail(String buyerEmail) {
-        this.buyerEmail = buyerEmail;
     }
 
     public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-  
     public List<String> getItemList() {
         return itemList;
-    }
-
-    public void setItemList(List<String> itemList) {
-        this.itemList = itemList;
     }
 
 }

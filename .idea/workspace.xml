@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="modify updates class">
+    <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="decrease duplication in product and row material class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/RawMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/RawMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Business.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Business.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Feedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Feedback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Messaging.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Messaging.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724263282479</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="decrease duplication in product and row material class">
+      <created>1724316529201</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1724316529201</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -343,7 +355,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="write test cases for product mgt and make some updates" />
     <MESSAGE value="write test cases for user account mgt, exploration mgt and make some updates" />
     <MESSAGE value="write test case for order mgt and make some updates" />
     <MESSAGE value="make some updates" />
@@ -368,7 +379,8 @@
     <MESSAGE value="solving consistency problems" />
     <MESSAGE value="define constants instead of literals" />
     <MESSAGE value="modify updates class" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify updates class" />
+    <MESSAGE value="decrease duplication in product and row material class" />
+    <option name="LAST_COMMIT_MESSAGE" value="decrease duplication in product and row material class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -386,6 +398,11 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Main_java$AcceptanceTest.ic" NAME="AcceptanceTest Coverage Results" MODIFIED="1724317033057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>acceptance.pkg.*</FILTER>
+      <FILTER>main_entities.*</FILTER>
+      <FILTER>sweet_system.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/sweet_mgt_system$AcceptanceTest.ic" NAME="AcceptanceTest Coverage Results" MODIFIED="1722437191751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>acceptance.pkg.*</FILTER>
     </SUITE>

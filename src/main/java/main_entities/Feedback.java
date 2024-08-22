@@ -14,15 +14,7 @@ public class Feedback
         return productID;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
-
     public int getEvaluation() {
         return evaluation;
-    }
-
-    public void setEvaluation(int evaluation) {
-        this.evaluation = evaluation;
     }
 }

@@ -16,32 +16,18 @@ public class Recipe {
         return recipeName;
     }
 
-    public void setRecipeName(String recipeName) {
-        this.recipeName = recipeName;
-    }
 
     public String getRecipeDescription() {
         return recipeDescription;
-    }
-
-    public void setRecipeDescription(String recipeDescription) {
-        this.recipeDescription = recipeDescription;
     }
 
     public String getRecipeCate() {
         return recipeCate;
     }
 
-    public void setRecipeCate(String recipeCate) {
-        this.recipeCate = recipeCate;
-    }
 
     public String getPublisherEmail() {
         return publisherEmail;
-    }
-
-    public void setPublisherEmail(String publisherEmail) {
-        this.publisherEmail = publisherEmail;
     }
 
 }

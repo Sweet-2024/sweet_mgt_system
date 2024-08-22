@@ -17,31 +17,15 @@ public class Business {
         return businessId;
     }
 
-    public void setBusinessId(int businessId) {
-        this.businessId = businessId;
-    }
-
     public String getBusinessName() {
         return businessName;
-    }
-
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
     }
 
     public String getBusinessLocation() {
         return businessLocation;
     }
 
-    public void setBusinessLocation(String businessLocation) {
-        this.businessLocation = businessLocation;
-    }
-
     public String getBusinessOwnerEmail() {
         return businessOwnerEmail;
-    }
-
-    public void setBusinessOwnerEmail(String businessOwnerEmail) {
-        this.businessOwnerEmail = businessOwnerEmail;
     }
 }

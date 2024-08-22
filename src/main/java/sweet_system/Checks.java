@@ -23,8 +23,8 @@ public class Checks {
         String inQRY = qry;
         try
         {
-            ResultSet rs = Database.connectionToSelectFromDB(qry);
-            if (rs != null)
+            ResultSet rs = Database.connectionToSelectFromDB(inQRY);
+            if (rs.next())
                 return true;
             else
                 return false;
@@ -36,7 +36,7 @@ public class Checks {
     }
     public static boolean checkIfEmailAlreadyUsed(String email)
     {
-        String qry = "select count(user_email) from sweetSystem.users where users.user_email = '" + email + "'";
+        String qry = "select * from sweetSystem.users where users.user_email = '" + email + "'";
         return checkIfInDB(qry);
     }
 

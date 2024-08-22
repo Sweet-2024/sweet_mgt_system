@@ -115,7 +115,7 @@ public class raw_material_mgt_Test {
         rmId = 100;
         Updates.deleteRawMaterial(rmId);
 
-        assertFalse(!Checks.checkIfProductInDbAccordingToId(rmId));
+        assertFalse(Checks.checkIfProductInDbAccordingToId(rmId));
     }
 
 }

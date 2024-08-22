@@ -29,8 +29,12 @@ public class Database{
             String username = p.getProperty("db.username");
             String password = p.getProperty("db.password");
             conn = DriverManager.getConnection(connInfo, username, password);
+            Class.forName("com.mysql.cj.jdbc.Driver");
             stmt = conn.createStatement();
-            return stmt.executeQuery(cmdString);
+            String qry = cmdString;
+
+            ResultSet rs = stmt.executeQuery(qry);
+            return rs;
         }
         catch(SQLException sqlException)
         {
@@ -40,7 +44,7 @@ public class Database{
         catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        catch (IOException e)
+        catch (IOException | ClassNotFoundException e)
         {
             System.out.println(e);
             return null;

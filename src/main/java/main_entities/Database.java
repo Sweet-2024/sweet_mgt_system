@@ -18,7 +18,7 @@ public class Database{
     static Connection conn;
     static Statement stmt;
 
-    public static ResultSet connectionToSelectFromDB(String cmdString)
+    public static ResultSet connectionToSelectFromDB(String cmdString) throws DatabaseOperationException
     {
         try
         {
@@ -39,14 +39,10 @@ public class Database{
         {
             System.out.println(sqlException);
             return null;
-        }
-        catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        catch (IOException | ClassNotFoundException e)
-        {
-            System.out.println(e);
-            return null;
+        }catch (FileNotFoundException e) {
+            throw new DatabaseOperationException("Configuration file not found.", e);
+        } catch (IOException | ClassNotFoundException e) {
+            throw new DatabaseOperationException("An error occurred during database connection or query execution.", e);
         }
     }
 

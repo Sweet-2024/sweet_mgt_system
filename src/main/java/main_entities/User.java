@@ -46,18 +46,22 @@ public class User {
 
 
 
-    public static int userTypeByEmail(String email){
+    public static int userTypeByEmail(String email) {
         int userType = 0;
-        String qry = "SELECT user_type FROM users WHERE user_email = '"+email+"';";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+        String qry = "SELECT user_type FROM users WHERE user_email = '" + email + "';";
+
         try {
-            if(rs.next()){
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
+            if (rs != null && rs.next()) {
                 userType = rs.getInt("user_type");
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
+
         return userType;
     }
+
 }

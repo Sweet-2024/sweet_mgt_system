@@ -5,25 +5,21 @@ import main_entities.*;
 import main_entities.Order;
 import main_entities.User;
 import main_entities.Product;
-import org.example.Main;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 
 public class Updates {
-    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     private static ResultSet executeSelectStmts(String qry)
     {
         try {
             return Database.connectionToSelectFromDB(qry);
         }
-        catch (Exception e) {
-            logger.log(Level.SEVERE, "An unexpected error occurred: " + e.getMessage(), e);
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -36,7 +32,7 @@ public class Updates {
         String ownerEmail = business.getBusinessOwnerEmail();
 
         if (!Checks.checkIfBusinessIdAlreadyUsed(bId)) {
-            logger.info("This business id doesn't exist, please try again with another business id!");
+            System.out.println("This business id doesn't exist, please try again with another business id!");
         } else {
             String qry1 = "update sweetsystem.business set business_name = '" + bName + "', business_location = '" + bLocation + "', business_owner_email ='" + ownerEmail + "' where business_id = " + bId + " ;";
             Database.connectionToInsertOrUpdateDB(qry1);
@@ -63,7 +59,7 @@ public class Updates {
         }
         else
         {
-            logger.info("This email already used, please try again with another email address!");
+            System.out.println("This email already used, please try again with another email address!");
         }
     }
 
@@ -83,10 +79,10 @@ public class Updates {
             rCate = rCate.trim();
             String qry = "INSERT INTO sweetsystem.recipe(recipe_name, recipe_description, recipe_category, recipe_publisher_email) VALUES ( '" + rname + "', '" + rDesc + "', '" + rCate + "', '" + pubEmail + "');";
             Database.connectionToInsertOrUpdateDB(qry);
-            logger.info("The recipe published successfully :) ");
+            System.out.println("The recipe published successfully :) ");
         }
         else
-            logger.info("Error in recipe info! try Again ");
+            System.err.println("Error in recipe info! try Again ");
     }
 
     public static void addNewMsg(Messaging msg)
@@ -97,7 +93,7 @@ public class Updates {
         LocalDateTime msgDate = LocalDateTime.now();
         if(Checks.isMsgInTheSystem(msg))
         {
-            logger.info("the msg already in the system");
+            System.out.println("the msg already in the system");
         }
         else
         {
@@ -144,7 +140,7 @@ public class Updates {
                         ResultSet rs3 = Database.connectionToSelectFromDB(qry2);
                         if (rs3.next())
                         {
-                            logger.info("Already ordered! ");
+                            System.out.println("Already ordered! ");
                             continue;
                         }
                     }
@@ -159,7 +155,7 @@ public class Updates {
             }
             else
             {
-                logger.log(Level.WARNING, "{0} product is not in the system, please try again", items.get(i));
+                System.out.println(items.get(i) + " product is not in the system, please try again");
             }
         }
     }
@@ -168,7 +164,7 @@ public class Updates {
     {
         if(!Checks.checkIfEmailAlreadyUsed(email))
         {
-            logger.info("This email doesn't exist, please try again with another email address!");
+            System.out.println("This email doesn't exist, please try again with another email address!");
         }
         else
         {
@@ -187,7 +183,7 @@ public class Updates {
 
         if(!Checks.checkIfEmailAlreadyUsed(email))
         {
-            logger.info("This email doesn't exist, please try again with another email address!");
+            System.out.println("This email doesn't exist, please try again with another email address!");
         }
         else
         {
@@ -212,14 +208,14 @@ public class Updates {
         }
         else
         {
-            logger.info("This product already exist, please try again with another product name!");
+            System.out.println("This product already exist, please try again with another product name!");
         }
     }
     public static void deleteProduct(int productId)
     {
         if(!Checks.checkIfProductInDbAccordingToId(productId))
         {
-            logger.info("This product doesn't exist, please try again with another product name!");
+            System.out.println("This product doesn't exist, please try again with another product name!");
         }
         else
         {
@@ -240,7 +236,7 @@ public class Updates {
 
         if(!Checks.checkIfProductInDbAccordingToId(id))
         {
-            logger.info("This product doesn't exist, please try again with another product name!");
+            System.out.println("This product doesn't exist, please try again with another product name!");
         }
         else
         {
@@ -267,19 +263,18 @@ public class Updates {
                     discountedPrice = (int) (price * (1 - discount));
 
                 }
-                logger.log(Level.INFO, "Discount the product id {0} with price {1}₪ ({2}) to become {3}₪",
-                        new Object[]{productId, price, discount, discountedPrice});
+                System.out.println("Discount the product id "+productId+" with price "+price+"₪ ("+discount+") to become "+discountedPrice+"₪");
                 String qry3 ="UPDATE sweetsystem.product SET price = "+discountedPrice+" WHERE product_id ="+productId+"";
                 Database.connectionToInsertOrUpdateDB(qry3);
                 return true;
             }
             else
             {
-                logger.info("there is no product in the system!");
+                System.out.println("there is no product in the system!");
                 return false;
             }
         } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -334,8 +329,7 @@ public class Updates {
             }
             else
             {
-                logger.log(Level.WARNING, "{0} is not in the system, please try again", items.get(i));
-
+                System.out.println(items.get(i) + " is not in the system, please try again");
             }
         }
     }
@@ -350,7 +344,7 @@ public class Updates {
         if (MyApp.userType == 4){
             if(!Checks.checkIfEmailAlreadyUsed(email))
             {
-                logger.info("This email doesn't exist, please try again with another email address!");
+                System.out.println("This email doesn't exist, please try again with another email address!");
             }
             else
             {
@@ -377,7 +371,7 @@ public class Updates {
         }
         else
         {
-            logger.info("This raw material already exist, please try again with another raw material name!");
+            System.out.println("This raw material already exist, please try again with another raw material name!");
         }
     }
 
@@ -393,7 +387,7 @@ public class Updates {
 
         if(!Checks.checkIfRowMaterialInDatabase(rmName))
         {
-            logger.info("This raw material doesn't exist, please try again with another raw material name!");
+            System.out.println("This raw material doesn't exist, please try again with another raw material name!");
         }
         else
         {
@@ -405,7 +399,7 @@ public class Updates {
     public static void deleteRawMaterial(int rmId) {
         if(!Checks.checkIfRowMaterialInDbAccordingToID(rmId))
         {
-            logger.info("This raw material doesn't exist, please try again with another raw material name!");
+            System.out.println("This raw material doesn't exist, please try again with another raw material name!");
         }
         else
         {

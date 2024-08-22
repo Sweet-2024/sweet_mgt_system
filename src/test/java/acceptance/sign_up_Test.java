@@ -33,9 +33,9 @@ public class sign_up_Test {
 
     @When("entering valid user data")
     public void enteringValidUserData() {
-        String un = "raheeqQ";
-        String email = "s12113763@stu.najah.edu";
-        String password = "raheeq_443";
+        String un = "fakeUser";
+        String email = "fakeEmail@gmail.com";
+        String password = "fake_567";
         String location = "Jenin";
         int userType = 3;
 
@@ -49,6 +49,8 @@ public class sign_up_Test {
         Updates.addNewUser(user);
 
         assertTrue(Checks.checkIfUserInDatabase(email,password));
+
+        Updates.deleteUser(email);
     }
 
     @When("entering an invalid email")

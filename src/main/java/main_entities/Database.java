@@ -18,7 +18,7 @@ import java.util.logging.Level;
 public class Database{
     static Connection conn;
     static Statement stmt;
-    private static final Logger logger = Logger.getLogger(Main.class.getName());
+    private static final Logger logger = Logger.getLogger(Database.class.getName());
 
     public static ResultSet connectionToSelectFromDB(String cmdString) throws DatabaseOperationException
     {

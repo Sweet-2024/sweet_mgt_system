@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class Listing {
-    private static final Logger logger = Logger.getLogger(Main.class.getName());
+    private static final Logger logger = Logger.getLogger(Listing.class.getName());
     private static final String SALED_QTY = "saled_qty";
     private static final String WHOLESALE_PRICE = "wholesale_price";
     private static final String PRICE = "price";

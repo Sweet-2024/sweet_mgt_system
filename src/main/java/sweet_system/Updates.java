@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class Updates {
-    private static final Logger logger = Logger.getLogger(Main.class.getName());
+    private static final Logger logger = Logger.getLogger(Updates.class.getName());
     private static ResultSet executeSelectStmts(String qry)
     {
         try {

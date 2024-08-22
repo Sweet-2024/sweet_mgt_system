@@ -12,14 +12,9 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class Database{
-    private Database() {
-        throw new UnsupportedOperationException("Cannot instantiate utility class.");
-    }
     static Connection conn;
     static Statement stmt;
-    private Database() {
-        throw new UnsupportedOperationException("Cannot instantiate utility class.");
-    }
+
     public static ResultSet connectionToSelectFromDB(String cmdString) throws DatabaseOperationException
     {
         try
@@ -35,16 +30,21 @@ public class Database{
             stmt = conn.createStatement();
             String qry = cmdString;
 
-            return stmt.executeQuery(qry);
+            ResultSet rs = stmt.executeQuery(qry);
+            return rs;
         }
         catch(SQLException sqlException)
         {
             System.out.println(sqlException);
             return null;
-        }catch (FileNotFoundException e) {
-            throw new DatabaseOperationException("Configuration file not found.", e);
-        } catch (IOException | ClassNotFoundException e) {
-            throw new DatabaseOperationException("An error occurred during database connection or query execution.", e);
+        }
+        catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        catch (IOException | ClassNotFoundException e)
+        {
+            System.out.println(e);
+            return null;
         }
     }
 
@@ -61,15 +61,12 @@ public class Database{
             conn = DriverManager.getConnection(connInfo, username, password);
             stmt = conn.createStatement();
             stmt.executeUpdate(cmdString);
-
-            conn.close();
-            stmt.close();
         }
         catch(SQLException sqlException)
         {
             System.out.println(sqlException);
         }
-        catch (FileNotFoundException e ) {
+        catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         catch (IOException e)

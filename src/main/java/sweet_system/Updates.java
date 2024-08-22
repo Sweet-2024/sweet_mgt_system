@@ -146,8 +146,8 @@ public class Updates {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                }catch (DatabaseOperationException e) {
-                    System.err.println("Error fetching user type: " + e.getMessage());
+                } catch (DatabaseOperationException e) {
+                    throw new RuntimeException(e);
                 }
 
                 String qry3 = "INSERT INTO `order_product`(`order_id`, `product_id`, `qty`) VALUES ("+orderId+","+productId+", "+qty.get(i)+")";

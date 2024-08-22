@@ -186,15 +186,15 @@ public class Main {
                             uc = scanner.next().charAt(0);
                             if (uc == 'a') {
                                 Listing.listAllUsersInTheSystem(2);
-                                logger.log(Level.INFO, "");
+                                logger.info( "");
 
                                 Listing.listAllUsersInTheSystem(3);
-                                logger.log(Level.INFO, "");
+                                logger.info( "");
 
                                 Listing.listAllUsersInTheSystem(4);
-                                logger.log(Level.INFO, "");
+                                logger.info( "");
 
-                                logger.log(Level.INFO, "Enter user email:");
+                                logger.info("Enter user email:");
                                 scanner.nextLine();
                                 userEmail = scanner.nextLine();
                                 while (!Checks.isValidEmail(userEmail) || Checks.checkIfEmailAlreadyUsed(userEmail)) {

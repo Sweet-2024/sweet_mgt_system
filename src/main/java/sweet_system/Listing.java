@@ -1,6 +1,7 @@
 package sweet_system;
 
 import main_entities.Database;
+import main_entities.DatabaseOperationException;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -30,8 +31,9 @@ public class Listing {
         int outcomes = 0;
         int numOfProducts = 0;
         String qry3 = "select price , wholesale_price , saled_qty from sweetsystem.product where owner_email = '" + email + "'";
-        ResultSet productsOfOwnerList = Database.connectionToSelectFromDB(qry3);
+
         try {
+            ResultSet productsOfOwnerList = Database.connectionToSelectFromDB(qry3);
             while (productsOfOwnerList.next()) {
                 int price = productsOfOwnerList.getInt(PRICE);
                 int wholesalePrice = productsOfOwnerList.getInt(WHOLESALE_PRICE);
@@ -52,14 +54,17 @@ public class Listing {
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        } catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
     }
 
     public static boolean generateFinancialReports() {
         String ownerEmail;
         String qry1 = "select count(product_id) from sweetsystem.product";
-        ResultSet rs = Database.connectionToSelectFromDB(qry1);
+
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry1);
             if (rs != null) {
                 //if the user is owner or supplier then printing only his won report
                 if (MyApp.userType == 2 || MyApp.userType == 3) {
@@ -88,14 +93,18 @@ public class Listing {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             return false;
+        } catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
+            return false;
         }
     }
 
     //best-selling items
     private static void printingBestSellingProduct(String email, String username) {
         String qry3 = "select product_name from sweetsystem.product where owner_email = '" + email + "' order by saled_qty desc;";
-        ResultSet bestSelling = Database.connectionToSelectFromDB(qry3);
+
         try {
+            ResultSet bestSelling = Database.connectionToSelectFromDB(qry3);
             if (bestSelling.next()) {
                 System.out.println("\t* Product owner email : " + email);
                 System.out.println("\t\tBest selling product : " + bestSelling.getString(PRODUCT_NAME));
@@ -103,6 +112,8 @@ public class Listing {
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        } catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
     }
 
@@ -110,8 +121,9 @@ public class Listing {
         String qry1;
         String qry2;
         qry1 = "select count(product_id) from sweetsystem.product";
-        ResultSet rs = Database.connectionToSelectFromDB(qry1);
+
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry1);
             if (rs != null) {
                 if (MyApp.userType == 2 || MyApp.userType == 3) {
                     System.out.println("LIST OF BEST SELLING PRODUCTS IN YOUR STORE :");
@@ -138,14 +150,18 @@ public class Listing {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             return false;
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
+            return false;
         }
     }
 
     //statistics
     public static boolean statisticsOnUsersByCity() {
         String qry = "select user_location, count(user_email) from sweetsystem.users where user_type = 4 group by user_location";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             boolean flag = false;
             System.out.println("STATISTICS ON USERS GATHERED BY CITY : ");
             System.out.println("City\t\tNumber of users");
@@ -165,14 +181,18 @@ public class Listing {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             return false;
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
+            return false;
         }
     }
 
     public static boolean listAllUsersInTheSystem(int typeToCommunicate)
     {
         String qry = "select * from sweetsystem.users where user_type = " + typeToCommunicate + ";";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             if (typeToCommunicate == 2)
                 System.out.println("\n* List of all owners in the system :");
             else if (typeToCommunicate == 3)
@@ -210,13 +230,17 @@ public class Listing {
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
             return false;
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
+            return false;
         }
     }
     public static void listingOfRawMaterialsForSpecificSupplier(String email){
         String qry = "select * from sweetsystem.row_material WHERE supplier_email = '"+email+"';";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
 
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
                     "raw material id", "raw material Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
                     SALED_QTY_OPTION, EX_DATE_OPTION, "Supplier Email");
@@ -240,14 +264,17 @@ public class Listing {
             System.out.println(LINE);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
     }
 
     public static void listingOfProductsForSpecificOwner(String email) {
         String qry = "SELECT * FROM sweetsystem.product WHERE owner_email = '"+email+"';";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
 
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n",
                     "Product id", "Product Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
                     SALED_QTY_OPTION, EX_DATE_OPTION, "Owner Email");
@@ -270,13 +297,15 @@ public class Listing {
             System.out.println(LINE);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
     }
     public static void listingOfProducts() {
         String qry = "SELECT * FROM sweetsystem.product;";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
 
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n",
                     "Product id", "Product Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
                     SALED_QTY_OPTION, EX_DATE_OPTION, "Owner Email");
@@ -300,6 +329,8 @@ public class Listing {
         }
         catch (SQLException e) {
             System.out.println(e.getMessage());
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
     }
 
@@ -307,9 +338,9 @@ public class Listing {
     {
         String recipeName = rName.trim();
         String qry = "select * from sweetsystem.recipe where recipe_name = '"+recipeName+"';";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
         int numOfRecipes = 0;
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             while (rs.next())
             {
                 numOfRecipes++;
@@ -321,19 +352,20 @@ public class Listing {
                 System.out.println("------------------------------------------------------------------------------------");
             }if(numOfRecipes == 0)
                 System.out.println("There is no recipes in the system!");
-        } catch (SQLException e)
-        {
-
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
     }
     public static List<Integer> listRecipesInDb()
     {
         String qry = "select * from sweetsystem.recipe;";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
         List<Integer> recipesID = new ArrayList<>();
         int numOfRecipes = 0;
         try {
-
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             while(rs.next())
             {
                 numOfRecipes++;
@@ -345,6 +377,8 @@ public class Listing {
         }
         catch (SQLException e) {
             System.err.println(e);
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
         return recipesID;
     }
@@ -352,9 +386,10 @@ public class Listing {
     public static void listRecipesInDbAccordingToCategory(String category)
     {
         String qry = "select * from sweetsystem.recipe where recipe.recipe_category = '"+category+"';";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
         int numOfRecipes = 0;
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             while(rs.next())
             {
                 System.out.println("\tRecipe Name : " + rs.getString(RECIPE_NAME));
@@ -368,14 +403,17 @@ public class Listing {
         }
         catch (SQLException e) {
             System.err.println(e);
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
     }
     public static List<Integer> ordersMadeByThisUser(String userEmail)
     {
         List<Integer> ordersID = new ArrayList<>();
         String qry = "select * from `order` where buyer_email = '"+userEmail+"';";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             int numOfOrders = 0;
             if(rs != null){
                 while (rs.next()) {
@@ -394,6 +432,8 @@ public class Listing {
         catch (SQLException e)
         {
             e.getMessage();
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
         return ordersID;
     }
@@ -402,9 +442,10 @@ public class Listing {
     {
         List<Integer> productsId = new ArrayList<>();
         String qry = "SELECT * from `product`,`order_product` WHERE `order_product`.`product_id` = `product`.`product_id` and `order_product`.`order_id` = " + orderID;
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
 
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             System.out.printf("%-20s %-20s", "Product id", "Product Name");
             System.out.println("\n-------------------------------------------------");
             while (rs.next())
@@ -416,21 +457,23 @@ public class Listing {
             }
             System.out.println("-------------------------------------------------");
         }
-        catch (SQLException sqlException)
-        {
+        catch (SQLException sqlException) {
             sqlException.getMessage();
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
         return productsId;
     }
     public static void listingAllMsgsSentToUser(String receiverEmail)
     {
         String qry = "select * from message where receiver = '"+receiverEmail+"' order by date DESC";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
         String sender;
         String msg;
         Date date;
         int numOfMsg = 0;
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             System.out.printf("%-27s %-50s %-20s", "sender", "msg","date");
             System.out.println("\n-------------------------------------------------------------------------------------------------------");
             while (rs.next())
@@ -447,18 +490,17 @@ public class Listing {
             System.out.println("\n-------------------------------------------------------------------------------------------------------");
             if(numOfMsg == 0)
                 System.out.println("No New Messages!");
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
-
     }
 
     public static void listingYourOwnAccount(String email) {
         String qry = "SELECT * FROM sweetsystem.users WHERE users.user_email = '" + email + "';";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
-
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             if (rs != null) {
                 System.out.println("Your Account Information:");
                 System.out.println(" Name: " + rs.getString(USERNAME));
@@ -471,14 +513,17 @@ public class Listing {
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
     }
 
     public static void listingOfRawMaterials() {
         String qry = "select * from sweetsystem.row_material;";
-        ResultSet rs = Database.connectionToSelectFromDB(qry);
+
 
         try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
             System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
                     "raw material id", "raw material Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
                     SALED_QTY_OPTION, EX_DATE_OPTION, "Supplier Email");
@@ -501,6 +546,8 @@ public class Listing {
             System.out.println(LINE);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }catch (DatabaseOperationException e) {
+            System.err.println("Error fetching user type: " + e.getMessage());
         }
     }
 

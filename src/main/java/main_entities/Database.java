@@ -33,8 +33,7 @@ public class Database{
             stmt = conn.createStatement();
             String qry = cmdString;
 
-            ResultSet rs = stmt.executeQuery(qry);
-            return rs;
+            return stmt.executeQuery(qry);
         }
         catch(SQLException sqlException)
         {

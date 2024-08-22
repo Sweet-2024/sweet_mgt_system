@@ -14,7 +14,9 @@ import java.util.Properties;
 public class Database{
     static Connection conn;
     static Statement stmt;
-
+    private Database() {
+        throw new UnsupportedOperationException("Cannot instantiate utility class.");
+    }
     public static ResultSet connectionToSelectFromDB(String cmdString)
     {
         try
@@ -61,12 +63,15 @@ public class Database{
             conn = DriverManager.getConnection(connInfo, username, password);
             stmt = conn.createStatement();
             stmt.executeUpdate(cmdString);
+
+            conn.close();
+            stmt.close();
         }
         catch(SQLException sqlException)
         {
             System.out.println(sqlException);
         }
-        catch (FileNotFoundException e) {
+        catch (FileNotFoundException e ) {
             throw new RuntimeException(e);
         }
         catch (IOException e)

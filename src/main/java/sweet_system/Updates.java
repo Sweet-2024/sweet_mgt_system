@@ -104,7 +104,7 @@ public class Updates {
 
     public static void addNewOrderForProduct(Order order)
     {
-      String seller = order.getSellerEmail();
+        String seller = order.getSellerEmail();
         String buyer = order.getBuyerEmail();
         LocalDateTime date = order.getDate();
         List<String> items = order.getItemList();

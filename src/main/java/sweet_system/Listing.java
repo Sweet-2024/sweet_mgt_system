@@ -377,14 +377,15 @@ public class Listing {
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         try {
             int numOfOrders = 0;
-            while (rs.next())
-            {
-                System.out.println("OrderId : " + rs.getInt("order_id"));
-                System.out.println("Ordering Date : " + rs.getDate("order_date"));
-                System.out.println("Seller Email : " + rs.getString("seller_email"));
-                ordersID.add(rs.getInt("order_id"));
-                System.out.println();
-                numOfOrders++;
+            if(rs != null){
+                while (rs.next()) {
+                    System.out.println("OrderId : " + rs.getInt("order_id"));
+                    System.out.println("Ordering Date : " + rs.getDate("order_date"));
+                    System.out.println("Seller Email : " + rs.getString("seller_email"));
+                    ordersID.add(rs.getInt("order_id"));
+                    System.out.println();
+                    numOfOrders++;
+                }
             }
             if (numOfOrders == 0)
                 System.out.println("You didn't make any order before!");

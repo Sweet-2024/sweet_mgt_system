@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 public class raw_material_mgt_Test {
     static MyApp myApp;
+    private String rmName;
     public raw_material_mgt_Test(MyApp myApp){
         super();
         this.myApp = myApp;
@@ -38,9 +39,10 @@ public class raw_material_mgt_Test {
 
     @Then("the raw material should be added successfully")
     public void theRawMaterialShouldBeAddedSuccessfully() {
-        String rmName = "olive oil";
+        rmName = "olive oil";
         assertTrue(Checks.isValidProductName(rmName));
 
+        int rmId = 12;
         int price = 100;
         int wholesalePrice = 60;
         int quantity = 10;
@@ -50,12 +52,13 @@ public class raw_material_mgt_Test {
         String supplierEmail = "s12113763@stu.najah.edu";
         assertTrue(Checks.isValidEmail(supplierEmail));
 
-        RawMaterial rawMaterial = new RawMaterial(rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
+        RawMaterial rawMaterial = new RawMaterial(rmId,rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
         Updates.addNewRawMaterial(rawMaterial);
 
         Listing.listingOfRawMaterialsForSpecificSupplier(supplierEmail);
         assertTrue(Checks.checkIfRowMaterialInDatabase(rmName));
 
+        Updates.deleteRawMaterial(12);
     }
 
     @When("choosing update raw material")
@@ -110,12 +113,10 @@ public class raw_material_mgt_Test {
 
     @Then("the raw material will be removed successfully")
     public void theRawMaterialWillBeRemovedSuccessfully() {
-        int rmId = 10;
+        int rmId = 12;
 
         Updates.deleteRawMaterial(rmId);
 
-        rmId = 100;
-        Updates.deleteRawMaterial(rmId);
 
         assertFalse(Checks.checkIfProductInDbAccordingToId(rmId));
     }

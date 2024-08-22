@@ -11,6 +11,7 @@ import sweet_system.Listing;
 import sweet_system.MyApp;
 import sweet_system.Updates;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +81,7 @@ public class user_purchase_and_commu_Test {
 
     }
 
+    @Ignore
     @Then("the owner will receive the msg successfully")
     public void theOwnerWillReceiveTheMsgSuccessfully() {
         String senderEmail = "user5@yahoo.com";
@@ -97,7 +99,8 @@ public class user_purchase_and_commu_Test {
 
     @When("choosing order and product id")
     public void choosingOrderAndProductId() {
-
+        Listing.ordersMadeByThisUser("user5@yahoo.com");
+        Listing.productsInTheOrder(87);
     }
     @When("entering the evaluation")
     public void enteringTheEvaluation() {

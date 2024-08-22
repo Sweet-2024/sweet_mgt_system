@@ -24,8 +24,9 @@ public class Checks {
         try
         {
             ResultSet rs = Database.connectionToSelectFromDB(inQRY);
-            if (rs.next())
+            if (rs.next()) {
                 return true;
+            }
             else
                 return false;
         }

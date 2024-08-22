@@ -24,8 +24,8 @@ public class login_Test {
 
     @When("login with correct email and password")
     public void loginWithCorrectEmailAndPassword() {
-        String email = "s12112506@stu.najah.edu";
-        String pass = "aya33**()vkfnv";
+        String email = "admin@gmail.com";
+        String pass = "123456";
         User user= new User(email, pass);
         if (Checks.checkIfUserInDatabase(email, pass))
         {

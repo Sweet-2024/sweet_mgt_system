@@ -94,7 +94,8 @@ public class Main {
 
             if(userChoice.equals("1"))
             {
-                while (Checks.checkIfEmailAlreadyUsed(userEmail))
+                boolean validEmail = false;
+                while (true)
                 {
                     logger.info("Enter your email");
                     userEmail = scanner.next();
@@ -104,19 +105,20 @@ public class Main {
                         logger.info("Does not have an account?");
                         logger.info("    a. Enter email again");
                         logger.info( "    b. Sign up");
-                        userChoice = scanner.next();
-                        if(userChoice.equals("a"))
-                            continue;
-                        else if (userChoice.equals("b")) {
+                        userChoice = scanner.next().trim();
+                        if (userChoice.equals("b")) {
                             signupFlag = true;
                             break;
                         }
-                        else
-                            logger.info(INVALID_OPTION);
+                        else if (!userChoice.equals("a"))
+                            logger.info( INVALID_OPTION);
+                    }else {
+                        validEmail = true;
+                        break;
                     }
                 }//entering email loop
 
-                if(!signupFlag)
+                if(validEmail && !signupFlag)
                 {
                     while (true)
                     {
@@ -127,18 +129,18 @@ public class Main {
                             logger.info( "Does not have an account?");
                             logger.info("    a. Enter password again");
                             logger.info( "    b. Sign up");
-                            userChoice = scanner.next();
-                            if (userChoice.equals("a"))
-                                continue;
-                            else if (userChoice.equals("b")) {
+                            userChoice = scanner.next().trim();
+                            if (userChoice.equals("b")) {
                                 signupFlag = true;
                                 break;
                             }
-                            else
+                            else if (!userChoice.equals("a"))
                                 logger.info( INVALID_OPTION);
                         }//incorrect password
-                        else
-                            break;//correct password
+                        else {
+                            logger.info("Login successful!");
+                            break;
+                        }
                     }//entering password loop
                 }
 

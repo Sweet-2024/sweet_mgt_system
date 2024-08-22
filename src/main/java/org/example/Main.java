@@ -95,10 +95,12 @@ public class Main {
             if (userChoice.equals("1"))
             {
                 boolean validEmail = false;
-                while (true) {
+                while (!validEmail)
+                {
                     logger.info("Enter your email");
                     userEmail = scanner.next();
-                    if (!Checks.checkIfEmailAlreadyUsed(userEmail)) {
+                    if (!Checks.checkIfEmailAlreadyUsed(userEmail))
+                    {
                         logger.info("Invalid Email! Try again");
                         logger.info("Does not have an account?");
                         logger.info("    a. Enter email again");
@@ -107,17 +109,18 @@ public class Main {
                         if (userChoice.equals("b")) {
                             signupFlag = true;
                             break;
-                        } else if (!userChoice.equals("a"))
+                        }
+                        else if (!userChoice.equals("a"))
                             logger.info(INVALID_OPTION);
-                    } else {
-                        validEmail = true;
-                        break;
                     }
+                    else
+                        validEmail = true;
                 }//entering email loop
 
-              if(validEmail && !signupFlag)
+                if(validEmail && !signupFlag)
                 {
-                    while (true)
+                    boolean validPass = false;
+                    while (!validPass)
                     {
                         logger.info("Enter your password");
                         password = scanner.next();
@@ -138,11 +141,10 @@ public class Main {
                         }//incorrect password
                         else {
                             logger.info("Login successful!");
-                            break;
+                            validPass = true;
                         }
                     }//entering password loop
                 }
-
                 MyApp.user = new User(userEmail, password);
                 MyApp.userEmail = userEmail;
                 MyApp.userType = User.userTypeByEmail(userEmail);
@@ -158,32 +160,34 @@ public class Main {
 
             else if (userChoice.equals("3"))
                 exit(0);
+
             else if(!MyApp.isLoggedIn)
             {
                 logger.warning(INVALID_OPTION);
-                continue;
+                continue;//return to the main menu
             }
 
-            if (MyApp.userType == 1) {
-                boolean isCorrectChoice = false;
-
+            if (MyApp.userType == 1)
+            {
                 while (true) {
                     logger.info("Welcome Admin! Choose what to do from the list:");
-                    logger.info( "1. Accounts Management");
-                    logger.info(  "2. Reporting And Monitoring");
+                    logger.info("1. Accounts Management");
+                    logger.info("2. Reporting And Monitoring");
                     logger.info( EXIT_OPTION);
                     char uc = scanner.next().charAt(0);
 
-                    if (uc == '1') {
+                    if (uc == '1')
+                    {
                         while (true) {
                             logger.info( "* Accounts Management:");
-                            logger.info( "a. Add new user");
-                            logger.info( "b. Update existing user information");
-                            logger.info( "c. Delete existing user");
-                            logger.info(  "d. Back");
+                            logger.info( "  a. Add new user");
+                            logger.info( "  b. Update existing user information");
+                            logger.info( "  c. Delete existing user");
+                            logger.info( "  d. Back");
 
                             uc = scanner.next().charAt(0);
-                            if (uc == 'a') {
+                            if (uc == 'a')
+                            {
                                 Listing.listAllUsersInTheSystem(2);
                                 logger.info( "");
 
@@ -193,75 +197,14 @@ public class Main {
                                 Listing.listAllUsersInTheSystem(4);
                                 logger.info( "");
 
-                                logger.info("Enter user email:");
-                                scanner.nextLine();
-                                userEmail = scanner.nextLine();
-                                while (!Checks.isValidEmail(userEmail) || Checks.checkIfEmailAlreadyUsed(userEmail)) {
-                                    logger.log(Level.WARNING, "Invalid email or email already in use. Please enter a valid user email:");
-                                    userEmail = scanner.nextLine();
-                                }
-
-                                logger.info("Enter user name:");
-                                username = scanner.nextLine();
-                                while (!Checks.isValidUsername(username)) {
-                                    logger.log(Level.WARNING, "Invalid username. Please enter a valid user name:");
-                                    username = scanner.nextLine();
-                                }
-
-                                logger.info("Enter user password:");
-                                password = scanner.nextLine();
-                                while (!Checks.isvalidPassword(password)) {
-                                    logger.log(Level.WARNING, "Invalid password. Please enter a valid user password:");
-                                    password = scanner.nextLine();
-                                }
-
-                                logger.info("Enter user city:");
-                                logger.info(CITY_OPTION);
-                                city = scanner.nextLine();
-                                while (!Checks.isValidCity(city)) {
-                                    logger.log(Level.WARNING, "Invalid city. Please enter a valid user city:");
-                                    logger.log(Level.INFO, CITY_OPTION);
-                                    city = scanner.nextLine();
-                                }
-
-                                boolean isValidUserType = false;
-                                while (!isValidUserType) {
-                                    logger.log(Level.INFO, CHOOSE_OPTION);
-                                    logger.log(Level.INFO, OWNER_OPTION);
-                                    logger.log(Level.INFO, "2. Raw material Supplier");
-                                    logger.log(Level.INFO, USER_OPTION);
-                                    char ut = scanner.next().charAt(0);
-
-                                    if (Character.isDigit(ut)) {
-                                        userType = ut - '0';
-                                        if (Checks.isValidUserType(userType)) {
-                                            isValidUserType = true;
-                                        } else {
-                                            logger.log(Level.WARNING, INVALID_LEVEL_OPTION);
-                                            logger.log(Level.INFO, "a. Enter user level again");
-                                            logger.log(Level.INFO, EX2_OPTION);
-                                            userChoice = scanner.next();
-                                            scanner.nextLine(); // Consume newline left-over
-
-                                            if (userChoice.equals("b")) {
-                                                break;
-                                            } else if (!userChoice.equals("a")) {
-                                                logger.log(Level.SEVERE, INVALID_OPTION);
-                                            }
-                                        }
-                                    } else {
-                                        logger.log(Level.WARNING, "Invalid input. Please enter a digit.");
-                                    }
-                                }
-
-                                if (isValidUserType) {
-                                    MyApp.user = new User(username, password, userEmail, city, userType + 1);
-                                    Updates.addNewUser(MyApp.user);
-                                    logger.log(Level.INFO, "User added successfully.");
-                                    logger.log(Level.INFO, "");
-                                }
+                                User user = signUp(null, null, null, null, 0);
+                                Updates.addNewUser(user);
+                                logger.log(Level.INFO, "User added successfully.");
+                                logger.log(Level.INFO, "");
                             } // add new user
-                            else if (uc == 'b') {
+
+                            else if (uc == 'b')
+                            {
                                 Listing.listAllUsersInTheSystem(2);
                                 logger.log(Level.INFO, "");
 
@@ -273,88 +216,40 @@ public class Main {
 
                                 String ue = null;
                                 boolean userFound = false;
-                                while (!userFound) {
+                                while (!userFound)
+                                {
                                     logger.log(Level.INFO, "Enter the email of the user you want to update:");
                                     scanner.nextLine();
                                     ue = scanner.nextLine();
-                                    if (Checks.checkIfEmailAlreadyUsed(ue)) {
+                                    if (Checks.checkIfEmailAlreadyUsed(ue))
                                         userFound = true;
-                                    } else {
+                                    else
+                                    {
                                         logger.log(Level.WARNING, "User is not in the system! Try again.");
                                         logger.log(Level.INFO, "a. Enter email again");
                                         logger.log(Level.INFO, EX2_OPTION);
                                         userChoice = scanner.nextLine();
                                         if (userChoice.equals("b")) {
                                             break;
-                                        } else if (!userChoice.equals("a")) {
+                                        }
+                                        else if (!userChoice.equals("a"))
+                                        {
                                             logger.log(Level.SEVERE, INVALID_OPTION);
                                         }
                                     }
                                 }
 
-                                if (userFound) {
-                                    logger.log(Level.INFO, "Enter user name:");
-                                    username = scanner.nextLine();
-                                    while (!Checks.isValidUsername(username)) {
-                                        logger.log(Level.WARNING, "Invalid username. Please enter a valid user name:");
-                                        username = scanner.nextLine();
-                                    }
-
-                                    logger.log(Level.INFO, "Enter user password:");
-                                    password = scanner.nextLine();
-                                    while (!Checks.isvalidPassword(password)) {
-                                        logger.log(Level.WARNING, "Invalid password. Please enter a valid user password:");
-                                        password = scanner.nextLine();
-                                    }
-
-                                    logger.log(Level.INFO, "Enter user city:");
-                                    logger.log(Level.INFO, CITY_OPTION);
-                                    city = scanner.nextLine();
-                                    while (!Checks.isValidCity(city)) {
-                                        logger.log(Level.WARNING, "Invalid city. Please enter a valid user city:");
-                                        logger.log(Level.INFO, CITY_OPTION);
-                                        city = scanner.nextLine();
-                                    }
-
-                                    boolean isValidUserType = false;
-                                    while (!isValidUserType) {
-                                        logger.log(Level.INFO, CHOOSE_OPTION);
-                                        logger.log(Level.INFO, OWNER_OPTION);
-                                        logger.log(Level.INFO, "2. Raw material Supplier");
-                                        logger.log(Level.INFO, USER_OPTION);
-                                        char ut = scanner.next().charAt(0);
-
-                                        if (Character.isDigit(ut)) {
-                                            userType = ut - '0';
-                                            if (Checks.isValidUserType(userType)) {
-                                                isValidUserType = true;
-                                            } else {
-                                                logger.log(Level.WARNING, INVALID_LEVEL_OPTION);
-                                                logger.log(Level.INFO, "a. Enter user level again");
-                                                logger.log(Level.INFO, EX2_OPTION);
-                                                userChoice = scanner.nextLine();
-
-                                                if (userChoice.equals("b")) {
-                                                    break;
-                                                } else if (!userChoice.equals("a")) {
-                                                    logger.log(Level.SEVERE, INVALID_OPTION);
-                                                }
-                                            }
-                                        } else {
-                                            logger.log(Level.WARNING, "Invalid input. Please enter a digit.");
-                                        }
-                                    }
-
-                                    if (isValidUserType) {
-                                        MyApp.user = new User(username, password, ue, city, userType + 1);
-                                        Updates.updateUser(MyApp.user);
-                                        logger.log(Level.INFO, "User updated successfully.");
-                                        logger.log(Level.INFO, "");
-                                    }
+                                if (userFound)
+                                {
+                                    User user = signUp(ue, null, null, null, 0);
+                                    Updates.updateUser(user);
+                                    logger.log(Level.INFO, "User updated successfully.");
+                                    logger.log(Level.INFO, "");
                                 }
-                            }
+                            }//update user data
 
-                            else if (uc == 'c') {
+                            else if (uc == 'c')
+                            {
                                 Listing.listAllUsersInTheSystem(2);
                                 logger.log(Level.INFO, "");
 
@@ -383,9 +278,11 @@ public class Main {
                                 logger.log(Level.INFO, "Deleted successfully.");
                                 logger.log(Level.INFO, "");
                             } // delete user
+
                             else if (uc == 'd')
                                 break;
-                            else {
+                            else
+                            {
                                 logger.log(Level.SEVERE, "Incorrect choice!");
                             } // incorrect choice
                         }//end of loop to choose from admin mg list
@@ -1323,26 +1220,26 @@ public class Main {
         }
     }
 
-    private static String enteringEmail(Scanner scanner, String userEmail)
+    private static String enteringEmail(Scanner scanner, String ue)
     {
-        while (true)
+        while (!Checks.isValidEmail(ue))
         {
-            logger.info("Enter your email:");
-            userEmail = scanner.next();
-            if (Checks.isValidEmail(userEmail) && !Checks.checkIfEmailAlreadyUsed(userEmail))
+            logger.info("Enter Email:");
+            ue = scanner.next();
+            if (Checks.isValidEmail(ue) && !Checks.checkIfEmailAlreadyUsed(ue))
                 break;
-            else if (!Checks.isValidEmail(userEmail))
+            else if (!Checks.isValidEmail(ue))
                 logger.warning("Invalid Email format! valid email should contain '@' in addition to a correct domain name.");
-            else if (Checks.checkIfEmailAlreadyUsed(userEmail))
+            else if (Checks.checkIfEmailAlreadyUsed(ue))
                 logger.warning("Email already used! Try again.");
         }
-        return userEmail;
+        return ue;
     }
 
     private static String enteringUsername(Scanner scanner, String username)
     {
         while (!Checks.isValidUsername(username)) {
-            logger.info("Enter your username:");
+            logger.info("Enter username:");
             username = scanner.next();
             if (!Checks.isValidUsername(username))
                 logger.warning("Invalid username! Try again.");
@@ -1356,7 +1253,7 @@ public class Main {
     {
         while (!Checks.isvalidPassword(password))
         {
-            logger.info("Enter your password:");
+            logger.info("Enter password:");
             password = scanner.next();
             if (!Checks.isvalidPassword(password))
             {
@@ -1371,7 +1268,7 @@ public class Main {
     {
         while (!Checks.isValidCity(city))
         {
-            logger.info("Enter your location:");
+            logger.info("Enter location:");
             logger.info("    Knowing that available cities are: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem and Hebron");
             city = scanner.next();
             if (!Checks.isValidCity(city))
@@ -1391,11 +1288,11 @@ public class Main {
             logger.info(USER_OPTION);
             ut = scanner.next().charAt(0);
             if (Character.isDigit(ut))
-                userType = ut - '0';
+                userType = ut - '0' +1;
 
-            if (!Checks.isValidUserType(userType)) {
+            if (!Checks.isValidUserType(userType) ) {
                 logger.warning(INVALID_LEVEL_OPTION);
-                logger.info("    a. Enter user level again");
+                logger.info("    Enter user level again");
             } else
                 break;
         }
@@ -1415,7 +1312,7 @@ public class Main {
 
         int ut = enteringUserType(scanner,userType);
 
-        User u = new User(un, pass, e, location, ut + 1);
+        User u = new User(un, pass, e, location, ut);
         return u;
     }
     private static void communicateWithUser(String userEmail, int userTypeToCommunicate) {

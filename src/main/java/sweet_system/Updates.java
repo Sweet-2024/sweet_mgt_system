@@ -59,7 +59,7 @@ public class Updates {
         }
         else
         {
-            System.out.println("This email already used, please try again with another email address!");
+            System.out.println("Invalid user data! Please try again!");
         }
     }
 

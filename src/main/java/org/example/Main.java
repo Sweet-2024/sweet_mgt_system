@@ -287,26 +287,29 @@ public class Main {
                             } // incorrect choice
                         }//end of loop to choose from admin mg list
                     }//choosing Account mgmt from the admin list
-                    else if (uc == '2') {
+
+                    else if (uc == '2')
+                    {
                         while (true) {
                             logger.log(Level.INFO, "* Reporting And Monitoring:");
-                            logger.log(Level.INFO, "a. Monitor profits and generate financial reports");
-                            logger.log(Level.INFO, "b. Identify best-selling products in each store");
-                            logger.log(Level.INFO, "c. Gather and display statistics on registered users by City");
-                            logger.log(Level.INFO, "d. Back");
+                            logger.log(Level.INFO, "    a. Monitor profits and generate financial reports");
+                            logger.log(Level.INFO, "    b. Identify best-selling products in each store");
+                            logger.log(Level.INFO, "    c. Gather and display statistics on registered users by City");
+                            logger.log(Level.INFO, "    d. Back");
 
                             uc = scanner.next().charAt(0);
 
                             if (uc == 'a') {
                                 generateFinancialReports();
-                                break;
-                            } else if (uc == 'b') {
+                            }
+                            else if (uc == 'b') {
                                 listingBestSellingProduct();
-                                break;
-                            } else if (uc == 'c') {
+                            }
+                            else if (uc == 'c') {
                                 statisticsOnUsersByCity();
-                                break;
-                            } else if (uc == 'd') {
+                            }
+                            else if (uc == 'd')
+                            {
                                 break;
                             } else {
                                 logger.log(Level.SEVERE, "Incorrect choice!");

@@ -45,16 +45,7 @@ public class User {
     }
 
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "uname='" + uname + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", location='" + location + '\'' +
-                ", type=" + type +
-                '}';
-    }
+
     public static int userTypeByEmail(String email){
         int userType = 0;
         String qry = "SELECT user_type FROM users WHERE user_email = '"+email+"';";

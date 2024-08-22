@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import sweet_system.Checks;
+import sweet_system.Listing;
 import sweet_system.MyApp;
 import sweet_system.Updates;
 
@@ -41,11 +42,13 @@ public class order_mgt_Test {
 
     @When("choosing the supplier to buy from")
     public void choosingTheSupplierToBuyFrom() {
+
         assertTrue(Checks.checkIfThereAreSuppliersInDatabase());
     }
 
     @When("listing the required product")
     public void listingTheRequiredProduct() {
+        Listing.listingOfRawMaterialsForSpecificSupplier("s12113763@stu.najah.edu");
         assertTrue(Checks.checkIfThereAreRowMaterialsInDatabase());
     }
 

@@ -73,6 +73,7 @@ public class product_mgt_Test {
 
     @When("list of available products will appear")
     public void listOfAvailableProductsWillAppear() {
+        Listing.listingOfProducts();
         assertTrue(Checks.checkIfThereAreProductsInDatabase());
     }
 

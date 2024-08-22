@@ -168,7 +168,8 @@ public class Listing {
         }
     }
 
-    public static boolean listAllUsersInTheSystem(int typeToCommunicate) {
+    public static boolean listAllUsersInTheSystem(int typeToCommunicate)
+    {
         String qry = "select * from sweetsystem.users where user_type = " + typeToCommunicate + ";";
         ResultSet rs = Database.connectionToSelectFromDB(qry);
         try {

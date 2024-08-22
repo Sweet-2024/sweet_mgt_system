@@ -19,7 +19,6 @@ public class exploration_mgt_Test {
     }
     @When("choose Explore recipes from the list")
     public void chooseExploreRecipesFromTheList() {
-
     }
 
     @Then("list of dessert recipes exist in the system")

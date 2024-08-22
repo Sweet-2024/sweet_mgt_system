@@ -40,7 +40,6 @@ public class raw_material_mgt_Test {
         String rmName = "olive oil";
         assertTrue(Checks.isValidProductName(rmName));
 
-
         int price = 100;
         int wholesalePrice = 60;
         int quantity = 10;
@@ -54,6 +53,7 @@ public class raw_material_mgt_Test {
         Updates.addNewRawMaterial(rawMaterial);
 
         assertTrue(Checks.checkIfRowMaterialInDatabase(rmName));
+
     }
 
     @When("choosing update raw material")
@@ -89,6 +89,10 @@ public class raw_material_mgt_Test {
         RawMaterial rawMaterial = new RawMaterial(id, rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
         Updates.updateRawMaterial(rawMaterial);
 
+        rmName = "vanilla Powder";
+        rawMaterial = new RawMaterial(id, rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
+        Updates.updateRawMaterial(rawMaterial);
+
         assertTrue(Checks.checkIfRowMaterialInDatabase(rmName));
     }
 
@@ -106,6 +110,9 @@ public class raw_material_mgt_Test {
     public void theRawMaterialWillBeRemovedSuccessfully() {
         int rmId = 10;
 
+        Updates.deleteRawMaterial(rmId);
+
+        rmId = 100;
         Updates.deleteRawMaterial(rmId);
 
         assertFalse(!Checks.checkIfProductInDbAccordingToId(rmId));

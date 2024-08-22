@@ -73,6 +73,9 @@ public class user_account_mgt_Test {
 
         int userType = 10;
         assertFalse(Checks.isValidUserType(userType));
+
+        User user = new User(un,password,email,location,4);
+        Updates.updateUser(user);
     }
 
 }

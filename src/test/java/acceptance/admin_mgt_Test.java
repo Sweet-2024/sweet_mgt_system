@@ -20,8 +20,9 @@ public class admin_mgt_Test {
 
     @Given("login to the system as administrator")
     public void loginToTheSystemAsAdministrator() {
-        myApp.userType = 1;
-        assertTrue(myApp.userType == 1);
+        String email = "admin@gmail.com";
+        int uType = User.userTypeByEmail(email);
+        assertTrue(uType == 1);
     }
 
     @When("admin choose managing accounts from the list")

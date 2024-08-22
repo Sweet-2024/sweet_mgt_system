@@ -1,6 +1,7 @@
 package acceptance;
 
 import io.cucumber.java.en.*;
+import main_entities.User;
 import sweet_system.Checks;
 import sweet_system.MyApp;
 
@@ -25,7 +26,7 @@ public class login_Test {
     public void loginWithCorrectEmailAndPassword() {
         String email = "s12112506@stu.najah.edu";
         String pass = "12345";
-
+        User user= new User(email, pass);
         if (Checks.checkIfUserInDatabase(email, pass))
         {
             assertTrue(Checks.checkIfUserInDatabase(email, pass));
@@ -62,6 +63,7 @@ public class login_Test {
 
         if (!Checks.checkIfUserInDatabase(email, pass))
         {
+            User.userTypeByEmail(email);
             assertFalse(Checks.checkIfUserInDatabase(email, pass));
             myApp.isLoggedIn = false;
         }

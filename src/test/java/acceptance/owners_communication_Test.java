@@ -7,8 +7,7 @@ import sweet_system.Listing;
 import sweet_system.MyApp;
 import sweet_system.Updates;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class owners_communication_Test {
 
@@ -32,8 +31,12 @@ public class owners_communication_Test {
 
     @When("list of users will appear")
     public void listOfUsersWillAppear() {
+        MyApp.userEmail = "s12112506@stu.najah.edu";
         int userTypeToCommunicate = 4;
         assertTrue(Listing.listAllUsersInTheSystem(userTypeToCommunicate));
+
+        userTypeToCommunicate = 5;
+        assertFalse(Listing.listAllUsersInTheSystem(userTypeToCommunicate));
     }
 
     @Then("the owner will communicate with selected user")

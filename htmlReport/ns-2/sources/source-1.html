@@ -1,0 +1,354 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Checks</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">sweet_system</a>
+</div>
+
+<h1>Coverage Summary for Class: Checks (sweet_system)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Checks</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (27/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.5%
+  </span>
+  <span class="absValue">
+    (94/110)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package sweet_system;
+&nbsp;
+&nbsp;import main_entities.*;
+&nbsp;
+&nbsp;import java.time.LocalDate;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;
+&nbsp;import java.sql.ResultSet;
+&nbsp;
+&nbsp;import java.time.format.DateTimeFormatter;
+&nbsp;import java.time.format.DateTimeParseException;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;import static java.lang.Character.isAlphabetic;
+&nbsp;import static java.lang.Character.isDigit;
+&nbsp;
+<b class="nc">&nbsp;public class Checks {</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    private static boolean checkIfInDB(String qry)
+&nbsp;    {
+<b class="fc">&nbsp;        String inQRY = qry;</b>
+&nbsp;        try
+&nbsp;        {
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+<b class="fc">&nbsp;            if (rs != null)</b>
+<b class="fc">&nbsp;                return true;</b>
+&nbsp;            else
+<b class="nc">&nbsp;                return false;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (Exception e) {</b>
+<b class="nc">&nbsp;            System.out.println(e);</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    public static boolean checkIfEmailAlreadyUsed(String email)
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select count(user_email) from sweetSystem.users where users.user_email = &#39;&quot; + email + &quot;&#39;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean checkIfUserInDatabase (String email, String pass)
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.users where users.user_email = &#39;&quot;+email+&quot;&#39; and users.user_password = &#39;&quot;+pass+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean checkIfThereAreUsersInDatabase()
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;SELECT * FROM sweetsystem.users WHERE user_type = 2 OR user_type = 3 OR user_type = 4;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean checkIfThereAreSuppliersInDatabase()
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;SELECT * FROM sweetsystem.users WHERE user_type = 3;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean checkIfProductInDatabase(String name)
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.Product where Product.product_name = &#39;&quot;+name+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean checkIfThereAreProductsInDatabase()
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.Product;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean checkIfThereAreRowMaterialsInDatabase()
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.row_material;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean checkIfThereAreRecipesInDatabase()
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.recipe;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean checkIfRecipeInDatabase(String name)
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.recipe where recipe.recipe_name = &#39;&quot;+name+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean checkIfRecipesInDbAccordingToCategory(String category)
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.recipe where recipe.recipe_category = &#39;&quot;+category+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean isValidProductName(String productName)
+&nbsp;    {
+<b class="fc">&nbsp;        if (productName == null) return false;</b>
+<b class="fc">&nbsp;        return (productName.length() &lt;= 50);</b>
+&nbsp;    }
+&nbsp;      
+&nbsp;    public static boolean isValidEmail(String email)
+&nbsp;    {
+<b class="fc">&nbsp;        if (email == null)</b>
+<b class="nc">&nbsp;            return false;</b>
+<b class="fc">&nbsp;        else if(!email.contains(&quot;@&quot;))</b>
+<b class="fc">&nbsp;            return false;</b>
+<b class="fc">&nbsp;        else if (email.length() &gt; 50)</b>
+<b class="nc">&nbsp;            return false;</b>
+<b class="fc">&nbsp;        String domain = email.substring(email.indexOf(&quot;@&quot;)+1);</b>
+&nbsp;
+<b class="fc">&nbsp;        if(!domain.contains(&quot;.&quot;))</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;
+<b class="fc">&nbsp;        return true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean isValidUsername(String username)
+&nbsp;    {
+<b class="fc">&nbsp;        if (username == null) return false;</b>
+<b class="fc">&nbsp;        return (username.length() &lt;= 20);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean isvalidPassword(String pass)
+&nbsp;    {
+<b class="fc">&nbsp;        if(pass == null)</b>
+<b class="nc">&nbsp;            return false;</b>
+<b class="fc">&nbsp;        if(pass.length() &lt; 8)</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        else
+&nbsp;        {
+<b class="fc">&nbsp;            boolean alphFlag = false;</b>
+<b class="fc">&nbsp;            boolean digitFlag = false;</b>
+<b class="fc">&nbsp;            boolean charFlag = false;</b>
+&nbsp;            Character currentChar;
+<b class="fc">&nbsp;            for (int i = 0 ; i &lt; pass.length()-1 ; i++)</b>
+&nbsp;            {
+<b class="fc">&nbsp;                currentChar = pass.charAt(i);</b>
+<b class="fc">&nbsp;                if (isAlphabetic(currentChar))</b>
+<b class="fc">&nbsp;                    alphFlag = true;</b>
+<b class="fc">&nbsp;                else if (isDigit(currentChar))</b>
+<b class="fc">&nbsp;                    digitFlag = true;</b>
+<b class="fc">&nbsp;                else if (!isAlphabetic(currentChar) &amp;&amp; !isDigit(currentChar))</b>
+<b class="fc">&nbsp;                    charFlag = true;</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return (alphFlag &amp;&amp; digitFlag &amp;&amp; charFlag);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean isValidCity(String city)
+&nbsp;    {
+<b class="fc">&nbsp;        if (city == null)</b>
+<b class="nc">&nbsp;            return false;</b>
+<b class="fc">&nbsp;        ArrayList&lt;String&gt; citiesArrayList = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        citiesArrayList.add(&quot;Gaza&quot;);</b>
+<b class="fc">&nbsp;        citiesArrayList.add(&quot;Nablus&quot;);</b>
+<b class="fc">&nbsp;        citiesArrayList.add(&quot;Ramallah&quot;);</b>
+<b class="fc">&nbsp;        citiesArrayList.add(&quot;Jenin&quot;);</b>
+<b class="fc">&nbsp;        citiesArrayList.add(&quot;Tulkarem&quot;);</b>
+<b class="fc">&nbsp;        citiesArrayList.add(&quot;Bethlehem&quot;);</b>
+<b class="fc">&nbsp;        citiesArrayList.add(&quot;Hebron&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;        String temp = city.toLowerCase();</b>
+&nbsp;
+<b class="fc">&nbsp;        for(String c: citiesArrayList) {</b>
+<b class="fc">&nbsp;            if (temp.trim().equals(c.toLowerCase())) {</b>
+<b class="fc">&nbsp;                return true;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean isValidUserType(int userType)
+&nbsp;    {
+<b class="fc">&nbsp;        return (userType &gt;= 1 &amp;&amp; userType &lt;= 4);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public static boolean isMsgInTheSystem(Messaging msg)
+&nbsp;    {
+<b class="fc">&nbsp;        String sender = msg.getSenderEmail();</b>
+<b class="fc">&nbsp;        String receiver = msg.getReceiverEmail();</b>
+<b class="fc">&nbsp;        String message = msg.getMsg();</b>
+<b class="fc">&nbsp;        LocalDateTime msgDate = LocalDateTime.now();</b>
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.message where sender = &#39;&quot; + sender + &quot;&#39; and receiver = &#39;&quot; + receiver + &quot;&#39; and msg = &#39;&quot; + message + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean checkIfRowMaterialInDatabase(String name)
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.row_material where row_material.rm_name = &#39;&quot;+name+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public static boolean isExistingRecipe(Recipe recipe)
+&nbsp;    {
+<b class="fc">&nbsp;        String rName = recipe.getRecipeName();</b>
+<b class="fc">&nbsp;        String rDescription = recipe.getRecipeDescription();</b>
+<b class="fc">&nbsp;        String rPublisher = recipe.getPublisherEmail();</b>
+<b class="fc">&nbsp;        String qry = &quot;SELECT count(recipe_id) FROM `recipe` WHERE recipe_name = &#39;&quot;+rName+&quot;&#39; and recipe_description = &#39;&quot;+rDescription+&quot;&#39; and recipe_publisher_email = &#39;&quot;+rPublisher+&quot;&#39;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean checkIfThereAreOrdersInDatabase() {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.order;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean isAcceptableRecipeCategory(String recipeCate)
+&nbsp;    {
+<b class="fc">&nbsp;        if (recipeCate == null)</b>
+<b class="fc">&nbsp;            return false;</b>
+<b class="fc">&nbsp;        String temp = recipeCate.toLowerCase().trim();</b>
+<b class="fc">&nbsp;        return (temp.equals(&quot;dietary needs&quot;) || temp.equals(&quot;food allergies&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean isAcceptableRecipeName(String recipeName)
+&nbsp;    {
+<b class="fc">&nbsp;        return (recipeName != null &amp;&amp; !recipeName.trim().equals(&quot;&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean isAcceptableRecipeDescription(String recipeDescription)
+&nbsp;    {
+<b class="fc">&nbsp;        return recipeDescription != null &amp;&amp; !recipeDescription.trim().equals(&quot;&quot;);</b>
+&nbsp;    }
+&nbsp;    public static boolean checkIfBusinessIdAlreadyUsed(int bId)
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.business where business_id = &#39;&quot;+bId+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;    public static boolean isValidDate(String dateStr)
+&nbsp;    {
+<b class="nc">&nbsp;        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            LocalDate.parse(dateStr, formatter);</b>
+<b class="nc">&nbsp;            return true;</b>
+<b class="nc">&nbsp;        } catch (DateTimeParseException e) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Invalid date format. Please enter the date in YYYY-MM-DD format.&quot;);</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    public static boolean isValidDiscount(double discount)
+&nbsp;    {
+<b class="nc">&nbsp;        return discount &gt;= 0.0 &amp;&amp; discount &lt;= 1.0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean checkIfProductInDbAccordingToId(int id)
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.product where product.product_id = &quot;+id+&quot;;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static boolean checkIfRowMaterialInDbAccordingToID(int rmId)
+&nbsp;    {
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.row_material where rm_id = &quot;+rmId+&quot;;&quot;;</b>
+<b class="fc">&nbsp;        return checkIfInDB(qry);</b>
+&nbsp;    }
+&nbsp;}//end of class
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-08-22 13:10</div>
+</div>
+</body>
+</html>

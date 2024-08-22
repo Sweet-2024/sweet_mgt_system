@@ -18,9 +18,6 @@ public class Database{
     static Connection conn;
     static Statement stmt;
 
-
-
-
     public static ResultSet connectionToSelectFromDB(String cmdString)
     {
         try
@@ -76,5 +73,4 @@ public class Database{
             System.out.println(e);
         }
     }
-
 }

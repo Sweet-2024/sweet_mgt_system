@@ -1,5 +1,6 @@
 package acceptance;
 
+import main_entities.Feedback;
 import main_entities.Messaging;
 import main_entities.Order;
 import io.cucumber.java.en.When;
@@ -88,5 +89,27 @@ public class user_purchase_and_commu_Test {
 
         Updates.addNewMsg(messaging);
         assertTrue(Checks.isMsgInTheSystem(messaging));
+    }
+
+    @When("choosing order and product id")
+    public void choosingOrderAndProductId() {
+
+    }
+    @When("entering the evaluation")
+    public void enteringTheEvaluation() {
+
+    }
+    @Then("feedback will be sent")
+    public void feedbackWillBeSent() {
+        int productId = 2;
+        int evaluation = 3;
+        Feedback feedback1 = new Feedback(productId, evaluation);
+
+        Updates.addNewFeedback(feedback1, 1);
+
+        int recipeId = 8;
+        evaluation = 4;
+        Feedback feedback2 = new Feedback(recipeId, evaluation);
+        Updates.addNewFeedback(feedback2, 2);
     }
 }

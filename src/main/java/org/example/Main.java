@@ -28,6 +28,7 @@ public class Main {
     private static final String INVALID_OPTION = "Invalid choice!";
     private static final String CHOOSE_OPTION = "Choose your level:";
     private static final String OWNER_OPTION = "1. Product owner";
+    private static final String SUPPLIER_OPTION = "2. Row material supplier";
     private static final String USER_OPTION = "3. Regular User";
     private static final String INVALID_LEVEL_OPTION = "Invalid user level! Try again.";
     private static final String LIST_OPTION = "List of existing products:";
@@ -76,9 +77,8 @@ public class Main {
         int userTypeToCommunicate = 0;
         double discount = 0;
         MyApp.userType = 0;
-        while (true)
-        {
-            MyApp.userEmail = "";
+        while (true) {
+            MyApp.userEmail = null;
             MyApp.userType = 0;
             userEmail = "";
             password = "";
@@ -86,45 +86,43 @@ public class Main {
             logger.info("WELCOME TO OUR SWEET MANAGEMENT SYSTEM");
             logger.info("1. Login");
             logger.info("2. Sign up");
-            logger.info( EXIT_OPTION);
+            logger.info(EXIT_OPTION);
 
             userChoice = scanner.next();
             userChoice = userChoice.trim();
 
 
-            if(userChoice.equals("1"))
+            if (userChoice.equals("1"))
             {
                 boolean validEmail = false;
-                while (true)
-                {
+                while (true) {
                     logger.info("Enter your email");
                     userEmail = scanner.next();
-                    if (!Checks.checkIfEmailAlreadyUsed(userEmail))
-                    {
+                    if (!Checks.checkIfEmailAlreadyUsed(userEmail)) {
                         logger.info("Invalid Email! Try again");
                         logger.info("Does not have an account?");
                         logger.info("    a. Enter email again");
-                        logger.info( "    b. Sign up");
+                        logger.info("    b. Sign up");
                         userChoice = scanner.next().trim();
                         if (userChoice.equals("b")) {
                             signupFlag = true;
                             break;
-                        }
-                        else if (!userChoice.equals("a"))
-                            logger.info( INVALID_OPTION);
-                    }else {
+                        } else if (!userChoice.equals("a"))
+                            logger.info(INVALID_OPTION);
+                    } else {
                         validEmail = true;
                         break;
                     }
                 }//entering email loop
 
-                if(validEmail && !signupFlag)
+              if(validEmail && !signupFlag)
                 {
                     while (true)
                     {
                         logger.info("Enter your password");
                         password = scanner.next();
-                        if (!Checks.checkIfUserInDatabase(userEmail, password)) {
+                        if (!Checks.checkIfUserInDatabase(userEmail, password))
+                        {
                             logger.info( "Incorrect Password! Try again");
                             logger.info( "Does not have an account?");
                             logger.info("    a. Enter password again");
@@ -132,6 +130,7 @@ public class Main {
                             userChoice = scanner.next().trim();
                             if (userChoice.equals("b")) {
                                 signupFlag = true;
+                                userEmail = null;
                                 break;
                             }
                             else if (!userChoice.equals("a"))
@@ -146,7 +145,7 @@ public class Main {
 
                 MyApp.user = new User(userEmail, password);
                 MyApp.userEmail = userEmail;
-                MyApp.userType = MyApp.user.userTypeByEmail(userEmail);
+                MyApp.userType = User.userTypeByEmail(userEmail);
                 MyApp.isLoggedIn = true;
             } //login if statement
 
@@ -965,7 +964,7 @@ public class Main {
                                 }
 
                                 MyApp.rawMaterial = new RawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
-                              
+
                                 updateRawMaterial(MyApp.rawMaterial);
                                 logger.info(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
@@ -1007,7 +1006,7 @@ public class Main {
                             {
                                 userTypeToCommunicate = 2;
                                 communicateWithUser(userEmail, userTypeToCommunicate);
-                            } 
+                            }
                             else if (userChoice.equals("c"))
                             {
                                 break;
@@ -1015,7 +1014,7 @@ public class Main {
                                 logger.warning(INVALID_OPTION);
                             }
 
-                        
+
                         }
                     } else if (userChoice.equals("3")) {
                         break;
@@ -1324,89 +1323,71 @@ public class Main {
         }
     }
 
-    private static User signUp(String userEmail, String username, String password, String city, int userType) {
-        Scanner scanner = new Scanner(System.in);
-        String userChoice;
-
-        while (!Checks.isValidEmail(userEmail)) {
+    private static String enteringEmail(Scanner scanner, String userEmail)
+    {
+        while (true)
+        {
             logger.info("Enter your email:");
             userEmail = scanner.next();
-            if (Checks.isValidEmail(userEmail) && !Checks.checkIfEmailAlreadyUsed(userEmail)) {
+            if (Checks.isValidEmail(userEmail) && !Checks.checkIfEmailAlreadyUsed(userEmail))
                 break;
-            } else if (!Checks.isValidEmail(userEmail)) {
+            else if (!Checks.isValidEmail(userEmail))
                 logger.warning("Invalid Email format! valid email should contain '@' in addition to a correct domain name.");
-            } else if (Checks.checkIfEmailAlreadyUsed(userEmail)) {
+            else if (Checks.checkIfEmailAlreadyUsed(userEmail))
                 logger.warning("Email already used! Try again.");
-            }
+        }
+        return userEmail;
+    }
 
-            logger.info("    a. Enter email again");
-            logger.info(EXIT);
-            userChoice = scanner.next();
-            if (userChoice.equals("a"))
-                continue;
-            else if (userChoice.equals("b")) {
-                break;
-            } else
-                logger.warning(INVALID_OPTION);
-        } // entering email loop
-
+    private static String enteringUsername(Scanner scanner, String username)
+    {
         while (!Checks.isValidUsername(username)) {
             logger.info("Enter your username:");
             username = scanner.next();
-            if (!Checks.isValidUsername(username)) {
+            if (!Checks.isValidUsername(username))
                 logger.warning("Invalid username! Try again.");
-                logger.info("    a. Enter username again");
-                logger.info(EXIT);
-                userChoice = scanner.next();
-                if (userChoice.equals("a"))
-                    continue;
-                else if (userChoice.equals("b")) {
-                    break;
-                } else
-                    logger.warning(INVALID_OPTION);
-            }
-        } // entering username loop
+            else
+                break;
+        }
+        return username;
+    }
 
-        while (!Checks.isvalidPassword(password)) {
+    private static String enteringPassword(Scanner scanner, String password)
+    {
+        while (!Checks.isvalidPassword(password))
+        {
             logger.info("Enter your password:");
             password = scanner.next();
-            if (!Checks.isvalidPassword(password)) {
+            if (!Checks.isvalidPassword(password))
+            {
                 logger.warning("Invalid password! Try again.");
-                logger.info("    a. Enter password again");
-                logger.info(EXIT);
-                userChoice = scanner.next();
-                if (userChoice.equals("a"))
-                    continue;
-                else if (userChoice.equals("b")) {
-                    break;
-                } else
-                    logger.warning(INVALID_OPTION);
+                logger.warning("knowing that a valid password longer than 8 characters and contains alphabetics, digits and other characters ");
             }
-        } // entering password loop
+        }
+        return password;
+    }
 
-        while (!Checks.isValidCity(city)) {
+    private static String enteringCity(Scanner scanner, String city)
+    {
+        while (!Checks.isValidCity(city))
+        {
             logger.info("Enter your location:");
             logger.info("    Knowing that available cities are: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem and Hebron");
             city = scanner.next();
-            if (!Checks.isValidCity(city)) {
+            if (!Checks.isValidCity(city))
                 logger.warning("Invalid location! Try again.");
-                logger.info("    a. Enter location again");
-                logger.info(EXIT);
-                userChoice = scanner.next();
-                if (userChoice.equals("a"))
-                    continue;
-                else if (userChoice.equals("b")) {
-                    break;
-                } else
-                    logger.warning(INVALID_OPTION);
-            }
-        } // entering city loop
+        }
+        return city;
+    }
 
-        while (!Checks.isValidUserType(userType)) {
+    private static int enteringUserType(Scanner scanner, int userType)
+    {
+        while (!Checks.isValidUserType(userType))
+        {
             char ut;
             logger.info(CHOOSE_OPTION);
             logger.info(OWNER_OPTION);
-            logger.info("2. Row material Supplier");
+            logger.info(SUPPLIER_OPTION);
             logger.info(USER_OPTION);
             ut = scanner.next().charAt(0);
             if (Character.isDigit(ut))
@@ -1415,18 +1396,26 @@ public class Main {
             if (!Checks.isValidUserType(userType)) {
                 logger.warning(INVALID_LEVEL_OPTION);
                 logger.info("    a. Enter user level again");
-                logger.info(EXIT);
-                userChoice = scanner.next();
-                if (userChoice.equals("a"))
-                    continue;
-                else if (userChoice.equals("b")) {
-                    break;
-                } else
-                    logger.warning(INVALID_OPTION);
-            }
-        } // entering user type loop
+            } else
+                break;
+        }
+        return userType;
+    }
 
-        User u = new User(username, password, userEmail, city, userType + 1);
+    private static User signUp(String userEmail, String username, String password, String city, int userType) {
+        Scanner scanner = new Scanner(System.in);
+
+        String e =  enteringEmail(scanner, userEmail);
+
+        String un = enteringUsername(scanner, username);
+
+        String pass = enteringPassword(scanner, password);
+
+        String location = enteringCity(scanner, city);
+
+        int ut = enteringUserType(scanner,userType);
+
+        User u = new User(un, pass, e, location, ut + 1);
         return u;
     }
     private static void communicateWithUser(String userEmail, int userTypeToCommunicate) {

@@ -7,8 +7,7 @@ import sweet_system.Listing;
 import sweet_system.MyApp;
 import sweet_system.Updates;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class admin_mgt_Test {
 
@@ -23,7 +22,7 @@ public class admin_mgt_Test {
     public void loginToTheSystemAsAdministrator() {
         String email = "admin@gmail.com";
         int uType = User.userTypeByEmail(email);
-        assertTrue(uType == 1);
+        assertEquals(uType , 1);
     }
 
     @When("admin choose managing accounts from the list")

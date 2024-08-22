@@ -44,7 +44,7 @@ public class Updates {
         String un = user.getUname();
         String pass = user.getPassword();
         String email = user.getEmail();
-        String location = user.getLocation();
+        String location = user.getLocation().toLowerCase().trim();
         int uType = user.getType();
 
         if (Checks.isValidUsername(un)

@@ -54,7 +54,8 @@ public class User {
             if(rs.next()){
                 userType = rs.getInt("user_type");
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return userType;

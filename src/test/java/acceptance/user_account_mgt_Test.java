@@ -37,7 +37,6 @@ public class user_account_mgt_Test {
 
     }
 
-    @Ignore
     @Then("the account info will be updated in the system")
     public void theAccountInfoWillBeUpdatedInTheSystem() {
         String un = "user2";

@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="improving the coverage">
+    <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="spliting sign up function into multiple functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main_entities/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main_entities/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sweet_system/Checks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweet_system/Checks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sweet_system/Updates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweet_system/Updates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/admin_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/exploration_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/product_mgt_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/raw_material_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/raw_material_mgt_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/acceptance/user_account_mgt_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +72,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.AcceptanceTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="sweetMgtSystem" />
@@ -172,8 +166,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.AcceptanceTest" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.AccountMgtTest" />
         <item itemvalue="JUnit.admin_mgt_Test" />
         <item itemvalue="JUnit.account_mgt_Test" />
@@ -357,7 +351,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724323568987</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="spliting sign up function into multiple functions">
+      <created>1724340042663</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1724340042663</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -373,7 +374,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="make some updates" />
     <MESSAGE value="finishing everything related with admin" />
     <MESSAGE value="merging" />
     <MESSAGE value="feedback" />
@@ -398,7 +398,8 @@
     <MESSAGE value="decrease duplication in product and row material class" />
     <MESSAGE value="remove unused setters to increase coverage" />
     <MESSAGE value="improving the coverage" />
-    <option name="LAST_COMMIT_MESSAGE" value="improving the coverage" />
+    <MESSAGE value="spliting sign up function into multiple functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="spliting sign up function into multiple functions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

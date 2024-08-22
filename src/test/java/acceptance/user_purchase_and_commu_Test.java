@@ -6,15 +6,12 @@ import main_entities.Order;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import org.junit.Ignore;
-import sweet_system.Checks;
 import sweet_system.Listing;
 import sweet_system.MyApp;
 import sweet_system.Updates;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 

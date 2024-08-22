@@ -1,6 +1,5 @@
 package main_entities;
 
-import org.example.Main;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -5,7 +5,6 @@ import main_entities.*;
 import main_entities.Order;
 import main_entities.User;
 import main_entities.Product;
-import org.example.Main;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

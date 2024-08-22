@@ -11,7 +11,6 @@ import sweet_system.Updates;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import static org.junit.Assert.assertTrue;
 
 public class product_mgt_Test {
     static MyApp myApp;

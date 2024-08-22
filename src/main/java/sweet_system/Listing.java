@@ -2,7 +2,6 @@ package sweet_system;
 
 import main_entities.Database;
 import main_entities.DatabaseOperationException;
-import org.example.Main;
 
 import java.sql.Date;
 import java.sql.ResultSet;

@@ -12,7 +12,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import static java.lang.Character.isDigit;
 import static java.lang.System.exit;
 import static sweet_system.Listing.*;
 import static sweet_system.Updates.*;

@@ -202,14 +202,14 @@ public class Main {
                                     userEmail = scanner.nextLine();
                                 }
 
-                                logger.log(Level.INFO, "Enter user name:");
+                                logger.info("Enter user name:");
                                 username = scanner.nextLine();
                                 while (!Checks.isValidUsername(username)) {
                                     logger.log(Level.WARNING, "Invalid username. Please enter a valid user name:");
                                     username = scanner.nextLine();
                                 }
 
-                                logger.log(Level.INFO, "Enter user password:");
+                                logger.info("Enter user password:");
                                 password = scanner.nextLine();
                                 while (!Checks.isvalidPassword(password)) {
                                     logger.log(Level.WARNING, "Invalid password. Please enter a valid user password:");

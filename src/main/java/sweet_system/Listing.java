@@ -34,6 +34,14 @@ public class Listing {
     private static void logError(String message, Exception e) {
         logger.log(Level.SEVERE, message + e.getMessage(), e);
     }
+    private static void logFinancialDetails(String email, int incomes, int outcomes) {
+        int total = incomes - outcomes;
+        logger.info(String.format("\t* Product Owner Email : %s", email));
+        logger.info(String.format("\t\tIncomes : %s", incomes));
+        logger.info(String.format("\t\tOutcomes : %s", outcomes));
+        logger.info(String.format("\t\tTotal profit : %s", total));
+        logger.info("");
+    }
     private static void printProductDetails(int productId, String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {
         System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n",
                 productId, productName, price, wholesalePrice, quantity,
@@ -63,12 +71,7 @@ public class Listing {
             }
             if (numOfProducts > 0)
             {
-                int total = incomes - outcomes;
-                logger.info(String.format("\t* Product Owner Email : %s", email));
-                logger.info(String.format("\t\tIncomes : %s", incomes));
-                logger.info(String.format("\t\tOutcomes : %s", outcomes));
-                logger.info(String.format("\t\tTotal profit : %s", total));
-                logger.info("");
+                logFinancialDetails(email, incomes, outcomes);
             }
 
         } catch (SQLException | DatabaseOperationException e) {

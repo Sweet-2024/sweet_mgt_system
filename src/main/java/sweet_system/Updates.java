@@ -15,6 +15,14 @@ import java.util.logging.Level;
 
 public class Updates {
     private static final Logger logger = Logger.getLogger(Updates.class.getName());
+    private static final String INVALID_EMAIL = "This email doesn't exist, please try again with another email address!";
+    private static final String ERROR_MESSAGE = "Error: ";
+    private static void logInfo(String message) {
+        logger.info(message);
+    }
+    private static void logError(String message, Exception e) {
+        logger.log(Level.SEVERE, message + e.getMessage(), e);
+    }
     private static ResultSet executeSelectStmts(String qry)
     {
         try {
@@ -22,7 +30,7 @@ public class Updates {
         }
         catch (Exception e)
         {
-            System.out.println(e.getMessage());
+            logError(ERROR_MESSAGE, e);
             return null;
         }
     }
@@ -35,7 +43,7 @@ public class Updates {
         String ownerEmail = business.getBusinessOwnerEmail();
 
         if (!Checks.checkIfBusinessIdAlreadyUsed(bId)) {
-            logger.info("This business id doesn't exist, please try again with another business id!");
+            logInfo("This business id doesn't exist, please try again with another business id!");
         } else {
             String qry1 = "update sweetsystem.business set business_name = '" + bName + "', business_location = '" + bLocation + "', business_owner_email ='" + ownerEmail + "' where business_id = " + bId + " ;";
             Database.connectionToInsertOrUpdateDB(qry1);
@@ -62,7 +70,7 @@ public class Updates {
         }
         else
         {
-            logger.info("This email already used, please try again with another email address!");
+            logInfo("This email already used, please try again with another email address!");
         }
     }
 
@@ -82,10 +90,10 @@ public class Updates {
             rCate = rCate.trim();
             String qry = "INSERT INTO sweetsystem.recipe(recipe_name, recipe_description, recipe_category, recipe_publisher_email) VALUES ( '" + rname + "', '" + rDesc + "', '" + rCate + "', '" + pubEmail + "');";
             Database.connectionToInsertOrUpdateDB(qry);
-            logger.info("The recipe published successfully :) ");
+            logInfo("The recipe published successfully :) ");
         }
         else
-            logger.info("Error in recipe info! try Again ");
+            logInfo("Error in recipe info! try Again ");
     }
 
     public static void addNewMsg(Messaging msg)
@@ -96,7 +104,7 @@ public class Updates {
         LocalDateTime msgDate = LocalDateTime.now();
         if(Checks.isMsgInTheSystem(msg))
         {
-            logger.info("the msg already in the system");
+            logInfo("the msg already in the system");
         }
         else
         {
@@ -122,7 +130,7 @@ public class Updates {
                 orderId = rs.getInt(1);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logError(ERROR_MESSAGE, e);
         }
         orderId ++;
         String qry = "INSERT INTO `order`(`order_id`, `seller_email`, `order_date`, `buyer_email`) VALUES ("+orderId+",'"+seller+"','"+date+"','"+buyer+"')";
@@ -147,10 +155,8 @@ public class Updates {
                             continue;
                         }
                     }
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (DatabaseOperationException e) {
-                    throw new RuntimeException(e);
+                } catch (SQLException | DatabaseOperationException e) {
+                    logError(ERROR_MESSAGE, e);
                 }
 
                 String qry3 = "INSERT INTO `order_product`(`order_id`, `product_id`, `qty`) VALUES ("+orderId+","+productId+", "+qty.get(i)+")";
@@ -167,7 +173,7 @@ public class Updates {
     {
         if(!Checks.checkIfEmailAlreadyUsed(email))
         {
-            logger.info("This email doesn't exist, please try again with another email address!");
+            logger.info(INVALID_EMAIL);
         }
         else
         {
@@ -186,7 +192,7 @@ public class Updates {
 
         if(!Checks.checkIfEmailAlreadyUsed(email))
         {
-            logger.info("This email doesn't exist, please try again with another email address!");
+            logger.info(INVALID_EMAIL);
         }
         else
         {
@@ -211,14 +217,14 @@ public class Updates {
         }
         else
         {
-            logger.info("This product already exist, please try again with another product name!");
+            logInfo("This product already exist, please try again with another product name!");
         }
     }
     public static void deleteProduct(int productId)
     {
         if(!Checks.checkIfProductInDbAccordingToId(productId))
         {
-            logger.info("This product doesn't exist, please try again with another product name!");
+            logInfo("This product doesn't exist, please try again with another product name!");
         }
         else
         {
@@ -239,7 +245,7 @@ public class Updates {
 
         if(!Checks.checkIfProductInDbAccordingToId(id))
         {
-            logger.info("This product doesn't exist, please try again with another product name!");
+            logInfo("This product doesn't exist, please try again with another product name!");
         }
         else
         {
@@ -273,11 +279,11 @@ public class Updates {
             }
             else
             {
-                logger.info("there is no product in the system!");
+                logInfo("there is no product in the system!");
                 return false;
             }
         } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
             return false;
         }
     }
@@ -298,7 +304,7 @@ public class Updates {
                 orderId = rs.getInt(1);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logError(ERROR_MESSAGE, e);
         }
         orderId ++;
         String qry = "INSERT INTO `order`(`order_id`, `seller_email`, `order_date`, `buyer_email`) VALUES ("+orderId+",'"+seller+"','"+date+"','"+buyer+"')";
@@ -319,12 +325,12 @@ public class Updates {
                         ResultSet rs3 = executeSelectStmts(qry2);
                         if (rs3.next())
                         {
-                            logger.info("Already ordered! ");
+                            logInfo("Already ordered! ");
                             continue;
                         }
                     }
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    logError(ERROR_MESSAGE, e);
                 }
 
                 String qry3 = "INSERT INTO order_material(order_id, rm_id, qty) VALUES ("+orderId+","+rowMaterialId+", "+qty.get(i)+")";
@@ -347,7 +353,7 @@ public class Updates {
         if (MyApp.userType == 4){
             if(!Checks.checkIfEmailAlreadyUsed(email))
             {
-                logger.info("This email doesn't exist, please try again with another email address!");
+                logInfo(INVALID_EMAIL);
             }
             else
             {
@@ -374,7 +380,7 @@ public class Updates {
         }
         else
         {
-            logger.info("This raw material already exist, please try again with another raw material name!");
+            logInfo("This raw material already exist, please try again with another raw material name!");
         }
     }
 
@@ -390,7 +396,7 @@ public class Updates {
 
         if(!Checks.checkIfRowMaterialInDatabase(rmName))
         {
-            logger.info("This raw material doesn't exist, please try again with another raw material name!");
+            logInfo("This raw material doesn't exist, please try again with another raw material name!");
         }
         else
         {
@@ -402,7 +408,7 @@ public class Updates {
     public static void deleteRawMaterial(int rmId) {
         if(!Checks.checkIfRowMaterialInDbAccordingToID(rmId))
         {
-            logger.info("This raw material doesn't exist, please try again with another raw material name!");
+            logInfo("This raw material doesn't exist, please try again with another raw material name!");
         }
         else
         {

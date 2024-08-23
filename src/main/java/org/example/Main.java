@@ -43,6 +43,9 @@ public class Main {
     private static final String BACK = "\t2. back";
     private static final String EXIT = "    b. Exit";
     private static final String LIST_OF_ROW_MATERAILS = "List of existing raw materials:";
+    private static void logInfo(String message) {
+        logger.info(message);
+    }
     MyApp myApp;
     Main(MyApp myApp)
     {
@@ -82,10 +85,10 @@ public class Main {
             userEmail = "";
             password = "";
 
-            logger.info("WELCOME TO OUR SWEET MANAGEMENT SYSTEM");
-            logger.info("1. Login");
-            logger.info("2. Sign up");
-            logger.info(EXIT_OPTION);
+            logInfo("WELCOME TO OUR SWEET MANAGEMENT SYSTEM");
+            logInfo("1. Login");
+            logInfo("2. Sign up");
+            logInfo(EXIT_OPTION);
 
             userChoice = scanner.next();
             userChoice = userChoice.trim();
@@ -96,21 +99,21 @@ public class Main {
                 boolean validEmail = false;
                 while (!validEmail)
                 {
-                    logger.info("Enter your email");
+                    logInfo("Enter your email");
                     userEmail = scanner.next();
                     if (!Checks.checkIfEmailAlreadyUsed(userEmail))
                     {
-                        logger.info("Invalid Email! Try again");
-                        logger.info("Does not have an account?");
-                        logger.info("    a. Enter email again");
-                        logger.info("    b. Sign up");
+                        logInfo("Invalid Email! Try again");
+                        logInfo("Does not have an account?");
+                        logInfo("    a. Enter email again");
+                        logInfo("    b. Sign up");
                         userChoice = scanner.next().trim();
                         if (userChoice.equals("b")) {
                             signupFlag = true;
                             break;
                         }
                         else if (!userChoice.equals("a"))
-                            logger.info(INVALID_OPTION);
+                            logInfo(INVALID_OPTION);
                     }
                     else
                         validEmail = true;
@@ -121,14 +124,14 @@ public class Main {
                     boolean validPass = false;
                     while (!validPass)
                     {
-                        logger.info("Enter your password");
+                        logInfo("Enter your password");
                         password = scanner.next();
                         if (!Checks.checkIfUserInDatabase(userEmail, password))
                         {
-                            logger.info( "Incorrect Password! Try again");
-                            logger.info( "Does not have an account?");
-                            logger.info("    a. Enter password again");
-                            logger.info( "    b. Sign up");
+                            logInfo( "Incorrect Password! Try again");
+                            logInfo( "Does not have an account?");
+                            logInfo("    a. Enter password again");
+                            logInfo( "    b. Sign up");
                             userChoice = scanner.next().trim();
                             if (userChoice.equals("b")) {
                                 signupFlag = true;
@@ -136,10 +139,10 @@ public class Main {
                                 break;
                             }
                             else if (!userChoice.equals("a"))
-                                logger.info( INVALID_OPTION);
+                                logInfo( INVALID_OPTION);
                         }//incorrect password
                         else {
-                            logger.info("Login successful!");
+                            logInfo("Login successful!");
                             validPass = true;
                         }
                     }//entering password loop
@@ -169,32 +172,32 @@ public class Main {
             if (MyApp.userType == 1)
             {
                 while (true) {
-                    logger.info("Welcome Admin! Choose what to do from the list:");
-                    logger.info("1. Accounts Management");
-                    logger.info("2. Reporting And Monitoring");
-                    logger.info( EXIT_OPTION);
+                    logInfo("Welcome Admin! Choose what to do from the list:");
+                    logInfo("1. Accounts Management");
+                    logInfo("2. Reporting And Monitoring");
+                    logInfo( EXIT_OPTION);
                     char uc = scanner.next().charAt(0);
 
                     if (uc == '1')
                     {
                         while (true) {
-                            logger.info( "* Accounts Management:");
-                            logger.info( "  a. Add new user");
-                            logger.info( "  b. Update existing user information");
-                            logger.info( "  c. Delete existing user");
-                            logger.info( "  d. Back");
+                            logInfo( "* Accounts Management:");
+                            logInfo( "  a. Add new user");
+                            logInfo( "  b. Update existing user information");
+                            logInfo( "  c. Delete existing user");
+                            logInfo( "  d. Back");
 
                             uc = scanner.next().charAt(0);
                             if (uc == 'a')
                             {
                                 Listing.listAllUsersInTheSystem(2);
-                                logger.info( "");
+                                logInfo( "");
 
                                 Listing.listAllUsersInTheSystem(3);
-                                logger.info( "");
+                                logInfo( "");
 
                                 Listing.listAllUsersInTheSystem(4);
-                                logger.info( "");
+                                logInfo( "");
 
                                 User user = signUp(null, null, null, null, 0);
                                 Updates.addNewUser(user);
@@ -335,32 +338,32 @@ public class Main {
             else if (MyApp.userType == 2) {
                 Boolean isCorrectChoice = false;
                 while (true) {
-                    logger.info("Welcome Owner! choose what to do from the list:");
-                    logger.info("1. Product Management");
-                    logger.info("2. Communication and Notification");
-                    logger.info("3. Accounts Management");
-                    logger.info("4. Order Management");
-                    logger.info("5. exit");
+                    logInfo("Welcome Owner! choose what to do from the list:");
+                    logInfo("1. Product Management");
+                    logInfo("2. Communication and Notification");
+                    logInfo("3. Accounts Management");
+                    logInfo("4. Order Management");
+                    logInfo("5. exit");
                     userChoice = scanner.next();
 
                     userChoice = userChoice.trim();
                     if (userChoice.equals("1")) {
                         while (true) {
-                            logger.info("* Product Management:");
-                            logger.info("    a. Add new products.");
-                            logger.info("    b. update available products.");
-                            logger.info("    c. remove available products.");
-                            logger.info("    d. Sales and profits.");
-                            logger.info("    e. Best-selling products.");
-                            logger.info("    f. discount products.");
-                            logger.info("    g. Back.");
+                            logInfo("* Product Management:");
+                            logInfo("    a. Add new products.");
+                            logInfo("    b. update available products.");
+                            logInfo("    c. remove available products.");
+                            logInfo("    d. Sales and profits.");
+                            logInfo("    e. Best-selling products.");
+                            logInfo("    f. discount products.");
+                            logInfo("    g. Back.");
 
                             userChoice = scanner.next();
                             if (userChoice.equals("a")) {
-                                logger.info(LIST_OPTION);
+                                logInfo(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
-                                logger.info("Enter product name:");
+                                logInfo("Enter product name:");
                                 scanner.nextLine();
                                 productName = scanner.nextLine();
                                 while (!Checks.isValidProductName(productName)) {
@@ -369,7 +372,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info("Enter product price:");
+                                    logInfo("Enter product price:");
                                     if (scanner.hasNextInt()) {
                                         price = scanner.nextInt();
                                         scanner.nextLine();
@@ -381,7 +384,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(PRICE_OPTION);
+                                    logInfo(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
@@ -393,7 +396,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(QTY_OPTION);
+                                    logInfo(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
@@ -405,7 +408,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(SALED_QTY_OPTION);
+                                    logInfo(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
@@ -416,7 +419,7 @@ public class Main {
                                     }
                                 }
 
-                                logger.info(DATE_OPTION);
+                                logInfo(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
                                     logger.warning(INVALID_DATE_OPTION);
@@ -425,13 +428,13 @@ public class Main {
 
                                 MyApp.product = new Product(productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 addNewProduct(MyApp.product);
-                                logger.info("Successfully added");
+                                logInfo("Successfully added");
                             } else if (userChoice.equals("b")) {
-                                logger.info(LIST_OPTION);
+                                logInfo(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
                                 while (true) {
-                                    logger.info("Enter product id:");
+                                    logInfo("Enter product id:");
                                     if (scanner.hasNextInt()) {
                                         productId = scanner.nextInt();
                                         scanner.nextLine();
@@ -442,7 +445,7 @@ public class Main {
                                     }
                                 }
 
-                                logger.info("Enter product name:");
+                                logInfo("Enter product name:");
                                 productName = scanner.nextLine();
                                 while (!Checks.isValidProductName(productName)) {
                                     logger.warning("Please enter a valid product name:");
@@ -450,7 +453,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info("Enter product price:");
+                                    logInfo("Enter product price:");
                                     if (scanner.hasNextInt()) {
                                         price = scanner.nextInt();
                                         scanner.nextLine();
@@ -462,7 +465,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(PRICE_OPTION);
+                                    logInfo(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
@@ -474,7 +477,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(QTY_OPTION);
+                                    logInfo(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
@@ -486,7 +489,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(SALED_QTY_OPTION);
+                                    logInfo(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
@@ -497,7 +500,7 @@ public class Main {
                                     }
                                 }
 
-                                logger.info(DATE_OPTION);
+                                logInfo(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
                                     logger.warning(INVALID_DATE_OPTION);
@@ -506,13 +509,13 @@ public class Main {
 
                                 MyApp.product = new Product(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 updateProduct(MyApp.product);
-                                logger.info(UPDATED_OPTION);
+                                logInfo(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
-                                logger.info(LIST_OPTION);
+                                logInfo(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
                                 while (true) {
-                                    logger.info("Enter product id:");
+                                    logInfo("Enter product id:");
                                     if (scanner.hasNextInt()) {
                                         productId = scanner.nextInt();
                                         scanner.nextLine();
@@ -523,16 +526,16 @@ public class Main {
                                     }
                                 }
                                 deleteProduct(productId);
-                                logger.info("_Deletion completed successfully");
+                                logInfo("_Deletion completed successfully");
                             } else if (userChoice.equals("d")) {
                                 generateFinancialReports();
-                                logger.info("");
+                                logInfo("");
                             } else if (userChoice.equals("e")) {
                                 listingBestSellingProduct();
-                                logger.info("");
+                                logInfo("");
                             } else if (userChoice.equals("f")) {
                                 while (true) {
-                                    logger.info("Enter discount number (e.g: 0.20 for 20%):");
+                                    logInfo("Enter discount number (e.g: 0.20 for 20%):");
                                     if (scanner.hasNextDouble()) {
                                         discount = scanner.nextDouble();
                                         scanner.nextLine();
@@ -548,7 +551,7 @@ public class Main {
                                     }
                                 }
                                 Updates.productDiscount(discount);
-                                logger.info("The discount has been successfully applied");
+                                logInfo("The discount has been successfully applied");
                             } else if (userChoice.equals("g")) {
                                 break;
                             } else {
@@ -558,16 +561,16 @@ public class Main {
 
                     } else if (userChoice.equals("2")) {
                         while (true) {
-                            logger.info("Choose from the following:");
-                            logger.info("\ta. communicate with others:");
-                            logger.info("\tb. See notification:");
-                            logger.info("\tc. Back:");
+                            logInfo("Choose from the following:");
+                            logInfo("\ta. communicate with others:");
+                            logInfo("\tb. See notification:");
+                            logInfo("\tc. Back:");
                             char uc = scanner.next().charAt(0);
 
                             if (uc == 'a') {
-                                logger.info("    a. Communicate with users");
-                                logger.info("    b. Communicate with suppliers");
-                                logger.info("    c. Communicate with owners");
+                                logInfo("    a. Communicate with users");
+                                logInfo("    b. Communicate with suppliers");
+                                logInfo("    c. Communicate with owners");
                                 userChoice = scanner.next();
                                 if (userChoice.equals("a")) {
                                     userTypeToCommunicate = 4;
@@ -595,10 +598,10 @@ public class Main {
 
                     else if (userChoice.equals("3")) {
                         while (true) {
-                            logger.info("* Accounts Management:");
-                            logger.info("    a. Update your account.");
-                            logger.info("    b. Business management.");
-                            logger.info("    c. Back.");
+                            logInfo("* Accounts Management:");
+                            logInfo("    a. Update your account.");
+                            logInfo("    b. Business management.");
+                            logInfo("    c. Back.");
 
                             userChoice = scanner.next();
 
@@ -606,10 +609,10 @@ public class Main {
                                 Listing.listingYourOwnAccount(MyApp.userEmail);
                                 User u = signUp(MyApp.userEmail, null, null, null, 0);
                                 Updates.updateUser(u);
-                                logger.info("Updated Successfully!\n");
+                                logInfo("Updated Successfully!\n");
                             } else if (userChoice.equals("b")) {
                                 while (true) {
-                                    logger.info("Enter business id:");
+                                    logInfo("Enter business id:");
                                     if (scanner.hasNextInt()) {
                                         businessId = scanner.nextInt();
                                         scanner.nextLine();
@@ -620,7 +623,7 @@ public class Main {
                                     }
                                 }
 
-                                logger.info("Enter business name:");
+                                logInfo("Enter business name:");
                                 scanner.nextLine();
                                 businessName = scanner.nextLine();
                                 while (!Checks.isValidProductName(businessName)) {
@@ -629,7 +632,7 @@ public class Main {
                                     businessName = scanner.nextLine();
                                 }
 
-                                logger.info("Enter business location:");
+                                logInfo("Enter business location:");
                                 businessLocation = scanner.nextLine();
                                 while (!Checks.isValidCity(businessLocation)) {
                                     logger.warning("Please enter a valid business location:");
@@ -639,7 +642,7 @@ public class Main {
 
                                 MyApp.business = new Business(businessId, businessName, businessLocation, userEmail);
                                 Updates.updateBusinessInfo(MyApp.business);
-                                logger.info(UPDATED_OPTION);
+                                logInfo(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
                                 break;
                             } else {
@@ -647,10 +650,10 @@ public class Main {
                             }
                         }
                     } else if (userChoice.equals("4")) {
-                        logger.info(LIST_OF_ROW_MATERAILS);
+                        logInfo(LIST_OF_ROW_MATERAILS);
                         Listing.listingOfRawMaterials();
 
-                        logger.info("Please enter the name of the supplier you wish to purchase from:");
+                        logInfo("Please enter the name of the supplier you wish to purchase from:");
                         scanner.nextLine();
                         supplierEmail = scanner.nextLine();
                         while (!Checks.isValidEmail(supplierEmail) || !Checks.checkIfEmailAlreadyUsed(supplierEmail)) {
@@ -663,7 +666,7 @@ public class Main {
                         ArrayList<Integer> qtyList = new ArrayList<>();
 
                         while (true) {
-                            logger.info("Enter the name of the raw material you want to order (or type 'done' to finish):");
+                            logInfo("Enter the name of the raw material you want to order (or type 'done' to finish):");
                             materialName = scanner.nextLine();
                             while (!Checks.isValidProductName(materialName)) {
                                 logger.warning(INVALID_ROW_MATERIAL_OPTION);
@@ -676,7 +679,7 @@ public class Main {
                             }
                             items.add(materialName);
 
-                            logger.info("Enter the quantity for " + materialName + ":");
+                            logInfo("Enter the quantity for " + materialName + ":");
                             while (true) {
                                 try {
                                     quantity = scanner.nextInt();
@@ -691,7 +694,7 @@ public class Main {
                         }
                         MyApp.order = new Order(userEmail, supplierEmail, LocalDateTime.now(), items, qtyList);
                         Updates.addNewOrderForRowMaterials(MyApp.order);
-                        logger.info("Order successfully added");
+                        logInfo("Order successfully added");
                     } else if (userChoice.equals("5")) {
                         break;
                     } else {
@@ -701,27 +704,27 @@ public class Main {
             }
             else if (MyApp.userType == 3) {
                 while (true) {
-                    logger.info("Welcome Supplier! Choose what to do from the list:");
-                    logger.info("1. Raw material Management");
-                    logger.info("2. Communication and Notification");
-                    logger.info(EXIT_OPTION);
+                    logInfo("Welcome Supplier! Choose what to do from the list:");
+                    logInfo("1. Raw material Management");
+                    logInfo("2. Communication and Notification");
+                    logInfo(EXIT_OPTION);
 
                     userChoice = scanner.next();
                     userChoice = userChoice.trim();
                     if (userChoice.equals("1")) {
                         while (true) {
-                            logger.info("* Raw material Management");
-                            logger.info("    a. Add new raw material.");
-                            logger.info("    b. Update available raw material.");
-                            logger.info("    c. Remove raw material.");
-                            logger.info("    d. Back.");
+                            logInfo("* Raw material Management");
+                            logInfo("    a. Add new raw material.");
+                            logInfo("    b. Update available raw material.");
+                            logInfo("    c. Remove raw material.");
+                            logInfo("    d. Back.");
 
                             userChoice = scanner.next();
                             if (userChoice.equals("a")) {
-                                logger.info(LIST_OF_ROW_MATERAILS);
+                                logInfo(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
-                                logger.info("Enter raw material name:");
+                                logInfo("Enter raw material name:");
                                 scanner.nextLine();
                                 rawMaterialName = scanner.nextLine();
                                 while (!Checks.isValidProductName(rawMaterialName)) {
@@ -731,7 +734,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info("Enter raw material price:");
+                                    logInfo("Enter raw material price:");
                                     if (scanner.hasNextInt()) {
                                         price = scanner.nextInt();
                                         scanner.nextLine();
@@ -743,7 +746,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(PRICE_OPTION);
+                                    logInfo(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
@@ -755,7 +758,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(QTY_OPTION);
+                                    logInfo(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
@@ -767,7 +770,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(SALED_QTY_OPTION);
+                                    logInfo(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
@@ -778,7 +781,7 @@ public class Main {
                                     }
                                 }
 
-                                logger.info(DATE_OPTION);
+                                logInfo(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
                                     logger.warning(INVALID_DATE_OPTION);
@@ -787,13 +790,13 @@ public class Main {
 
                                 MyApp.rawMaterial = new RawMaterial(rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 addNewRawMaterial(MyApp.rawMaterial);
-                                logger.info("Successfully added");
+                                logInfo("Successfully added");
                             } else if (userChoice.equals("b")) {
-                                logger.info(LIST_OF_ROW_MATERAILS);
+                                logInfo(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
                                 while (true) {
-                                    logger.info("Enter raw material id:");
+                                    logInfo("Enter raw material id:");
                                     if (scanner.hasNextInt()) {
                                         rawMaterialId = scanner.nextInt();
                                         scanner.nextLine();
@@ -804,7 +807,7 @@ public class Main {
                                     }
                                 }
 
-                                logger.info("Enter raw material name:");
+                                logInfo("Enter raw material name:");
                                 scanner.nextLine();
                                 rawMaterialName = scanner.nextLine();
                                 while (!Checks.isValidProductName(rawMaterialName)) {
@@ -814,7 +817,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info("Enter raw material price:");
+                                    logInfo("Enter raw material price:");
                                     if (scanner.hasNextInt()) {
                                         price = scanner.nextInt();
                                         scanner.nextLine();
@@ -826,7 +829,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(PRICE_OPTION);
+                                    logInfo(PRICE_OPTION);
                                     if (scanner.hasNextInt()) {
                                         wholesalePrice = scanner.nextInt();
                                         scanner.nextLine();
@@ -838,7 +841,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(QTY_OPTION);
+                                    logInfo(QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         quantity = scanner.nextInt();
                                         scanner.nextLine();
@@ -850,7 +853,7 @@ public class Main {
                                 }
 
                                 while (true) {
-                                    logger.info(SALED_QTY_OPTION);
+                                    logInfo(SALED_QTY_OPTION);
                                     if (scanner.hasNextInt()) {
                                         saledQty = scanner.nextInt();
                                         scanner.nextLine();
@@ -861,7 +864,7 @@ public class Main {
                                     }
                                 }
 
-                                logger.info(DATE_OPTION);
+                                logInfo(DATE_OPTION);
                                 exDate = scanner.nextLine();
                                 while (!Checks.isValidDate(exDate)) {
                                     logger.warning(INVALID_DATE_OPTION);
@@ -871,13 +874,13 @@ public class Main {
                                 MyApp.rawMaterial = new RawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
 
                                 updateRawMaterial(MyApp.rawMaterial);
-                                logger.info(UPDATED_OPTION);
+                                logInfo(UPDATED_OPTION);
                             } else if (userChoice.equals("c")) {
-                                logger.info(LIST_OF_ROW_MATERAILS);
+                                logInfo(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
                                 while (true) {
-                                    logger.info("Enter raw material id:");
+                                    logInfo("Enter raw material id:");
                                     if (scanner.hasNextInt()) {
                                         rawMaterialId = scanner.nextInt();
                                         scanner.nextLine();
@@ -889,7 +892,7 @@ public class Main {
                                 }
 
                                 deleteRawMaterial(rawMaterialId);
-                                logger.info("Deletion completed successfully");
+                                logInfo("Deletion completed successfully");
                             } else if (userChoice.equals("d")) {
                                 break;
                             } else {
@@ -898,10 +901,10 @@ public class Main {
                         }
                     } else if (userChoice.equals("2")) {
                         while (true) {
-                            logger.info("* Communication and Notification:");
-                            logger.info("    a. Communicate with suppliers.");
-                            logger.info("    b. Communicate with owners.");
-                            logger.info("    c. Back.");
+                            logInfo("* Communication and Notification:");
+                            logInfo("    a. Communicate with suppliers.");
+                            logInfo("    b. Communicate with owners.");
+                            logInfo("    c. Back.");
                             userChoice = scanner.next();
                             if (userChoice.equals("a")) {
                                 userTypeToCommunicate = 3;
@@ -931,41 +934,41 @@ public class Main {
 
             if (userType == 4) {
                 while (true) {
-                    logger.info("Welcome User! choose what to do from the list:");
-                    logger.info("\t1. Account Management");
-                    logger.info("\t2. Explore Recipes");
-                    logger.info("\t3. Create An Order");
-                    logger.info("\t4. Communication");
-                    logger.info("\t5. Feedback");
-                    logger.info("\t6. Exit");
+                    logInfo("Welcome User! choose what to do from the list:");
+                    logInfo("\t1. Account Management");
+                    logInfo("\t2. Explore Recipes");
+                    logInfo("\t3. Create An Order");
+                    logInfo("\t4. Communication");
+                    logInfo("\t5. Feedback");
+                    logInfo("\t6. Exit");
 
                     char uc = scanner.next().charAt(0);
 
                     if (uc == '1') {
                         while (true) {
-                            logger.info("* Account Management : ");
-                            logger.info("\ta. Update your personal information");
-                            logger.info("\tb. Post a new personal dessert creation");
-                            logger.info("\tc. Back");
+                            logInfo("* Account Management : ");
+                            logInfo("\ta. Update your personal information");
+                            logInfo("\tb. Post a new personal dessert creation");
+                            logInfo("\tc. Back");
 
                             uc = scanner.next().charAt(0);
                             if (uc == 'a') {
                                 User u = signUp(userEmail, null, null, null, 0);
                                 Updates.updateUser(u);
-                                logger.info("Updated Successfully!\n");
+                                logInfo("Updated Successfully!\n");
                             } else if (uc == 'b') {
                                 String recipeName = null;
                                 String recipeDescription = null;
                                 String recipeCate = null;
 
                                 while (!Checks.isAcceptableRecipeName(recipeName)) {
-                                    logger.info("Enter your new recipe name : ");
+                                    logInfo("Enter your new recipe name : ");
                                     scanner.nextLine();
                                     recipeName = scanner.nextLine();
                                     if (!Checks.isAcceptableRecipeName(recipeName)) {
                                         logger.warning("Unacceptable recipe name!");
-                                        logger.info("\t1. Enter recipe name again");
-                                        logger.info(BACK);
+                                        logInfo("\t1. Enter recipe name again");
+                                        logInfo(BACK);
 
                                         uc = scanner.next().charAt(0);
                                         if (uc == '1')
@@ -978,12 +981,12 @@ public class Main {
                                 }
 
                                 while (!Checks.isAcceptableRecipeDescription(recipeDescription)) {
-                                    logger.info("Enter your new recipe description : ");
+                                    logInfo("Enter your new recipe description : ");
                                     recipeDescription = scanner.nextLine();
                                     if (!Checks.isAcceptableRecipeDescription(recipeDescription)) {
                                         logger.warning("Unacceptable recipe description!");
-                                        logger.info("\t1. Enter recipe description again");
-                                        logger.info(BACK);
+                                        logInfo("\t1. Enter recipe description again");
+                                        logInfo(BACK);
 
                                         uc = scanner.next().charAt(0);
                                         if (uc == '1')
@@ -996,13 +999,13 @@ public class Main {
                                 }
 
                                 while (!Checks.isAcceptableRecipeCategory(recipeCate)) {
-                                    logger.info("Enter your new recipe category (dietary needs or food allergies) : ");
+                                    logInfo("Enter your new recipe category (dietary needs or food allergies) : ");
                                     scanner.nextLine();
                                     recipeCate = scanner.nextLine();
                                     if (!Checks.isAcceptableRecipeCategory(recipeCate)) {
                                         logger.warning("Unacceptable recipe category! knowing that available categories are : dietary needs and food allergies");
-                                        logger.info("\t1. Enter recipe category again");
-                                        logger.info(BACK);
+                                        logInfo("\t1. Enter recipe category again");
+                                        logInfo(BACK);
 
                                         uc = scanner.next().charAt(0);
                                         if (uc == '1')
@@ -1024,35 +1027,35 @@ public class Main {
                         }
                     } else if (uc == '2') {
                         while (true) {
-                            logger.info("* Explore Recipes : ");
-                            logger.info("\ta. Explore recipes");
-                            logger.info("\tb. Search for recipes");
-                            logger.info("\tc. Recipes for dietary needs");
-                            logger.info("\td. Recipes for food allergies");
-                            logger.info("\te. Back");
+                            logInfo("* Explore Recipes : ");
+                            logInfo("\ta. Explore recipes");
+                            logInfo("\tb. Search for recipes");
+                            logInfo("\tc. Recipes for dietary needs");
+                            logInfo("\td. Recipes for food allergies");
+                            logInfo("\te. Back");
 
                             uc = scanner.next().charAt(0);
 
                             if (uc == 'a') {
-                                logger.info("List of all recipes in the system");
+                                logInfo("List of all recipes in the system");
                                 Listing.listRecipesInDb();
                             }//explore recipes
                             else if (uc == 'b')
                             {
 
                                 String rName;
-                                logger.info("Enter recipe Name you look for : ");
+                                logInfo("Enter recipe Name you look for : ");
                                 rName = scanner.next();
                                 Listing.printingRecipeAccordingToRecipeName(rName);
                             }//search for recipes
                             else if (uc == 'c')
                             {
-                                logger.info("List of recipes for dietary needs");
+                                logInfo("List of recipes for dietary needs");
                                 Listing.listRecipesInDbAccordingToCategory("dietary needs");
                             }//recipes for dietary needs
                             else if (uc == 'd')
                             {
-                                logger.info("List of recipes for food allergies");
+                                logInfo("List of recipes for food allergies");
                                 Listing.listRecipesInDbAccordingToCategory("food allergies");
                             }//recipes for food allergies
                             else if (uc == 'e')
@@ -1063,14 +1066,14 @@ public class Main {
                             }
                         }
                     } else if (uc == '3') {
-                        logger.info(LIST_OPTION);
+                        logInfo(LIST_OPTION);
                         Listing.listingOfProducts();
 
-                        logger.info("Please enter the name of the Owner you wish to purchase from:");
+                        logInfo("Please enter the name of the Owner you wish to purchase from:");
                         scanner.nextLine();
                         ownerEmail = scanner.nextLine();
                         while (!Checks.isValidEmail(ownerEmail) || !Checks.checkIfEmailAlreadyUsed(ownerEmail)) {
-                            logger.info("Please enter a valid email:");
+                            logInfo("Please enter a valid email:");
                             scanner.nextLine();
                             ownerEmail = scanner.nextLine();
                         }
@@ -1079,10 +1082,10 @@ public class Main {
                         ArrayList<Integer> qtyList = new ArrayList<>();
 
                         while (true) {
-                            logger.info("Enter the name of the product you want to order (or type 'done' to finish):");
+                            logInfo("Enter the name of the product you want to order (or type 'done' to finish):");
                             productName = scanner.nextLine();
                             while (!Checks.isValidProductName(productName)) {
-                                logger.info("Please enter a valid raw product name:");
+                                logInfo("Please enter a valid raw product name:");
                                 scanner.nextLine();
                                 productName = scanner.nextLine();
                             }
@@ -1092,7 +1095,7 @@ public class Main {
                             }
                             items.add(productName);
 
-                            logger.info("Enter the quantity for " + productName + ":");
+                            logInfo("Enter the quantity for " + productName + ":");
                             while (true) {
                                 try {
                                     quantity = scanner.nextInt();
@@ -1107,7 +1110,7 @@ public class Main {
                         }
                         MyApp.order = new Order(userEmail, ownerEmail, LocalDateTime.now(), items, qtyList);
                         Updates.addNewOrderForProduct(MyApp.order);
-                        logger.info("_Order successfully added_");
+                        logInfo("_Order successfully added_");
                     } else if (uc == '4') {
                         userTypeToCommunicate = 2;
                         communicateWithUser(userEmail, userTypeToCommunicate);
@@ -1117,19 +1120,19 @@ public class Main {
                         char evaluation;
 
                         while (true) {
-                            logger.info("Choose what to give feedback to : ");
-                            logger.info("    a. Feedback on purchased products");
-                            logger.info("    b. Feedback on shared recipes");
-                            logger.info("    c. Back");
+                            logInfo("Choose what to give feedback to : ");
+                            logInfo("    a. Feedback on purchased products");
+                            logInfo("    b. Feedback on shared recipes");
+                            logInfo("    c. Back");
                             uc = scanner.next().charAt(0);
 
                             if (uc == 'a') {
-                                logger.info("Feedback on purchased products : ");
+                                logInfo("Feedback on purchased products : ");
                                 List<Integer> ordersId = Listing.ordersMadeByThisUser(userEmail);
                                 if (!ordersId.isEmpty()) {
                                     boolean exitFlag = true;
                                     while (exitFlag) {
-                                        logger.info("Choose the order ID : ");
+                                        logInfo("Choose the order ID : ");
                                         while (true) {
                                             try {
                                                 chosenOrder = scanner.nextInt();
@@ -1143,7 +1146,7 @@ public class Main {
 
                                         if (ordersId.contains(chosenOrder)) {
                                             List<Integer> productsIdsInSelectedOrder = Listing.productsInTheOrder(chosenOrder);
-                                            logger.info("\nChoose the product ID to give feedback to : ");
+                                            logInfo("\nChoose the product ID to give feedback to : ");
                                             while (true) {
                                                 try {
                                                     chosenProduct = scanner.nextInt();
@@ -1157,16 +1160,16 @@ public class Main {
 
                                             if (productsIdsInSelectedOrder.contains(chosenProduct)) {
                                                 while (true) {
-                                                    logger.info("Your evaluation is : (please choose number from 1-bad- to 5-good)");
-                                                    logger.info("    To get back press *");
+                                                    logInfo("Your evaluation is : (please choose number from 1-bad- to 5-good)");
+                                                    logInfo("    To get back press *");
                                                     evaluation = scanner.next().charAt(0);
                                                     if (evaluation == '*')
                                                         break;
                                                     evaluation = (char) (evaluation - '0');
                                                     if (evaluation >= 1 && evaluation <= 5) {
                                                         Updates.addNewFeedback(new Feedback(chosenProduct, evaluation), 1);
-                                                        logger.info("Feedback added successfully! ");
-                                                        logger.info("");
+                                                        logInfo("Feedback added successfully! ");
+                                                        logInfo("");
                                                         exitFlag = false;
                                                         break;
                                                     } else
@@ -1180,11 +1183,11 @@ public class Main {
                                 }
                             } else if (uc == 'b') {
                                 int chosenRecipe;
-                                logger.info("Feedback on shared recipes : ");
+                                logInfo("Feedback on shared recipes : ");
                                 List<Integer> recipesID = Listing.listRecipesInDb();
 
                                 if (!recipesID.isEmpty()) {
-                                    logger.info("Choose the recipe ID : ");
+                                    logInfo("Choose the recipe ID : ");
                                     while (true) {
                                         try {
                                             chosenRecipe = scanner.nextInt();
@@ -1197,16 +1200,16 @@ public class Main {
 
                                     if (recipesID.contains(chosenRecipe)) {
                                         while (true) {
-                                            logger.info("Your evaluation is : (please choose number from 1-bad- to 5-good)");
-                                            logger.info("    To get back press *");
+                                            logInfo("Your evaluation is : (please choose number from 1-bad- to 5-good)");
+                                            logInfo("    To get back press *");
                                             evaluation = scanner.next().charAt(0);
                                             if (evaluation == '*')
                                                 break;
                                             evaluation = (char) (evaluation - '0');
                                             if (evaluation >= 1 && evaluation <= 5) {
                                                 Updates.addNewFeedback(new Feedback(chosenRecipe, evaluation), 2);
-                                                logger.info("Feedback added successfully! ");
-                                                logger.info("");
+                                                logInfo("Feedback added successfully! ");
+                                                logInfo("");
                                                 break;
                                             } else
                                                 logger.warning("Invalid evaluation!");
@@ -1232,7 +1235,7 @@ public class Main {
     {
         while (!Checks.isValidEmail(ue))
         {
-            logger.info("Enter Email:");
+            logInfo("Enter Email:");
             ue = scanner.next();
             if (Checks.isValidEmail(ue) && !Checks.checkIfEmailAlreadyUsed(ue))
                 break;
@@ -1247,7 +1250,7 @@ public class Main {
     private static String enteringUsername(Scanner scanner, String username)
     {
         while (!Checks.isValidUsername(username)) {
-            logger.info("Enter username:");
+            logInfo("Enter username:");
             username = scanner.next();
             if (!Checks.isValidUsername(username))
                 logger.warning("Invalid username! Try again.");
@@ -1261,7 +1264,7 @@ public class Main {
     {
         while (!Checks.isvalidPassword(password))
         {
-            logger.info("Enter password:");
+            logInfo("Enter password:");
             password = scanner.next();
             if (!Checks.isvalidPassword(password))
             {
@@ -1276,8 +1279,8 @@ public class Main {
     {
         while (!Checks.isValidCity(city))
         {
-            logger.info("Enter location:");
-            logger.info("    Knowing that available cities are: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem and Hebron");
+            logInfo("Enter location:");
+            logInfo("    Knowing that available cities are: Gaza, Nablus, Ramallah, Jenin, Tulkarem, Bethlehem and Hebron");
             city = scanner.next();
             if (!Checks.isValidCity(city))
                 logger.warning("Invalid location! Try again.");
@@ -1290,17 +1293,17 @@ public class Main {
         while (!Checks.isValidUserType(userType))
         {
             char ut;
-            logger.info(CHOOSE_OPTION);
-            logger.info(OWNER_OPTION);
-            logger.info(SUPPLIER_OPTION);
-            logger.info(USER_OPTION);
+            logInfo(CHOOSE_OPTION);
+            logInfo(OWNER_OPTION);
+            logInfo(SUPPLIER_OPTION);
+            logInfo(USER_OPTION);
             ut = scanner.next().charAt(0);
             if (Character.isDigit(ut))
                 userType = ut - '0' +1;
 
             if (!Checks.isValidUserType(userType) ) {
                 logger.warning(INVALID_LEVEL_OPTION);
-                logger.info("    Enter user level again");
+                logInfo("    Enter user level again");
             } else
                 break;
         }
@@ -1328,7 +1331,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Listing.listAllUsersInTheSystem(userTypeToCommunicate);
 
-        logger.info("Enter user email you want to communicate with:");
+        logInfo("Enter user email you want to communicate with:");
         while (receiverEmail == null || !Checks.checkIfEmailAlreadyUsed(receiverEmail)) {
             receiverEmail = scanner.nextLine();
             if (Checks.checkIfEmailAlreadyUsed(receiverEmail)) {
@@ -1338,12 +1341,12 @@ public class Main {
             }
         }
 
-        logger.info("Write your message:");
+        logInfo("Write your message:");
         String msg = scanner.nextLine();
 
         MyApp.msg = new Messaging(userEmail, receiverEmail, msg);
         Updates.addNewMsg(MyApp.msg);
-        logger.info("_Your message was sent successfully_");
+        logInfo("_Your message was sent successfully_");
     }
 
 }

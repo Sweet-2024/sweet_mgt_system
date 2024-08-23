@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="reduce duplication in main" />
+    <list default="true" id="4164c9b7-b163-40dd-a568-acfa82955e62" name="Changes" comment="modifying admin reporting lists in main">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sweet_system/Listing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sweet_system/Listing.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -393,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724362665200</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="modifying admin reporting lists in main">
+      <created>1724363117413</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1724363117413</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -409,7 +420,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changes on checks" />
     <MESSAGE value="changes on checks, listing and updates" />
     <MESSAGE value="modifications" />
     <MESSAGE value="database security" />
@@ -434,7 +444,8 @@
     <MESSAGE value="increase the coverage" />
     <MESSAGE value="." />
     <MESSAGE value="reduce duplication in main" />
-    <option name="LAST_COMMIT_MESSAGE" value="reduce duplication in main" />
+    <MESSAGE value="modifying admin reporting lists in main" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifying admin reporting lists in main" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -445,7 +456,7 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/acceptance/user_purchase_and_commu_Test.java</url>
-          <line>101</line>
+          <line>98</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
@@ -455,7 +466,7 @@
     <SUITE FILE_PATH="coverage/Main_java$Main.ic" NAME="Main Coverage Results" MODIFIED="1724360141579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.example.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Main_java$AcceptanceTest.ic" NAME="AcceptanceTest Coverage Results" MODIFIED="1724362594176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Main_java$AcceptanceTest.ic" NAME="AcceptanceTest Coverage Results" MODIFIED="1724422657842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>acceptance.pkg.*</FILTER>
       <FILTER>main_entities.*</FILTER>
       <FILTER>sweet_system.*</FILTER>

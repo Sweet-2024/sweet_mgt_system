@@ -336,7 +336,6 @@ public class Main {
             }//logged in as admin
 
             else if (MyApp.userType == 2) {
-                Boolean isCorrectChoice = false;
                 while (true) {
                     logInfo("Welcome Owner! choose what to do from the list:");
                     logInfo("1. Product Management");
@@ -347,219 +346,95 @@ public class Main {
                     userChoice = scanner.next();
 
                     userChoice = userChoice.trim();
-                    if (userChoice.equals("1")) {
+                    if (userChoice.equals("1"))
+                    {
                         while (true) {
                             logInfo("* Product Management:");
                             logInfo("    a. Add new products.");
-                            logInfo("    b. update available products.");
-                            logInfo("    c. remove available products.");
+                            logInfo("    b. Update available products.");
+                            logInfo("    c. Remove available products.");
                             logInfo("    d. Sales and profits.");
                             logInfo("    e. Best-selling products.");
                             logInfo("    f. discount products.");
                             logInfo("    g. Back.");
 
                             userChoice = scanner.next();
-                            if (userChoice.equals("a")) {
+                            if (userChoice.equals("a"))
+                            {
                                 logInfo(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
-                                logInfo("Enter product name:");
-                                scanner.nextLine();
-                                productName = scanner.nextLine();
-                                while (!Checks.isValidProductName(productName)) {
-                                    logger.warning("Invalid product name. Please enter a valid product name:");
-                                    productName = scanner.nextLine();
-                                }
-
-                                while (true) {
-                                    logInfo("Enter product price:");
-                                    if (scanner.hasNextInt()) {
-                                        price = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(PRICE_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        wholesalePrice = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(QTY_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        quantity = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(SALED_QTY_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        saledQty = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                logInfo(DATE_OPTION);
-                                exDate = scanner.nextLine();
-                                while (!Checks.isValidDate(exDate)) {
-                                    logger.warning(INVALID_DATE_OPTION);
-                                    exDate = scanner.nextLine();
-                                }
+                                productName = enteringProductName(scanner);
+                                price = enteringPrice(scanner);
+                                wholesalePrice = enteringWholesalePrice(scanner);
+                                quantity = enteringQuantity(scanner);
+                                saledQty = enteringSaledQty(scanner);
+                                exDate = enteringExDate(scanner);
 
                                 MyApp.product = new Product(productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 addNewProduct(MyApp.product);
                                 logInfo("Successfully added");
-                            } else if (userChoice.equals("b")) {
+                            }//Add new products
+
+                            else if (userChoice.equals("b"))
+                            {
                                 logInfo(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
 
-                                while (true) {
-                                    logInfo("Enter product id:");
-                                    if (scanner.hasNextInt()) {
-                                        productId = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
+                                productId = enteringId(scanner);
+                                productName = enteringProductName(scanner);
+                                price = enteringPrice(scanner);
+                                wholesalePrice = enteringWholesalePrice(scanner);
+                                quantity = enteringQuantity(scanner);
+                                saledQty = enteringSaledQty(scanner);
+                                exDate = enteringExDate(scanner);
 
-                                logInfo("Enter product name:");
-                                productName = scanner.nextLine();
-                                while (!Checks.isValidProductName(productName)) {
-                                    logger.warning("Please enter a valid product name:");
-                                    productName = scanner.nextLine();
-                                }
-
-                                while (true) {
-                                    logInfo("Enter product price:");
-                                    if (scanner.hasNextInt()) {
-                                        price = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(PRICE_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        wholesalePrice = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(QTY_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        quantity = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(SALED_QTY_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        saledQty = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                logInfo(DATE_OPTION);
-                                exDate = scanner.nextLine();
-                                while (!Checks.isValidDate(exDate)) {
-                                    logger.warning(INVALID_DATE_OPTION);
-                                    exDate = scanner.nextLine();
-                                }
 
                                 MyApp.product = new Product(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 updateProduct(MyApp.product);
                                 logInfo(UPDATED_OPTION);
-                            } else if (userChoice.equals("c")) {
+                            }//Remove available products
+
+                            else if (userChoice.equals("c"))
+                            {
                                 logInfo(LIST_OPTION);
                                 Listing.listingOfProductsForSpecificOwner(MyApp.userEmail);
-
-                                while (true) {
-                                    logInfo("Enter product id:");
-                                    if (scanner.hasNextInt()) {
-                                        productId = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
+                                productId = enteringId(scanner);
                                 deleteProduct(productId);
                                 logInfo("_Deletion completed successfully");
-                            } else if (userChoice.equals("d")) {
+                            }//Remove available products.
+
+                            else if (userChoice.equals("d"))
+                            {
                                 generateFinancialReports();
                                 logInfo("");
-                            } else if (userChoice.equals("e")) {
+                            }//Sales and profits.
+
+                            else if (userChoice.equals("e"))
+                            {
                                 listingBestSellingProduct();
                                 logInfo("");
-                            } else if (userChoice.equals("f")) {
-                                while (true) {
-                                    logInfo("Enter discount number (e.g: 0.20 for 20%):");
-                                    if (scanner.hasNextDouble()) {
-                                        discount = scanner.nextDouble();
-                                        scanner.nextLine();
+                            }//Best-selling products.
 
-                                        if (Checks.isValidDiscount(discount)) {
-                                            break;
-                                        } else {
-                                            logger.warning("Invalid discount! Please enter a value between 0.0 and 1.0.");
-                                        }
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION );
-                                        scanner.next();
-                                    }
-                                }
+                            else if (userChoice.equals("f"))
+                            {
+                                discount = enteringDiscount(scanner);
                                 Updates.productDiscount(discount);
                                 logInfo("The discount has been successfully applied");
-                            } else if (userChoice.equals("g")) {
+                            }//discount products.
+
+                            else if (userChoice.equals("g"))
+                            {
                                 break;
-                            } else {
+                            }//back
+                            else
                                 logger.warning(INVALID_OPTION);
-                            }
                         }
 
-                    } else if (userChoice.equals("2")) {
+                    }//end of product mgt
+
+                    else if (userChoice.equals("2"))
+                    {
                         while (true) {
                             logInfo("Choose from the following:");
                             logInfo("\ta. communicate with others:");
@@ -649,7 +524,9 @@ public class Main {
                                 logger.warning(INVALID_OPTION);
                             }
                         }
-                    } else if (userChoice.equals("4")) {
+                    }
+                    else if (userChoice.equals("4"))
+                    {
                         logInfo(LIST_OF_ROW_MATERAILS);
                         Listing.listingOfRawMaterials();
 
@@ -695,13 +572,15 @@ public class Main {
                         MyApp.order = new Order(userEmail, supplierEmail, LocalDateTime.now(), items, qtyList);
                         Updates.addNewOrderForRowMaterials(MyApp.order);
                         logInfo("Order successfully added");
-                    } else if (userChoice.equals("5")) {
+                    } else if (userChoice.equals("5"))
+                    {
                         break;
                     } else {
                         logger.warning(INVALID_OPTION);
                     }
                 }
             }
+
             else if (MyApp.userType == 3) {
                 while (true) {
                     logInfo("Welcome Supplier! Choose what to do from the list:");
@@ -932,7 +811,7 @@ public class Main {
                 }
             }// logged in as supplier
 
-            if (userType == 4) {
+            else if (MyApp.userType == 4) {
                 while (true) {
                     logInfo("Welcome User! choose what to do from the list:");
                     logInfo("\t1. Account Management");
@@ -1227,7 +1106,136 @@ public class Main {
             }
         }
     }
+    private static int enteringId(Scanner scanner)
+    {
+        int productId;
+        while (true) {
+            logInfo("Enter product id:");
+            if (scanner.hasNextInt()) {
+                productId = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            } else {
+                logger.warning(INVALID_INPUT_OPTION);
+                scanner.next();
+            }
+        }
+        return productId;
+    }
+    private static String enteringProductName(Scanner scanner)
+    {
+        String productName;
+        logInfo("Enter product name:");
+        scanner.nextLine();
+        productName = scanner.nextLine();
+        while (!Checks.isValidProductName(productName)) {
+            logger.warning("Invalid product name. Please enter a valid product name:");
+            productName = scanner.nextLine();
+        }
+        return productName;
+    }
 
+    private static int enteringPrice(Scanner scanner)
+    {
+        int price;
+        while (true) {
+            logInfo("Enter product price:");
+            if (scanner.hasNextInt()) {
+                price = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            } else {
+                logger.warning(INVALID_INPUT_OPTION);
+                scanner.next();
+            }
+        }
+        return price;
+    }
+    private static int enteringWholesalePrice(Scanner scanner)
+    {
+        int wholesalePrice;
+        while (true) {
+            logInfo(PRICE_OPTION);
+            if (scanner.hasNextInt()) {
+                wholesalePrice = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            } else {
+                logger.warning(INVALID_INPUT_OPTION);
+                scanner.next();
+            }
+        }
+        return wholesalePrice;
+    }
+
+    private static int enteringQuantity(Scanner scanner)
+    {
+        int quantity;
+        while (true) {
+            logInfo(QTY_OPTION);
+            if (scanner.hasNextInt())
+            {
+                quantity = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            } else {
+                logger.warning(INVALID_INPUT_OPTION);
+                scanner.next();
+            }
+        }
+        return quantity;
+    }
+    private static int enteringSaledQty(Scanner scanner)
+    {
+        int saledQty;
+        while (true) {
+            logInfo(SALED_QTY_OPTION);
+            if (scanner.hasNextInt()) {
+                saledQty = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            } else {
+                logger.warning(INVALID_INPUT_OPTION);
+                scanner.next();
+            }
+        }
+        return saledQty;
+    }
+
+    private static String enteringExDate(Scanner scanner)
+    {
+        String exDate;
+        logInfo(DATE_OPTION);
+        exDate = scanner.nextLine();
+        while (!Checks.isValidDate(exDate)) {
+            logger.warning(INVALID_DATE_OPTION);
+            exDate = scanner.nextLine();
+        }
+        return exDate;
+    }
+
+    private static double enteringDiscount(Scanner scanner)
+    {
+        double discount;
+        while (true) {
+            logInfo("Enter discount number (e.g: 0.20 for 20%):");
+            if (scanner.hasNextDouble()) {
+                discount = scanner.nextDouble();
+                scanner.nextLine();
+
+                if (Checks.isValidDiscount(discount)) {
+                    break;
+                } else {
+                    logger.warning("Invalid discount! Please enter a value between 0.0 and 1.0.");
+                }
+            } else {
+                logger.warning(INVALID_INPUT_OPTION);
+                scanner.next();
+            }
+        }
+        return discount;
+    }
+    /////////////////////////////////////////////////////////////////////
     private static String enteringEmail(Scanner scanner, String ue)
     {
         while (!Checks.isValidEmail(ue))

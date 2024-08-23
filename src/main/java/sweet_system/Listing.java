@@ -34,7 +34,8 @@ public class Listing {
     private static void logError(String message, Exception e) {
         logger.log(Level.SEVERE, message + e.getMessage(), e);
     }
-    private static void logFinancialDetails(String email, int incomes, int outcomes) {
+    private static void logFinancialDetails(String email, int incomes, int outcomes)
+    {
         int total = incomes - outcomes;
         logger.info(String.format("\t* Product Owner Email : %s", email));
         logger.info(String.format("\t\tIncomes : %s", incomes));
@@ -52,6 +53,7 @@ public class Listing {
                 rmId, rmName, price, wholesalePrice, quantity,
                 saledQty, exDate, supplierEmail);
     }
+
     // financial reports :
     private static void printingFinancialReportOfOwnersOrSuppliers(String email,String username) {
         int incomes = 0;
@@ -477,9 +479,9 @@ public class Listing {
         String qry = "SELECT * FROM sweetsystem.users WHERE users.user_email = '" + email + "';";
         try {
             ResultSet rs = Database.connectionToSelectFromDB(qry);
-            if (rs != null) {
+            if (rs != null && rs.next()) {
                 logInfo("Your Account Information:");
-                logInfo(" Name: " + rs.getString(USERNAME));
+                logInfo(" Name: " + rs.getString("username"));
                 logInfo(" Password: " + rs.getString("user_password"));
                 logInfo(" Email: " + rs.getString(USER_EMAIL));
                 logInfo(" Location: " + rs.getString("user_location"));

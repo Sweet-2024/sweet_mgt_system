@@ -26,6 +26,8 @@ public class Listing {
     private static final String PRODUCT_ID = "product_id";
     private static final String PRODUCT_NAME = "product_name";
     private static final String RECIPE_NAME = "recipe_name";
+    private static final String ERROR_MESSAGE = "Error during generation: ";
+
     private static final String LINE = "----------------------------------------------------------------------------------------------------------------------------------";
     // financial reports :
     private static void printingFinancialReportOfOwnersOrSuppliers(String email,String username) {
@@ -54,10 +56,8 @@ public class Listing {
                 logger.info("");
             }
 
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Database error: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        } catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
     }
 
@@ -92,11 +92,8 @@ public class Listing {
                 logger.info("there is no product in the system!");
                 return false;
             }// no products in the database
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-            return false;
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        } catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
             return false;
         }
     }
@@ -112,10 +109,8 @@ public class Listing {
                 logger.info(String.format("\t\tBest selling product : %s", bestSelling.getString(PRODUCT_NAME)));
                 logger.info("");
             }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        }catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
 
     }
@@ -150,11 +145,8 @@ public class Listing {
                 logger.info("there is no product in the system!");
                 return false;
             }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-            return false;
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        } catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
             return false;
         }
     }
@@ -181,11 +173,8 @@ public class Listing {
                 logger.warning("No enough data!");
                 return flag;
             }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-            return false;
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        } catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
             return false;
         }
     }
@@ -230,11 +219,8 @@ public class Listing {
                 return false;
             }
 
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-            return false;
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        } catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
             return false;
         }
     }
@@ -265,10 +251,8 @@ public class Listing {
                         saledQty, exDate, supplierEmail);
             }
             System.out.println(LINE);
-        }catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        }catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
     }
 
@@ -298,10 +282,8 @@ public class Listing {
                         saledQty, exDate, ownerEmail);
             }
             System.out.println(LINE);
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        } catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
     }
     public static void listingOfProducts() {
@@ -329,10 +311,8 @@ public class Listing {
                         saledQty, exDate, ownerEmail);
             }
             System.out.println(LINE);
-        }catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        }catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
     }
 
@@ -354,10 +334,8 @@ public class Listing {
                 System.out.println("------------------------------------------------------------------------------------");
             }if(numOfRecipes == 0)
                 System.out.println("There is no recipes in the system!");
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        } catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
     }
     public static List<Integer> listRecipesInDb()
@@ -376,10 +354,8 @@ public class Listing {
             }
             if(numOfRecipes == 0)
                 System.out.println("There is no recipes in the system!");
-        }catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        }catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
         return recipesID;
     }
@@ -401,10 +377,8 @@ public class Listing {
             }
             if(numOfRecipes == 0)
                 logger.info("There is no recipes from this category!");
-        }catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        }catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
     }
     public static List<Integer> ordersMadeByThisUser(String userEmail)
@@ -428,10 +402,8 @@ public class Listing {
             if (numOfOrders == 0)
                 System.out.println("You didn't make any order before!");
             return ordersID;
-        }catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        }catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
         return ordersID;
     }
@@ -454,10 +426,8 @@ public class Listing {
                 productsId.add(rs.getInt(PRODUCT_ID));
             }
             System.out.println("-------------------------------------------------");
-        }catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        }catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
         return productsId;
     }
@@ -487,10 +457,8 @@ public class Listing {
             System.out.println("\n-------------------------------------------------------------------------------------------------------");
             if(numOfMsg == 0)
                 logger.info("No New Messages!");
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        } catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
     }
 
@@ -508,10 +476,8 @@ public class Listing {
             } else {
                 System.out.println("No account found with the provided email.");
             }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        }catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
     }
 
@@ -541,10 +507,8 @@ public class Listing {
                         saledQty, exDate, supplierEmail);
             }
             logger.info(LINE);
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "SQL error occurred: " + e.getMessage(), e);
-        } catch (DatabaseOperationException e) {
-            logger.log(Level.SEVERE, "Error fetching user type: " + e.getMessage(), e);
+        } catch (SQLException | DatabaseOperationException e) {
+            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
         }
     }
 

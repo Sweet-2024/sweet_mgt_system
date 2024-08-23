@@ -53,7 +53,7 @@ public class Listing {
                 "Product id", "Product Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
                 SALED_QTY_OPTION, EX_DATE_OPTION, "Owner Email");
     }
-    private static void excuteRawMaterialQry(String qry){
+    private static void excuteRawMaterialsQry(String qry){
 
         try {
             ResultSet rs = Database.connectionToSelectFromDB(qry);
@@ -79,7 +79,7 @@ public class Listing {
             logError(ERROR_MESSAGE, e);
         }
     }
-    private static void excuteProductQry(String qry){
+    private static void excuteProductsQry(String qry){
 
         try {
             ResultSet rs = Database.connectionToSelectFromDB(qry);
@@ -302,16 +302,16 @@ public class Listing {
     }
     public static void listingOfRawMaterialsForSpecificSupplier(String email){
         String qry = "select * from sweetsystem.row_material WHERE supplier_email = '"+email+"';";
-        excuteRawMaterialQry(qry);
+        excuteRawMaterialsQry(qry);
     }
 
     public static void listingOfProductsForSpecificOwner(String email) {
         String qry = "SELECT * FROM sweetsystem.product WHERE owner_email = '"+email+"';";
-        excuteProductQry(qry);
+        excuteProductsQry(qry);
     }
     public static void listingOfProducts() {
         String qry = "SELECT * FROM sweetsystem.product;";
-        excuteProductQry(qry);
+        excuteProductsQry(qry);
     }
 
     public static void printingRecipeAccordingToRecipeName(String rName)
@@ -481,7 +481,7 @@ public class Listing {
 
     public static void listingOfRawMaterials() {
         String qry = "select * from sweetsystem.row_material;";
-        excuteRawMaterialQry(qry);
+        excuteRawMaterialsQry(qry);
     }
 }
 

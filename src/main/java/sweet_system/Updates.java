@@ -272,7 +272,7 @@ public class Updates {
                     discountedPrice = (int) (price * (1 - discount));
 
                 }
-                System.out.println("Discount the product id "+productId+" with price "+price+"₪ ("+discount+") to become "+discountedPrice+"₪");
+                logInfo("Discount the product id "+productId+" with price "+price+"₪ ("+discount+") to become "+discountedPrice+"₪");
                 String qry3 ="UPDATE sweetsystem.product SET price = "+discountedPrice+" WHERE product_id ="+productId+"";
                 Database.connectionToInsertOrUpdateDB(qry3);
                 return true;

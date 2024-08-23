@@ -247,36 +247,42 @@ public class Main {
                                 }
                             }//update user data
 
-                            else if (uc == 'c')
-                            {
+                            else if (uc == 'c') {
                                 Listing.listAllUsersInTheSystem(2);
                                 logger.log(Level.INFO, "");
-
                                 Listing.listAllUsersInTheSystem(3);
                                 logger.log(Level.INFO, "");
-
                                 Listing.listAllUsersInTheSystem(4);
                                 logger.log(Level.INFO, "");
 
                                 logger.log(Level.INFO, "Enter the email of the user you want to delete:");
                                 String ue = null;
-                                while (!Checks.checkIfEmailAlreadyUsed(ue)) {
+                                boolean validEmail = false;
+
+                                while (!validEmail) {
                                     ue = scanner.next();
-                                    if (!Checks.checkIfEmailAlreadyUsed(ue)) {
+
+                                    if (Checks.checkIfEmailAlreadyUsed(ue)) {
+                                        validEmail = true;
+                                    } else {
                                         logger.log(Level.WARNING, "User is not in the system! Try again.");
                                         logger.log(Level.INFO, "a. Enter email again");
                                         logger.log(Level.INFO, EX2_OPTION);
                                         userChoice = scanner.next();
-                                        if (userChoice.equals("a"))
-                                            continue;
-                                        else if (userChoice.equals("b"))
+
+                                        if (userChoice.equals("b")) {
                                             break;
+                                        }
                                     }
                                 }
-                                Updates.deleteUser(ue);
-                                logger.log(Level.INFO, "Deleted successfully.");
+
+                                if (validEmail) {
+                                    Updates.deleteUser(ue);
+                                    logger.log(Level.INFO, "Deleted successfully.");
+                                }
+
                                 logger.log(Level.INFO, "");
-                            } // delete user
+                            }// delete user
 
                             else if (uc == 'd')
                                 break;

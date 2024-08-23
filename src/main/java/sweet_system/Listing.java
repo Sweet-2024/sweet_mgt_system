@@ -28,6 +28,9 @@ public class Listing {
     private static final String RECIPE_NAME = "recipe_name";
     private static final String ERROR_MESSAGE = "Error during generation: ";
     private static final String LINE = "----------------------------------------------------------------------------------------------------------------------------------";
+    private static void logError(String message, Exception e) {
+        logger.log(Level.SEVERE, message + e.getMessage(), e);
+    }
     private static void printProductDetails(int productId, String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {
         System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n",
                 productId, productName, price, wholesalePrice, quantity,
@@ -66,7 +69,7 @@ public class Listing {
             }
 
         } catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
     }
 
@@ -102,7 +105,7 @@ public class Listing {
                 return false;
             }// no products in the database
         } catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
             return false;
         }
     }
@@ -119,7 +122,7 @@ public class Listing {
                 logger.info("");
             }
         }catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
 
     }
@@ -155,7 +158,7 @@ public class Listing {
                 return false;
             }
         } catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
             return false;
         }
     }
@@ -183,7 +186,7 @@ public class Listing {
                 return flag;
             }
         } catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
             return false;
         }
     }
@@ -229,7 +232,7 @@ public class Listing {
             }
 
         } catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
             return false;
         }
     }
@@ -258,7 +261,7 @@ public class Listing {
             }
             System.out.println(LINE);
         }catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
     }
 
@@ -287,7 +290,7 @@ public class Listing {
             }
             System.out.println(LINE);
         } catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
     }
     public static void listingOfProducts() {
@@ -314,7 +317,7 @@ public class Listing {
             }
             System.out.println(LINE);
         }catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
     }
 
@@ -337,7 +340,7 @@ public class Listing {
             }if(numOfRecipes == 0)
                 System.out.println("There is no recipes in the system!");
         } catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
     }
     public static List<Integer> listRecipesInDb()
@@ -357,7 +360,7 @@ public class Listing {
             if(numOfRecipes == 0)
                 System.out.println("There is no recipes in the system!");
         }catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
         return recipesID;
     }
@@ -380,7 +383,7 @@ public class Listing {
             if(numOfRecipes == 0)
                 logger.info("There is no recipes from this category!");
         }catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
     }
     public static List<Integer> ordersMadeByThisUser(String userEmail)
@@ -405,7 +408,7 @@ public class Listing {
                 System.out.println("You didn't make any order before!");
             return ordersID;
         }catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
         return ordersID;
     }
@@ -429,7 +432,7 @@ public class Listing {
             }
             System.out.println("-------------------------------------------------");
         }catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
         return productsId;
     }
@@ -460,7 +463,7 @@ public class Listing {
             if(numOfMsg == 0)
                 logger.info("No New Messages!");
         } catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
     }
 
@@ -479,7 +482,7 @@ public class Listing {
                 System.out.println("No account found with the provided email.");
             }
         }catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
     }
 
@@ -508,7 +511,7 @@ public class Listing {
             }
             logger.info(LINE);
         } catch (SQLException | DatabaseOperationException e) {
-            logger.log(Level.SEVERE, ERROR_MESSAGE + e.getMessage(), e);
+            logError(ERROR_MESSAGE, e);
         }
     }
 

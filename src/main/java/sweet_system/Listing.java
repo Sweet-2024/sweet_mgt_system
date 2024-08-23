@@ -48,6 +48,62 @@ public class Listing {
                 productId, productName, price, wholesalePrice, quantity,
                 saledQty, exDate, ownerEmail);
     }
+    private static void printProductHeader(){
+        System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n",
+                "Product id", "Product Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
+                SALED_QTY_OPTION, EX_DATE_OPTION, "Owner Email");
+    }
+    private static void excuteRawMaterialQry(String qry){
+
+        try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
+            System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
+                    "raw material id", "raw material Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
+                    SALED_QTY_OPTION, EX_DATE_OPTION, "Supplier Email");
+
+            System.out.println(LINE);
+
+            while (rs.next()) {
+                int rmId = rs.getInt("rm_id");
+                String rmName = rs.getString("rm_name");
+                int price = rs.getInt("rm_price");
+                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);
+                int quantity = rs.getInt("qty");
+                int saledQty = rs.getInt(SALED_QTY);
+                String exDate = rs.getString("expiry_date");
+                String supplierEmail = rs.getString("supplier_email");
+                printRawMaterialDetails(rmId, rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
+            }
+            System.out.println(LINE);
+        }catch (SQLException | DatabaseOperationException e) {
+            logError(ERROR_MESSAGE, e);
+        }
+    }
+    private static void excuteProductQry(String qry){
+
+        try {
+            ResultSet rs = Database.connectionToSelectFromDB(qry);
+            printProductHeader();
+
+            System.out.println(LINE);
+            while (rs.next()) {
+                int productId = rs.getInt(PRODUCT_ID);
+                String productName = rs.getString(PRODUCT_NAME);
+                int price = rs.getInt(PRICE);
+                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);
+                int quantity = rs.getInt("quantity");
+                int saledQty = rs.getInt(SALED_QTY);
+                String exDate = rs.getString("ex_date");
+                String ownerEmail = rs.getString("owner_email");
+
+                printProductDetails(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, ownerEmail);
+            }
+            System.out.println(LINE);
+        }catch (SQLException | DatabaseOperationException e) {
+            logError(ERROR_MESSAGE, e);
+        }
+    }
+
     private static void printRawMaterialDetails(int rmId, String rmName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String supplierEmail) {
         System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-20s%n",
                 rmId, rmName, price, wholesalePrice, quantity,
@@ -246,87 +302,16 @@ public class Listing {
     }
     public static void listingOfRawMaterialsForSpecificSupplier(String email){
         String qry = "select * from sweetsystem.row_material WHERE supplier_email = '"+email+"';";
-
-
-        try {
-            ResultSet rs = Database.connectionToSelectFromDB(qry);
-            System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
-                    "raw material id", "raw material Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
-                    SALED_QTY_OPTION, EX_DATE_OPTION, "Supplier Email");
-
-            System.out.println(LINE);
-
-            while (rs.next()) {
-                int rmId = rs.getInt("rm_id");
-                String rmName = rs.getString("rm_name");
-                int price = rs.getInt("rm_price");
-                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);
-                int quantity = rs.getInt("qty");
-                int saledQty = rs.getInt(SALED_QTY);
-                String exDate = rs.getString("expiry_date");
-                String supplierEmail = rs.getString("supplier_email");
-                printRawMaterialDetails(rmId, rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
-            }
-            System.out.println(LINE);
-        }catch (SQLException | DatabaseOperationException e) {
-            logError(ERROR_MESSAGE, e);
-        }
+        excuteRawMaterialQry(qry);
     }
 
     public static void listingOfProductsForSpecificOwner(String email) {
         String qry = "SELECT * FROM sweetsystem.product WHERE owner_email = '"+email+"';";
-
-
-        try {
-            ResultSet rs = Database.connectionToSelectFromDB(qry);
-            System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n",
-                    "Product id", "Product Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
-                    SALED_QTY_OPTION, EX_DATE_OPTION, "Owner Email");
-
-            System.out.println(LINE);
-            while (rs.next()) {
-                int productId = rs.getInt(PRODUCT_ID);
-                String productName = rs.getString(PRODUCT_NAME);
-                int price = rs.getInt(PRICE);
-                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);
-                int quantity = rs.getInt("quantity");
-                int saledQty = rs.getInt(SALED_QTY);
-                String exDate = rs.getString("ex_date");
-                String ownerEmail = rs.getString("owner_email");
-
-                printProductDetails(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, ownerEmail);
-            }
-            System.out.println(LINE);
-        } catch (SQLException | DatabaseOperationException e) {
-            logError(ERROR_MESSAGE, e);
-        }
+        excuteProductQry(qry);
     }
     public static void listingOfProducts() {
         String qry = "SELECT * FROM sweetsystem.product;";
-
-        try {
-            ResultSet rs = Database.connectionToSelectFromDB(qry);
-            System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n",
-                    "Product id", "Product Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
-                    SALED_QTY_OPTION, EX_DATE_OPTION, "Owner Email");
-
-            System.out.println(LINE);
-            while (rs.next()) {
-                int productId = rs.getInt(PRODUCT_ID);
-                String productName = rs.getString(PRODUCT_NAME);
-                int price = rs.getInt(PRICE);
-                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);
-                int quantity = rs.getInt("quantity");
-                int saledQty = rs.getInt(SALED_QTY);
-                String exDate = rs.getString("ex_date");
-                String ownerEmail = rs.getString("owner_email");
-
-                printProductDetails(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, ownerEmail);
-            }
-            System.out.println(LINE);
-        }catch (SQLException | DatabaseOperationException e) {
-            logError(ERROR_MESSAGE, e);
-        }
+        excuteProductQry(qry);
     }
 
     public static void printingRecipeAccordingToRecipeName(String rName)
@@ -496,32 +481,7 @@ public class Listing {
 
     public static void listingOfRawMaterials() {
         String qry = "select * from sweetsystem.row_material;";
-
-
-        try {
-            ResultSet rs = Database.connectionToSelectFromDB(qry);
-            System.out.printf("%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n",
-                    "raw material id", "raw material Name", PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
-                    SALED_QTY_OPTION, EX_DATE_OPTION, "Supplier Email");
-
-            System.out.println(LINE);
-            while (rs.next()) {
-                int rmId = rs.getInt("rm_id");
-                String rmName = rs.getString("rm_name");
-                int price = rs.getInt("rm_price");
-                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);
-                int quantity = rs.getInt("qty");
-                int saledQty = rs.getInt(SALED_QTY);
-                String exDate = rs.getString("expiry_date");
-                String supplierEmail = rs.getString("supplier_email");
-
-                printRawMaterialDetails(rmId, rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
-            }
-            logger.info(LINE);
-        } catch (SQLException | DatabaseOperationException e) {
-            logError(ERROR_MESSAGE, e);
-        }
+        excuteRawMaterialQry(qry);
     }
-
 }
 

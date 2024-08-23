@@ -971,12 +971,11 @@ public class Main {
                                         logInfo(BACK);
 
                                         uc = scanner.next().charAt(0);
-                                        if (uc == '1')
-                                            continue;
-                                        else if (uc == '2')
+                                        if (uc == '2')
                                             break;
-                                        else
+                                        else if (uc != '1') {
                                             logger.warning(INVALID_OPTION);
+                                        }
                                     }
                                 }
 
@@ -989,12 +988,11 @@ public class Main {
                                         logInfo(BACK);
 
                                         uc = scanner.next().charAt(0);
-                                        if (uc == '1')
-                                            continue;
-                                        else if (uc == '2')
+                                        if (uc == '2')
                                             break;
-                                        else
+                                        else if (uc != '1') {
                                             logger.warning(INVALID_OPTION);
+                                        }
                                     }
                                 }
 
@@ -1008,12 +1006,11 @@ public class Main {
                                         logInfo(BACK);
 
                                         uc = scanner.next().charAt(0);
-                                        if (uc == '1')
-                                            continue;
-                                        else if (uc == '2')
+                                        if (uc == '2')
                                             break;
-                                        else
+                                        else if (uc != '1') {
                                             logger.warning(INVALID_OPTION);
+                                        }
                                     }
                                 }
 

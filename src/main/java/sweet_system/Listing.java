@@ -27,8 +27,17 @@ public class Listing {
     private static final String PRODUCT_NAME = "product_name";
     private static final String RECIPE_NAME = "recipe_name";
     private static final String ERROR_MESSAGE = "Error during generation: ";
-
     private static final String LINE = "----------------------------------------------------------------------------------------------------------------------------------";
+    private static void printProductDetails(int productId, String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {
+        System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n",
+                productId, productName, price, wholesalePrice, quantity,
+                saledQty, exDate, ownerEmail);
+    }
+    private static void printRawMaterialDetails(int rmId, String rmName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String supplierEmail) {
+        System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-20s%n",
+                rmId, rmName, price, wholesalePrice, quantity,
+                saledQty, exDate, supplierEmail);
+    }
     // financial reports :
     private static void printingFinancialReportOfOwnersOrSuppliers(String email,String username) {
         int incomes = 0;
@@ -245,10 +254,7 @@ public class Listing {
                 int saledQty = rs.getInt(SALED_QTY);
                 String exDate = rs.getString("expiry_date");
                 String supplierEmail = rs.getString("supplier_email");
-
-                System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-20s%n",
-                        rmId, rmName, price, wholesalePrice, quantity,
-                        saledQty, exDate, supplierEmail);
+                printRawMaterialDetails(rmId, rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
             }
             System.out.println(LINE);
         }catch (SQLException | DatabaseOperationException e) {
@@ -277,9 +283,7 @@ public class Listing {
                 String exDate = rs.getString("ex_date");
                 String ownerEmail = rs.getString("owner_email");
 
-                System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n",
-                        productId, productName, price, wholesalePrice, quantity,
-                        saledQty, exDate, ownerEmail);
+                printProductDetails(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, ownerEmail);
             }
             System.out.println(LINE);
         } catch (SQLException | DatabaseOperationException e) {
@@ -306,9 +310,7 @@ public class Listing {
                 String exDate = rs.getString("ex_date");
                 String ownerEmail = rs.getString("owner_email");
 
-                System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n",
-                        productId, productName, price, wholesalePrice, quantity,
-                        saledQty, exDate, ownerEmail);
+                printProductDetails(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, ownerEmail);
             }
             System.out.println(LINE);
         }catch (SQLException | DatabaseOperationException e) {
@@ -502,9 +504,7 @@ public class Listing {
                 String exDate = rs.getString("expiry_date");
                 String supplierEmail = rs.getString("supplier_email");
 
-                System.out.printf("%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-20s%n",
-                        rmId, rmName, price, wholesalePrice, quantity,
-                        saledQty, exDate, supplierEmail);
+                printRawMaterialDetails(rmId, rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);
             }
             logger.info(LINE);
         } catch (SQLException | DatabaseOperationException e) {

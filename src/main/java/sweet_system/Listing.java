@@ -28,6 +28,9 @@ public class Listing {
     private static final String RECIPE_NAME = "recipe_name";
     private static final String ERROR_MESSAGE = "Error during generation: ";
     private static final String LINE = "----------------------------------------------------------------------------------------------------------------------------------";
+    private static void logInfo(String message) {
+        logger.info(message);
+    }
     private static void logError(String message, Exception e) {
         logger.log(Level.SEVERE, message + e.getMessage(), e);
     }
@@ -82,13 +85,13 @@ public class Listing {
             if (rs != null) {
                 //if the user is owner or supplier then printing only his won report
                 if (MyApp.userType == 2 || MyApp.userType == 3) {
-                    logger.info("FINANCIAL REPORT OF YOUR STORE :");
+                    logInfo("FINANCIAL REPORT OF YOUR STORE :");
                     ownerEmail = MyApp.userEmail;
                     printingFinancialReportOfOwnersOrSuppliers(ownerEmail , MyApp.userName);
                 }
                 //if the user is admin then printing reports for all owners and suppliers in the system
                 else if (MyApp.userType == 1) {
-                    logger.info("FINANCIAL REPORT OF EACH STORE :");
+                    logInfo("FINANCIAL REPORT OF EACH STORE :");
                     String qry2 = "select * from sweetsystem.users where user_type = 2 or user_type = 3";
                     ResultSet ownersAndSuppliersList = Database.connectionToSelectFromDB(qry2);
                     while (ownersAndSuppliersList.next()) {
@@ -101,7 +104,7 @@ public class Listing {
                 return true;
             }// if there are products in the db
             else {
-                logger.info("there is no product in the system!");
+                logInfo("there is no product in the system!");
                 return false;
             }// no products in the database
         } catch (SQLException | DatabaseOperationException e) {
@@ -119,7 +122,7 @@ public class Listing {
             if (bestSelling.next()) {
                 logger.info(String.format("\t* Product owner email : %s", email));
                 logger.info(String.format("\t\tBest selling product : %s", bestSelling.getString(PRODUCT_NAME)));
-                logger.info("");
+                logInfo("");
             }
         }catch (SQLException | DatabaseOperationException e) {
             logError(ERROR_MESSAGE, e);
@@ -136,11 +139,11 @@ public class Listing {
             ResultSet rs = Database.connectionToSelectFromDB(qry1);
             if (rs != null) {
                 if (MyApp.userType == 2 || MyApp.userType == 3) {
-                    logger.info("LIST OF BEST SELLING PRODUCTS IN YOUR STORE :");
+                    logInfo("LIST OF BEST SELLING PRODUCTS IN YOUR STORE :");
                     printingBestSellingProduct(MyApp.userEmail, MyApp.userName);
                     return true;
                 } else if (MyApp.userType == 1) {
-                    logger.info("LIST OF BEST SELLING PRODUCTS IN EACH STORE :");
+                    logInfo("LIST OF BEST SELLING PRODUCTS IN EACH STORE :");
                     qry2 = "select * from sweetsystem.users where user_type = 2 or user_type = 3";
                     ResultSet ownersAndSuppliersList = Database.connectionToSelectFromDB(qry2);
                     while (ownersAndSuppliersList.next()) {
@@ -154,7 +157,7 @@ public class Listing {
                 return true;
             }// if there are products in the db
             else {
-                logger.info("there is no product in the system!");
+                logInfo("there is no product in the system!");
                 return false;
             }
         } catch (SQLException | DatabaseOperationException e) {
@@ -170,8 +173,8 @@ public class Listing {
         try {
             ResultSet rs = Database.connectionToSelectFromDB(qry);
             boolean flag = false;
-            logger.info("STATISTICS ON USERS GATHERED BY CITY : ");
-            logger.info("City\t\tNumber of users");
+            logInfo("STATISTICS ON USERS GATHERED BY CITY : ");
+            logInfo("City\t\tNumber of users");
             while (rs.next()) {
                 System.out.println(rs.getString(1) + "\t\t" + rs.getInt(2));
                 flag = true;
@@ -198,13 +201,13 @@ public class Listing {
         try {
             ResultSet rs = Database.connectionToSelectFromDB(qry);
             if (typeToCommunicate == 2)
-                System.out.println("\n* List of all owners in the system :");
+                logInfo("\n* List of all owners in the system :");
             else if (typeToCommunicate == 3)
-                System.out.println("\n* List of all suppliers in the system :");
+                logInfo("\n* List of all suppliers in the system :");
             else if (typeToCommunicate == 4)
-                System.out.println("\n* List of all users in the system :");
+                logInfo("\n* List of all users in the system :");
             else{
-                System.out.println("\n* Invalid user type specified.");
+                logInfo("\n* Invalid user type specified.");
                 return false;
             }
 
@@ -227,7 +230,7 @@ public class Listing {
             if (numOfUsers > 0) {
                 return true;
             } else {
-                System.out.println("There are no users of this type in the system.");
+                logInfo("There are no users of this type in the system.");
                 return false;
             }
 
@@ -331,14 +334,14 @@ public class Listing {
             while (rs.next())
             {
                 numOfRecipes++;
-                System.out.println("\tRecipe ID : " + rs.getInt("recipe_id"));
-                System.out.println("\tRecipe Name : " + rs.getString(RECIPE_NAME));
-                System.out.println("\tRecipe Description : " + rs.getString("recipe_description"));
-                System.out.println("\tRecipe Category : " + rs.getString("recipe_category"));
-                System.out.println("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
+                logInfo("\tRecipe ID : " + rs.getInt("recipe_id"));
+                logInfo("\tRecipe Name : " + rs.getString(RECIPE_NAME));
+                logInfo("\tRecipe Description : " + rs.getString("recipe_description"));
+                logInfo("\tRecipe Category : " + rs.getString("recipe_category"));
+                logInfo("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
                 System.out.println("------------------------------------------------------------------------------------");
             }if(numOfRecipes == 0)
-                System.out.println("There is no recipes in the system!");
+                logInfo("There is no recipes in the system!");
         } catch (SQLException | DatabaseOperationException e) {
             logError(ERROR_MESSAGE, e);
         }
@@ -358,7 +361,7 @@ public class Listing {
                 recipesID.add(rs.getInt("recipe_id"));
             }
             if(numOfRecipes == 0)
-                System.out.println("There is no recipes in the system!");
+                logInfo("There is no recipes in the system!");
         }catch (SQLException | DatabaseOperationException e) {
             logError(ERROR_MESSAGE, e);
         }
@@ -374,14 +377,14 @@ public class Listing {
             ResultSet rs = Database.connectionToSelectFromDB(qry);
             while(rs.next())
             {
-                System.out.println("\tRecipe Name : " + rs.getString(RECIPE_NAME));
-                System.out.println("\tRecipe Description : " + rs.getString("recipe_description"));
-                System.out.println("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
+                logInfo("\tRecipe Name : " + rs.getString(RECIPE_NAME));
+                logInfo("\tRecipe Description : " + rs.getString("recipe_description"));
+                logInfo("\tRecipe Publisher Email : " + rs.getString("recipe_publisher_email"));
                 System.out.println("------------------------------------------------------------------------------------");
                 numOfRecipes++;
             }
             if(numOfRecipes == 0)
-                logger.info("There is no recipes from this category!");
+                logInfo("There is no recipes from this category!");
         }catch (SQLException | DatabaseOperationException e) {
             logError(ERROR_MESSAGE, e);
         }
@@ -396,16 +399,16 @@ public class Listing {
             int numOfOrders = 0;
             if(rs != null){
                 while (rs.next()) {
-                    System.out.println("OrderId : " + rs.getInt("order_id"));
-                    System.out.println("Ordering Date : " + rs.getDate("order_date"));
-                    System.out.println("Seller Email : " + rs.getString("seller_email"));
+                    logInfo("OrderId : " + rs.getInt("order_id"));
+                    logInfo("Ordering Date : " + rs.getDate("order_date"));
+                    logInfo("Seller Email : " + rs.getString("seller_email"));
                     ordersID.add(rs.getInt("order_id"));
-                    System.out.println();
+                    logInfo("\n");
                     numOfOrders++;
                 }
             }
             if (numOfOrders == 0)
-                System.out.println("You didn't make any order before!");
+                logInfo("You didn't make any order before!");
             return ordersID;
         }catch (SQLException | DatabaseOperationException e) {
             logError(ERROR_MESSAGE, e);
@@ -461,7 +464,7 @@ public class Listing {
             }
             System.out.println("\n-------------------------------------------------------------------------------------------------------");
             if(numOfMsg == 0)
-                logger.info("No New Messages!");
+                logInfo("No New Messages!");
         } catch (SQLException | DatabaseOperationException e) {
             logError(ERROR_MESSAGE, e);
         }
@@ -472,14 +475,14 @@ public class Listing {
         try {
             ResultSet rs = Database.connectionToSelectFromDB(qry);
             if (rs != null) {
-                System.out.println("Your Account Information:");
-                System.out.println(" Name: " + rs.getString(USERNAME));
-                System.out.println(" Password: " + rs.getString("user_password"));
-                System.out.println(" Email: " + rs.getString(USER_EMAIL));
-                System.out.println(" Location: " + rs.getString("user_location"));
-                System.out.println(" Type: " + rs.getString("user_type"));
+                logInfo("Your Account Information:");
+                logInfo(" Name: " + rs.getString(USERNAME));
+                logInfo(" Password: " + rs.getString("user_password"));
+                logInfo(" Email: " + rs.getString(USER_EMAIL));
+                logInfo(" Location: " + rs.getString("user_location"));
+                logInfo(" Type: " + rs.getString("user_type"));
             } else {
-                System.out.println("No account found with the provided email.");
+                logInfo("No account found with the provided email.");
             }
         }catch (SQLException | DatabaseOperationException e) {
             logError(ERROR_MESSAGE, e);

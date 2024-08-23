@@ -471,7 +471,8 @@ public class Main {
 
                     }//communication and notifications
 
-                    else if (userChoice.equals("3")) {
+                    else if (userChoice.equals("3"))
+                    {
                         while (true) {
                             logInfo("* Accounts Management:");
                             logInfo("    a. Update your account.");
@@ -599,7 +600,8 @@ public class Main {
                             logInfo("    d. Back.");
 
                             userChoice = scanner.next();
-                            if (userChoice.equals("a")) {
+                            if (userChoice.equals("a"))
+                            {
                                 logInfo(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
@@ -612,65 +614,19 @@ public class Main {
                                     rawMaterialName = scanner.nextLine();
                                 }
 
-                                while (true) {
-                                    logInfo("Enter raw material price:");
-                                    if (scanner.hasNextInt()) {
-                                        price = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(PRICE_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        wholesalePrice = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(QTY_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        quantity = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(SALED_QTY_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        saledQty = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                logInfo(DATE_OPTION);
-                                exDate = scanner.nextLine();
-                                while (!Checks.isValidDate(exDate)) {
-                                    logger.warning(INVALID_DATE_OPTION);
-                                    exDate = scanner.nextLine();
-                                }
+                                price = enteringPrice(scanner);
+                                wholesalePrice = enteringWholesalePrice(scanner);
+                                quantity = enteringQuantity(scanner);
+                                saledQty = enteringSaledQty(scanner);
+                                exDate = enteringExDate(scanner);
 
                                 MyApp.rawMaterial = new RawMaterial(rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
                                 addNewRawMaterial(MyApp.rawMaterial);
                                 logInfo("Successfully added");
-                            } else if (userChoice.equals("b")) {
+                            }//Add new raw material
+
+                            else if (userChoice.equals("b"))
+                            {
                                 logInfo(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
@@ -695,66 +651,19 @@ public class Main {
                                     rawMaterialName = scanner.nextLine();
                                 }
 
-                                while (true) {
-                                    logInfo("Enter raw material price:");
-                                    if (scanner.hasNextInt()) {
-                                        price = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(PRICE_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        wholesalePrice = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(QTY_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        quantity = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                while (true) {
-                                    logInfo(SALED_QTY_OPTION);
-                                    if (scanner.hasNextInt()) {
-                                        saledQty = scanner.nextInt();
-                                        scanner.nextLine();
-                                        break;
-                                    } else {
-                                        logger.warning(INVALID_INPUT_OPTION);
-                                        scanner.next();
-                                    }
-                                }
-
-                                logInfo(DATE_OPTION);
-                                exDate = scanner.nextLine();
-                                while (!Checks.isValidDate(exDate)) {
-                                    logger.warning(INVALID_DATE_OPTION);
-                                    exDate = scanner.nextLine();
-                                }
+                                price = enteringPrice(scanner);
+                                wholesalePrice = enteringWholesalePrice(scanner);
+                                quantity = enteringQuantity(scanner);
+                                saledQty = enteringSaledQty(scanner);
+                                exDate = enteringExDate(scanner);
 
                                 MyApp.rawMaterial = new RawMaterial(rawMaterialId, rawMaterialName, price, wholesalePrice, quantity, saledQty, exDate, userEmail);
 
                                 updateRawMaterial(MyApp.rawMaterial);
                                 logInfo(UPDATED_OPTION);
-                            } else if (userChoice.equals("c")) {
+                            }
+                            else if (userChoice.equals("c"))
+                            {
                                 logInfo(LIST_OF_ROW_MATERAILS);
                                 Listing.listingOfRawMaterialsForSpecificSupplier(MyApp.userEmail);
 
@@ -772,7 +681,8 @@ public class Main {
 
                                 deleteRawMaterial(rawMaterialId);
                                 logInfo("Deletion completed successfully");
-                            } else if (userChoice.equals("d")) {
+                            }
+                            else if (userChoice.equals("d")) {
                                 break;
                             } else {
                                 logger.warning(INVALID_OPTION);

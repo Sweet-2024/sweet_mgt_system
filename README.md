@@ -1,4 +1,4 @@
 <h1>SWEET MANAGEMENT SYSTEM</h1>
-<p>SonarCloud Analysis Results:</p>
+SonarCloud Analysis Results:
 
-<p>Code Coverage Percentage:</p>
+![Screenshot 2024-08-24 112924](https://github.com/user-attachments/assets/c80f55c0-d27a-4094-8d37-be39c0ef2336)

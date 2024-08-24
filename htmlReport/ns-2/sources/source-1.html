@@ -51,18 +51,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    90%
+    96.7%
   </span>
   <span class="absValue">
-    (27/30)
+    (29/30)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    85.5%
+    90%
   </span>
   <span class="absValue">
-    (94/110)
+    (99/110)
   </span>
 </td>
 </tr>
@@ -99,11 +99,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;        String inQRY = qry;</b>
 &nbsp;        try
 &nbsp;        {
-<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
-<b class="fc">&nbsp;            if (rs != null)</b>
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(inQRY);</b>
+<b class="fc">&nbsp;            if (rs.next()) {</b>
 <b class="fc">&nbsp;                return true;</b>
+&nbsp;            }
 &nbsp;            else
-<b class="nc">&nbsp;                return false;</b>
+<b class="fc">&nbsp;                return false;</b>
 &nbsp;        }
 <b class="nc">&nbsp;        catch (Exception e) {</b>
 <b class="nc">&nbsp;            System.out.println(e);</b>
@@ -112,7 +113,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    }
 &nbsp;    public static boolean checkIfEmailAlreadyUsed(String email)
 &nbsp;    {
-<b class="fc">&nbsp;        String qry = &quot;select count(user_email) from sweetSystem.users where users.user_email = &#39;&quot; + email + &quot;&#39;&quot;;</b>
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetSystem.users where users.user_email = &#39;&quot; + email + &quot;&#39;&quot;;</b>
 <b class="fc">&nbsp;        return checkIfInDB(qry);</b>
 &nbsp;    }
 &nbsp;
@@ -298,11 +299,11 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    }
 &nbsp;    public static boolean isValidDate(String dateStr)
 &nbsp;    {
-<b class="nc">&nbsp;        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);</b>
+<b class="fc">&nbsp;        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);</b>
 &nbsp;
 &nbsp;        try {
-<b class="nc">&nbsp;            LocalDate.parse(dateStr, formatter);</b>
-<b class="nc">&nbsp;            return true;</b>
+<b class="fc">&nbsp;            LocalDate.parse(dateStr, formatter);</b>
+<b class="fc">&nbsp;            return true;</b>
 <b class="nc">&nbsp;        } catch (DateTimeParseException e) {</b>
 <b class="nc">&nbsp;            System.out.println(&quot;Invalid date format. Please enter the date in YYYY-MM-DD format.&quot;);</b>
 <b class="nc">&nbsp;            return false;</b>
@@ -310,7 +311,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    }
 &nbsp;    public static boolean isValidDiscount(double discount)
 &nbsp;    {
-<b class="nc">&nbsp;        return discount &gt;= 0.0 &amp;&amp; discount &lt;= 1.0;</b>
+<b class="fc">&nbsp;        return discount &gt;= 0.0 &amp;&amp; discount &lt;= 1.0;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public static boolean checkIfProductInDbAccordingToId(int id)
@@ -348,7 +349,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-22 13:10</div>
+    <div style="float:right;">generated on 2024-08-24 11:22</div>
 </div>
 </body>
 </html>

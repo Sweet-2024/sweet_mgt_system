@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > RawMaterial</title>
+  <title>Coverage Report > Order</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,7 +21,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">main_entities</a>
 </div>
 
-<h1>Coverage Summary for Class: RawMaterial (main_entities)</h1>
+<h1>Coverage Summary for Class: Order (main_entities)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -40,7 +40,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">RawMaterial</td>
+  <td class="name">Order</td>
 <td class="coverageStat">
   <span class="percent">
     100%
@@ -51,18 +51,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    90.9%
+    100%
   </span>
   <span class="absValue">
-    (10/11)
+    (6/6)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    94.7%
+    100%
   </span>
   <span class="absValue">
-    (18/19)
+    (13/13)
   </span>
 </td>
 </tr>
@@ -76,84 +76,48 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package main_entities;
 &nbsp;
-&nbsp;public class RawMaterial {
-&nbsp;    private int rmId;
-&nbsp;    private String rmName;
-&nbsp;    private int price;
-&nbsp;    private int wholesalePrice;
-&nbsp;    private int quantity;
-&nbsp;    private int saledQty;
-&nbsp;    private String exDate;
-&nbsp;    private String supplierEmail;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
 &nbsp;
-<b class="fc">&nbsp;    public RawMaterial(int rmId, String rmName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String supplierEmail) {</b>
-<b class="fc">&nbsp;        this.rmId = rmId;</b>
-<b class="fc">&nbsp;        this.rmName = rmName;</b>
-<b class="fc">&nbsp;        this.price = price;</b>
-<b class="fc">&nbsp;        this.wholesalePrice = wholesalePrice;</b>
-<b class="fc">&nbsp;        this.quantity = quantity;</b>
-<b class="fc">&nbsp;        this.saledQty = saledQty;</b>
-<b class="fc">&nbsp;        this.exDate = exDate;</b>
-<b class="fc">&nbsp;        this.supplierEmail = supplierEmail;</b>
-&nbsp;    }
-&nbsp;    public RawMaterial(String rmName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String supplierEmail) {
-<b class="fc">&nbsp;        this(0,rmName,price,wholesalePrice,quantity,saledQty,exDate,supplierEmail);</b>
+&nbsp;public class Order
+&nbsp;{
+&nbsp;    private String sellerEmail;
+&nbsp;    private String buyerEmail;
+&nbsp;    private LocalDateTime date;
+<b class="fc">&nbsp;    List&lt;String&gt; itemList = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    List&lt;Integer&gt; itemQty = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    public Order(String sellerEmail, String buyerEmail, LocalDateTime date, List&lt;String&gt; itemList, List&lt;Integer&gt; itemQty) {</b>
+<b class="fc">&nbsp;        this.sellerEmail = sellerEmail;</b>
+<b class="fc">&nbsp;        this.buyerEmail = buyerEmail;</b>
+<b class="fc">&nbsp;        this.date = date;</b>
+<b class="fc">&nbsp;        this.itemList = itemList;</b>
+<b class="fc">&nbsp;        this.itemQty = itemQty;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;
-&nbsp;    public int getRmId() {
-<b class="fc">&nbsp;        return rmId;</b>
+&nbsp;    public String getSellerEmail() {
+<b class="fc">&nbsp;        return sellerEmail;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;
-&nbsp;    public String getRmName() {
-<b class="fc">&nbsp;        return rmName;</b>
+&nbsp;    public List&lt;Integer&gt; getItemQty() {
+<b class="fc">&nbsp;        return itemQty;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;
-&nbsp;    public int getPrice() {
-<b class="fc">&nbsp;        return price;</b>
+&nbsp;    public String getBuyerEmail() {
+<b class="fc">&nbsp;        return buyerEmail;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;
-&nbsp;    public int getWholesalePrice() {
-<b class="fc">&nbsp;        return wholesalePrice;</b>
+&nbsp;    public LocalDateTime getDate() {
+<b class="fc">&nbsp;        return date;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;
-&nbsp;    public int getQuantity() {
-<b class="fc">&nbsp;        return quantity;</b>
+&nbsp;    public List&lt;String&gt; getItemList() {
+<b class="fc">&nbsp;        return itemList;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;
-&nbsp;    public int getSaledQty() {
-<b class="fc">&nbsp;        return saledQty;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;
-&nbsp;    public String getExDate() {
-<b class="fc">&nbsp;        return exDate;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;
-&nbsp;    public String getSupplierEmail() {
-<b class="fc">&nbsp;        return supplierEmail;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;
-&nbsp;    @Override
-&nbsp;    public String toString() {
-<b class="nc">&nbsp;        return &quot;rawMaterial{&quot; +</b>
-&nbsp;                &quot;rmId=&quot; + rmId +
-&nbsp;                &quot;, rmName=&#39;&quot; + rmName + &#39;\&#39;&#39; +
-&nbsp;                &quot;, price=&quot; + price +
-&nbsp;                &quot;, wholesalePrice=&quot; + wholesalePrice +
-&nbsp;                &quot;, quantity=&quot; + quantity +
-&nbsp;                &quot;, saledQty=&quot; + saledQty +
-&nbsp;                &quot;, exDate=&#39;&quot; + exDate + &#39;\&#39;&#39; +
-&nbsp;                &quot;, supplierEmail=&#39;&quot; + supplierEmail + &#39;\&#39;&#39; +
-&nbsp;                &#39;}&#39;;
-&nbsp;    }
 &nbsp;}
 </code>
 </pre>
@@ -178,7 +142,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-22 13:10</div>
+    <div style="float:right;">generated on 2024-08-24 11:22</div>
 </div>
 </body>
 </html>

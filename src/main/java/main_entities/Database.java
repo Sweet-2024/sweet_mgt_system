@@ -21,8 +21,7 @@ public class Database{
 
     public static ResultSet connectionToSelectFromDB(String cmdString) throws DatabaseOperationException
     {
-        try
-        {
+        try {
             Properties p = new Properties();
             InputStream inputStream = new FileInputStream("config.properties");
             p.load(inputStream);
@@ -33,7 +32,6 @@ public class Database{
             Class.forName("com.mysql.cj.jdbc.Driver");
             stmt = conn.createStatement();
             String qry = cmdString;
-
             ResultSet rs = stmt.executeQuery(qry);
             return rs;
         } catch(SQLException sqlException) {

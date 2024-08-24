@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > Messaging</title>
+  <title>Coverage Report > Feedback</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,7 +21,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">main_entities</a>
 </div>
 
-<h1>Coverage Summary for Class: Messaging (main_entities)</h1>
+<h1>Coverage Summary for Class: Feedback (main_entities)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -40,7 +40,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">Messaging</td>
+  <td class="name">Feedback</td>
 <td class="coverageStat">
   <span class="percent">
     100%
@@ -54,7 +54,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (4/4)
+    (3/3)
   </span>
 </td>
 <td class="coverageStat">
@@ -62,7 +62,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (7/7)
+    (5/5)
   </span>
 </td>
 </tr>
@@ -76,28 +76,23 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package main_entities;
 &nbsp;
-&nbsp;public class Messaging {
-&nbsp;    private String senderEmail;
-&nbsp;    private String receiverEmail;
-&nbsp;    private String msg;
-<b class="fc">&nbsp;    public Messaging(String senderEmail, String receiverEmail, String msg) {</b>
-<b class="fc">&nbsp;        this.senderEmail = senderEmail;</b>
-<b class="fc">&nbsp;        this.receiverEmail = receiverEmail;</b>
-<b class="fc">&nbsp;        this.msg = msg;</b>
+&nbsp;public class Feedback
+&nbsp;{
+&nbsp;    int productID;
+&nbsp;    int evaluation;
+&nbsp;
+<b class="fc">&nbsp;    public Feedback(int productID, int evaluation) {</b>
+<b class="fc">&nbsp;        this.productID = productID;</b>
+<b class="fc">&nbsp;        this.evaluation = evaluation;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;    public String getSenderEmail() {
-<b class="fc">&nbsp;        return senderEmail;</b>
+&nbsp;    public int getProductID() {
+<b class="fc">&nbsp;        return productID;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;    public String getReceiverEmail() {
-<b class="fc">&nbsp;        return receiverEmail;</b>
+&nbsp;    public int getEvaluation() {
+<b class="fc">&nbsp;        return evaluation;</b>
 &nbsp;    }
-&nbsp;
-&nbsp;    public String getMsg() {
-<b class="fc">&nbsp;        return msg;</b>
-&nbsp;    }
-&nbsp;
 &nbsp;}
 </code>
 </pre>
@@ -122,7 +117,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-22 13:10</div>
+    <div style="float:right;">generated on 2024-08-24 11:22</div>
 </div>
 </body>
 </html>

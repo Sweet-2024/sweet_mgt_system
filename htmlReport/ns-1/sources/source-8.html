@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > Recipe</title>
+  <title>Coverage Report > Product</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,7 +21,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">main_entities</a>
 </div>
 
-<h1>Coverage Summary for Class: Recipe (main_entities)</h1>
+<h1>Coverage Summary for Class: Product (main_entities)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -40,7 +40,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">Recipe</td>
+  <td class="name">Product</td>
 <td class="coverageStat">
   <span class="percent">
     100%
@@ -54,7 +54,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (5/5)
+    (2/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -62,7 +62,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (9/9)
+    (2/2)
   </span>
 </td>
 </tr>
@@ -76,36 +76,23 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package main_entities;
 &nbsp;
-&nbsp;public class Recipe {
-&nbsp;    private String recipeName;
-&nbsp;    private String recipeDescription;
-&nbsp;    private String recipeCate;
-&nbsp;    private String publisherEmail;
+&nbsp;public class Product extends Item {
+&nbsp;    private int productId;
+&nbsp;    private String productName;
+&nbsp;    private int price;
+&nbsp;    private int wholesalePrice;
+&nbsp;    private int quantity;
+&nbsp;    private int saledQty;
+&nbsp;    private String exDate;
+&nbsp;    private String ownerEmail;
 &nbsp;
-<b class="fc">&nbsp;    public Recipe(String recipeName, String recipeDescription, String recipeCate, String publisherEmail) {</b>
-<b class="fc">&nbsp;        this.publisherEmail = publisherEmail;</b>
-<b class="fc">&nbsp;        this.recipeDescription = recipeDescription;</b>
-<b class="fc">&nbsp;        this.recipeCate = recipeCate;</b>
-<b class="fc">&nbsp;        this.recipeName = recipeName;</b>
-&nbsp;    }
-&nbsp;    public String getRecipeName() {
-<b class="fc">&nbsp;        return recipeName;</b>
+&nbsp;    public Product(int productId, String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {
+<b class="fc">&nbsp;        super(productId, productName, price,wholesalePrice,quantity,saledQty,exDate,ownerEmail);</b>
 &nbsp;    }
 &nbsp;
-&nbsp;
-&nbsp;    public String getRecipeDescription() {
-<b class="fc">&nbsp;        return recipeDescription;</b>
+&nbsp;    public Product(String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {
+<b class="fc">&nbsp;        super(0,productName,price,wholesalePrice, quantity,saledQty,exDate,ownerEmail);</b>
 &nbsp;    }
-&nbsp;
-&nbsp;    public String getRecipeCate() {
-<b class="fc">&nbsp;        return recipeCate;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;
-&nbsp;    public String getPublisherEmail() {
-<b class="fc">&nbsp;        return publisherEmail;</b>
-&nbsp;    }
-&nbsp;
 &nbsp;}
 </code>
 </pre>
@@ -130,7 +117,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-22 13:10</div>
+    <div style="float:right;">generated on 2024-08-24 11:22</div>
 </div>
 </body>
 </html>

@@ -94,18 +94,11 @@ public class Checks {
       
     public static boolean isValidEmail(String email)
     {
-        if (email == null)
+        if (email == null || !email.contains("@") || email.length() > 50)
             return false;
-        else if(!email.contains("@"))
-            return false;
-        else if (email.length() > 50)
-            return false;
+
         String domain = email.substring(email.indexOf("@")+1);
-
-        if(!domain.contains("."))
-            return false;
-
-        return true;
+        return domain.contains(".");
     }
 
     public static boolean isValidUsername(String username)
@@ -116,9 +109,7 @@ public class Checks {
 
     public static boolean isvalidPassword(String pass)
     {
-        if(pass == null)
-            return false;
-        if(pass.length() < 8)
+        if(pass == null || pass.length() < 8)
             return false;
         else
         {

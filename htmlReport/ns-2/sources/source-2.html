@@ -51,18 +51,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    50%
+    92.6%
   </span>
   <span class="absValue">
-    (9/18)
+    (25/27)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    35%
+    82.6%
   </span>
   <span class="absValue">
-    (112/320)
+    (242/293)
   </span>
 </td>
 </tr>
@@ -77,15 +77,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 <code class="sourceCode" id="sourceCode">&nbsp;package sweet_system;
 &nbsp;
 &nbsp;import main_entities.Database;
+&nbsp;import main_entities.DatabaseOperationException;
 &nbsp;
 &nbsp;import java.sql.Date;
 &nbsp;import java.sql.ResultSet;
 &nbsp;import java.sql.SQLException;
 &nbsp;import java.util.ArrayList;
 &nbsp;import java.util.List;
+&nbsp;import java.util.logging.Logger;
+&nbsp;import java.util.logging.Level;
 &nbsp;
 <b class="nc">&nbsp;public class Listing {</b>
-&nbsp;
+<b class="fc">&nbsp;    private static final Logger logger = Logger.getLogger(Listing.class.getName());</b>
 &nbsp;    private static final String SALED_QTY = &quot;saled_qty&quot;;
 &nbsp;    private static final String WHOLESALE_PRICE = &quot;wholesale_price&quot;;
 &nbsp;    private static final String PRICE = &quot;price&quot;;
@@ -99,15 +102,99 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    private static final String PRODUCT_ID = &quot;product_id&quot;;
 &nbsp;    private static final String PRODUCT_NAME = &quot;product_name&quot;;
 &nbsp;    private static final String RECIPE_NAME = &quot;recipe_name&quot;;
+&nbsp;    private static final String ERROR_MESSAGE = &quot;Error during generation: &quot;;
 &nbsp;    private static final String LINE = &quot;----------------------------------------------------------------------------------------------------------------------------------&quot;;
+&nbsp;    private static void logInfo(String message) {
+<b class="fc">&nbsp;        logger.info(message);</b>
+&nbsp;    }
+&nbsp;    private static void logError(String message, Exception e) {
+<b class="nc">&nbsp;        logger.log(Level.SEVERE, message + e.getMessage(), e);</b>
+&nbsp;    }
+&nbsp;    private static void logFinancialDetails(String email, int incomes, int outcomes)
+&nbsp;    {
+<b class="fc">&nbsp;        int total = incomes - outcomes;</b>
+<b class="fc">&nbsp;        logger.info(String.format(&quot;\t* Product Owner Email : %s&quot;, email));</b>
+<b class="fc">&nbsp;        logger.info(String.format(&quot;\t\tIncomes : %s&quot;, incomes));</b>
+<b class="fc">&nbsp;        logger.info(String.format(&quot;\t\tOutcomes : %s&quot;, outcomes));</b>
+<b class="fc">&nbsp;        logger.info(String.format(&quot;\t\tTotal profit : %s&quot;, total));</b>
+<b class="fc">&nbsp;        logger.info(&quot;&quot;);</b>
+&nbsp;    }
+&nbsp;    private static void printProductDetails(int productId, String productName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String ownerEmail) {
+<b class="fc">&nbsp;        System.out.printf(&quot;%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n&quot;,</b>
+<b class="fc">&nbsp;                productId, productName, price, wholesalePrice, quantity,</b>
+<b class="fc">&nbsp;                saledQty, exDate, ownerEmail);</b>
+&nbsp;    }
+&nbsp;    private static void printProductHeader(){
+<b class="fc">&nbsp;        System.out.printf(&quot;%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n&quot;,</b>
+&nbsp;                &quot;Product id&quot;, &quot;Product Name&quot;, PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
+&nbsp;                SALED_QTY_OPTION, EX_DATE_OPTION, &quot;Owner Email&quot;);
+&nbsp;    }
+&nbsp;    private static void excuteRawMaterialsQry(String qry){
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+<b class="fc">&nbsp;            System.out.printf(&quot;%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n&quot;,</b>
+&nbsp;                    &quot;raw material id&quot;, &quot;raw material Name&quot;, PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
+&nbsp;                    SALED_QTY_OPTION, EX_DATE_OPTION, &quot;Supplier Email&quot;);
+&nbsp;
+<b class="fc">&nbsp;            System.out.println(LINE);</b>
+&nbsp;
+<b class="fc">&nbsp;            while (rs.next()) {</b>
+<b class="fc">&nbsp;                int rmId = rs.getInt(&quot;rm_id&quot;);</b>
+<b class="fc">&nbsp;                String rmName = rs.getString(&quot;rm_name&quot;);</b>
+<b class="fc">&nbsp;                int price = rs.getInt(&quot;rm_price&quot;);</b>
+<b class="fc">&nbsp;                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);</b>
+<b class="fc">&nbsp;                int quantity = rs.getInt(&quot;qty&quot;);</b>
+<b class="fc">&nbsp;                int saledQty = rs.getInt(SALED_QTY);</b>
+<b class="fc">&nbsp;                String exDate = rs.getString(&quot;expiry_date&quot;);</b>
+<b class="fc">&nbsp;                String supplierEmail = rs.getString(&quot;supplier_email&quot;);</b>
+<b class="fc">&nbsp;                printRawMaterialDetails(rmId, rmName, price, wholesalePrice, quantity, saledQty, exDate, supplierEmail);</b>
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            System.out.println(LINE);</b>
+<b class="nc">&nbsp;        }catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;    private static void excuteProductsQry(String qry){
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+<b class="fc">&nbsp;            printProductHeader();</b>
+&nbsp;
+<b class="fc">&nbsp;            System.out.println(LINE);</b>
+<b class="fc">&nbsp;            while (rs.next()) {</b>
+<b class="fc">&nbsp;                int productId = rs.getInt(PRODUCT_ID);</b>
+<b class="fc">&nbsp;                String productName = rs.getString(PRODUCT_NAME);</b>
+<b class="fc">&nbsp;                int price = rs.getInt(PRICE);</b>
+<b class="fc">&nbsp;                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);</b>
+<b class="fc">&nbsp;                int quantity = rs.getInt(&quot;quantity&quot;);</b>
+<b class="fc">&nbsp;                int saledQty = rs.getInt(SALED_QTY);</b>
+<b class="fc">&nbsp;                String exDate = rs.getString(&quot;ex_date&quot;);</b>
+<b class="fc">&nbsp;                String ownerEmail = rs.getString(&quot;owner_email&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;                printProductDetails(productId, productName, price, wholesalePrice, quantity, saledQty, exDate, ownerEmail);</b>
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            System.out.println(LINE);</b>
+<b class="nc">&nbsp;        }catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void printRawMaterialDetails(int rmId, String rmName, int price, int wholesalePrice, int quantity, int saledQty, String exDate, String supplierEmail) {
+<b class="fc">&nbsp;        System.out.printf(&quot;%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-20s%n&quot;,</b>
+<b class="fc">&nbsp;                rmId, rmName, price, wholesalePrice, quantity,</b>
+<b class="fc">&nbsp;                saledQty, exDate, supplierEmail);</b>
+&nbsp;    }
+&nbsp;
 &nbsp;    // financial reports :
 &nbsp;    private static void printingFinancialReportOfOwnersOrSuppliers(String email,String username) {
 <b class="fc">&nbsp;        int incomes = 0;</b>
 <b class="fc">&nbsp;        int outcomes = 0;</b>
 <b class="fc">&nbsp;        int numOfProducts = 0;</b>
 <b class="fc">&nbsp;        String qry3 = &quot;select price , wholesale_price , saled_qty from sweetsystem.product where owner_email = &#39;&quot; + email + &quot;&#39;&quot;;</b>
-<b class="fc">&nbsp;        ResultSet productsOfOwnerList = Database.connectionToSelectFromDB(qry3);</b>
+&nbsp;
 &nbsp;        try {
+<b class="fc">&nbsp;            ResultSet productsOfOwnerList = Database.connectionToSelectFromDB(qry3);</b>
 <b class="fc">&nbsp;            while (productsOfOwnerList.next()) {</b>
 <b class="fc">&nbsp;                int price = productsOfOwnerList.getInt(PRICE);</b>
 <b class="fc">&nbsp;                int wholesalePrice = productsOfOwnerList.getInt(WHOLESALE_PRICE);</b>
@@ -118,51 +205,47 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            }</b>
 <b class="fc">&nbsp;            if (numOfProducts &gt; 0)</b>
 &nbsp;            {
-<b class="fc">&nbsp;                int total = incomes - outcomes;</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\t* Product Owner Email : &quot; + email);</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\t\tIncomes : &quot; + incomes);</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\t\tOutcomes : &quot; + outcomes);</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\t\tTotal profit : &quot; + total);</b>
-<b class="fc">&nbsp;                System.out.println();</b>
+<b class="fc">&nbsp;                logFinancialDetails(email, incomes, outcomes);</b>
 &nbsp;            }
 &nbsp;
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.err.println(e.getMessage());</b>
+<b class="nc">&nbsp;        } catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public static boolean generateFinancialReports() {
 &nbsp;        String ownerEmail;
 <b class="fc">&nbsp;        String qry1 = &quot;select count(product_id) from sweetsystem.product&quot;;</b>
-<b class="fc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry1);</b>
+&nbsp;
 &nbsp;        try {
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry1);</b>
 <b class="fc">&nbsp;            if (rs != null) {</b>
 &nbsp;                //if the user is owner or supplier then printing only his won report
 <b class="fc">&nbsp;                if (MyApp.userType == 2 || MyApp.userType == 3) {</b>
-<b class="fc">&nbsp;                    System.out.println(&quot;FINANCIAL REPORT OF YOUR STORE :&quot;);</b>
+<b class="fc">&nbsp;                    logInfo(&quot;FINANCIAL REPORT OF YOUR STORE :&quot;);</b>
 <b class="fc">&nbsp;                    ownerEmail = MyApp.userEmail;</b>
 <b class="fc">&nbsp;                    printingFinancialReportOfOwnersOrSuppliers(ownerEmail , MyApp.userName);</b>
 &nbsp;                }
 &nbsp;                //if the user is admin then printing reports for all owners and suppliers in the system
-<b class="nc">&nbsp;                else if (MyApp.userType == 1) {</b>
-<b class="nc">&nbsp;                    System.out.println(&quot;FINANCIAL REPORT OF EACH STORE :&quot;);</b>
-<b class="nc">&nbsp;                    String qry2 = &quot;select * from sweetsystem.users where user_type = 2 or user_type = 3&quot;;</b>
-<b class="nc">&nbsp;                    ResultSet ownersAndSuppliersList = Database.connectionToSelectFromDB(qry2);</b>
-<b class="nc">&nbsp;                    while (ownersAndSuppliersList.next()) {</b>
-<b class="nc">&nbsp;                        String username = ownersAndSuppliersList.getString(USERNAME);</b>
-<b class="nc">&nbsp;                        ownerEmail = ownersAndSuppliersList.getString(USER_EMAIL);</b>
-<b class="nc">&nbsp;                        printingFinancialReportOfOwnersOrSuppliers(ownerEmail,username);</b>
-<b class="nc">&nbsp;                    }//end of while to get all owners and suppliers in the system</b>
-<b class="nc">&nbsp;                } else</b>
-<b class="nc">&nbsp;                    return false; //invalid userType</b>
+<b class="fc">&nbsp;                else if (MyApp.userType == 1) {</b>
+<b class="fc">&nbsp;                    logInfo(&quot;FINANCIAL REPORT OF EACH STORE :&quot;);</b>
+<b class="fc">&nbsp;                    String qry2 = &quot;select * from sweetsystem.users where user_type = 2 or user_type = 3&quot;;</b>
+<b class="fc">&nbsp;                    ResultSet ownersAndSuppliersList = Database.connectionToSelectFromDB(qry2);</b>
+<b class="fc">&nbsp;                    while (ownersAndSuppliersList.next()) {</b>
+<b class="fc">&nbsp;                        String username = ownersAndSuppliersList.getString(USERNAME);</b>
+<b class="fc">&nbsp;                        ownerEmail = ownersAndSuppliersList.getString(USER_EMAIL);</b>
+<b class="fc">&nbsp;                        printingFinancialReportOfOwnersOrSuppliers(ownerEmail,username);</b>
+<b class="fc">&nbsp;                    }//end of while to get all owners and suppliers in the system</b>
+<b class="fc">&nbsp;                } else</b>
+<b class="fc">&nbsp;                    return false; //invalid userType</b>
 <b class="fc">&nbsp;                return true;</b>
 &nbsp;            }// if there are products in the db
 &nbsp;            else {
-<b class="nc">&nbsp;                System.out.println(&quot;there is no product in the system!&quot;);</b>
+<b class="nc">&nbsp;                logInfo(&quot;there is no product in the system!&quot;);</b>
 <b class="nc">&nbsp;                return false;</b>
 &nbsp;            }// no products in the database
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.err.println(e.getMessage());</b>
+<b class="nc">&nbsp;        } catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
 <b class="nc">&nbsp;            return false;</b>
 &nbsp;        }
 &nbsp;    }
@@ -170,49 +253,52 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    //best-selling items
 &nbsp;    private static void printingBestSellingProduct(String email, String username) {
 <b class="fc">&nbsp;        String qry3 = &quot;select product_name from sweetsystem.product where owner_email = &#39;&quot; + email + &quot;&#39; order by saled_qty desc;&quot;;</b>
-<b class="fc">&nbsp;        ResultSet bestSelling = Database.connectionToSelectFromDB(qry3);</b>
+&nbsp;
 &nbsp;        try {
+<b class="fc">&nbsp;            ResultSet bestSelling = Database.connectionToSelectFromDB(qry3);</b>
 <b class="fc">&nbsp;            if (bestSelling.next()) {</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\t* Product owner email : &quot; + email);</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\t\tBest selling product : &quot; + bestSelling.getString(PRODUCT_NAME));</b>
-<b class="fc">&nbsp;                System.out.println();</b>
+<b class="fc">&nbsp;                logger.info(String.format(&quot;\t* Product owner email : %s&quot;, email));</b>
+<b class="fc">&nbsp;                logger.info(String.format(&quot;\t\tBest selling product : %s&quot;, bestSelling.getString(PRODUCT_NAME)));</b>
+<b class="fc">&nbsp;                logInfo(&quot;&quot;);</b>
 &nbsp;            }
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.err.println(e.getMessage());</b>
+<b class="nc">&nbsp;        }catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
 <b class="fc">&nbsp;        }</b>
+&nbsp;
 &nbsp;    }
 &nbsp;
 &nbsp;    public static boolean listingBestSellingProduct() {
 &nbsp;        String qry1;
 &nbsp;        String qry2;
 <b class="fc">&nbsp;        qry1 = &quot;select count(product_id) from sweetsystem.product&quot;;</b>
-<b class="fc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry1);</b>
+&nbsp;
 &nbsp;        try {
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry1);</b>
 <b class="fc">&nbsp;            if (rs != null) {</b>
 <b class="fc">&nbsp;                if (MyApp.userType == 2 || MyApp.userType == 3) {</b>
-<b class="fc">&nbsp;                    System.out.println(&quot;LIST OF BEST SELLING PRODUCTS IN YOUR STORE :&quot;);</b>
+<b class="fc">&nbsp;                    logInfo(&quot;LIST OF BEST SELLING PRODUCTS IN YOUR STORE :&quot;);</b>
 <b class="fc">&nbsp;                    printingBestSellingProduct(MyApp.userEmail, MyApp.userName);</b>
 <b class="fc">&nbsp;                    return true;</b>
-<b class="nc">&nbsp;                } else if (MyApp.userType == 1) {</b>
-<b class="nc">&nbsp;                    System.out.println(&quot;LIST OF BEST SELLING PRODUCTS IN EACH STORE :&quot;);</b>
-<b class="nc">&nbsp;                    qry2 = &quot;select * from sweetsystem.users where user_type = 2 or user_type = 3&quot;;</b>
-<b class="nc">&nbsp;                    ResultSet ownersAndSuppliersList = Database.connectionToSelectFromDB(qry2);</b>
-<b class="nc">&nbsp;                    while (ownersAndSuppliersList.next()) {</b>
-<b class="nc">&nbsp;                        String email = ownersAndSuppliersList.getString(USER_EMAIL);</b>
-<b class="nc">&nbsp;                        String username = ownersAndSuppliersList.getString(USERNAME);</b>
+<b class="fc">&nbsp;                } else if (MyApp.userType == 1) {</b>
+<b class="fc">&nbsp;                    logInfo(&quot;LIST OF BEST SELLING PRODUCTS IN EACH STORE :&quot;);</b>
+<b class="fc">&nbsp;                    qry2 = &quot;select * from sweetsystem.users where user_type = 2 or user_type = 3&quot;;</b>
+<b class="fc">&nbsp;                    ResultSet ownersAndSuppliersList = Database.connectionToSelectFromDB(qry2);</b>
+<b class="fc">&nbsp;                    while (ownersAndSuppliersList.next()) {</b>
+<b class="fc">&nbsp;                        String email = ownersAndSuppliersList.getString(USER_EMAIL);</b>
+<b class="fc">&nbsp;                        String username = ownersAndSuppliersList.getString(USERNAME);</b>
 &nbsp;
-<b class="nc">&nbsp;                        printingBestSellingProduct(email, username);</b>
-<b class="nc">&nbsp;                    }</b>
-<b class="nc">&nbsp;                } else</b>
+<b class="fc">&nbsp;                        printingBestSellingProduct(email, username);</b>
+<b class="fc">&nbsp;                    }</b>
+<b class="fc">&nbsp;                } else</b>
 <b class="nc">&nbsp;                    return false;// invalid userType</b>
-<b class="nc">&nbsp;                return true;</b>
+<b class="fc">&nbsp;                return true;</b>
 &nbsp;            }// if there are products in the db
 &nbsp;            else {
-<b class="nc">&nbsp;                System.out.println(&quot;there is no product in the system!&quot;);</b>
+<b class="nc">&nbsp;                logInfo(&quot;there is no product in the system!&quot;);</b>
 <b class="nc">&nbsp;                return false;</b>
 &nbsp;            }
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.err.println(e.getMessage());</b>
+<b class="nc">&nbsp;        } catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
 <b class="nc">&nbsp;            return false;</b>
 &nbsp;        }
 &nbsp;    }
@@ -220,11 +306,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    //statistics
 &nbsp;    public static boolean statisticsOnUsersByCity() {
 <b class="fc">&nbsp;        String qry = &quot;select user_location, count(user_email) from sweetsystem.users where user_type = 4 group by user_location&quot;;</b>
-<b class="fc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+&nbsp;
 &nbsp;        try {
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
 <b class="fc">&nbsp;            boolean flag = false;</b>
-<b class="fc">&nbsp;            System.out.println(&quot;STATISTICS ON USERS GATHERED BY CITY : &quot;);</b>
-<b class="fc">&nbsp;            System.out.println(&quot;City\t\tNumber of users&quot;);</b>
+<b class="fc">&nbsp;            logInfo(&quot;STATISTICS ON USERS GATHERED BY CITY : &quot;);</b>
+<b class="fc">&nbsp;            logInfo(&quot;City\t\tNumber of users&quot;);</b>
 <b class="fc">&nbsp;            while (rs.next()) {</b>
 <b class="fc">&nbsp;                System.out.println(rs.getString(1) + &quot;\t\t&quot; + rs.getInt(2));</b>
 <b class="fc">&nbsp;                flag = true;</b>
@@ -232,31 +319,33 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;            }
 &nbsp;
 <b class="fc">&nbsp;            if (flag) {</b>
-<b class="fc">&nbsp;                System.out.println(&quot;---------------------------------------------------------------------------------&quot;);</b>
+<b class="fc">&nbsp;                logger.info(&quot;---------------------------------------------------------------------------------&quot;);</b>
 <b class="fc">&nbsp;                return flag;</b>
 &nbsp;            } else {
-<b class="nc">&nbsp;                System.err.println(&quot;No enough data!&quot;);</b>
+<b class="nc">&nbsp;                logger.warning(&quot;No enough data!&quot;);</b>
 <b class="nc">&nbsp;                return flag;</b>
 &nbsp;            }
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.err.println(e.getMessage());</b>
+<b class="nc">&nbsp;        } catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
 <b class="nc">&nbsp;            return false;</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
-&nbsp;    public static boolean listAllUsersInTheSystem(int typeToCommunicate) {
+&nbsp;    public static boolean listAllUsersInTheSystem(int typeToCommunicate)
+&nbsp;    {
 <b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.users where user_type = &quot; + typeToCommunicate + &quot;;&quot;;</b>
-<b class="fc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+&nbsp;
 &nbsp;        try {
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
 <b class="fc">&nbsp;            if (typeToCommunicate == 2)</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\n* List of all owners in the system :&quot;);</b>
+<b class="fc">&nbsp;                logInfo(&quot;\n* List of all owners in the system :&quot;);</b>
 <b class="fc">&nbsp;            else if (typeToCommunicate == 3)</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\n* List of all suppliers in the system :&quot;);</b>
+<b class="fc">&nbsp;                logInfo(&quot;\n* List of all suppliers in the system :&quot;);</b>
 <b class="fc">&nbsp;            else if (typeToCommunicate == 4)</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\n* List of all users in the system :&quot;);</b>
+<b class="fc">&nbsp;                logInfo(&quot;\n* List of all users in the system :&quot;);</b>
 &nbsp;            else{
-<b class="nc">&nbsp;                System.out.println(&quot;\n* Invalid user type specified.&quot;);</b>
-<b class="nc">&nbsp;                return false;</b>
+<b class="fc">&nbsp;                logInfo(&quot;\n* Invalid user type specified.&quot;);</b>
+<b class="fc">&nbsp;                return false;</b>
 &nbsp;            }
 &nbsp;
 <b class="fc">&nbsp;            System.out.printf(&quot;%-15s %-30s %-30s%n&quot;, &quot;User Name&quot;, &quot;User Email&quot;, &quot;User Location&quot;);</b>
@@ -269,7 +358,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                String userEmail = rs.getString(USER_EMAIL);</b>
 <b class="fc">&nbsp;                String userLocation = rs.getString(&quot;user_location&quot;);</b>
 <b class="fc">&nbsp;                if (userEmail.equals(MyApp.userEmail))</b>
-<b class="nc">&nbsp;                 continue;</b>
+<b class="fc">&nbsp;                 continue;</b>
 <b class="fc">&nbsp;                System.out.printf(&quot;%-15s %-30s %-30s%n&quot;, userName, userEmail, userLocation);</b>
 &nbsp;
 <b class="fc">&nbsp;            }</b>
@@ -278,138 +367,59 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            if (numOfUsers &gt; 0) {</b>
 <b class="fc">&nbsp;                return true;</b>
 &nbsp;            } else {
-<b class="nc">&nbsp;                System.out.println(&quot;There are no users of this type in the system.&quot;);</b>
+<b class="nc">&nbsp;                logInfo(&quot;There are no users of this type in the system.&quot;);</b>
 <b class="nc">&nbsp;                return false;</b>
 &nbsp;            }
 &nbsp;
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.out.println(&quot;Error: &quot; + e.getMessage());</b>
+<b class="nc">&nbsp;        } catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
 <b class="nc">&nbsp;            return false;</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;    public static void listingOfRawMaterialsForSpecificSupplier(String email){
-<b class="nc">&nbsp;        String qry = &quot;select * from sweetsystem.row_material WHERE supplier_email = &#39;&quot;+email+&quot;&#39;;&quot;;</b>
-<b class="nc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
-&nbsp;
-&nbsp;        try {
-<b class="nc">&nbsp;            System.out.printf(&quot;%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n&quot;,</b>
-&nbsp;                    &quot;raw material id&quot;, &quot;raw material Name&quot;, PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
-&nbsp;                    SALED_QTY_OPTION, EX_DATE_OPTION, &quot;Supplier Email&quot;);
-&nbsp;
-<b class="nc">&nbsp;            System.out.println(LINE);</b>
-&nbsp;
-<b class="nc">&nbsp;            while (rs.next()) {</b>
-<b class="nc">&nbsp;                int rmId = rs.getInt(&quot;rm_id&quot;);</b>
-<b class="nc">&nbsp;                String rmName = rs.getString(&quot;rm_name&quot;);</b>
-<b class="nc">&nbsp;                int price = rs.getInt(&quot;rm_price&quot;);</b>
-<b class="nc">&nbsp;                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);</b>
-<b class="nc">&nbsp;                int quantity = rs.getInt(&quot;qty&quot;);</b>
-<b class="nc">&nbsp;                int saledQty = rs.getInt(SALED_QTY);</b>
-<b class="nc">&nbsp;                String exDate = rs.getString(&quot;expiry_date&quot;);</b>
-<b class="nc">&nbsp;                String supplierEmail = rs.getString(&quot;supplier_email&quot;);</b>
-&nbsp;
-<b class="nc">&nbsp;                System.out.printf(&quot;%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-20s%n&quot;,</b>
-<b class="nc">&nbsp;                        rmId, rmName, price, wholesalePrice, quantity,</b>
-<b class="nc">&nbsp;                        saledQty, exDate, supplierEmail);</b>
-<b class="nc">&nbsp;            }</b>
-<b class="nc">&nbsp;            System.out.println(LINE);</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.out.println(e.getMessage());</b>
-<b class="nc">&nbsp;        }</b>
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.row_material WHERE supplier_email = &#39;&quot;+email+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        excuteRawMaterialsQry(qry);</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public static void listingOfProductsForSpecificOwner(String email) {
-<b class="nc">&nbsp;        String qry = &quot;SELECT * FROM sweetsystem.product WHERE owner_email = &#39;&quot;+email+&quot;&#39;;&quot;;</b>
-<b class="nc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
-&nbsp;
-&nbsp;        try {
-<b class="nc">&nbsp;            System.out.printf(&quot;%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n&quot;,</b>
-&nbsp;                    &quot;Product id&quot;, &quot;Product Name&quot;, PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
-&nbsp;                    SALED_QTY_OPTION, EX_DATE_OPTION, &quot;Owner Email&quot;);
-&nbsp;
-<b class="nc">&nbsp;            System.out.println(LINE);</b>
-<b class="nc">&nbsp;            while (rs.next()) {</b>
-<b class="nc">&nbsp;                int productId = rs.getInt(PRODUCT_ID);</b>
-<b class="nc">&nbsp;                String productName = rs.getString(PRODUCT_NAME);</b>
-<b class="nc">&nbsp;                int price = rs.getInt(PRICE);</b>
-<b class="nc">&nbsp;                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);</b>
-<b class="nc">&nbsp;                int quantity = rs.getInt(&quot;quantity&quot;);</b>
-<b class="nc">&nbsp;                int saledQty = rs.getInt(SALED_QTY);</b>
-<b class="nc">&nbsp;                String exDate = rs.getString(&quot;ex_date&quot;);</b>
-<b class="nc">&nbsp;                String ownerEmail = rs.getString(&quot;owner_email&quot;);</b>
-&nbsp;
-<b class="nc">&nbsp;                System.out.printf(&quot;%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n&quot;,</b>
-<b class="nc">&nbsp;                        productId, productName, price, wholesalePrice, quantity,</b>
-<b class="nc">&nbsp;                        saledQty, exDate, ownerEmail);</b>
-<b class="nc">&nbsp;            }</b>
-<b class="nc">&nbsp;            System.out.println(LINE);</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.out.println(e.getMessage());</b>
-<b class="nc">&nbsp;        }</b>
+<b class="fc">&nbsp;        String qry = &quot;SELECT * FROM sweetsystem.product WHERE owner_email = &#39;&quot;+email+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        excuteProductsQry(qry);</b>
 &nbsp;    }
 &nbsp;    public static void listingOfProducts() {
-<b class="nc">&nbsp;        String qry = &quot;SELECT * FROM sweetsystem.product;&quot;;</b>
-<b class="nc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
-&nbsp;
-&nbsp;        try {
-<b class="nc">&nbsp;            System.out.printf(&quot;%-20s %-20s %-10s %-15s %-10s %-10s %-20s %-30s%n&quot;,</b>
-&nbsp;                    &quot;Product id&quot;, &quot;Product Name&quot;, PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
-&nbsp;                    SALED_QTY_OPTION, EX_DATE_OPTION, &quot;Owner Email&quot;);
-&nbsp;
-<b class="nc">&nbsp;            System.out.println(LINE);</b>
-<b class="nc">&nbsp;            while (rs.next()) {</b>
-<b class="nc">&nbsp;                int productId = rs.getInt(PRODUCT_ID);</b>
-<b class="nc">&nbsp;                String productName = rs.getString(PRODUCT_NAME);</b>
-<b class="nc">&nbsp;                int price = rs.getInt(PRICE);</b>
-<b class="nc">&nbsp;                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);</b>
-<b class="nc">&nbsp;                int quantity = rs.getInt(&quot;quantity&quot;);</b>
-<b class="nc">&nbsp;                int saledQty = rs.getInt(SALED_QTY);</b>
-<b class="nc">&nbsp;                String exDate = rs.getString(&quot;ex_date&quot;);</b>
-<b class="nc">&nbsp;                String ownerEmail = rs.getString(&quot;owner_email&quot;);</b>
-&nbsp;
-<b class="nc">&nbsp;                System.out.printf(&quot;%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-30s%n&quot;,</b>
-<b class="nc">&nbsp;                        productId, productName, price, wholesalePrice, quantity,</b>
-<b class="nc">&nbsp;                        saledQty, exDate, ownerEmail);</b>
-<b class="nc">&nbsp;            }</b>
-<b class="nc">&nbsp;            System.out.println(LINE);</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.out.println(e.getMessage());</b>
-<b class="nc">&nbsp;        }</b>
+<b class="fc">&nbsp;        String qry = &quot;SELECT * FROM sweetsystem.product;&quot;;</b>
+<b class="fc">&nbsp;        excuteProductsQry(qry);</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public static void printingRecipeAccordingToRecipeName(String rName)
 &nbsp;    {
 <b class="fc">&nbsp;        String recipeName = rName.trim();</b>
 <b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.recipe where recipe_name = &#39;&quot;+recipeName+&quot;&#39;;&quot;;</b>
-<b class="fc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
 <b class="fc">&nbsp;        int numOfRecipes = 0;</b>
 &nbsp;        try {
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
 <b class="fc">&nbsp;            while (rs.next())</b>
 &nbsp;            {
 <b class="fc">&nbsp;                numOfRecipes++;</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\tRecipe ID : &quot; + rs.getInt(&quot;recipe_id&quot;));</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\tRecipe Name : &quot; + rs.getString(RECIPE_NAME));</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\tRecipe Description : &quot; + rs.getString(&quot;recipe_description&quot;));</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\tRecipe Category : &quot; + rs.getString(&quot;recipe_category&quot;));</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\tRecipe Publisher Email : &quot; + rs.getString(&quot;recipe_publisher_email&quot;));</b>
+<b class="fc">&nbsp;                logInfo(&quot;\tRecipe ID : &quot; + rs.getInt(&quot;recipe_id&quot;));</b>
+<b class="fc">&nbsp;                logInfo(&quot;\tRecipe Name : &quot; + rs.getString(RECIPE_NAME));</b>
+<b class="fc">&nbsp;                logInfo(&quot;\tRecipe Description : &quot; + rs.getString(&quot;recipe_description&quot;));</b>
+<b class="fc">&nbsp;                logInfo(&quot;\tRecipe Category : &quot; + rs.getString(&quot;recipe_category&quot;));</b>
+<b class="fc">&nbsp;                logInfo(&quot;\tRecipe Publisher Email : &quot; + rs.getString(&quot;recipe_publisher_email&quot;));</b>
 <b class="fc">&nbsp;                System.out.println(&quot;------------------------------------------------------------------------------------&quot;);</b>
-&nbsp;            }
-<b class="fc">&nbsp;            if(numOfRecipes == 0)</b>
-<b class="nc">&nbsp;                System.out.println(&quot;There is no recipes in the system!&quot;);</b>
-&nbsp;        }
-<b class="nc">&nbsp;        catch (SQLException e)</b>
-&nbsp;        {
-&nbsp;
+<b class="fc">&nbsp;            }if(numOfRecipes == 0)</b>
+<b class="nc">&nbsp;                logInfo(&quot;There is no recipes in the system!&quot;);</b>
+<b class="nc">&nbsp;        } catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;    public static List&lt;Integer&gt; listRecipesInDb()
 &nbsp;    {
 <b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.recipe;&quot;;</b>
-<b class="fc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+&nbsp;
 <b class="fc">&nbsp;        List&lt;Integer&gt; recipesID = new ArrayList&lt;&gt;();</b>
 <b class="fc">&nbsp;        int numOfRecipes = 0;</b>
 &nbsp;        try {
-&nbsp;
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
 <b class="fc">&nbsp;            while(rs.next())</b>
 &nbsp;            {
 <b class="fc">&nbsp;                numOfRecipes++;</b>
@@ -417,9 +427,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                recipesID.add(rs.getInt(&quot;recipe_id&quot;));</b>
 &nbsp;            }
 <b class="fc">&nbsp;            if(numOfRecipes == 0)</b>
-<b class="nc">&nbsp;                System.out.println(&quot;There is no recipes in the system!&quot;);</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.err.println(e);</b>
+<b class="nc">&nbsp;                logInfo(&quot;There is no recipes in the system!&quot;);</b>
+<b class="nc">&nbsp;        }catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
 <b class="fc">&nbsp;        }</b>
 <b class="fc">&nbsp;        return recipesID;</b>
 &nbsp;    }
@@ -427,156 +437,128 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    public static void listRecipesInDbAccordingToCategory(String category)
 &nbsp;    {
 <b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.recipe where recipe.recipe_category = &#39;&quot;+category+&quot;&#39;;&quot;;</b>
-<b class="fc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+&nbsp;
 <b class="fc">&nbsp;        int numOfRecipes = 0;</b>
 &nbsp;        try {
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
 <b class="fc">&nbsp;            while(rs.next())</b>
 &nbsp;            {
-<b class="fc">&nbsp;                System.out.println(&quot;\tRecipe Name : &quot; + rs.getString(RECIPE_NAME));</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\tRecipe Description : &quot; + rs.getString(&quot;recipe_description&quot;));</b>
-<b class="fc">&nbsp;                System.out.println(&quot;\tRecipe Publisher Email : &quot; + rs.getString(&quot;recipe_publisher_email&quot;));</b>
+<b class="fc">&nbsp;                logInfo(&quot;\tRecipe Name : &quot; + rs.getString(RECIPE_NAME));</b>
+<b class="fc">&nbsp;                logInfo(&quot;\tRecipe Description : &quot; + rs.getString(&quot;recipe_description&quot;));</b>
+<b class="fc">&nbsp;                logInfo(&quot;\tRecipe Publisher Email : &quot; + rs.getString(&quot;recipe_publisher_email&quot;));</b>
 <b class="fc">&nbsp;                System.out.println(&quot;------------------------------------------------------------------------------------&quot;);</b>
 <b class="fc">&nbsp;                numOfRecipes++;</b>
 &nbsp;            }
 <b class="fc">&nbsp;            if(numOfRecipes == 0)</b>
-<b class="nc">&nbsp;                System.out.println(&quot;There is no recipes from this category!&quot;);</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.err.println(e);</b>
+<b class="fc">&nbsp;                logInfo(&quot;There is no recipes from this category!&quot;);</b>
+<b class="nc">&nbsp;        }catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;    public static List&lt;Integer&gt; ordersMadeByThisUser(String userEmail)
 &nbsp;    {
-<b class="nc">&nbsp;        List&lt;Integer&gt; ordersID = new ArrayList&lt;&gt;();</b>
-<b class="nc">&nbsp;        String qry = &quot;select * from `order` where buyer_email = &#39;&quot;+userEmail+&quot;&#39;;&quot;;</b>
-<b class="nc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+<b class="fc">&nbsp;        List&lt;Integer&gt; ordersID = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        String qry = &quot;select * from `order` where buyer_email = &#39;&quot;+userEmail+&quot;&#39;;&quot;;</b>
+&nbsp;
 &nbsp;        try {
-<b class="nc">&nbsp;            int numOfOrders = 0;</b>
-<b class="nc">&nbsp;            while (rs.next())</b>
-&nbsp;            {
-<b class="nc">&nbsp;                System.out.println(&quot;OrderId : &quot; + rs.getInt(&quot;order_id&quot;));</b>
-<b class="nc">&nbsp;                System.out.println(&quot;Ordering Date : &quot; + rs.getDate(&quot;order_date&quot;));</b>
-<b class="nc">&nbsp;                System.out.println(&quot;Seller Email : &quot; + rs.getString(&quot;seller_email&quot;));</b>
-<b class="nc">&nbsp;                ordersID.add(rs.getInt(&quot;order_id&quot;));</b>
-<b class="nc">&nbsp;                System.out.println();</b>
-<b class="nc">&nbsp;                numOfOrders++;</b>
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+<b class="fc">&nbsp;            int numOfOrders = 0;</b>
+<b class="fc">&nbsp;            if(rs != null){</b>
+<b class="fc">&nbsp;                while (rs.next()) {</b>
+<b class="fc">&nbsp;                    logInfo(&quot;OrderId : &quot; + rs.getInt(&quot;order_id&quot;));</b>
+<b class="fc">&nbsp;                    logInfo(&quot;Ordering Date : &quot; + rs.getDate(&quot;order_date&quot;));</b>
+<b class="fc">&nbsp;                    logInfo(&quot;Seller Email : &quot; + rs.getString(&quot;seller_email&quot;));</b>
+<b class="fc">&nbsp;                    ordersID.add(rs.getInt(&quot;order_id&quot;));</b>
+<b class="fc">&nbsp;                    logInfo(&quot;\n&quot;);</b>
+<b class="fc">&nbsp;                    numOfOrders++;</b>
+&nbsp;                }
 &nbsp;            }
-<b class="nc">&nbsp;            if (numOfOrders == 0)</b>
-<b class="nc">&nbsp;                System.out.println(&quot;You didn&#39;t make any order before!&quot;);</b>
-<b class="nc">&nbsp;            return ordersID;</b>
-&nbsp;        }
-<b class="nc">&nbsp;        catch (SQLException e)</b>
-&nbsp;        {
-<b class="nc">&nbsp;            e.getMessage();</b>
+<b class="fc">&nbsp;            if (numOfOrders == 0)</b>
+<b class="nc">&nbsp;                logInfo(&quot;You didn&#39;t make any order before!&quot;);</b>
+<b class="fc">&nbsp;            return ordersID;</b>
+<b class="nc">&nbsp;        }catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
 &nbsp;        }
 <b class="nc">&nbsp;        return ordersID;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public static List&lt;Integer&gt; productsInTheOrder(int orderID)
 &nbsp;    {
-<b class="nc">&nbsp;        List&lt;Integer&gt; productsId = new ArrayList&lt;&gt;();</b>
-<b class="nc">&nbsp;        String qry = &quot;SELECT * from `product`,`order_product` WHERE `order_product`.`product_id` = `product`.`product_id` and `order_product`.`order_id` = &quot; + orderID;</b>
-<b class="nc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+<b class="fc">&nbsp;        List&lt;Integer&gt; productsId = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        String qry = &quot;SELECT * from `product`,`order_product` WHERE `order_product`.`product_id` = `product`.`product_id` and `order_product`.`order_id` = &quot; + orderID;</b>
+&nbsp;
 &nbsp;
 &nbsp;        try {
-<b class="nc">&nbsp;            System.out.printf(&quot;%-20s %-20s&quot;, &quot;Product id&quot;, &quot;Product Name&quot;);</b>
-<b class="nc">&nbsp;            System.out.println(&quot;\n-------------------------------------------------&quot;);</b>
-<b class="nc">&nbsp;            while (rs.next())</b>
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+<b class="fc">&nbsp;            System.out.printf(&quot;%-20s %-20s&quot;, &quot;Product id&quot;, &quot;Product Name&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;\n-------------------------------------------------&quot;);</b>
+<b class="fc">&nbsp;            while (rs.next())</b>
 &nbsp;            {
-<b class="nc">&nbsp;                System.out.printf(&quot;%-20s&quot;, rs.getInt(PRODUCT_ID));</b>
-<b class="nc">&nbsp;                System.out.printf(&quot;%-20s&quot;, rs.getString(PRODUCT_NAME));</b>
-<b class="nc">&nbsp;                System.out.println();</b>
-<b class="nc">&nbsp;                productsId.add(rs.getInt(PRODUCT_ID));</b>
+<b class="fc">&nbsp;                System.out.printf(&quot;%-20s&quot;, rs.getInt(PRODUCT_ID));</b>
+<b class="fc">&nbsp;                System.out.printf(&quot;%-20s&quot;, rs.getString(PRODUCT_NAME));</b>
+<b class="fc">&nbsp;                System.out.println();</b>
+<b class="fc">&nbsp;                productsId.add(rs.getInt(PRODUCT_ID));</b>
 &nbsp;            }
-<b class="nc">&nbsp;            System.out.println(&quot;-------------------------------------------------&quot;);</b>
-&nbsp;        }
-<b class="nc">&nbsp;        catch (SQLException sqlException)</b>
-&nbsp;        {
-<b class="nc">&nbsp;            sqlException.getMessage();</b>
-<b class="nc">&nbsp;        }</b>
-<b class="nc">&nbsp;        return productsId;</b>
+<b class="fc">&nbsp;            System.out.println(&quot;-------------------------------------------------&quot;);</b>
+<b class="nc">&nbsp;        }catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return productsId;</b>
 &nbsp;    }
 &nbsp;    public static void listingAllMsgsSentToUser(String receiverEmail)
 &nbsp;    {
-<b class="nc">&nbsp;        String qry = &quot;select * from message where receiver = &#39;&quot;+receiverEmail+&quot;&#39; order by date DESC&quot;;</b>
-<b class="nc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+<b class="fc">&nbsp;        String qry = &quot;select * from message where receiver = &#39;&quot;+receiverEmail+&quot;&#39; order by date DESC&quot;;</b>
+&nbsp;
 &nbsp;        String sender;
 &nbsp;        String msg;
 &nbsp;        Date date;
-<b class="nc">&nbsp;        int numOfMsg = 0;</b>
+<b class="fc">&nbsp;        int numOfMsg = 0;</b>
 &nbsp;        try {
-<b class="nc">&nbsp;            System.out.printf(&quot;%-27s %-50s %-20s&quot;, &quot;sender&quot;, &quot;msg&quot;,&quot;date&quot;);</b>
-<b class="nc">&nbsp;            System.out.println(&quot;\n-------------------------------------------------------------------------------------------------------&quot;);</b>
-<b class="nc">&nbsp;            while (rs.next())</b>
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+<b class="fc">&nbsp;            System.out.printf(&quot;%-27s %-50s %-20s&quot;, &quot;sender&quot;, &quot;msg&quot;,&quot;date&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;\n-------------------------------------------------------------------------------------------------------&quot;);</b>
+<b class="fc">&nbsp;            while (rs.next())</b>
 &nbsp;            {
-<b class="nc">&nbsp;                sender = rs.getString(&quot;sender&quot;);</b>
-<b class="nc">&nbsp;                msg = rs.getString(&quot;msg&quot;);</b>
-<b class="nc">&nbsp;                date = rs.getDate(&quot;date&quot;);</b>
-<b class="nc">&nbsp;                System.out.printf(&quot;%-27s&quot;, sender);</b>
-<b class="nc">&nbsp;                System.out.printf(&quot;%-50s&quot;, msg);</b>
-<b class="nc">&nbsp;                System.out.printf(&quot;%-20s&quot;, date);</b>
-<b class="nc">&nbsp;                System.out.println();</b>
-<b class="nc">&nbsp;                numOfMsg ++;</b>
+<b class="fc">&nbsp;                sender = rs.getString(&quot;sender&quot;);</b>
+<b class="fc">&nbsp;                msg = rs.getString(&quot;msg&quot;);</b>
+<b class="fc">&nbsp;                date = rs.getDate(&quot;date&quot;);</b>
+<b class="fc">&nbsp;                System.out.printf(&quot;%-27s&quot;, sender);</b>
+<b class="fc">&nbsp;                System.out.printf(&quot;%-50s&quot;, msg);</b>
+<b class="fc">&nbsp;                System.out.printf(&quot;%-20s&quot;, date);</b>
+<b class="fc">&nbsp;                System.out.println();</b>
+<b class="fc">&nbsp;                numOfMsg ++;</b>
 &nbsp;            }
-<b class="nc">&nbsp;            System.out.println(&quot;\n-------------------------------------------------------------------------------------------------------&quot;);</b>
-<b class="nc">&nbsp;            if(numOfMsg == 0)</b>
-<b class="nc">&nbsp;                System.out.println(&quot;No New Messages!&quot;);</b>
-<b class="nc">&nbsp;        } catch (SQLException e)</b>
-&nbsp;        {
-<b class="nc">&nbsp;            System.out.println(e.getMessage());</b>
-<b class="nc">&nbsp;        }</b>
-&nbsp;
+<b class="fc">&nbsp;            System.out.println(&quot;\n-------------------------------------------------------------------------------------------------------&quot;);</b>
+<b class="fc">&nbsp;            if(numOfMsg == 0)</b>
+<b class="nc">&nbsp;                logInfo(&quot;No New Messages!&quot;);</b>
+<b class="nc">&nbsp;        } catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
+<b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public static void listingYourOwnAccount(String email) {
-<b class="nc">&nbsp;        String qry = &quot;SELECT * FROM sweetsystem.users WHERE users.user_email = &#39;&quot; + email + &quot;&#39;;&quot;;</b>
-<b class="nc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
-&nbsp;
+<b class="fc">&nbsp;        String qry = &quot;SELECT * FROM sweetsystem.users WHERE users.user_email = &#39;&quot; + email + &quot;&#39;;&quot;;</b>
 &nbsp;        try {
-<b class="nc">&nbsp;            if (rs != null) {</b>
-<b class="nc">&nbsp;                System.out.println(&quot;Your Account Information:&quot;);</b>
-<b class="nc">&nbsp;                System.out.println(&quot; Name: &quot; + rs.getString(USERNAME));</b>
-<b class="nc">&nbsp;                System.out.println(&quot; Password: &quot; + rs.getString(&quot;user_password&quot;));</b>
-<b class="nc">&nbsp;                System.out.println(&quot; Email: &quot; + rs.getString(USER_EMAIL));</b>
-<b class="nc">&nbsp;                System.out.println(&quot; Location: &quot; + rs.getString(&quot;user_location&quot;));</b>
-<b class="nc">&nbsp;                System.out.println(&quot; Type: &quot; + rs.getString(&quot;user_type&quot;));</b>
+<b class="fc">&nbsp;            ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
+<b class="fc">&nbsp;            if (rs != null &amp;&amp; rs.next()) {</b>
+<b class="fc">&nbsp;                logInfo(&quot;Your Account Information:&quot;);</b>
+<b class="fc">&nbsp;                logInfo(&quot; Name: &quot; + rs.getString(&quot;username&quot;));</b>
+<b class="fc">&nbsp;                logInfo(&quot; Password: &quot; + rs.getString(&quot;user_password&quot;));</b>
+<b class="fc">&nbsp;                logInfo(&quot; Email: &quot; + rs.getString(USER_EMAIL));</b>
+<b class="fc">&nbsp;                logInfo(&quot; Location: &quot; + rs.getString(&quot;user_location&quot;));</b>
+<b class="fc">&nbsp;                logInfo(&quot; Type: &quot; + rs.getString(&quot;user_type&quot;));</b>
 &nbsp;            } else {
-<b class="nc">&nbsp;                System.out.println(&quot;No account found with the provided email.&quot;);</b>
+<b class="nc">&nbsp;                logInfo(&quot;No account found with the provided email.&quot;);</b>
 &nbsp;            }
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.out.println(&quot;Error: &quot; + e.getMessage());</b>
-<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        }catch (SQLException | DatabaseOperationException e) {</b>
+<b class="nc">&nbsp;            logError(ERROR_MESSAGE, e);</b>
+<b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public static void listingOfRawMaterials() {
-<b class="nc">&nbsp;        String qry = &quot;select * from sweetsystem.row_material;&quot;;</b>
-<b class="nc">&nbsp;        ResultSet rs = Database.connectionToSelectFromDB(qry);</b>
-&nbsp;
-&nbsp;        try {
-<b class="nc">&nbsp;            System.out.printf(&quot;%-20s %-20s %-10s %-15s %-10s %-10s %-15s %-20s%n&quot;,</b>
-&nbsp;                    &quot;raw material id&quot;, &quot;raw material Name&quot;, PRICE_OPTION, WHOLESALE_PRICE_OPTION, QTY_OPTION,
-&nbsp;                    SALED_QTY_OPTION, EX_DATE_OPTION, &quot;Supplier Email&quot;);
-&nbsp;
-<b class="nc">&nbsp;            System.out.println(LINE);</b>
-<b class="nc">&nbsp;            while (rs.next()) {</b>
-<b class="nc">&nbsp;                int rmId = rs.getInt(&quot;rm_id&quot;);</b>
-<b class="nc">&nbsp;                String rmName = rs.getString(&quot;rm_name&quot;);</b>
-<b class="nc">&nbsp;                int price = rs.getInt(&quot;rm_price&quot;);</b>
-<b class="nc">&nbsp;                int wholesalePrice = rs.getInt(WHOLESALE_PRICE);</b>
-<b class="nc">&nbsp;                int quantity = rs.getInt(&quot;qty&quot;);</b>
-<b class="nc">&nbsp;                int saledQty = rs.getInt(SALED_QTY);</b>
-<b class="nc">&nbsp;                String exDate = rs.getString(&quot;expiry_date&quot;);</b>
-<b class="nc">&nbsp;                String supplierEmail = rs.getString(&quot;supplier_email&quot;);</b>
-&nbsp;
-<b class="nc">&nbsp;                System.out.printf(&quot;%-20s %-20s %-10d %-15d %-10d %-10d %-15s %-20s%n&quot;,</b>
-<b class="nc">&nbsp;                        rmId, rmName, price, wholesalePrice, quantity,</b>
-<b class="nc">&nbsp;                        saledQty, exDate, supplierEmail);</b>
-<b class="nc">&nbsp;            }</b>
-<b class="nc">&nbsp;            System.out.println(LINE);</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            System.out.println(e.getMessage());</b>
-<b class="nc">&nbsp;        }</b>
+<b class="fc">&nbsp;        String qry = &quot;select * from sweetsystem.row_material;&quot;;</b>
+<b class="fc">&nbsp;        excuteRawMaterialsQry(qry);</b>
 &nbsp;    }
-&nbsp;
 &nbsp;}
 &nbsp;
 </code>
@@ -602,7 +584,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-22 13:10</div>
+    <div style="float:right;">generated on 2024-08-24 11:22</div>
 </div>
 </body>
 </html>
